@@ -1,0 +1,224 @@
+[
+  {
+    "id": "lesson-a1-present-simple",
+    "level": "A1",
+    "title": "Présent simple : habitudes et vérités générales",
+    "explanationFr": "Le Present Simple s'utilise pour exprimer des habitudes, des horaires fixes ou des faits permanents. À la 3e personne du singulier (he, she, it), on ajoute -s ou -es au verbe. Pour les questions et les négations, on utilise l'auxiliaire do (ou does à la 3e personne du singulier) suivi de la base verbale sans -s.",
+    "examples": [
+      {
+        "en": "I work at an export agency in Dakar.",
+        "fr": "Je travaille dans une agence d'exportation à Dakar."
+      },
+      {
+        "en": "She takes the train to Diamniadio every morning.",
+        "fr": "Elle prend le train pour Diamniadio tous les matins."
+      },
+      {
+        "en": "Does the flight leave at eight o'clock?",
+        "fr": "Est-ce que le vol part à huit heures ?"
+      }
+    ],
+    "exercises": [
+      {
+        "prompt": "Fatou ___ English and French fluently.",
+        "options": ["speak", "speaks", "speaking", "to speak"],
+        "answerIndex": 1
+      },
+      {
+        "prompt": "___ you have your boarding pass ready?",
+        "options": ["Are", "Does", "Do", "Is"],
+        "answerIndex": 2
+      },
+      {
+        "prompt": "Our office ___ open on Sundays.",
+        "options": ["don't", "isn't", "doesn't", "not"],
+        "answerIndex": 2
+      }
+    ]
+  },
+  {
+    "id": "lesson-a1-prepositions-time-place",
+    "level": "A1",
+    "title": "Prépositions de temps et de lieu : in, on, at",
+    "explanationFr": "Pour le temps : 'at' s'utilise pour une heure précise (at 9:00), 'on' pour un jour ou une date (on Monday, on May 12th), et 'in' pour un mois, une année ou une période de la journée (in July, in 2026, in the morning). Pour le lieu : 'at' désigne un point précis, 'on' une surface ou une rue, et 'in' un espace fermé, un quartier ou une ville (in Plateau, in Senegal).",
+    "examples": [
+      {
+        "en": "The meeting starts at 10:30 on Wednesday.",
+        "fr": "La réunion commence à 10h30 mercredi."
+      },
+      {
+        "en": "Our partners stay at a hotel in Saint-Louis.",
+        "fr": "Nos partenaires séjournent dans un hôtel à Saint-Louis."
+      },
+      {
+        "en": "Your passport is on the desk.",
+        "fr": "Votre passeport est sur le bureau."
+      }
+    ],
+    "exercises": [
+      {
+        "prompt": "Our conference takes place ___ October.",
+        "options": ["on", "at", "in", "by"],
+        "answerIndex": 2
+      },
+      {
+        "prompt": "Please meet me ___ the airport entrance ___ 6:00 PM.",
+        "options": ["in / on", "at / at", "on / in", "at / on"],
+        "answerIndex": 1
+      },
+      {
+        "prompt": "Do you work ___ Mondays?",
+        "options": ["on", "in", "at", "for"],
+        "answerIndex": 0
+      }
+    ]
+  },
+  {
+    "id": "lesson-a2-past-simple",
+    "level": "A2",
+    "title": "Past Simple : raconter un événement passé et daté",
+    "explanationFr": "Le Past Simple (prétérit) décrit une action terminée dans le passé, souvent accompagnée d'un repère temporel (yesterday, last week, in 2024, two days ago). Les verbes réguliers prennent -ed (worked, arrived), tandis que les verbes irréguliers ont une forme spécifique (went, bought, met). En question et négation, on utilise did / didn't + base verbale.",
+    "examples": [
+      {
+        "en": "We signed the contract in Abidjan last Tuesday.",
+        "fr": "Nous avons signé le contrat à Abidjan mardi dernier."
+      },
+      {
+        "en": "I didn't receive the invoice yesterday.",
+        "fr": "Je n'ai pas reçu la facture hier."
+      },
+      {
+        "en": "Where did you study economics?",
+        "fr": "Où avez-vous étudié l'économie ?"
+      }
+    ],
+    "exercises": [
+      {
+        "prompt": "Moussa ___ to Accra for a trade fair last month.",
+        "options": ["flewed", "flew", "flown", "flies"],
+        "answerIndex": 1
+      },
+      {
+        "prompt": "Why ___ they cancel the afternoon session?",
+        "options": ["were", "did", "had", "have"],
+        "answerIndex": 1
+      },
+      {
+        "prompt": "We ___ the supplier 45,000 FCFA for the delivery.",
+        "options": ["payed", "paid", "paying", "pays"],
+        "answerIndex": 1
+      }
+    ]
+  },
+  {
+    "id": "lesson-b1-present-perfect-vs-past",
+    "level": "B1",
+    "title": "Present Perfect vs Past Simple : bilan ou action datée",
+    "explanationFr": "Contrairement au français qui utilise le passé composé dans les deux cas, l'anglais distingue l'action passée datée (Past Simple : I visited London in 2022) du bilan ou de l'action qui continue jusqu'au présent (Present Perfect : have/has + participe passé). Utilisez le Present Perfect avec 'already', 'yet', 'ever', 'never', 'since' (point de départ) et 'for' (durée).",
+    "examples": [
+      {
+        "en": "I have lived in Mermoz for five years.",
+        "fr": "J'habite à Mermoz depuis cinq ans."
+      },
+      {
+        "en": "Have you sent the quarterly report yet?",
+        "fr": "Avez-vous déjà envoyé le rapport trimestriel ?"
+      },
+      {
+        "en": "She joined our team in January, and she has already managed three projects.",
+        "fr": "Elle a rejoint notre équipe en janvier et a déjà dirigé trois projets."
+      }
+    ],
+    "exercises": [
+      {
+        "prompt": "Our company ___ with Ghanaian suppliers since 2021.",
+        "options": ["worked", "works", "has worked", "is working"],
+        "answerIndex": 2
+      },
+      {
+        "prompt": "I ___ the regional director at the summit yesterday.",
+        "options": ["have met", "met", "had met", "meet"],
+        "answerIndex": 1
+      },
+      {
+        "prompt": "They haven't approved the new budget ___.",
+        "options": ["already", "ever", "yet", "since"],
+        "answerIndex": 2
+      }
+    ]
+  },
+  {
+    "id": "lesson-b1-modals-obligation-advice",
+    "level": "B1",
+    "title": "Modaux de conseil, d'obligation et de probabilité",
+    "explanationFr": "Les auxiliaires modaux expriment la nuance d'une affirmation : 'must' et 'have to' indiquent une obligation forte ; 'mustn't' une interdiction ; 'don't have to' une absence d'obligation (ce n'est pas nécessaire) ; 'should' ou 'ought to' un conseil professionnel ; 'might' ou 'could' une possibilité.",
+    "examples": [
+      {
+        "en": "You don't have to print the ticket; the QR code is enough.",
+        "fr": "Vous n'avez pas besoin d'imprimer le billet ; le QR code suffit."
+      },
+      {
+        "en": "We should double-check the customs documents before Friday.",
+        "fr": "Nous devrions revérifier les documents douaniers avant vendredi."
+      },
+      {
+        "en": "Visitors must wear a badge inside the port area.",
+        "fr": "Les visiteurs doivent porter un badge dans l'enceinte du port."
+      }
+    ],
+    "exercises": [
+      {
+        "prompt": "Service is included, so you ___ leave an extra tip unless you want to.",
+        "options": ["mustn't", "don't have to", "shouldn't", "can't"],
+        "answerIndex": 1
+      },
+      {
+        "prompt": "You ___ back up your thesis files every evening.",
+        "options": ["should", "might to", "would", "ought"],
+        "answerIndex": 0
+      },
+      {
+        "prompt": "Passengers ___ leave their bags unattended in the terminal.",
+        "options": ["don't have to", "mustn't", "needn't", "wouldn't"],
+        "answerIndex": 1
+      }
+    ]
+  },
+  {
+    "id": "lesson-b2-conditionals-negotiation",
+    "level": "B2",
+    "title": "Conditionnels (2e et 3e types) et négociation diplomatique",
+    "explanationFr": "Le 2e conditionnel (If + Past Simple, would + base verbale) permet de formuler des hypothèses présentes ou de négocier avec tact ('If we ordered a larger volume, would you lower the unit cost?'). Le 3e conditionnel (If + Past Perfect, would have + participe passé) exprime un regret ou une analyse rétrospective sur un événement passé qui ne s'est pas produit. Par ailleurs, 'unless' signifie 'à moins que' (if... not).",
+    "examples": [
+      {
+        "en": "If you extended the payment terms to 60 days, we would increase our order by 20%.",
+        "fr": "Si vous portiez le délai de paiement à 60 jours, nous augmenterions notre commande de 20 %."
+      },
+      {
+        "en": "Had we anticipated the port delay, we would have shipped the goods earlier.",
+        "fr": "Si nous avions anticipé le retard au port, nous aurions expédié la marchandise plus tôt."
+      },
+      {
+        "en": "We cannot sign the agreement unless the warranty clause is revised.",
+        "fr": "Nous ne pouvons pas signer l'accord à moins que la clause de garantie ne soit révisée."
+      }
+    ],
+    "exercises": [
+      {
+        "prompt": "If the supplier ___ the containers on time, we wouldn't have missed the deadline.",
+        "options": ["shipped", "had shipped", "would ship", "has shipped"],
+        "answerIndex": 1
+      },
+      {
+        "prompt": "We would expand our office in Thiès if we ___ enough qualified engineers.",
+        "options": ["find", "found", "will find", "have found"],
+        "answerIndex": 1
+      },
+      {
+        "prompt": "The shipment won't clear customs today ___ we provide the certificate of origin.",
+        "options": ["unless", "despite", "if not", "however"],
+        "answerIndex": 0
+      }
+    ]
+  }
+]

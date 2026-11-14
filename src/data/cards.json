@@ -1,0 +1,362 @@
+[
+  {
+    "id": "card-a1-01",
+    "en": "boarding pass",
+    "fr": "carte d'embarquement",
+    "example": "Please show your boarding pass at the gate in Diass.",
+    "exampleFr": "Veuillez présenter votre carte d'embarquement à la porte à Diass.",
+    "level": "A1",
+    "theme": "voyage"
+  },
+  {
+    "id": "card-a1-02",
+    "en": "luggage",
+    "fr": "bagages",
+    "example": "My luggage arrives on carousel number three.",
+    "exampleFr": "Mes bagages arrivent sur le tapis numéro trois.",
+    "level": "A1",
+    "theme": "voyage"
+  },
+  {
+    "id": "card-a1-03",
+    "en": "meeting",
+    "fr": "réunion",
+    "example": "Our morning meeting starts at nine o'clock at the Plateau office.",
+    "exampleFr": "Notre réunion du matin commence à neuf heures au bureau du Plateau.",
+    "level": "A1",
+    "theme": "travail"
+  },
+  {
+    "id": "card-a1-04",
+    "en": "schedule",
+    "fr": "emploi du temps / planning",
+    "example": "Can you send me the class schedule for this week?",
+    "exampleFr": "Peux-tu m'envoyer l'emploi du temps des cours pour cette semaine ?",
+    "level": "A1",
+    "theme": "études"
+  },
+  {
+    "id": "card-a1-05",
+    "en": "neighbor",
+    "fr": "voisin / voisine",
+    "example": "My new neighbor in Mermoz speaks English and Wolof.",
+    "exampleFr": "Mon nouveau voisin à Mermoz parle anglais et wolof.",
+    "level": "A1",
+    "theme": "conversation"
+  },
+  {
+    "id": "card-a1-06",
+    "en": "receipt",
+    "fr": "reçu / ticket de caisse",
+    "example": "I need a receipt for this payment of 15,000 FCFA.",
+    "exampleFr": "J'ai besoin d'un reçu pour ce paiement de 15 000 FCFA.",
+    "level": "A1",
+    "theme": "travail"
+  },
+  {
+    "id": "card-a1-07",
+    "en": "notebook",
+    "fr": "cahier / carnet de notes",
+    "example": "Write the new words in your notebook.",
+    "exampleFr": "Écris les nouveaux mots dans ton cahier.",
+    "level": "A1",
+    "theme": "études"
+  },
+  {
+    "id": "card-a1-08",
+    "en": "platform",
+    "fr": "quai (de gare)",
+    "example": "The express train to Diamniadio leaves from platform two.",
+    "exampleFr": "Le train express vers Diamniadio part du quai numéro deux.",
+    "level": "A1",
+    "theme": "voyage"
+  },
+  {
+    "id": "card-a1-09",
+    "en": "appointment",
+    "fr": "rendez-vous",
+    "example": "I have an appointment with the director on Tuesday.",
+    "exampleFr": "J'ai un rendez-vous avec le directeur mardi.",
+    "level": "A1",
+    "theme": "conversation"
+  },
+  {
+    "id": "card-a1-10",
+    "en": "library",
+    "fr": "bibliothèque",
+    "example": "Students study quietly in the university library.",
+    "exampleFr": "Les étudiants révisent au calme à la bibliothèque universitaire.",
+    "level": "A1",
+    "theme": "études"
+  },
+  {
+    "id": "card-a2-01",
+    "en": "invoice",
+    "fr": "facture",
+    "example": "We paid the supplier's invoice by bank transfer.",
+    "exampleFr": "Nous avons réglé la facture du fournisseur par virement bancaire.",
+    "level": "A2",
+    "theme": "travail"
+  },
+  {
+    "id": "card-a2-02",
+    "en": "round-trip ticket",
+    "fr": "billet aller-retour",
+    "example": "How much is a round-trip ticket from Dakar to Accra?",
+    "exampleFr": "Combien coûte un billet aller-retour de Dakar à Accra ?",
+    "level": "A2",
+    "theme": "voyage"
+  },
+  {
+    "id": "card-a2-03",
+    "en": "deadline",
+    "fr": "date limite / échéance",
+    "example": "The deadline for the scholarship application is Friday.",
+    "exampleFr": "La date limite pour le dossier de bourse est vendredi.",
+    "level": "A2",
+    "theme": "études"
+  },
+  {
+    "id": "card-a2-04",
+    "en": "advice",
+    "fr": "conseil(s)",
+    "example": "My mentor gave me useful advice before the interview.",
+    "exampleFr": "Mon mentor m'a donné des conseils utiles avant l'entretien.",
+    "level": "A2",
+    "theme": "conversation"
+  },
+  {
+    "id": "card-a2-05",
+    "en": "customs",
+    "fr": "douane",
+    "example": "It took twenty minutes to go through customs at the airport.",
+    "exampleFr": "Il a fallu vingt minutes pour passer la douane à l'aéroport.",
+    "level": "A2",
+    "theme": "voyage"
+  },
+  {
+    "id": "card-a2-06",
+    "en": "colleague",
+    "fr": "collègue",
+    "example": "My colleague in Lagos handles the regional logistics.",
+    "exampleFr": "Ma collègue à Lagos gère la logistique régionale.",
+    "level": "A2",
+    "theme": "travail"
+  },
+  {
+    "id": "card-a2-07",
+    "en": "internship",
+    "fr": "stage en entreprise",
+    "example": "She is doing a six-month internship at a bank in Plateau.",
+    "exampleFr": "Elle effectue un stage de six mois dans une banque au Plateau.",
+    "level": "A2",
+    "theme": "études"
+  },
+  {
+    "id": "card-a2-08",
+    "en": "neighborhood",
+    "fr": "quartier",
+    "example": "Sacré-Cœur is a lively neighborhood with many shops.",
+    "exampleFr": "Sacré-Cœur est un quartier animé avec beaucoup de commerces.",
+    "level": "A2",
+    "theme": "conversation"
+  },
+  {
+    "id": "card-a2-09",
+    "en": "delay",
+    "fr": "retard",
+    "example": "The flight had a two-hour delay due to heavy rain.",
+    "exampleFr": "Le vol a eu deux heures de retard à cause de fortes pluies.",
+    "level": "A2",
+    "theme": "voyage"
+  },
+  {
+    "id": "card-a2-10",
+    "en": "feedback",
+    "fr": "retour / avis constructif",
+    "example": "The client sent positive feedback about our presentation.",
+    "exampleFr": "Le client a envoyé un retour positif sur notre présentation.",
+    "level": "A2",
+    "theme": "travail"
+  },
+  {
+    "id": "card-b1-01",
+    "en": "agenda",
+    "fr": "ordre du jour",
+    "example": "Let's review the main items on today's agenda.",
+    "exampleFr": "Passons en revue les points principaux de l'ordre du jour.",
+    "level": "B1",
+    "theme": "travail"
+  },
+  {
+    "id": "card-b1-02",
+    "en": "accommodation",
+    "fr": "hébergement / logement",
+    "example": "We booked our accommodation near the Saint-Louis bridge.",
+    "exampleFr": "Nous avons réservé notre hébergement près du pont de Saint-Louis.",
+    "level": "B1",
+    "theme": "voyage"
+  },
+  {
+    "id": "card-b1-03",
+    "en": "research paper",
+    "fr": "article de recherche / mémoire",
+    "example": "He published a research paper on renewable energy in West Africa.",
+    "exampleFr": "Il a publié un article de recherche sur les énergies renouvelables en Afrique de l'Ouest.",
+    "level": "B1",
+    "theme": "études"
+  },
+  {
+    "id": "card-b1-04",
+    "en": "misunderstanding",
+    "fr": "malentendu",
+    "example": "A quick phone call cleared up the misunderstanding.",
+    "exampleFr": "Un appel téléphonique rapide a dissipé le malentendu.",
+    "level": "B1",
+    "theme": "conversation"
+  },
+  {
+    "id": "card-b1-05",
+    "en": "headquarters",
+    "fr": "siège social",
+    "example": "The company's regional headquarters are located in Almadies.",
+    "exampleFr": "Le siège régional de l'entreprise est situé aux Almadies.",
+    "level": "B1",
+    "theme": "travail"
+  },
+  {
+    "id": "card-b1-06",
+    "en": "itinerary",
+    "fr": "itinéraire / programme de voyage",
+    "example": "Our itinerary includes three days in Casamance.",
+    "exampleFr": "Notre itinéraire comprend trois jours en Casamance.",
+    "level": "B1",
+    "theme": "voyage"
+  },
+  {
+    "id": "card-b1-07",
+    "en": "tuition fees",
+    "fr": "frais de scolarité",
+    "example": "The scholarship covers all tuition fees for the master's degree.",
+    "exampleFr": "La bourse couvre la totalité des frais de scolarité du master.",
+    "level": "B1",
+    "theme": "études"
+  },
+  {
+    "id": "card-b1-08",
+    "en": "reliable",
+    "fr": "fiable / digne de confiance",
+    "example": "We need a reliable partner to distribute our products.",
+    "exampleFr": "Nous avons besoin d'un partenaire fiable pour distribuer nos produits.",
+    "level": "B1",
+    "theme": "conversation"
+  },
+  {
+    "id": "card-b1-09",
+    "en": "turnover",
+    "fr": "chiffre d'affaires",
+    "example": "Our annual turnover exceeded 85 million FCFA this year.",
+    "exampleFr": "Notre chiffre d'affaires annuel a dépassé 85 millions de FCFA cette année.",
+    "level": "B1",
+    "theme": "travail"
+  },
+  {
+    "id": "card-b1-10",
+    "en": "Requirement",
+    "fr": "exigence / condition requise",
+    "example": "Fluency in English is a key requirement for this position.",
+    "exampleFr": "La maîtrise de l'anglais est une condition essentielle pour ce poste.",
+    "level": "B1",
+    "theme": "études"
+  },
+  {
+    "id": "card-b2-01",
+    "en": "stakeholder",
+    "fr": "partie prenante",
+    "example": "Every stakeholder approved the infrastructure project in Thiès.",
+    "exampleFr": "Chaque partie prenante a approuvé le projet d'infrastructure à Thiès.",
+    "level": "B2",
+    "theme": "travail"
+  },
+  {
+    "id": "card-b2-02",
+    "en": "bottleneck",
+    "fr": "goulot d'étranglement / blocage",
+    "example": "Port congestion was the main bottleneck in our supply chain.",
+    "exampleFr": "La congestion portuaire était le principal goulot d'étranglement de notre chaîne logistique.",
+    "level": "B2",
+    "theme": "travail"
+  },
+  {
+    "id": "card-b2-03",
+    "en": "fellowship",
+    "fr": "bourse de recherche postdoctorale / académique",
+    "example": "She was awarded an international fellowship in agronomy.",
+    "exampleFr": "Elle a obtenu une bourse de recherche internationale en agronomie.",
+    "level": "B2",
+    "theme": "études"
+  },
+  {
+    "id": "card-b2-04",
+    "en": "common ground",
+    "fr": "terrain d'entente",
+    "example": "After hours of negotiation, both delegations found common ground.",
+    "exampleFr": "Après des heures de négociation, les deux délégations ont trouvé un terrain d'entente.",
+    "level": "B2",
+    "theme": "conversation"
+  },
+  {
+    "id": "card-b2-05",
+    "en": "layover",
+    "fr": "escale",
+    "example": "We had a four-hour layover before our connecting flight to London.",
+    "exampleFr": "Nous avons eu une escale de quatre heures avant notre vol de correspondance pour Londres.",
+    "level": "B2",
+    "theme": "voyage"
+  },
+  {
+    "id": "card-b2-06",
+    "en": "procurement",
+    "fr": "approvisionnement / achats",
+    "example": "The procurement department negotiated a 12% discount with local suppliers.",
+    "exampleFr": "Le service des achats a négocié une remise de 12 % avec les fournisseurs locaux.",
+    "level": "B2",
+    "theme": "travail"
+  },
+  {
+    "id": "card-b2-07",
+    "en": "peer-reviewed",
+    "fr": "évalué par les pairs (revue scientifique)",
+    "example": "His findings were published in a peer-reviewed journal.",
+    "exampleFr": "Ses résultats ont été publiés dans une revue scientifique évaluée par les pairs.",
+    "level": "B2",
+    "theme": "études"
+  },
+  {
+    "id": "card-b2-08",
+    "en": "outspoken",
+    "fr": "franc / qui parle sans détour",
+    "example": "She is outspoken about improving public transport in Dakar.",
+    "exampleFr": "Elle s'exprime sans détour sur l'amélioration des transports publics à Dakar.",
+    "level": "B2",
+    "theme": "conversation"
+  },
+  {
+    "id": "card-b2-09",
+    "en": "contingent on",
+    "fr": "conditionné par / dépendant de",
+    "example": "The final payment is contingent on the delivery inspection.",
+    "exampleFr": "Le paiement final est conditionné par l'inspection à la livraison.",
+    "level": "B2",
+    "theme": "travail"
+  },
+  {
+    "id": "card-b2-10",
+    "en": "off the beaten track",
+    "fr": "hors des sentiers battus",
+    "example": "Travelers looking for authenticity prefer villages off the beaten track.",
+    "exampleFr": "Les voyageurs en quête d'authenticité préfèrent les villages hors des sentiers battus.",
+    "level": "B2",
+    "theme": "voyage"
+  }
+]

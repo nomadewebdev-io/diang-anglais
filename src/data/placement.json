@@ -1,0 +1,415 @@
+[
+  {
+    "id": "pl-a1-01",
+    "level": "A1",
+    "skill": "vocab",
+    "prompt": "Quel mot désigne la « carte d'embarquement » à l'aéroport ?",
+    "options": ["boarding pass", "driving license", "receipt", "business card"],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a1-02",
+    "level": "A1",
+    "skill": "vocab",
+    "prompt": "Complétez : « I have a doctor's ___ at three o'clock. »",
+    "options": ["luggage", "appointment", "platform", "library"],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-03",
+    "level": "A1",
+    "skill": "vocab",
+    "prompt": "Que signifie le mot « schedule » dans un contexte professionnel ?",
+    "options": ["salaire", "bureau", "planning / emploi du temps", "collègue"],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a1-04",
+    "level": "A1",
+    "skill": "grammar",
+    "prompt": "Complétez : « Aminata ___ in a bank in Dakar. »",
+    "options": ["work", "working", "works", "to work"],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a1-05",
+    "level": "A1",
+    "skill": "grammar",
+    "prompt": "Complétez : « ___ you speak English at work? »",
+    "options": ["Are", "Do", "Does", "Is"],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-06",
+    "level": "A1",
+    "skill": "grammar",
+    "prompt": "Complétez : « The bus leaves ___ 7:30 AM. »",
+    "options": ["in", "on", "at", "to"],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a1-07",
+    "level": "A1",
+    "skill": "reading",
+    "prompt": "Lisez : « Notice: The library is open from Monday to Friday, 8:00 AM to 6:00 PM. It is closed on weekends. » — Quand peut-on aller à la bibliothèque ?",
+    "options": [
+      "Le samedi matin",
+      "Le dimanche après-midi",
+      "Du lundi au vendredi en journée",
+      "Tous les soirs après 20h"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a1-08",
+    "level": "A1",
+    "skill": "reading",
+    "prompt": "Lisez : « Hello Ousmane, our meeting is in Room 4 on the second floor. Please bring your laptop. » — Que doit apporter Ousmane ?",
+    "options": [
+      "Son passeport",
+      "Son ordinateur portable",
+      "Un dossier imprimé",
+      "Sa carte d'étudiant"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-09",
+    "level": "A1",
+    "skill": "listening",
+    "prompt": "Écoutez l'annonce et indiquez le numéro de la porte d'embarquement :",
+    "audioText": "Attention please. Flight two-zero-four to Abidjan is now boarding at gate twelve.",
+    "options": ["Porte 2", "Porte 12", "Porte 20", "Porte 24"],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-10",
+    "level": "A1",
+    "skill": "listening",
+    "prompt": "Écoutez la phrase et choisissez sa signification exacte :",
+    "audioText": "My office is next to the central post office.",
+    "options": [
+      "Mon bureau est en face de la gare.",
+      "Mon bureau est à côté de la poste centrale.",
+      "Mon bureau est fermé aujourd'hui.",
+      "Je cherche la poste centrale."
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-01",
+    "level": "A2",
+    "skill": "vocab",
+    "prompt": "Complétez : « The supplier sent the ___ for the new computers yesterday. »",
+    "options": ["invoice", "neighbor", "customs", "platform"],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-02",
+    "level": "A2",
+    "skill": "vocab",
+    "prompt": "Quel terme correspond à « billet aller-retour » ?",
+    "options": ["single ticket", "round-trip ticket", "delay ticket", "boarding ticket"],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-03",
+    "level": "A2",
+    "skill": "vocab",
+    "prompt": "Complétez : « Friday is the final ___ to submit our project. »",
+    "options": ["advice", "feedback", "deadline", "internship"],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a2-04",
+    "level": "A2",
+    "skill": "grammar",
+    "prompt": "Complétez : « Last week, our team ___ a new client in Banjul. »",
+    "options": ["visiting", "visits", "visited", "has visit"],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a2-05",
+    "level": "A2",
+    "skill": "grammar",
+    "prompt": "Complétez : « Why ___ you call me yesterday evening? »",
+    "options": ["weren't", "didn't", "don't", "haven't"],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-06",
+    "level": "A2",
+    "skill": "grammar",
+    "prompt": "Complétez : « This train is ___ than the bus during rush hour. »",
+    "options": ["more fast", "fastest", "faster", "as fast"],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a2-07",
+    "level": "A2",
+    "skill": "reading",
+    "prompt": "Lisez : « Dear Customer, your order #482 will arrive on Thursday morning instead of Wednesday due to heavy rain in the region. Delivery remains free of charge. » — Pourquoi ce message est-il envoyé ?",
+    "options": [
+      "Pour demander un paiement supplémentaire",
+      "Pour informer d'un décalage de livraison d'une journée",
+      "Pour annuler définitivement la commande",
+      "Pour changer l'adresse de livraison"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-08",
+    "level": "A2",
+    "skill": "reading",
+    "prompt": "Lisez : « Looking for a bilingual intern for 6 months in our Dakar office. Duties include customer support and translating short emails. » — Quel est le profil recherché ?",
+    "options": [
+      "Un directeur financier expérimenté",
+      "Un stagiaire bilingue pour six mois",
+      "Un chauffeur livreur à temps partiel",
+      "Un ingénieur réseau senior"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-09",
+    "level": "A2",
+    "skill": "listening",
+    "prompt": "Écoutez le message et indiquez à quelle heure commence la formation :",
+    "audioText": "Good morning everyone. Today's training session will start at nine thirty instead of nine o'clock.",
+    "options": ["À 8h30", "À 9h00", "À 9h30", "À 10h30"],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a2-10",
+    "level": "A2",
+    "skill": "listening",
+    "prompt": "Écoutez la phrase et indiquez comment le client a payé :",
+    "audioText": "I paid the hotel bill yesterday by bank transfer.",
+    "options": [
+      "En espèces à la réception",
+      "Par virement bancaire hier",
+      "Par chèque ce matin",
+      "Il n'a pas encore payé"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-01",
+    "level": "B1",
+    "skill": "vocab",
+    "prompt": "Complétez : « Before we begin the meeting, let's look at the first item on the ___. »",
+    "options": ["itinerary", "agenda", "turnover", "accommodation"],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-02",
+    "level": "B1",
+    "skill": "vocab",
+    "prompt": "Quel mot signifie « chiffre d'affaires » dans un bilan d'entreprise ?",
+    "options": ["turnover", "tuition", "headquarters", "requirement"],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-03",
+    "level": "B1",
+    "skill": "vocab",
+    "prompt": "Complétez : « There was a slight ___ about the delivery date, but we resolved it quickly. »",
+    "options": ["accommodation", "misunderstanding", "fellowship", "research"],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-04",
+    "level": "B1",
+    "skill": "grammar",
+    "prompt": "Complétez : « Ibrahima ___ in the logistics sector since 2019. »",
+    "options": ["worked", "is working", "has worked", "works"],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-b1-05",
+    "level": "B1",
+    "skill": "grammar",
+    "prompt": "Complétez : « Entrance to the conference is free; you ___ buy a ticket. »",
+    "options": ["mustn't", "don't have to", "shouldn't", "couldn't"],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-06",
+    "level": "B1",
+    "skill": "grammar",
+    "prompt": "Complétez : « The new solar plant ___ by a team of Senegalese engineers last year. »",
+    "options": ["built", "was built", "has built", "is building"],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-07",
+    "level": "B1",
+    "skill": "reading",
+    "prompt": "Lisez : « While online meetings save travel costs, our survey shows that 68% of regional partners still prefer at least one face-to-face meeting per year to build long-term trust. » — Quelle est l'idée principale ?",
+    "options": [
+      "Les réunions en ligne ont totalement remplacé les déplacements.",
+      "La majorité des partenaires jugent utile au moins une rencontre physique annuelle pour instaurer la confiance.",
+      "Les déplacements professionnels coûtent 68 % plus cher cette année.",
+      "Les partenaires refusent désormais d'utiliser la visioconférence."
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-08",
+    "level": "B1",
+    "skill": "reading",
+    "prompt": "Lisez : « Applicants for the master's grant must submit two academic references and proof of English proficiency before June 15th. Incomplete files will not be reviewed. » — Que se passe-t-il si un dossier manque d'une lettre de recommandation ?",
+    "options": [
+      "Le candidat dispose d'un délai supplémentaire en juillet.",
+      "Le dossier ne sera pas examiné par le jury.",
+      "L'université contacte directement les professeurs.",
+      "Seul le test d'anglais est réellement obligatoire."
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-09",
+    "level": "B1",
+    "skill": "listening",
+    "prompt": "Écoutez l'extrait et identifiez ce que l'intervenant recommande :",
+    "audioText": "Since traffic around the port is heavy on Friday afternoons, we should dispatch the trucks before seven in the morning.",
+    "options": [
+      "Reporter l'expédition au lundi suivant",
+      "Faire partir les camions avant 7h du matin pour éviter les embouteillages",
+      "Utiliser le train plutôt que des camions",
+      "Fermer l'entrepôt le vendredi après-midi"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-10",
+    "level": "B1",
+    "skill": "listening",
+    "prompt": "Écoutez le message vocal et indiquez le statut actuel du rapport :",
+    "audioText": "Hi Mariama, I have already reviewed the financial figures, but I haven't written the conclusion yet.",
+    "options": [
+      "Le rapport est entièrement terminé et envoyé.",
+      "Les chiffres ont été vérifiés, mais la conclusion n'est pas encore rédigée.",
+      "Mariama doit vérifier les chiffres financiers elle-même.",
+      "La conclusion est prête mais les chiffres sont faux."
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-01",
+    "level": "B2",
+    "skill": "vocab",
+    "prompt": "Complétez : « Modernizing the customs software eliminated a major ___ in regional trade. »",
+    "options": ["layover", "bottleneck", "fellowship", "stakeholder"],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-02",
+    "level": "B2",
+    "skill": "vocab",
+    "prompt": "Complétez : « The renewal of the grant is ___ on the publication of the annual audit. »",
+    "options": ["contingent", "outspoken", "reliable", "reluctant"],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-03",
+    "level": "B2",
+    "skill": "vocab",
+    "prompt": "Que signifie l'expression « to find common ground » lors d'une négociation ?",
+    "options": [
+      "Acheter un terrain agricole en commun",
+      "Trouver un terrain d'entente / un compromis acceptable",
+      "Abandonner ses exigences sans contrepartie",
+      "Reporter la discussion à une date ultérieure"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-04",
+    "level": "B2",
+    "skill": "grammar",
+    "prompt": "Complétez : « Had we known about the regulatory change earlier, we ___ our export strategy. »",
+    "options": [
+      "would adjust",
+      "will have adjusted",
+      "would have adjusted",
+      "adjusted"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-b2-05",
+    "level": "B2",
+    "skill": "grammar",
+    "prompt": "Complétez : « ___ the rising cost of raw materials, the cooperative maintained its profit margin. »",
+    "options": ["Although", "Despite", "However", "Even though"],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-06",
+    "level": "B2",
+    "skill": "grammar",
+    "prompt": "Complétez : « By the time the delegation arrives tomorrow, we ___ all the briefing documents. »",
+    "options": [
+      "will have prepared",
+      "are preparing",
+      "prepared",
+      "would prepare"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-07",
+    "level": "B2",
+    "skill": "reading",
+    "prompt": "Lisez : « Rather than relying solely on imported equipment, the consortium opted to train local maintenance technicians in Thiès, thereby cutting downtime by 40% within the first year. » — Quel a été le résultat direct de cette décision ?",
+    "options": [
+      "Une hausse de 40 % des importations de pièces détachées",
+      "Une réduction de 40 % des temps d'arrêt des équipements dès la première année",
+      "Le remplacement complet des techniciens locaux par des consultants externes",
+      "Un retard d'un an sur le calendrier initial du consortium"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-08",
+    "level": "B2",
+    "skill": "reading",
+    "prompt": "Lisez : « While the preliminary findings are promising, the authors caution against extrapolating these results to arid regions without further field trials. » — Quelle réserve les auteurs émettent-ils ?",
+    "options": [
+      "Les résultats initiaux sont décevants et inutilisables.",
+      "Il ne faut pas généraliser ces résultats aux zones arides sans essais supplémentaires sur le terrain.",
+      "Les essais sur le terrain ont déjà prouvé l'efficacité dans les zones arides.",
+      "L'étude doit être intégralement recommencée en laboratoire."
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-09",
+    "level": "B2",
+    "skill": "listening",
+    "prompt": "Écoutez l'intervention et identifiez la condition posée par la directrice :",
+    "audioText": "We are willing to extend the exclusivity agreement for another two years, provided that your distribution network covers at least five regional capitals.",
+    "options": [
+      "Elle refuse toute prolongation du contrat d'exclusivité.",
+      "Elle accepte de prolonger de deux ans à condition que le réseau couvre au moins cinq capitales régionales.",
+      "Elle exige une réduction immédiate des tarifs de 5 %.",
+      "Elle souhaite limiter la distribution à une seule ville."
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-10",
+    "level": "B2",
+    "skill": "listening",
+    "prompt": "Écoutez la phrase et choisissez l'interprétation exacte :",
+    "audioText": "Not only did the startup secure seed funding, but it also signed a partnership with two major telecom operators.",
+    "options": [
+      "La startup cherche encore des fonds auprès des opérateurs télécoms.",
+      "La startup a non seulement levé des fonds d'amorçage, mais a aussi signé un partenariat avec deux grands opérateurs.",
+      "Les deux opérateurs ont racheté la totalité de la startup.",
+      "Le partenariat a échoué faute de financement initial."
+    ],
+    "answerIndex": 1
+  }
+]

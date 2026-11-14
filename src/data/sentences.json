@@ -1,0 +1,242 @@
+[
+  {
+    "id": "sent-a1-01",
+    "level": "A1",
+    "en": "Good morning, my name is Moussa.",
+    "fr": "Bonjour, je m'appelle Moussa."
+  },
+  {
+    "id": "sent-a1-02",
+    "level": "A1",
+    "en": "Where is the boarding gate?",
+    "fr": "Où se trouve la porte d'embarquement ?"
+  },
+  {
+    "id": "sent-a1-03",
+    "level": "A1",
+    "en": "Our meeting starts at nine o'clock.",
+    "fr": "Notre réunion commence à neuf heures."
+  },
+  {
+    "id": "sent-a1-04",
+    "level": "A1",
+    "en": "I live and work in Dakar.",
+    "fr": "J'habite et je travaille à Dakar."
+  },
+  {
+    "id": "sent-a1-05",
+    "level": "A1",
+    "en": "Can you repeat that slowly, please?",
+    "fr": "Pouvez-vous répéter cela lentement, s'il vous plaît ?"
+  },
+  {
+    "id": "sent-a1-06",
+    "level": "A1",
+    "en": "She speaks French and English at work.",
+    "fr": "Elle parle français et anglais au travail."
+  },
+  {
+    "id": "sent-a1-07",
+    "level": "A1",
+    "en": "The train leaves from platform two.",
+    "fr": "Le train part du quai numéro deux."
+  },
+  {
+    "id": "sent-a1-08",
+    "level": "A1",
+    "en": "Please send me your phone number.",
+    "fr": "Veuillez m'envoyer votre numéro de téléphone."
+  },
+  {
+    "id": "sent-a1-09",
+    "level": "A1",
+    "en": "Do you have a receipt for this?",
+    "fr": "Avez-vous un reçu pour ceci ?"
+  },
+  {
+    "id": "sent-a1-10",
+    "level": "A1",
+    "en": "We study together at the library.",
+    "fr": "Nous révisons ensemble à la bibliothèque."
+  },
+  {
+    "id": "sent-a2-01",
+    "level": "A2",
+    "en": "We booked a round-trip ticket to Accra.",
+    "fr": "Nous avons réservé un billet aller-retour pour Accra."
+  },
+  {
+    "id": "sent-a2-02",
+    "level": "A2",
+    "en": "The flight had a two-hour delay yesterday.",
+    "fr": "Le vol a eu deux heures de retard hier."
+  },
+  {
+    "id": "sent-a2-03",
+    "level": "A2",
+    "en": "Friday is the deadline for the application.",
+    "fr": "Vendredi est la date limite pour la candidature."
+  },
+  {
+    "id": "sent-a2-04",
+    "level": "A2",
+    "en": "My colleague sent the invoice this morning.",
+    "fr": "Mon collègue a envoyé la facture ce matin."
+  },
+  {
+    "id": "sent-a2-05",
+    "level": "A2",
+    "en": "How long does it take to reach the airport?",
+    "fr": "Combien de temps faut-il pour rejoindre l'aéroport ?"
+  },
+  {
+    "id": "sent-a2-06",
+    "level": "A2",
+    "en": "She is doing an internship at a local bank.",
+    "fr": "Elle fait un stage dans une banque locale."
+  },
+  {
+    "id": "sent-a2-07",
+    "level": "A2",
+    "en": "Thank you for your helpful advice.",
+    "fr": "Merci pour vos précieux conseils."
+  },
+  {
+    "id": "sent-a2-08",
+    "level": "A2",
+    "en": "Did you receive the package on Tuesday?",
+    "fr": "Avez-vous reçu le colis mardi ?"
+  },
+  {
+    "id": "sent-a2-09",
+    "level": "A2",
+    "en": "The client gave us positive feedback.",
+    "fr": "Le client nous a fait un retour positif."
+  },
+  {
+    "id": "sent-a2-10",
+    "level": "A2",
+    "en": "It took twenty minutes to go through customs.",
+    "fr": "Il a fallu vingt minutes pour passer la douane."
+  },
+  {
+    "id": "sent-b1-01",
+    "level": "B1",
+    "en": "Let's review the main items on today's agenda.",
+    "fr": "Passons en revue les points principaux de l'ordre du jour."
+  },
+  {
+    "id": "sent-b1-02",
+    "level": "B1",
+    "en": "I have worked in this sector for five years.",
+    "fr": "Je travaille dans ce secteur depuis cinq ans."
+  },
+  {
+    "id": "sent-b1-03",
+    "level": "B1",
+    "en": "You don't have to print the boarding pass.",
+    "fr": "Vous n'avez pas besoin d'imprimer la carte d'embarquement."
+  },
+  {
+    "id": "sent-b1-04",
+    "level": "B1",
+    "en": "We need a reliable partner for regional distribution.",
+    "fr": "Nous avons besoin d'un partenaire fiable pour la distribution régionale."
+  },
+  {
+    "id": "sent-b1-05",
+    "level": "B1",
+    "en": "A quick phone call cleared up the misunderstanding.",
+    "fr": "Un appel téléphonique rapide a dissipé le malentendu."
+  },
+  {
+    "id": "sent-b1-06",
+    "level": "B1",
+    "en": "The scholarship covers all university tuition fees.",
+    "fr": "La bourse couvre la totalité des frais de scolarité universitaire."
+  },
+  {
+    "id": "sent-b1-07",
+    "level": "B1",
+    "en": "Have you approved the quarterly budget yet?",
+    "fr": "Avez-vous déjà approuvé le budget trimestriel ?"
+  },
+  {
+    "id": "sent-b1-08",
+    "level": "B1",
+    "en": "Fluency in English is a key requirement for this job.",
+    "fr": "La maîtrise de l'anglais est une exigence clé pour ce poste."
+  },
+  {
+    "id": "sent-b1-09",
+    "level": "B1",
+    "en": "We should check the customs documents before Friday.",
+    "fr": "Nous devrions vérifier les documents douaniers avant vendredi."
+  },
+  {
+    "id": "sent-b1-10",
+    "level": "B1",
+    "en": "Our regional headquarters are located near the coast.",
+    "fr": "Notre siège régional est situé près de la côte."
+  },
+  {
+    "id": "sent-b2-01",
+    "level": "B2",
+    "en": "Every stakeholder approved the new infrastructure project.",
+    "fr": "Chaque partie prenante a approuvé le nouveau projet d'infrastructure."
+  },
+  {
+    "id": "sent-b2-02",
+    "level": "B2",
+    "en": "Port congestion was the main bottleneck in our supply chain.",
+    "fr": "La congestion portuaire était le principal goulot d'étranglement de notre chaîne logistique."
+  },
+  {
+    "id": "sent-b2-03",
+    "level": "B2",
+    "en": "After hours of negotiation, both teams found common ground.",
+    "fr": "Après des heures de négociation, les deux équipes ont trouvé un terrain d'entente."
+  },
+  {
+    "id": "sent-b2-04",
+    "level": "B2",
+    "en": "The final payment is contingent on the delivery inspection.",
+    "fr": "Le paiement final est conditionné par l'inspection à la livraison."
+  },
+  {
+    "id": "sent-b2-05",
+    "level": "B2",
+    "en": "If we ordered a larger volume, would you lower the price?",
+    "fr": "Si nous commandions un volume plus important, baisseriez-vous le prix ?"
+  },
+  {
+    "id": "sent-b2-06",
+    "level": "B2",
+    "en": "Had we anticipated the delay, we would have shipped earlier.",
+    "fr": "Si nous avions anticipé le retard, nous aurions expédié plus tôt."
+  },
+  {
+    "id": "sent-b2-07",
+    "level": "B2",
+    "en": "His findings were published in a peer-reviewed journal.",
+    "fr": "Ses résultats ont été publiés dans une revue évaluée par les pairs."
+  },
+  {
+    "id": "sent-b2-08",
+    "level": "B2",
+    "en": "We cannot sign the contract unless this clause is revised.",
+    "fr": "Nous ne pouvons pas signer le contrat à moins que cette clause ne soit révisée."
+  },
+  {
+    "id": "sent-b2-09",
+    "level": "B2",
+    "en": "Despite rising costs, the cooperative maintained its margin.",
+    "fr": "Malgré la hausse des coûts, la coopérative a maintenu sa marge."
+  },
+  {
+    "id": "sent-b2-10",
+    "level": "B2",
+    "en": "We had a four-hour layover before our connecting flight.",
+    "fr": "Nous avons eu une escale de quatre heures avant notre vol de correspondance."
+  }
+]
