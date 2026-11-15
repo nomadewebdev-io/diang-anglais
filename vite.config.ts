@@ -40,4 +40,15 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('/src/data/') || id.includes('\\src\\data\\')) {
+            return 'data-catalog';
+          }
+        },
+      },
+    },
+  },
 });

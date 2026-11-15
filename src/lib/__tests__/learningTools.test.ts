@@ -8,11 +8,11 @@ import { evaluateDictation } from '../dictation';
 import { catalog } from '../catalog';
 
 describe('sm2 & dictation & data catalog', () => {
-  it('vérifie que les 4 fichiers JSON de départ contiennent 40 cartes, 6 leçons, 40 questions et 40 phrases', () => {
-    expect(catalog.cards).toHaveLength(40);
-    expect(catalog.lessons).toHaveLength(6);
-    expect(catalog.placement).toHaveLength(40);
-    expect(catalog.sentences).toHaveLength(40);
+  it('vérifie que les 4 fichiers JSON contiennent 800 cartes, 40 leçons, 200 questions et 300 phrases', () => {
+    expect(catalog.cards).toHaveLength(800);
+    expect(catalog.lessons).toHaveLength(40);
+    expect(catalog.placement).toHaveLength(200);
+    expect(catalog.sentences).toHaveLength(300);
   });
 
   it('applique correctement les 4 niveaux de révision SM-2 (À revoir, Difficile, Bien, Facile)', () => {

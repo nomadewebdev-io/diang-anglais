@@ -60,6 +60,426 @@
     "fr": "Nous révisons ensemble à la bibliothèque."
   },
   {
+    "id": "sent-a1-11",
+    "level": "A1",
+    "en": "My brother is a doctor at the clinic.",
+    "fr": "Mon frère est médecin à la clinique."
+  },
+  {
+    "id": "sent-a1-12",
+    "level": "A1",
+    "en": "What time does the supermarket close?",
+    "fr": "À quelle heure ferme le supermarché ?"
+  },
+  {
+    "id": "sent-a1-13",
+    "level": "A1",
+    "en": "I drink a cup of coffee every morning.",
+    "fr": "Je bois une tasse de café tous les matins."
+  },
+  {
+    "id": "sent-a1-14",
+    "level": "A1",
+    "en": "The pharmacy is next to the bank.",
+    "fr": "La pharmacie est à côté de la banque."
+  },
+  {
+    "id": "sent-a1-15",
+    "level": "A1",
+    "en": "Are you free this afternoon?",
+    "fr": "Êtes-vous libre cet après-midi ?"
+  },
+  {
+    "id": "sent-a1-16",
+    "level": "A1",
+    "en": "Please write your name on this form.",
+    "fr": "Veuillez écrire votre nom sur ce formulaire."
+  },
+  {
+    "id": "sent-a1-17",
+    "level": "A1",
+    "en": "How much is a bottle of water?",
+    "fr": "Combien coûte une bouteille d'eau ?"
+  },
+  {
+    "id": "sent-a1-18",
+    "level": "A1",
+    "en": "She takes the bus to university.",
+    "fr": "Elle prend le bus pour aller à l'université."
+  },
+  {
+    "id": "sent-a1-19",
+    "level": "A1",
+    "en": "I have two sisters and one brother.",
+    "fr": "J'ai deux sœurs et un frère."
+  },
+  {
+    "id": "sent-a1-20",
+    "level": "A1",
+    "en": "The keys are on the kitchen table.",
+    "fr": "Les clés sont sur la table de la cuisine."
+  },
+  {
+    "id": "sent-a1-21",
+    "level": "A1",
+    "en": "We do not work on Sundays.",
+    "fr": "Nous ne travaillons pas le dimanche."
+  },
+  {
+    "id": "sent-a1-22",
+    "level": "A1",
+    "en": "Where do your parents live?",
+    "fr": "Où habitent vos parents ?"
+  },
+  {
+    "id": "sent-a1-23",
+    "level": "A1",
+    "en": "He is waiting for a taxi outside.",
+    "fr": "Il attend un taxi dehors."
+  },
+  {
+    "id": "sent-a1-24",
+    "level": "A1",
+    "en": "Can I pay by mobile money?",
+    "fr": "Puis-je payer par paiement mobile ?"
+  },
+  {
+    "id": "sent-a1-25",
+    "level": "A1",
+    "en": "This room is very bright and quiet.",
+    "fr": "Cette pièce est très lumineuse et calme."
+  },
+  {
+    "id": "sent-a1-26",
+    "level": "A1",
+    "en": "Open your notebook to page ten.",
+    "fr": "Ouvrez votre cahier à la page dix."
+  },
+  {
+    "id": "sent-a1-27",
+    "level": "A1",
+    "en": "I need a new charger for my phone.",
+    "fr": "J'ai besoin d'un nouveau chargeur pour mon téléphone."
+  },
+  {
+    "id": "sent-a1-28",
+    "level": "A1",
+    "en": "The market is crowded on Saturdays.",
+    "fr": "Le marché est très fréquenté le samedi."
+  },
+  {
+    "id": "sent-a1-29",
+    "level": "A1",
+    "en": "She always arrives on time.",
+    "fr": "Elle arrive toujours à l'heure."
+  },
+  {
+    "id": "sent-a1-30",
+    "level": "A1",
+    "en": "Do you know the Wi-Fi password?",
+    "fr": "Connaissez-vous le mot de passe du Wi-Fi ?"
+  },
+  {
+    "id": "sent-a1-31",
+    "level": "A1",
+    "en": "My office is on the third floor.",
+    "fr": "Mon bureau est au troisième étage."
+  },
+  {
+    "id": "sent-a1-32",
+    "level": "A1",
+    "en": "Wait for me at the main entrance.",
+    "fr": "Attendez-moi à l'entrée principale."
+  },
+  {
+    "id": "sent-a1-33",
+    "level": "A1",
+    "en": "I would like a glass of cold water.",
+    "fr": "Je voudrais un verre d'eau fraîche."
+  },
+  {
+    "id": "sent-a1-34",
+    "level": "A1",
+    "en": "They are having lunch in the canteen.",
+    "fr": "Ils déjeunent à la cantine."
+  },
+  {
+    "id": "sent-a1-35",
+    "level": "A1",
+    "en": "Is this seat taken?",
+    "fr": "Cette place est-elle prise ?"
+  },
+  {
+    "id": "sent-a1-36",
+    "level": "A1",
+    "en": "Turn left after the traffic light.",
+    "fr": "Tournez à gauche après le feu tricolore."
+  },
+  {
+    "id": "sent-a1-37",
+    "level": "A1",
+    "en": "I usually wake up at six thirty.",
+    "fr": "Je me réveille habituellement à six heures trente."
+  },
+  {
+    "id": "sent-a1-38",
+    "level": "A1",
+    "en": "Our teacher speaks very clearly.",
+    "fr": "Notre professeur parle très clairement."
+  },
+  {
+    "id": "sent-a1-39",
+    "level": "A1",
+    "en": "He bought fresh bread at the bakery.",
+    "fr": "Il a acheté du pain frais à la boulangerie."
+  },
+  {
+    "id": "sent-a1-40",
+    "level": "A1",
+    "en": "What is your email address?",
+    "fr": "Quelle est votre adresse électronique ?"
+  },
+  {
+    "id": "sent-a1-41",
+    "level": "A1",
+    "en": "The children are playing in the garden.",
+    "fr": "Les enfants jouent dans le jardin."
+  },
+  {
+    "id": "sent-a1-42",
+    "level": "A1",
+    "en": "Please close the door behind you.",
+    "fr": "Veuillez fermer la porte derrière vous."
+  },
+  {
+    "id": "sent-a1-43",
+    "level": "A1",
+    "en": "I am looking for the train station.",
+    "fr": "Je cherche la gare ferroviaire."
+  },
+  {
+    "id": "sent-a1-44",
+    "level": "A1",
+    "en": "Does this bus go to the airport?",
+    "fr": "Ce bus va-t-il à l'aéroport ?"
+  },
+  {
+    "id": "sent-a1-45",
+    "level": "A1",
+    "en": "She wears glasses when she reads.",
+    "fr": "Elle porte des lunettes quand elle lit."
+  },
+  {
+    "id": "sent-a1-46",
+    "level": "A1",
+    "en": "We have an appointment on Thursday.",
+    "fr": "Nous avons un rendez-vous jeudi."
+  },
+  {
+    "id": "sent-a1-47",
+    "level": "A1",
+    "en": "How many languages do you speak?",
+    "fr": "Combien de langues parlez-vous ?"
+  },
+  {
+    "id": "sent-a1-48",
+    "level": "A1",
+    "en": "The weather is warm and sunny today.",
+    "fr": "Le temps est chaud et ensoleillé aujourd'hui."
+  },
+  {
+    "id": "sent-a1-49",
+    "level": "A1",
+    "en": "I forgot my umbrella at home.",
+    "fr": "J'ai oublié mon parapluie à la maison."
+  },
+  {
+    "id": "sent-a1-50",
+    "level": "A1",
+    "en": "Can you help me carry this bag?",
+    "fr": "Pouvez-vous m'aider à porter ce sac ?"
+  },
+  {
+    "id": "sent-a1-51",
+    "level": "A1",
+    "en": "My neighbor is very kind and helpful.",
+    "fr": "Mon voisin est très aimable et serviable."
+  },
+  {
+    "id": "sent-a1-52",
+    "level": "A1",
+    "en": "The flight to Abidjan is on time.",
+    "fr": "Le vol pour Abidjan est à l'heure."
+  },
+  {
+    "id": "sent-a1-53",
+    "level": "A1",
+    "en": "I prefer mint tea without sugar.",
+    "fr": "Je préfère le thé à la menthe sans sucre."
+  },
+  {
+    "id": "sent-a1-54",
+    "level": "A1",
+    "en": "There is a pharmacy across the street.",
+    "fr": "Il y a une pharmacie de l'autre côté de la rue."
+  },
+  {
+    "id": "sent-a1-55",
+    "level": "A1",
+    "en": "What do you do on weekends?",
+    "fr": "Que faites-vous le week-end ?"
+  },
+  {
+    "id": "sent-a1-56",
+    "level": "A1",
+    "en": "He is checking his messages right now.",
+    "fr": "Il consulte ses messages en ce moment."
+  },
+  {
+    "id": "sent-a1-57",
+    "level": "A1",
+    "en": "Please show your ticket to the driver.",
+    "fr": "Veuillez présenter votre billet au chauffeur."
+  },
+  {
+    "id": "sent-a1-58",
+    "level": "A1",
+    "en": "Our class finishes at four thirty.",
+    "fr": "Notre cours se termine à seize heures trente."
+  },
+  {
+    "id": "sent-a1-59",
+    "level": "A1",
+    "en": "I buy fresh vegetables every Tuesday.",
+    "fr": "J’achète des légumes frais tous les mardis."
+  },
+  {
+    "id": "sent-a1-60",
+    "level": "A1",
+    "en": "Are there any chairs in the hall?",
+    "fr": "Y a-t-il des chaises dans le couloir ?"
+  },
+  {
+    "id": "sent-a1-61",
+    "level": "A1",
+    "en": "She is my best friend from school.",
+    "fr": "C'est ma meilleure amie d'école."
+  },
+  {
+    "id": "sent-a1-62",
+    "level": "A1",
+    "en": "Put your luggage on the scale.",
+    "fr": "Posez vos bagages sur la balance."
+  },
+  {
+    "id": "sent-a1-63",
+    "level": "A1",
+    "en": "I do not understand this word.",
+    "fr": "Je ne comprends pas ce mot."
+  },
+  {
+    "id": "sent-a1-64",
+    "level": "A1",
+    "en": "The hotel receptionist speaks English.",
+    "fr": "Le réceptionniste de l'hôtel parle anglais."
+  },
+  {
+    "id": "sent-a1-65",
+    "level": "A1",
+    "en": "We walk along the beach every evening.",
+    "fr": "Nous marchons le long de la plage chaque soir."
+  },
+  {
+    "id": "sent-a1-66",
+    "level": "A1",
+    "en": "When is your birthday?",
+    "fr": "Quand est votre anniversaire ?"
+  },
+  {
+    "id": "sent-a1-67",
+    "level": "A1",
+    "en": "He works as a mechanic in Thiès.",
+    "fr": "Il travaille comme mécanicien à Thiès."
+  },
+  {
+    "id": "sent-a1-68",
+    "level": "A1",
+    "en": "Please turn off your phone during class.",
+    "fr": "Veuillez éteindre votre téléphone pendant le cours."
+  },
+  {
+    "id": "sent-a1-69",
+    "level": "A1",
+    "en": "I am ready to leave now.",
+    "fr": "Je suis prêt à partir maintenant."
+  },
+  {
+    "id": "sent-a1-70",
+    "level": "A1",
+    "en": "This shirt costs five thousand francs.",
+    "fr": "Cette chemise coûte cinq mille francs."
+  },
+  {
+    "id": "sent-a1-71",
+    "level": "A1",
+    "en": "Do you have a pen I can borrow?",
+    "fr": "Avez-vous un stylo que je peux emprunter ?"
+  },
+  {
+    "id": "sent-a1-72",
+    "level": "A1",
+    "en": "They live in a quiet neighborhood.",
+    "fr": "Ils habitent dans un quartier calme."
+  },
+  {
+    "id": "sent-a1-73",
+    "level": "A1",
+    "en": "My laptop battery is almost empty.",
+    "fr": "La batterie de mon ordinateur est presque vide."
+  },
+  {
+    "id": "sent-a1-74",
+    "level": "A1",
+    "en": "She cooks a delicious fish dish on Fridays.",
+    "fr": "Elle prépare un délicieux plat de poisson le vendredi."
+  },
+  {
+    "id": "sent-a1-75",
+    "level": "A1",
+    "en": "Where can I wash my hands?",
+    "fr": "Où puis-je me laver les mains ?"
+  },
+  {
+    "id": "sent-a1-76",
+    "level": "A1",
+    "en": "The post office opens at eight.",
+    "fr": "Le bureau de poste ouvre à huit heures."
+  },
+  {
+    "id": "sent-a1-77",
+    "level": "A1",
+    "en": "I am learning English for my job.",
+    "fr": "J'apprends l'anglais pour mon travail."
+  },
+  {
+    "id": "sent-a1-78",
+    "level": "A1",
+    "en": "Call me when you get home.",
+    "fr": "Appelez-moi quand vous arrivez à la maison."
+  },
+  {
+    "id": "sent-a1-79",
+    "level": "A1",
+    "en": "There are ten computers in this room.",
+    "fr": "Il y a dix ordinateurs dans cette salle."
+  },
+  {
+    "id": "sent-a1-80",
+    "level": "A1",
+    "en": "Thank you very much for your help.",
+    "fr": "Merci beaucoup pour votre aide."
+  },
+  {
     "id": "sent-a2-01",
     "level": "A2",
     "en": "We booked a round-trip ticket to Accra.",
@@ -118,6 +538,426 @@
     "level": "A2",
     "en": "It took twenty minutes to go through customs.",
     "fr": "Il a fallu vingt minutes pour passer la douane."
+  },
+  {
+    "id": "sent-a2-11",
+    "level": "A2",
+    "en": "I was reading a report when the phone rang.",
+    "fr": "Je lisais un rapport quand le téléphone a sonné."
+  },
+  {
+    "id": "sent-a2-12",
+    "level": "A2",
+    "en": "The express train is faster than the bus.",
+    "fr": "Le train express est plus rapide que le bus."
+  },
+  {
+    "id": "sent-a2-13",
+    "level": "A2",
+    "en": "We are going to open a new branch in Mbour.",
+    "fr": "Nous allons ouvrir une nouvelle agence à Mbour."
+  },
+  {
+    "id": "sent-a2-14",
+    "level": "A2",
+    "en": "Have you ever visited the island of Gorée?",
+    "fr": "Avez-vous déjà visité l'île de Gorée ?"
+  },
+  {
+    "id": "sent-a2-15",
+    "level": "A2",
+    "en": "You should save a copy of your passport.",
+    "fr": "Vous devriez conserver une copie de votre passeport."
+  },
+  {
+    "id": "sent-a2-16",
+    "level": "A2",
+    "en": "If we leave early, we will avoid the traffic.",
+    "fr": "Si nous partons tôt, nous éviterons les embouteillages."
+  },
+  {
+    "id": "sent-a2-17",
+    "level": "A2",
+    "en": "She decided to accept the job offer.",
+    "fr": "Elle a décidé d'accepter l'offre d'emploi."
+  },
+  {
+    "id": "sent-a2-18",
+    "level": "A2",
+    "en": "There are only a few seats left on the ferry.",
+    "fr": "Il ne reste que quelques places sur le ferry."
+  },
+  {
+    "id": "sent-a2-19",
+    "level": "A2",
+    "en": "He speaks English more fluently than last year.",
+    "fr": "Il parle anglais plus couramment que l'an dernier."
+  },
+  {
+    "id": "sent-a2-20",
+    "level": "A2",
+    "en": "Why did they cancel the afternoon meeting?",
+    "fr": "Pourquoi ont-ils annulé la réunion de l'après-midi ?"
+  },
+  {
+    "id": "sent-a2-21",
+    "level": "A2",
+    "en": "I need to withdraw some cash before we leave.",
+    "fr": "Je dois retirer des espèces avant notre départ."
+  },
+  {
+    "id": "sent-a2-22",
+    "level": "A2",
+    "en": "The technician repaired the printer in ten minutes.",
+    "fr": "Le technicien a réparé l'imprimante en dix minutes."
+  },
+  {
+    "id": "sent-a2-23",
+    "level": "A2",
+    "en": "Please check the attachment in my last email.",
+    "fr": "Veuillez vérifier la pièce jointe de mon dernier courriel."
+  },
+  {
+    "id": "sent-a2-24",
+    "level": "A2",
+    "en": "We didn’t have enough time to visit the museum.",
+    "fr": "Nous n'avons pas eu assez de temps pour visiter le musée."
+  },
+  {
+    "id": "sent-a2-25",
+    "level": "A2",
+    "en": "She has worked as a nurse for three years.",
+    "fr": "Elle travaille comme infirmière depuis trois ans."
+  },
+  {
+    "id": "sent-a2-26",
+    "level": "A2",
+    "en": "Make sure you lock the warehouse before leaving.",
+    "fr": "Assurez-vous de verrouiller l'entrepôt avant de partir."
+  },
+  {
+    "id": "sent-a2-27",
+    "level": "A2",
+    "en": "The doctor advised him to drink more water.",
+    "fr": "Le médecin lui a conseillé de boire davantage d'eau."
+  },
+  {
+    "id": "sent-a2-28",
+    "level": "A2",
+    "en": "I met my former classmate at the conference.",
+    "fr": "J'ai rencontré mon ancien camarade de classe à la conférence."
+  },
+  {
+    "id": "sent-a2-29",
+    "level": "A2",
+    "en": "This hotel is cheaper and cleaner than the other one.",
+    "fr": "Cet hôtel est moins cher et plus propre que l'autre."
+  },
+  {
+    "id": "sent-a2-30",
+    "level": "A2",
+    "en": "Would you mind sending me the updated schedule?",
+    "fr": "Pourriez-vous m'envoyer le planning mis à jour ?"
+  },
+  {
+    "id": "sent-a2-31",
+    "level": "A2",
+    "en": "They were waiting at the bus stop when it started raining.",
+    "fr": "Ils attendaient à l'arrêt de bus quand il a commencé à pleuvoir."
+  },
+  {
+    "id": "sent-a2-32",
+    "level": "A2",
+    "en": "You don’t have to print the receipt.",
+    "fr": "Vous n'avez pas besoin d'imprimer le reçu."
+  },
+  {
+    "id": "sent-a2-33",
+    "level": "A2",
+    "en": "How often do you back up your computer files?",
+    "fr": "À quelle fréquence sauvegardez-vous vos fichiers informatiques ?"
+  },
+  {
+    "id": "sent-a2-34",
+    "level": "A2",
+    "en": "The manager is currently interviewing a new candidate.",
+    "fr": "Le directeur fait actuellement passer un entretien à un nouveau candidat."
+  },
+  {
+    "id": "sent-a2-35",
+    "level": "A2",
+    "en": "I will call you as soon as I arrive at the station.",
+    "fr": "Je vous appellerai dès que j’arriverai à la gare."
+  },
+  {
+    "id": "sent-a2-36",
+    "level": "A2",
+    "en": "She bought a laptop that has a long battery life.",
+    "fr": "Elle a acheté un ordinateur portable qui a une grande autonomie."
+  },
+  {
+    "id": "sent-a2-37",
+    "level": "A2",
+    "en": "We spent the whole weekend preparing the exhibition.",
+    "fr": "Nous avons passé tout le week-end à préparer l’exposition."
+  },
+  {
+    "id": "sent-a2-38",
+    "level": "A2",
+    "en": "Could you tell me how to get to the port?",
+    "fr": "Pourriez-vous m’indiquer comment aller au port ?"
+  },
+  {
+    "id": "sent-a2-39",
+    "level": "A2",
+    "en": "He forgot to attach the document to his message.",
+    "fr": "Il a oublié de joindre le document à son message."
+  },
+  {
+    "id": "sent-a2-40",
+    "level": "A2",
+    "en": "Traffic in the city center is heavier on Monday mornings.",
+    "fr": "La circulation en centre-ville est plus dense le lundi matin."
+  },
+  {
+    "id": "sent-a2-41",
+    "level": "A2",
+    "en": "I have never lost my luggage during a trip.",
+    "fr": "Je n'ai jamais perdu mes bagages pendant un voyage."
+  },
+  {
+    "id": "sent-a2-42",
+    "level": "A2",
+    "en": "They offered us a ten percent discount on the order.",
+    "fr": "Ils nous ont accordé une remise de dix pour cent sur la commande."
+  },
+  {
+    "id": "sent-a2-43",
+    "level": "A2",
+    "en": "Please fill out this registration form in capital letters.",
+    "fr": "Veuillez remplir ce formulaire d’inscription en lettres majuscules."
+  },
+  {
+    "id": "sent-a2-44",
+    "level": "A2",
+    "en": "The pharmacy on the corner stays open until midnight.",
+    "fr": "La pharmacie du coin reste ouverte jusqu’à minuit."
+  },
+  {
+    "id": "sent-a2-45",
+    "level": "A2",
+    "en": "We need to hire two experienced drivers next month.",
+    "fr": "Nous devons recruter deux chauffeurs expérimentés le mois prochain."
+  },
+  {
+    "id": "sent-a2-46",
+    "level": "A2",
+    "en": "Although the test was difficult, most students passed.",
+    "fr": "Bien que le test fût difficile, la plupart des étudiants ont réussi."
+  },
+  {
+    "id": "sent-a2-47",
+    "level": "A2",
+    "en": "My flight leaves at seven, so I must wake up early.",
+    "fr": "Mon vol part à sept heures, donc je dois me lever tôt."
+  },
+  {
+    "id": "sent-a2-48",
+    "level": "A2",
+    "en": "She is very good at organizing team events.",
+    "fr": "Elle est très douée pour organiser des événements d’équipe."
+  },
+  {
+    "id": "sent-a2-49",
+    "level": "A2",
+    "en": "Did you remember to pay the electricity bill?",
+    "fr": "Avez-vous pensé à payer la facture d'électricité ?"
+  },
+  {
+    "id": "sent-a2-50",
+    "level": "A2",
+    "en": "The air conditioner in the meeting room is making noise.",
+    "fr": "Le climatiseur de la salle de réunion fait du bruit."
+  },
+  {
+    "id": "sent-a2-51",
+    "level": "A2",
+    "en": "I bought a return ticket because it was less expensive.",
+    "fr": "J'ai acheté un billet aller-retour parce que c'était moins cher."
+  },
+  {
+    "id": "sent-a2-52",
+    "level": "A2",
+    "en": "Our supplier promised to deliver the goods before Friday.",
+    "fr": "Notre fournisseur a promis de livrer la marchandise avant vendredi."
+  },
+  {
+    "id": "sent-a2-53",
+    "level": "A2",
+    "en": "Wait until the green light turns on before crossing.",
+    "fr": "Attendez que le feu vert s’allume avant de traverser."
+  },
+  {
+    "id": "sent-a2-54",
+    "level": "A2",
+    "en": "He hurt his ankle while playing football yesterday.",
+    "fr": "Il s’est blessé à la cheville en jouant au football hier."
+  },
+  {
+    "id": "sent-a2-55",
+    "level": "A2",
+    "en": "Can we reschedule our appointment for Wednesday afternoon?",
+    "fr": "Pouvons-nous reprogrammer notre rendez-vous à mercredi après-midi ?"
+  },
+  {
+    "id": "sent-a2-56",
+    "level": "A2",
+    "en": "The internet connection was too slow for a video call.",
+    "fr": "La connexion internet était trop lente pour un appel vidéo."
+  },
+  {
+    "id": "sent-a2-57",
+    "level": "A2",
+    "en": "She lent me her dictionary for the afternoon exam.",
+    "fr": "Elle m'a prêté son dictionnaire pour l'examen de l'après-midi."
+  },
+  {
+    "id": "sent-a2-58",
+    "level": "A2",
+    "en": "There is a free shuttle between the terminal and the hotel.",
+    "fr": "Il y a une navette gratuite entre le terminal et l'hôtel."
+  },
+  {
+    "id": "sent-a2-59",
+    "level": "A2",
+    "en": "I have already answered all the urgent messages.",
+    "fr": "J'ai déjà répondu à tous les messages urgents."
+  },
+  {
+    "id": "sent-a2-60",
+    "level": "A2",
+    "en": "How many guests are attending the dinner tonight?",
+    "fr": "Combien d’invités assistent au dîner ce soir ?"
+  },
+  {
+    "id": "sent-a2-61",
+    "level": "A2",
+    "en": "They are building a new health center in our town.",
+    "fr": "Ils construisent un nouveau centre de santé dans notre ville."
+  },
+  {
+    "id": "sent-a2-62",
+    "level": "A2",
+    "en": "You must wear a helmet when riding a motorcycle.",
+    "fr": "Vous devez porter un casque lorsque vous roulez à moto."
+  },
+  {
+    "id": "sent-a2-63",
+    "level": "A2",
+    "en": "The store accepts both bank cards and mobile payments.",
+    "fr": "Le magasin accepte aussi bien les cartes bancaires que le paiement mobile."
+  },
+  {
+    "id": "sent-a2-64",
+    "level": "A2",
+    "en": "I didn’t recognize him because he had changed his glasses.",
+    "fr": "Je ne l'ai pas reconnu parce qu'il avait changé de lunettes."
+  },
+  {
+    "id": "sent-a2-65",
+    "level": "A2",
+    "en": "Let me know if you need any extra information.",
+    "fr": "Faites-moi savoir si vous avez besoin d'informations supplémentaires."
+  },
+  {
+    "id": "sent-a2-66",
+    "level": "A2",
+    "en": "We usually order office supplies at the beginning of the month.",
+    "fr": "Nous commandons habituellement les fournitures de bureau en début de mois."
+  },
+  {
+    "id": "sent-a2-67",
+    "level": "A2",
+    "en": "Her presentation was the clearest of the whole seminar.",
+    "fr": "Sa présentation était la plus claire de tout le séminaire."
+  },
+  {
+    "id": "sent-a2-68",
+    "level": "A2",
+    "en": "The receptionist gave me a map of the neighborhood.",
+    "fr": "La réceptionniste m'a donné un plan du quartier."
+  },
+  {
+    "id": "sent-a2-69",
+    "level": "A2",
+    "en": "If you press this button, the machine restarts automatically.",
+    "fr": "Si vous appuyez sur ce bouton, la machine redémarre automatiquement."
+  },
+  {
+    "id": "sent-a2-70",
+    "level": "A2",
+    "en": "He has lived in Saint-Louis since he finished university.",
+    "fr": "Il habite à Saint-Louis depuis qu'il a terminé l'université."
+  },
+  {
+    "id": "sent-a2-71",
+    "level": "A2",
+    "en": "We enjoyed listening to live music at the festival.",
+    "fr": "Nous avons apprécié écouter de la musique en direct au festival."
+  },
+  {
+    "id": "sent-a2-72",
+    "level": "A2",
+    "en": "Please keep your receipt in case you want to exchange the item.",
+    "fr": "Veuillez conserver votre ticket au cas où vous voudriez échanger l'article."
+  },
+  {
+    "id": "sent-a2-73",
+    "level": "A2",
+    "en": "The train was full, so we had to stand for thirty minutes.",
+    "fr": "Le train était complet, donc nous avons dû rester debout pendant trente minutes."
+  },
+  {
+    "id": "sent-a2-74",
+    "level": "A2",
+    "en": "Who is responsible for customer support this week?",
+    "fr": "Qui est responsable du service client cette semaine ?"
+  },
+  {
+    "id": "sent-a2-75",
+    "level": "A2",
+    "en": "I am going to renew my driving license next Tuesday.",
+    "fr": "Je vais renouveler mon permis de conduire mardi prochain."
+  },
+  {
+    "id": "sent-a2-76",
+    "level": "A2",
+    "en": "She speaks slowly so that everyone can understand her.",
+    "fr": "Elle parle lentement afin que tout le monde puisse la comprendre."
+  },
+  {
+    "id": "sent-a2-77",
+    "level": "A2",
+    "en": "They haven’t announced the date of the exam yet.",
+    "fr": "Ils n'ont pas encore annoncé la date de l'examen."
+  },
+  {
+    "id": "sent-a2-78",
+    "level": "A2",
+    "en": "Our team won the regional innovation prize last year.",
+    "fr": "Notre équipe a remporté le prix régional de l'innovation l'an dernier."
+  },
+  {
+    "id": "sent-a2-79",
+    "level": "A2",
+    "en": "Do not unplug the computer while it is updating.",
+    "fr": "Ne débranchez pas l'ordinateur pendant qu'il se met à jour."
+  },
+  {
+    "id": "sent-a2-80",
+    "level": "A2",
+    "en": "I will send you a text message when I leave the office.",
+    "fr": "Je vous enverrai un message texte en quittant le bureau."
   },
   {
     "id": "sent-b1-01",
@@ -180,6 +1020,426 @@
     "fr": "Notre siège régional est situé près de la côte."
   },
   {
+    "id": "sent-b1-11",
+    "level": "B1",
+    "en": "The new solar plant was built by local engineers.",
+    "fr": "La nouvelle centrale solaire a été construite par des ingénieurs locaux."
+  },
+  {
+    "id": "sent-b1-12",
+    "level": "B1",
+    "en": "If we had more warehouse space, we would increase our stock.",
+    "fr": "Si nous avions plus d'espace d'entrepôt, nous augmenterions notre stock."
+  },
+  {
+    "id": "sent-b1-13",
+    "level": "B1",
+    "en": "She told me that the supplier had already shipped the order.",
+    "fr": "Elle m'a dit que le fournisseur avait déjà expédié la commande."
+  },
+  {
+    "id": "sent-b1-14",
+    "level": "B1",
+    "en": "I used to take the bus, but now I commute by train.",
+    "fr": "Autrefois je prenais le bus, mais maintenant je fais le trajet en train."
+  },
+  {
+    "id": "sent-b1-15",
+    "level": "B1",
+    "en": "We have been negotiating this contract since February.",
+    "fr": "Nous négocions ce contrat depuis le mois de février."
+  },
+  {
+    "id": "sent-b1-16",
+    "level": "B1",
+    "en": "When I arrived at the station, the train had already departed.",
+    "fr": "Quand je suis arrivé à la gare, le train était déjà parti."
+  },
+  {
+    "id": "sent-b1-17",
+    "level": "B1",
+    "en": "Could you tell me where the registration desk is located?",
+    "fr": "Pourriez-vous m'indiquer où se trouve le bureau d'inscription ?"
+  },
+  {
+    "id": "sent-b1-18",
+    "level": "B1",
+    "en": "We had to put off the workshop until next Thursday.",
+    "fr": "Nous avons dû reporter l'atelier à jeudi prochain."
+  },
+  {
+    "id": "sent-b1-19",
+    "level": "B1",
+    "en": "All international parcels are inspected upon arrival at the port.",
+    "fr": "Tous les colis internationaux sont inspectés à leur arrivée au port."
+  },
+  {
+    "id": "sent-b1-20",
+    "level": "B1",
+    "en": "If I were in your position, I would request a written confirmation.",
+    "fr": "Si j’étais à votre place, je demanderais une confirmation écrite."
+  },
+  {
+    "id": "sent-b1-21",
+    "level": "B1",
+    "en": "Our team is looking into the cause of the network outage.",
+    "fr": "Notre équipe examine la cause de la panne réseau."
+  },
+  {
+    "id": "sent-b1-22",
+    "level": "B1",
+    "en": "She is used to speaking in public during international conferences.",
+    "fr": "Elle a l'habitude de parler en public lors de conférences internationales."
+  },
+  {
+    "id": "sent-b1-23",
+    "level": "B1",
+    "en": "The annual turnover of the cooperative increased by fifteen percent.",
+    "fr": "Le chiffre d'affaires annuel de la coopérative a augmenté de quinze pour cent."
+  },
+  {
+    "id": "sent-b1-24",
+    "level": "B1",
+    "en": "You ought to back up your research data on an external drive.",
+    "fr": "Vous devriez sauvegarder vos données de recherche sur un disque externe."
+  },
+  {
+    "id": "sent-b1-25",
+    "level": "B1",
+    "en": "Passengers must not leave their luggage unattended in the terminal.",
+    "fr": "Les passagers ne doivent pas laisser leurs bagages sans surveillance dans le terminal."
+  },
+  {
+    "id": "sent-b1-26",
+    "level": "B1",
+    "en": "He asked me whether I would attend the trade fair in Lagos.",
+    "fr": "Il m'a demandé si j'assisterais à la foire commerciale de Lagos."
+  },
+  {
+    "id": "sent-b1-27",
+    "level": "B1",
+    "en": "By the time the technician arrived, we had solved the problem.",
+    "fr": "Au moment où le technicien est arrivé, nous avions résolu le problème."
+  },
+  {
+    "id": "sent-b1-28",
+    "level": "B1",
+    "en": "We have run out of printer paper in the main office.",
+    "fr": "Nous sommes à court de papier d'imprimante dans le bureau principal."
+  },
+  {
+    "id": "sent-b1-29",
+    "level": "B1",
+    "en": "The laboratory carried out several tests on the water samples.",
+    "fr": "Le laboratoire a effectué plusieurs analyses sur les échantillons d'eau."
+  },
+  {
+    "id": "sent-b1-30",
+    "level": "B1",
+    "en": "Accommodation near the conference center should be booked in advance.",
+    "fr": "L'hébergement près du centre de conférence devrait être réservé à l'avance."
+  },
+  {
+    "id": "sent-b1-31",
+    "level": "B1",
+    "en": "Unless we receive the payment today, we cannot dispatch the goods.",
+    "fr": "À moins de recevoir le paiement aujourd'hui, nous ne pouvons pas expédier la marchandise."
+  },
+  {
+    "id": "sent-b1-32",
+    "level": "B1",
+    "en": "She set up her own accounting firm after working abroad.",
+    "fr": "Elle a créé son propre cabinet comptable après avoir travaillé à l'étranger."
+  },
+  {
+    "id": "sent-b1-33",
+    "level": "B1",
+    "en": "How long have you been managing the logistics department?",
+    "fr": "Depuis combien de temps dirigez-vous le service logistique ?"
+  },
+  {
+    "id": "sent-b1-34",
+    "level": "B1",
+    "en": "The training session was canceled because the instructor fell ill.",
+    "fr": "La séance de formation a été annulée car le formateur est tombé malade."
+  },
+  {
+    "id": "sent-b1-35",
+    "level": "B1",
+    "en": "I was wondering if you could send me the updated price list.",
+    "fr": "Je me demandais si vous pouviez m’envoyer la grille tarifaire mise à jour."
+  },
+  {
+    "id": "sent-b1-36",
+    "level": "B1",
+    "en": "Online meetings save travel expenses, but face-to-face contact builds trust.",
+    "fr": "Les réunions en ligne réduisent les frais de déplacement, mais le contact direct bâtit la confiance."
+  },
+  {
+    "id": "sent-b1-37",
+    "level": "B1",
+    "en": "Applicants must submit two academic references before the deadline.",
+    "fr": "Les candidats doivent soumettre deux références académiques avant la date limite."
+  },
+  {
+    "id": "sent-b1-38",
+    "level": "B1",
+    "en": "Since traffic is heavy on Fridays, we should dispatch the trucks early.",
+    "fr": "Comme la circulation est dense le vendredi, nous devrions faire partir les camions tôt."
+  },
+  {
+    "id": "sent-b1-39",
+    "level": "B1",
+    "en": "I have already checked the figures, but I haven’t written the conclusion.",
+    "fr": "J'ai déjà vérifié les chiffres, mais je n'ai pas encore rédigé la conclusion."
+  },
+  {
+    "id": "sent-b1-40",
+    "level": "B1",
+    "en": "It took him a few weeks to get used to the new software.",
+    "fr": "Il lui a fallu quelques semaines pour s'habituer au nouveau logiciel."
+  },
+  {
+    "id": "sent-b1-41",
+    "level": "B1",
+    "en": "The bridge connecting the two neighborhoods was renovated last year.",
+    "fr": "Le pont reliant les deux quartiers a été rénové l'an dernier."
+  },
+  {
+    "id": "sent-b1-42",
+    "level": "B1",
+    "en": "If they partnered with a local distributor, their sales would grow faster.",
+    "fr": "S’ils s’associaient à un distributeur local, leurs ventes progresseraient plus vite."
+  },
+  {
+    "id": "sent-b1-43",
+    "level": "B1",
+    "en": "Please make sure that all emergency exits remain clear at all times.",
+    "fr": "Veuillez vous assurer que toutes les issues de secours restent dégagées en permanence."
+  },
+  {
+    "id": "sent-b1-44",
+    "level": "B1",
+    "en": "The committee is currently reviewing the applications for the grant.",
+    "fr": "Le comité examine actuellement les candidatures pour la subvention."
+  },
+  {
+    "id": "sent-b1-45",
+    "level": "B1",
+    "en": "He realized at the airport that he had left his passport at home.",
+    "fr": "Il s'est rendu compte à l'aéroport qu'il avait oublié son passeport chez lui."
+  },
+  {
+    "id": "sent-b1-46",
+    "level": "B1",
+    "en": "We would appreciate it if you could confirm your attendance by Monday.",
+    "fr": "Nous vous serions reconnaissants de bien vouloir confirmer votre présence d’ici lundi."
+  },
+  {
+    "id": "sent-b1-47",
+    "level": "B1",
+    "en": "Despite the rain, the outdoor market attracted hundreds of visitors.",
+    "fr": "Malgré la pluie, le marché en plein air a attiré des centaines de visiteurs."
+  },
+  {
+    "id": "sent-b1-48",
+    "level": "B1",
+    "en": "Our primary objective is to improve customer satisfaction this quarter.",
+    "fr": "Notre objectif principal est d'améliorer la satisfaction client ce trimestre."
+  },
+  {
+    "id": "sent-b1-49",
+    "level": "B1",
+    "en": "She has been preparing her master’s thesis for six months.",
+    "fr": "Elle prépare son mémoire de master depuis six mois."
+  },
+  {
+    "id": "sent-b1-50",
+    "level": "B1",
+    "en": "Do you know why the afternoon flight to Banjul was delayed?",
+    "fr": "Savez-vous pourquoi le vol de l’après-midi pour Banjul a été retardé ?"
+  },
+  {
+    "id": "sent-b1-51",
+    "level": "B1",
+    "en": "The equipment must be stored in a dry and ventilated room.",
+    "fr": "L'équipement doit être stocké dans une pièce sèche et ventilée."
+  },
+  {
+    "id": "sent-b1-52",
+    "level": "B1",
+    "en": "We signed a maintenance contract to avoid unexpected repair costs.",
+    "fr": "Nous avons signé un contrat de maintenance pour éviter des frais de réparation imprévus."
+  },
+  {
+    "id": "sent-b1-53",
+    "level": "B1",
+    "en": "He suggested organizing a weekly briefing every Monday morning.",
+    "fr": "Il a suggéré d'organiser un point hebdomadaire chaque lundi matin."
+  },
+  {
+    "id": "sent-b1-54",
+    "level": "B1",
+    "en": "Most participants found the workshop both practical and informative.",
+    "fr": "La plupart des participants ont trouvé l’atelier à la fois pratique et instructif."
+  },
+  {
+    "id": "sent-b1-55",
+    "level": "B1",
+    "en": "If you upgrade your ticket, you will have access to the lounge.",
+    "fr": "Si vous surclassez votre billet, vous aurez accès au salon."
+  },
+  {
+    "id": "sent-b1-56",
+    "level": "B1",
+    "en": "The pharmacy delivered the medication directly to the patient’s home.",
+    "fr": "La pharmacie a livré les médicaments directement au domicile du patient."
+  },
+  {
+    "id": "sent-b1-57",
+    "level": "B1",
+    "en": "We need to reduce our energy consumption by ten percent this year.",
+    "fr": "Nous devons réduire notre consommation d’énergie de dix pour cent cette année."
+  },
+  {
+    "id": "sent-b1-58",
+    "level": "B1",
+    "en": "She reminded her team to lock their screens before leaving their desks.",
+    "fr": "Elle a rappelé à son équipe de verrouiller leurs écrans avant de quitter leurs bureaux."
+  },
+  {
+    "id": "sent-b1-59",
+    "level": "B1",
+    "en": "The ferry service was temporarily suspended due to strong winds.",
+    "fr": "Le service de ferry a été temporairement suspendu en raison de vents violents."
+  },
+  {
+    "id": "sent-b1-60",
+    "level": "B1",
+    "en": "Having a clear itinerary makes business travel much less stressful.",
+    "fr": "Avoir un itinéraire clair rend les déplacements professionnels beaucoup moins stressants."
+  },
+  {
+    "id": "sent-b1-61",
+    "level": "B1",
+    "en": "They have been exporting fresh mangoes to Europe for over a decade.",
+    "fr": "Ils exportent des mangues fraîches vers l'Europe depuis plus d'une décennie."
+  },
+  {
+    "id": "sent-b1-62",
+    "level": "B1",
+    "en": "Could you explain how this reimbursement procedure works?",
+    "fr": "Pourriez-vous expliquer comment fonctionne cette procédure de remboursement ?"
+  },
+  {
+    "id": "sent-b1-63",
+    "level": "B1",
+    "en": "The landlord agreed to repaint the apartment before we moved in.",
+    "fr": "Le propriétaire a accepté de repeindre l'appartement avant notre emménagement."
+  },
+  {
+    "id": "sent-b1-64",
+    "level": "B1",
+    "en": "We cannot finalize the schedule until all speakers confirm their topics.",
+    "fr": "Nous ne pouvons pas finaliser le programme tant que tous les intervenants ne confirment pas leurs sujets."
+  },
+  {
+    "id": "sent-b1-65",
+    "level": "B1",
+    "en": "He was promoted to regional manager thanks to his leadership skills.",
+    "fr": "Il a été promu directeur régional grâce à ses qualités de dirigeant."
+  },
+  {
+    "id": "sent-b1-66",
+    "level": "B1",
+    "en": "Make sure you keep a digital copy of all your medical prescriptions.",
+    "fr": "Assurez-vous de conserver une copie numérique de toutes vos ordonnances médicales."
+  },
+  {
+    "id": "sent-b1-67",
+    "level": "B1",
+    "en": "The cultural festival in Saint-Louis attracts artists from around the world.",
+    "fr": "Le festival culturel de Saint-Louis attire des artistes du monde entier."
+  },
+  {
+    "id": "sent-b1-68",
+    "level": "B1",
+    "en": "If we order in bulk, the supplier will cover the shipping costs.",
+    "fr": "Si nous commandons en gros, le fournisseur prendra en charge les frais de port."
+  },
+  {
+    "id": "sent-b1-69",
+    "level": "B1",
+    "en": "She apologized for not replying to the message earlier.",
+    "fr": "Elle s'est excusée de ne pas avoir répondu au message plus tôt."
+  },
+  {
+    "id": "sent-b1-70",
+    "level": "B1",
+    "en": "Our technicians are installing the new fiber optic cable today.",
+    "fr": "Nos techniciens installent le nouveau câble à fibre optique aujourd'hui."
+  },
+  {
+    "id": "sent-b1-71",
+    "level": "B1",
+    "en": "You should compare several insurance policies before signing a contract.",
+    "fr": "Vous devriez comparer plusieurs polices d’assurance avant de signer un contrat."
+  },
+  {
+    "id": "sent-b1-72",
+    "level": "B1",
+    "en": "The report highlights the rapid growth of mobile banking in West Africa.",
+    "fr": "Le rapport souligne la croissance rapide de la banque mobile en Afrique de l'Ouest."
+  },
+  {
+    "id": "sent-b1-73",
+    "level": "B1",
+    "en": "Before launching the product, we tested it with fifty local customers.",
+    "fr": "Avant de lancer le produit, nous l’avons testé auprès de cinquante clients locaux."
+  },
+  {
+    "id": "sent-b1-74",
+    "level": "B1",
+    "en": "He advised us to book our train tickets at least two days ahead.",
+    "fr": "Il nous a conseillé de réserver nos billets de train au moins deux jours à l’avance."
+  },
+  {
+    "id": "sent-b1-75",
+    "level": "B1",
+    "en": "The university library has extended its opening hours during exams.",
+    "fr": "La bibliothèque universitaire a prolongé ses horaires d'ouverture pendant les examens."
+  },
+  {
+    "id": "sent-b1-76",
+    "level": "B1",
+    "en": "Neither the director nor his assistant was available to sign the form.",
+    "fr": "Ni le directeur ni son assistant n'étaient disponibles pour signer le formulaire."
+  },
+  {
+    "id": "sent-b1-77",
+    "level": "B1",
+    "en": "We are looking for a bilingual coordinator with strong communication skills.",
+    "fr": "Nous recherchons un coordinateur bilingue doté de solides compétences en communication."
+  },
+  {
+    "id": "sent-b1-78",
+    "level": "B1",
+    "en": "Once the inspection is complete, you will receive an official certificate.",
+    "fr": "Une fois l'inspection terminée, vous recevrez un certificat officiel."
+  },
+  {
+    "id": "sent-b1-79",
+    "level": "B1",
+    "en": "She prefers working in a quiet environment where she can concentrate.",
+    "fr": "Elle préfère travailler dans un environnement calme où elle peut se concentrer."
+  },
+  {
+    "id": "sent-b1-80",
+    "level": "B1",
+    "en": "Regular maintenance prevents costly breakdowns on the production line.",
+    "fr": "Un entretien régulier évite des pannes coûteuses sur la ligne de production."
+  },
+  {
     "id": "sent-b2-01",
     "level": "B2",
     "en": "Every stakeholder approved the new infrastructure project.",
@@ -189,7 +1449,7 @@
     "id": "sent-b2-02",
     "level": "B2",
     "en": "Port congestion was the main bottleneck in our supply chain.",
-    "fr": "La congestion portuaire était le principal goulot d'étranglement de notre chaîne logistique."
+    "fr": "La congestion portuaire était le principal goulot d’étranglement de notre chaîne logistique."
   },
   {
     "id": "sent-b2-03",
@@ -238,5 +1498,305 @@
     "level": "B2",
     "en": "We had a four-hour layover before our connecting flight.",
     "fr": "Nous avons eu une escale de quatre heures avant notre vol de correspondance."
+  },
+  {
+    "id": "sent-b2-11",
+    "level": "B2",
+    "en": "Not only did the startup secure funding, but it also expanded regionally.",
+    "fr": "Non seulement la startup a levé des fonds, mais elle s’est aussi développée dans la région."
+  },
+  {
+    "id": "sent-b2-12",
+    "level": "B2",
+    "en": "By the time the delegation arrives, we will have prepared all the briefings.",
+    "fr": "D’ici à ce que la délégation arrive, nous aurons préparé tous les dossiers de synthèse."
+  },
+  {
+    "id": "sent-b2-13",
+    "level": "B2",
+    "en": "Modernizing the customs software eliminated a major logistical hurdle.",
+    "fr": "La modernisation du logiciel douanier a éliminé un obstacle logistique majeur."
+  },
+  {
+    "id": "sent-b2-14",
+    "level": "B2",
+    "en": "We had our annual financial statements audited by an independent firm.",
+    "fr": "Nous avons fait auditer nos états financiers annuels par un cabinet indépendant."
+  },
+  {
+    "id": "sent-b2-15",
+    "level": "B2",
+    "en": "Seldom have we witnessed such rapid adoption of digital payment tools.",
+    "fr": "Rarement avons-nous observé une adoption aussi rapide des outils de paiement numérique."
+  },
+  {
+    "id": "sent-b2-16",
+    "level": "B2",
+    "en": "The consortium opted to train local technicians, thereby cutting downtime.",
+    "fr": "Le consortium a choisi de former des techniciens locaux, réduisant ainsi les temps d'arrêt."
+  },
+  {
+    "id": "sent-b2-17",
+    "level": "B2",
+    "en": "While the preliminary results are promising, further field trials are required.",
+    "fr": "Bien que les résultats préliminaires soient prometteurs, des essais supplémentaires sur le terrain sont requis."
+  },
+  {
+    "id": "sent-b2-18",
+    "level": "B2",
+    "en": "We are willing to extend the agreement, provided that quality standards are met.",
+    "fr": "Nous sommes disposés à prolonger l’accord, à condition que les normes de qualité soient respectées."
+  },
+  {
+    "id": "sent-b2-19",
+    "level": "B2",
+    "en": "Under no circumstances should confidential client data be stored on personal devices.",
+    "fr": "En aucun cas les données confidentielles des clients ne doivent être stockées sur des appareils personnels."
+  },
+  {
+    "id": "sent-b2-20",
+    "level": "B2",
+    "en": "Should you require any further clarification, please contact our legal department.",
+    "fr": "Si vous avez besoin de précisions supplémentaires, veuillez contacter notre service juridique."
+  },
+  {
+    "id": "sent-b2-21",
+    "level": "B2",
+    "en": "The procurement department negotiated a twelve percent discount with regional suppliers.",
+    "fr": "Le service des achats a négocié une remise de douze pour cent avec les fournisseurs régionaux."
+  },
+  {
+    "id": "sent-b2-22",
+    "level": "B2",
+    "en": "Exports grew significantly this quarter, whereas domestic demand remained stable.",
+    "fr": "Les exportations ont fortement progressé ce trimestre, tandis que la demande intérieure est restée stable."
+  },
+  {
+    "id": "sent-b2-23",
+    "level": "B2",
+    "en": "He must have been delayed in traffic; otherwise, he would have called us.",
+    "fr": "Il a forcément dû être retenu dans les embouteillages ; sinon, il nous aurait appelés."
+  },
+  {
+    "id": "sent-b2-24",
+    "level": "B2",
+    "en": "We should have consulted the compliance officer before submitting the tender.",
+    "fr": "Nous aurions dû consulter le responsable de la conformité avant de soumettre l'appel d'offres."
+  },
+  {
+    "id": "sent-b2-25",
+    "level": "B2",
+    "en": "In spite of having limited initial capital, the enterprise achieved profitability.",
+    "fr": "Bien qu’ayant un capital initial limité, l’entreprise a atteint la rentabilité."
+  },
+  {
+    "id": "sent-b2-26",
+    "level": "B2",
+    "en": "The renewal of the research fellowship is subject to an annual performance review.",
+    "fr": "Le renouvellement de la bourse de recherche est soumis à une évaluation annuelle des résultats."
+  },
+  {
+    "id": "sent-b2-27",
+    "level": "B2",
+    "en": "No sooner had the new highway opened than commute times dropped by half.",
+    "fr": "À peine la nouvelle autoroute avait-elle ouvert que les temps de trajet ont diminué de moitié."
+  },
+  {
+    "id": "sent-b2-28",
+    "level": "B2",
+    "en": "By the end of the decade, renewable energy will account for half of our supply.",
+    "fr": "D'ici la fin de la décennie, les énergies renouvelables représenteront la moitié de notre approvisionnement."
+  },
+  {
+    "id": "sent-b2-29",
+    "level": "B2",
+    "en": "She is outspoken about the need to invest in vocational training for youth.",
+    "fr": "Elle s’exprime sans détour sur la nécessité d’investir dans la formation professionnelle des jeunes."
+  },
+  {
+    "id": "sent-b2-30",
+    "level": "B2",
+    "en": "Had the regulatory change been announced earlier, we would have adjusted our strategy.",
+    "fr": "Si le changement réglementaire avait été annoncé plus tôt, nous aurions ajusté notre stratégie."
+  },
+  {
+    "id": "sent-b2-31",
+    "level": "B2",
+    "en": "The port expansion is expected to streamline maritime trade across West Africa.",
+    "fr": "On s'attend à ce que l'extension du port fluidifie le commerce maritime en Afrique de l'Ouest."
+  },
+  {
+    "id": "sent-b2-32",
+    "level": "B2",
+    "en": "Little did they know that the software update would resolve the security flaw.",
+    "fr": "Ils étaient loin de se douter que la mise à jour logicielle résoudrait la faille de sécurité."
+  },
+  {
+    "id": "sent-b2-33",
+    "level": "B2",
+    "en": "Rather than relying on imported spare parts, the factory manufactures them locally.",
+    "fr": "Plutôt que de dépendre de pièces détachées importées, l’usine les fabrique localement."
+  },
+  {
+    "id": "sent-b2-34",
+    "level": "B2",
+    "en": "We need to strike a balance between short-term profitability and long-term sustainability.",
+    "fr": "Nous devons trouver un équilibre entre rentabilité à court terme et durabilité à long terme."
+  },
+  {
+    "id": "sent-b2-35",
+    "level": "B2",
+    "en": "The arbitrator helped both parties reach a mutually beneficial compromise.",
+    "fr": "L'arbitre a aidé les deux parties à parvenir à un compromis mutuellement avantageux."
+  },
+  {
+    "id": "sent-b2-36",
+    "level": "B2",
+    "en": "Regardless of the economic fluctuations, our core infrastructure investments will continue.",
+    "fr": "Indépendamment des fluctuations économiques, nos investissements dans les infrastructures de base se poursuivront."
+  },
+  {
+    "id": "sent-b2-37",
+    "level": "B2",
+    "en": "The study cautions against extrapolating these findings without additional data.",
+    "fr": "L'étude met en garde contre toute généralisation de ces conclusions sans données complémentaires."
+  },
+  {
+    "id": "sent-b2-38",
+    "level": "B2",
+    "en": "Only by automating repetitive tasks can we free up time for strategic planning.",
+    "fr": "Ce n'est qu'en automatisant les tâches répétitives que nous pourrons libérer du temps pour la planification stratégique."
+  },
+  {
+    "id": "sent-b2-39",
+    "level": "B2",
+    "en": "Our legal team drafted a non-disclosure agreement prior to the merger talks.",
+    "fr": "Notre équipe juridique a rédigé un accord de confidentialité avant les discussions de fusion."
+  },
+  {
+    "id": "sent-b2-40",
+    "level": "B2",
+    "en": "Were we to relocate our warehouse to Diamniadio, our distribution costs would fall.",
+    "fr": "Si nous devions relocaliser notre entrepôt à Diamniadio, nos coûts de distribution baisseraient."
+  },
+  {
+    "id": "sent-b2-41",
+    "level": "B2",
+    "en": "The audit revealed several discrepancies in the previous quarter’s inventory records.",
+    "fr": "L'audit a révélé plusieurs écarts dans les registres d'inventaire du trimestre précédent."
+  },
+  {
+    "id": "sent-b2-42",
+    "level": "B2",
+    "en": "She was awarded an international grant to investigate drought-resistant crops.",
+    "fr": "Elle a obtenu une bourse internationale pour étudier les cultures résistantes à la sécheresse."
+  },
+  {
+    "id": "sent-b2-43",
+    "level": "B2",
+    "en": "Implementing two-factor authentication significantly reduced unauthorized access attempts.",
+    "fr": "La mise en place de l'authentification à deux facteurs a considérablement réduit les tentatives d'accès non autorisées."
+  },
+  {
+    "id": "sent-b2-44",
+    "level": "B2",
+    "en": "The board of directors unanimously endorsed the five-year expansion roadmap.",
+    "fr": "Le conseil d’administration a approuvé à l’unanimité la feuille de route d’expansion sur cinq ans."
+  },
+  {
+    "id": "sent-b2-45",
+    "level": "B2",
+    "en": "Even though raw material prices surged, we honored all existing client quotes.",
+    "fr": "Même si le prix des matières premières a flambé, nous avons honoré tous les devis clients existants."
+  },
+  {
+    "id": "sent-b2-46",
+    "level": "B2",
+    "en": "This time next month, our engineers will be commissioning the new desalination unit.",
+    "fr": "Le mois prochain à la même période, nos ingénieurs mettront en service la nouvelle unité de dessalement."
+  },
+  {
+    "id": "sent-b2-47",
+    "level": "B2",
+    "en": "A thorough risk assessment must be conducted before deploying the updated platform.",
+    "fr": "Une évaluation approfondie des risques doit être menée avant de déployer la plateforme mise à jour."
+  },
+  {
+    "id": "sent-b2-48",
+    "level": "B2",
+    "en": "The keynote speaker emphasized the role of regional integration in boosting employment.",
+    "fr": "L’orateur principal a souligné le rôle de l’intégration régionale dans la stimulation de l’emploi."
+  },
+  {
+    "id": "sent-b2-49",
+    "level": "B2",
+    "en": "Without a reliable cold chain, agricultural exporters face substantial post-harvest losses.",
+    "fr": "Sans une chaîne du froid fiable, les exportateurs agricoles subissent d’importantes pertes après récolte."
+  },
+  {
+    "id": "sent-b2-50",
+    "level": "B2",
+    "en": "We had the translation verified by a certified interpreter before notarizing the deed.",
+    "fr": "Nous avons fait vérifier la traduction par un interprète assermenté avant de légaliser l'acte."
+  },
+  {
+    "id": "sent-b2-51",
+    "level": "B2",
+    "en": "So rapid was the growth of the platform that we had to double our server capacity.",
+    "fr": "La croissance de la plateforme a été si rapide que nous avons dû doubler la capacité de nos serveurs."
+  },
+  {
+    "id": "sent-b2-52",
+    "level": "B2",
+    "en": "The municipality launched a public consultation regarding the urban mobility plan.",
+    "fr": "La municipalité a lancé une consultation publique concernant le plan de mobilité urbaine."
+  },
+  {
+    "id": "sent-b2-53",
+    "level": "B2",
+    "en": "It is imperative that all subcontractors comply with workplace safety regulations.",
+    "fr": "Il est impératif que tous les sous-traitants respectent les règles de sécurité au travail."
+  },
+  {
+    "id": "sent-b2-54",
+    "level": "B2",
+    "en": "Having secured the necessary permits, the developer began construction ahead of schedule.",
+    "fr": "Ayant obtenu les permis nécessaires, le promoteur a démarré le chantier en avance sur le calendrier."
+  },
+  {
+    "id": "sent-b2-55",
+    "level": "B2",
+    "en": "The fluctuations in exchange rates had a negligible impact on our regional revenue.",
+    "fr": "Les fluctuations des taux de change ont eu un impact négligeable sur nos revenus régionaux."
+  },
+  {
+    "id": "sent-b2-56",
+    "level": "B2",
+    "en": "Travelers seeking authentic cultural exchanges often prefer villages off the beaten track.",
+    "fr": "Les voyageurs en quête d’échanges culturels authentiques préfèrent souvent les villages hors des sentiers battus."
+  },
+  {
+    "id": "sent-b2-57",
+    "level": "B2",
+    "en": "Not until the final audit was completed did the investors release the second tranche.",
+    "fr": "Ce n'est qu'une fois l'audit final achevé que les investisseurs ont débloqué la deuxième tranche."
+  },
+  {
+    "id": "sent-b2-58",
+    "level": "B2",
+    "en": "The partnership hinges on both organizations sharing technical expertise transparently.",
+    "fr": "Le partenariat repose sur un partage transparent de l’expertise technique entre les deux organisations."
+  },
+  {
+    "id": "sent-b2-59",
+    "level": "B2",
+    "en": "By streamlining administrative procedures, the agency cut processing times by forty percent.",
+    "fr": "En simplifiant les procédures administratives, l’agence a réduit les délais de traitement de quarante pour cent."
+  },
+  {
+    "id": "sent-b2-60",
+    "level": "B2",
+    "en": "Rarely do you find a candidate who combines technical mastery with diplomatic tact.",
+    "fr": "Il est rare de trouver un candidat qui allie maîtrise technique et sens de la diplomatie."
   }
 ]
