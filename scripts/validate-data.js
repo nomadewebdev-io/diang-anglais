@@ -283,7 +283,89 @@ function validateSentences(sentences) {
   }
 }
 
-function validateAudioClips(cards, lessons, placement, sentences) {
+function validateConstructions(constructions) {
+  assert(Array.isArray(constructions), 'constructions.json doit être un tableau.');
+
+  const expectedUnitsByLevel = { A1: 12, A2: 12, B1: 10, B2: 8 };
+  const ids = new Set();
+  const seenPrompts = new Set();
+  const seenPrimaryAnswers = new Set();
+  const unitsByLevel = {
+    A1: new Map(),
+    A2: new Map(),
+    B1: new Map(),
+    B2: new Map(),
+  };
+
+  for (let i = 0; i < constructions.length; i++) {
+    const item = constructions[i];
+    const label = `constructions.json[${i}] (${item?.id ?? 'sans-id'})`;
+    assert(item && typeof item === 'object', `${label}: entrée invalide.`);
+    assert(typeof item.id === 'string' && item.id.trim().length > 0, `${label}: 'id' requis.`);
+    assert(!ids.has(item.id), `${label}: id en doublon "${item.id}".`);
+    ids.add(item.id);
+
+    assert(VALID_LEVELS.has(item.level), `${label}: 'level' invalide "${item.level}".`);
+    assert(
+      Number.isInteger(item.unit) && item.unit >= 1,
+      `${label}: 'unit' invalide (${item.unit}).`
+    );
+    assert(
+      typeof item.unitTitleFr === 'string' && item.unitTitleFr.trim().length >= 3,
+      `${label}: 'unitTitleFr' requis.`
+    );
+    assert(
+      Number.isInteger(item.order) && item.order >= 1,
+      `${label}: 'order' invalide (${item.order}).`
+    );
+    assert(
+      typeof item.promptFr === 'string' && item.promptFr.trim().length >= 3,
+      `${label}: 'promptFr' requis.`
+    );
+    assert(
+      Array.isArray(item.answers) && item.answers.length >= 1,
+      `${label}: au moins une réponse requise dans 'answers'.`
+    );
+    for (const ans of item.answers) {
+      assert(
+        typeof ans === 'string' && ans.trim().length > 0,
+        `${label}: réponse vide dans 'answers'.`
+      );
+    }
+
+    if (item.tiles !== undefined) {
+      assert(Array.isArray(item.tiles), `${label}: 'tiles' doit être un tableau.`);
+    }
+
+    const normPrompt = normalizeText(item.promptFr);
+    assert(!seenPrompts.has(normPrompt), `${label}: promptFr en doublon "${item.promptFr}".`);
+    seenPrompts.add(normPrompt);
+
+    const normAns0 = normalizeText(item.answers[0]);
+    assert(!seenPrimaryAnswers.has(normAns0), `${label}: answers[0] en doublon "${item.answers[0]}".`);
+    seenPrimaryAnswers.add(normAns0);
+
+    const levelMap = unitsByLevel[item.level];
+    levelMap.set(item.unit, (levelMap.get(item.unit) ?? 0) + 1);
+  }
+
+  for (const [lvl, expectedUnitCount] of Object.entries(expectedUnitsByLevel)) {
+    const levelMap = unitsByLevel[lvl];
+    assert(
+      levelMap.size === expectedUnitCount,
+      `constructions.json ${lvl} : attendu ${expectedUnitCount} unités, reçu ${levelMap.size}.`
+    );
+    for (let u = 1; u <= expectedUnitCount; u++) {
+      const count = levelMap.get(u) ?? 0;
+      assert(
+        count >= 10 && count <= 14,
+        `constructions.json ${lvl} Unité ${u} : attendu 10 à 14 phrases, reçu ${count}.`
+      );
+    }
+  }
+}
+
+function validateAudioClips(cards, lessons, placement, sentences, constructions) {
   const manifestPath = path.join(audioDir, 'manifest.json');
   assert(
     fs.existsSync(manifestPath),
@@ -332,6 +414,11 @@ function validateAudioClips(cards, lessons, placement, sentences) {
       }
     }
   }
+  for (const c of constructions) {
+    if (Array.isArray(c.answers) && c.answers[0]) {
+      requiredTexts.add(c.answers[0].trim());
+    }
+  }
 
   let verifiedCount = 0;
   for (const text of requiredTexts) {
@@ -364,15 +451,23 @@ function main() {
   const lessons = readJson('lessons.json');
   const placement = readJson('placement.json');
   const sentences = readJson('sentences.json');
+  const constructions = readJson('constructions.json');
 
   validateCards(cards);
   validateLessons(lessons);
   validatePlacement(placement);
   validateSentences(sentences);
-  const audioStats = validateAudioClips(cards, lessons, placement, sentences);
+  validateConstructions(constructions);
+  const audioStats = validateAudioClips(
+    cards,
+    lessons,
+    placement,
+    sentences,
+    constructions
+  );
 
   console.log(
-    `[validate-data] OK — cards: ${cards.length}, lessons: ${lessons.length}, placement: ${placement.length}, sentences: ${sentences.length}, audioTexts: ${audioStats.uniqueTexts}, audioClips: ${audioStats.totalClips}`
+    `[validate-data] OK — cards: ${cards.length}, lessons: ${lessons.length}, placement: ${placement.length}, sentences: ${sentences.length}, constructions: ${constructions.length}, audioTexts: ${audioStats.uniqueTexts}, audioClips: ${audioStats.totalClips}`
   );
 }
 

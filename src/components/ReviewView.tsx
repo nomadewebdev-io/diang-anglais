@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
 import { catalog } from '../lib/catalog';
+import {
+  getConstructionUnits,
+  getNextConstructionUnitForLevel,
+  isUnitUnlocked,
+  UNIT_UNLOCK_THRESHOLD,
+} from '../lib/construction';
 import { CEFR_LEVELS, SKILL_LABELS_FR } from '../lib/placementTest';
 import { formatDateISO, getDueCards } from '../lib/sm2';
 import { AppState, CEFRLevel, SkillType, SM2CardState } from '../lib/types';
+import { ConstructionPractice } from './ConstructionPractice';
 import { DictationPractice } from './DictationPractice';
 import { FlashcardsPractice } from './FlashcardsPractice';
 import {
+  IconArrowLeft,
+  IconArrowRight,
   IconBookOpen,
   IconCards,
   IconCheck,
@@ -18,23 +27,46 @@ import { QuizPractice } from './QuizPractice';
 interface ReviewViewProps {
   state: AppState;
   onRateCard: (cardId: string, updatedState: SM2CardState) => void;
+  onRecordConstructionItemSM2: (itemId: string, firstTrySuccess: boolean) => void;
+  onCompleteConstructionUnit: (
+    level: CEFRLevel,
+    unit: number,
+    firstTryCorrect: number,
+    total: number
+  ) => void;
+  onUnlockNextConstructionUnit: (level: CEFRLevel, currentUnit: number) => void;
   onRecordPracticeMinutes: (
     minutes: number,
-    kind: 'flashcards' | 'lesson' | 'dictation' | 'quiz'
+    kind: 'flashcards' | 'lesson' | 'dictation' | 'quiz' | 'construction'
   ) => void;
 }
 
-type ReviewMode = 'menu' | 'flashcards' | 'lessons' | 'dictation' | 'quiz';
+type ReviewMode =
+  | 'menu'
+  | 'flashcards'
+  | 'lessons'
+  | 'dictation'
+  | 'quiz'
+  | 'construction';
 
 export function ReviewView({
   state,
   onRateCard,
+  onRecordConstructionItemSM2,
+  onCompleteConstructionUnit,
+  onUnlockNextConstructionUnit,
   onRecordPracticeMinutes,
 }: ReviewViewProps): React.ReactElement {
   const [mode, setMode] = useState<ReviewMode>('menu');
   const [levelFilter, setLevelFilter] = useState<CEFRLevel | 'ALL'>('ALL');
   const [selectedLessonId, setSelectedLessonId] = useState<string | null>(null);
   const [quizSkillFilter, setQuizSkillFilter] = useState<SkillType | 'ALL'>('ALL');
+  const [constructionLevel, setConstructionLevel] = useState<CEFRLevel>(
+    state.studyPlan?.config.currentLevel ?? 'A1'
+  );
+  const [activeConstructionUnit, setActiveConstructionUnit] = useState<number | null>(
+    null
+  );
 
   const todayStr = formatDateISO(new Date());
 
@@ -48,6 +80,207 @@ export function ReviewView({
     const st = state.sm2States[c.id];
     return !st || st.nextReviewDate <= todayStr;
   }).length;
+
+  const allConstructions = catalog.constructions ?? [];
+  const constructionUnits = getConstructionUnits(allConstructions, constructionLevel);
+  const currentActiveUnit = getNextConstructionUnitForLevel(
+    allConstructions,
+    state.constructionProgress,
+    constructionLevel
+  );
+
+  if (mode === 'construction' && activeConstructionUnit !== null) {
+    const unitSummary =
+      constructionUnits.find((u) => u.unit === activeConstructionUnit) ??
+      constructionUnits[0];
+    const hasNext = constructionUnits.some(
+      (u) => u.unit === (unitSummary?.unit ?? 0) + 1
+    );
+
+    if (unitSummary) {
+      return (
+        <div className="max-w-2xl mx-auto">
+          <ConstructionPractice
+            key={`${unitSummary.level}-${unitSummary.unit}`}
+            items={unitSummary.items}
+            title={`Construire · ${unitSummary.level} Unité ${unitSummary.unit}`}
+            subtitle={unitSummary.unitTitleFr}
+            hasNextUnit={hasNext}
+            onRecordItemSM2={onRecordConstructionItemSM2}
+            onClose={() => setActiveConstructionUnit(null)}
+            onSkipToNextUnit={() => {
+              onUnlockNextConstructionUnit(unitSummary.level, unitSummary.unit);
+              setActiveConstructionUnit(unitSummary.unit + 1);
+            }}
+            onComplete={({ firstTryCorrect, total }) => {
+              onCompleteConstructionUnit(
+                unitSummary.level,
+                unitSummary.unit,
+                firstTryCorrect,
+                total
+              );
+              onRecordPracticeMinutes(10, 'construction');
+              setActiveConstructionUnit(null);
+            }}
+          />
+        </div>
+      );
+    }
+  }
+
+  if (mode === 'construction') {
+    const activeUnitProg = currentActiveUnit
+      ? state.constructionProgress[currentActiveUnit.key]
+      : undefined;
+
+    return (
+      <div className="space-y-6">
+        <div className="bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] rounded-2xl p-5 sm:p-6 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setMode('menu')}
+              className="p-2 rounded-xl border border-[#E4DFD3] dark:border-[#343F3B] bg-[#FAF8F5] dark:bg-[#252D2A] text-[#111827] dark:text-[#F3F4F6] cursor-pointer"
+              aria-label="Retour à la révision"
+            >
+              <IconArrowLeft className="w-4 h-4" />
+            </button>
+            <div>
+              <h1 className="text-xl font-bold text-[#111827] dark:text-[#F3F4F6]">
+                Construis la phrase
+              </h1>
+              <p className="text-xs sm:text-sm text-[#4B5563] dark:text-[#D1D5DB]">
+                Progression par unités : 80 % de réussite débloque l’unité suivante, sans jamais bloquer.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-1.5 bg-[#FAF8F5] dark:bg-[#252D2A] p-1.5 rounded-xl border border-[#E4DFD3] dark:border-[#343F3B]">
+            {CEFR_LEVELS.map((lvl) => (
+              <button
+                key={lvl}
+                type="button"
+                onClick={() => setConstructionLevel(lvl)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                  constructionLevel === lvl
+                    ? 'bg-[#0F4C3A] text-white'
+                    : 'text-[#374151] dark:text-[#D1D5DB] hover:bg-white dark:hover:bg-[#1E2422]'
+                }`}
+              >
+                {lvl}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {currentActiveUnit && (
+          <div className="bg-[#E6F0EC] dark:bg-[#13362B] border border-[#0F4C3A]/20 dark:border-[#6EE7B7]/30 rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0F4C3A] dark:text-[#6EE7B7]">
+                Unité en cours · {currentActiveUnit.level}
+              </span>
+              <h2 className="text-base sm:text-lg font-bold text-[#111827] dark:text-[#F3F4F6] mt-0.5">
+                Unité {currentActiveUnit.unit} — {currentActiveUnit.unitTitleFr}
+              </h2>
+              <p className="text-xs text-[#374151] dark:text-[#D1D5DB] mt-1">
+                {activeUnitProg
+                  ? `Meilleur score : ${activeUnitProg.bestRate} % (${currentActiveUnit.items.length} phrases)`
+                  : `${currentActiveUnit.items.length} phrases progressives · ${
+                      constructionLevel === 'A1' || constructionLevel === 'A2'
+                        ? 'Tuiles à toucher'
+                        : 'Saisie libre'
+                    }`}
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setActiveConstructionUnit(currentActiveUnit.unit)}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#0F4C3A] hover:bg-[#0A3628] text-white text-xs sm:text-sm font-semibold transition cursor-pointer"
+            >
+              <span>Commencer l’unité {currentActiveUnit.unit}</span>
+              <IconArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {constructionUnits.map((unitSummary) => {
+            const prog = state.constructionProgress[unitSummary.key];
+            const unlocked = isUnitUnlocked(
+              state.constructionProgress,
+              unitSummary.level,
+              unitSummary.unit
+            );
+            const bestRate = prog?.bestRate ?? 0;
+            const passed = bestRate >= UNIT_UNLOCK_THRESHOLD;
+
+            return (
+              <div
+                key={unitSummary.key}
+                className={`p-4 rounded-xl border flex flex-col justify-between gap-3 ${
+                  unlocked
+                    ? 'bg-white dark:bg-[#1E2422] border-[#E4DFD3] dark:border-[#343F3B]'
+                    : 'bg-[#FAF8F5] dark:bg-[#191F1D] border-[#E4DFD3]/70 dark:border-[#2C3632]'
+                }`}
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="text-xs font-bold text-[#0F4C3A] dark:text-[#6EE7B7]">
+                      Unité {unitSummary.unit}
+                    </span>
+                    <span
+                      className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${
+                        passed
+                          ? 'bg-[#E6F0EC] dark:bg-[#13362B] text-[#0F4C3A] dark:text-[#6EE7B7]'
+                          : prog
+                          ? 'bg-[#FDF1EC] dark:bg-[#3A2018] text-[#9A3412] dark:text-[#FDBA8C]'
+                          : 'bg-[#F3EFE6] dark:bg-[#252D2A] text-[#6B7280] dark:text-[#9CA3AF]'
+                      }`}
+                    >
+                      {prog ? `${bestRate} %` : unlocked ? 'Prête' : 'À débloquer (80 %)'}
+                    </span>
+                  </div>
+                  <h3 className="text-sm font-bold text-[#111827] dark:text-[#F3F4F6]">
+                    {unitSummary.unitTitleFr}
+                  </h3>
+                  <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] mt-1">
+                    {unitSummary.items.length} phrases
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2 pt-2 border-t border-[#E4DFD3]/70 dark:border-[#343F3B]">
+                  {unlocked ? (
+                    <button
+                      type="button"
+                      onClick={() => setActiveConstructionUnit(unitSummary.unit)}
+                      className="w-full px-3.5 py-2 rounded-lg bg-[#0F4C3A] hover:bg-[#0A3628] text-white text-xs font-semibold transition cursor-pointer"
+                    >
+                      {prog ? 'Rejouer l’unité' : 'Construire'}
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        onUnlockNextConstructionUnit(
+                          unitSummary.level,
+                          unitSummary.unit - 1
+                        );
+                        setActiveConstructionUnit(unitSummary.unit);
+                      }}
+                      className="w-full px-3.5 py-2 rounded-lg border border-[#D5CFC2] dark:border-[#45534E] bg-white dark:bg-[#252D2A] text-[#374151] dark:text-[#D1D5DB] text-xs font-semibold transition cursor-pointer"
+                    >
+                      Passer à la suite
+                    </button>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
 
   if (mode === 'flashcards') {
     return (
@@ -241,6 +474,38 @@ export function ReviewView({
             Démarrer une dictée
           </button>
         </div>
+      </div>
+
+      {/* Construire la phrase card */}
+      <div className="bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] rounded-2xl p-6 flex flex-wrap items-center justify-between gap-4">
+        <div className="max-w-xl">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#E6F0EC] dark:bg-[#13362B] text-[#0F4C3A] dark:text-[#6EE7B7]">
+              Construire
+            </span>
+            {currentActiveUnit && (
+              <span className="text-xs font-semibold text-[#6B7280] dark:text-[#9CA3AF]">
+                {currentActiveUnit.level} · Unité {currentActiveUnit.unit} en cours
+              </span>
+            )}
+          </div>
+          <h2 className="text-base sm:text-lg font-bold text-[#111827] dark:text-[#F3F4F6]">
+            Construis la phrase
+          </h2>
+          <p className="text-xs sm:text-sm text-[#4B5563] dark:text-[#D1D5DB] mt-0.5">
+            Assemblez des phrases de plus en plus riches à partir des acquis précédents (tuiles en
+            A1-A2, saisie libre en B1-B2) avec correction bienveillante et audio.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setMode('construction')}
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#0F4C3A] hover:bg-[#0A3628] text-white text-xs sm:text-sm font-semibold transition cursor-pointer"
+        >
+          <span>Ouvrir Construire</span>
+          <IconArrowRight className="w-4 h-4" />
+        </button>
       </div>
 
       {/* Quiz QCM & Audio section */}

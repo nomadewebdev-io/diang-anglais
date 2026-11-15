@@ -72,6 +72,27 @@ export interface SentenceItem {
   fr: string;
 }
 
+export interface ConstructionItem {
+  id: string;
+  level: CEFRLevel;
+  unit: number;
+  unitTitleFr: string;
+  order: number;
+  promptFr: string;
+  answers: string[];
+  tiles?: string[];
+  noteFr?: string;
+}
+
+export interface ConstructionUnitProgress {
+  attempts: number;
+  firstTryCorrect: number;
+  bestRate: number;
+  completed: boolean;
+  unlockedManually?: boolean;
+  lastPracticedAt?: string;
+}
+
 export interface SM2CardState {
   cardId: string;
   interval: number;
@@ -138,7 +159,13 @@ export interface FeasibilityAnalysis {
   suggestedMinutesPerSession: number;
 }
 
-export type SessionActivityType = 'vocab' | 'grammar' | 'listening' | 'dictation' | 'quiz';
+export type SessionActivityType =
+  | 'vocab'
+  | 'grammar'
+  | 'listening'
+  | 'dictation'
+  | 'quiz'
+  | 'construction';
 
 export interface SessionActivity {
   id: string;
@@ -210,6 +237,7 @@ export interface AppState {
   placementSession: PlacementSessionState | null;
   studyPlan: StudyPlan | null;
   sm2States: Record<string, SM2CardState>;
+  constructionProgress: Record<string, ConstructionUnitProgress>;
   studyDates: string[]; // Array of YYYY-MM-DD
   totalMinutesStudied: number;
   dictationCompletedCount: number;

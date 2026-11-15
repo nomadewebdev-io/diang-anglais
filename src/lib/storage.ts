@@ -52,6 +52,7 @@ export function createInitialAppState(): AppState {
     placementSession: null,
     studyPlan: null,
     sm2States: {},
+    constructionProgress: {},
     studyDates: [],
     totalMinutesStudied: 0,
     dictationCompletedCount: 0,
@@ -198,6 +199,10 @@ export function migrateAndValidateState(
     ? (candidate.sm2States as unknown as AppState['sm2States'])
     : {};
 
+  const constructionProgress = isPlainObject(candidate.constructionProgress)
+    ? (candidate.constructionProgress as unknown as AppState['constructionProgress'])
+    : {};
+
   const studyDates = Array.isArray(candidate.studyDates)
     ? candidate.studyDates.filter((d): d is string => typeof d === 'string')
     : [];
@@ -228,6 +233,7 @@ export function migrateAndValidateState(
     placementSession,
     studyPlan,
     sm2States,
+    constructionProgress,
     studyDates,
     totalMinutesStudied:
       typeof candidate.totalMinutesStudied === 'number' &&

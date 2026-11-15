@@ -1,0 +1,7191 @@
+[
+  {
+    "id": "con-a1-u01-01",
+    "level": "A1",
+    "unit": 1,
+    "unitTitleFr": "Se présenter avec \"I am\"",
+    "order": 1,
+    "promptFr": "Je suis Fatou.",
+    "answers": [
+      "I am Fatou.",
+      "I'm Fatou."
+    ],
+    "tiles": [
+      "is",
+      "you",
+      "my"
+    ],
+    "noteFr": "Utilisez \"I am\" (ou \"I'm\") pour vous présenter."
+  },
+  {
+    "id": "con-a1-u01-02",
+    "level": "A1",
+    "unit": 1,
+    "unitTitleFr": "Se présenter avec \"I am\"",
+    "order": 2,
+    "promptFr": "Je suis étudiant.",
+    "answers": [
+      "I am a student.",
+      "I'm a student."
+    ],
+    "tiles": [
+      "the",
+      "are",
+      "an"
+    ],
+    "noteFr": "Devant un métier ou statut singulier, on ajoute \"a\" : a student."
+  },
+  {
+    "id": "con-a1-u01-03",
+    "level": "A1",
+    "unit": 1,
+    "unitTitleFr": "Se présenter avec \"I am\"",
+    "order": 3,
+    "promptFr": "Je suis à Dakar.",
+    "answers": [
+      "I am in Dakar.",
+      "I'm in Dakar."
+    ],
+    "tiles": [
+      "at",
+      "on",
+      "is"
+    ],
+    "noteFr": "Pour une ville, on utilise la préposition \"in\"."
+  },
+  {
+    "id": "con-a1-u01-04",
+    "level": "A1",
+    "unit": 1,
+    "unitTitleFr": "Se présenter avec \"I am\"",
+    "order": 4,
+    "promptFr": "Je suis content aujourd’hui.",
+    "answers": [
+      "I am happy today.",
+      "I'm happy today."
+    ],
+    "tiles": [
+      "very",
+      "are",
+      "now"
+    ],
+    "noteFr": "\"Happy\" est un adjectif invariable en anglais."
+  },
+  {
+    "id": "con-a1-u01-05",
+    "level": "A1",
+    "unit": 1,
+    "unitTitleFr": "Se présenter avec \"I am\"",
+    "order": 5,
+    "promptFr": "Je suis prêt.",
+    "answers": [
+      "I am ready.",
+      "I'm ready."
+    ],
+    "tiles": [
+      "you",
+      "is",
+      "here"
+    ],
+    "noteFr": "\"Ready\" signifie prêt ou prête."
+  },
+  {
+    "id": "con-a1-u01-06",
+    "level": "A1",
+    "unit": 1,
+    "unitTitleFr": "Se présenter avec \"I am\"",
+    "order": 6,
+    "promptFr": "Je suis fatigué ce matin.",
+    "answers": [
+      "I am tired this morning.",
+      "I'm tired this morning."
+    ],
+    "tiles": [
+      "that",
+      "today",
+      "are"
+    ],
+    "noteFr": "\"This morning\" se place généralement en fin de phrase."
+  },
+  {
+    "id": "con-a1-u01-07",
+    "level": "A1",
+    "unit": 1,
+    "unitTitleFr": "Se présenter avec \"I am\"",
+    "order": 7,
+    "promptFr": "Je suis enseignant à Thiès.",
+    "answers": [
+      "I am a teacher in Thiès.",
+      "I'm a teacher in Thiès."
+    ],
+    "tiles": [
+      "at",
+      "an",
+      "work"
+    ],
+    "noteFr": "N’oubliez pas l’article \"a\" devant \"teacher\"."
+  },
+  {
+    "id": "con-a1-u01-08",
+    "level": "A1",
+    "unit": 1,
+    "unitTitleFr": "Se présenter avec \"I am\"",
+    "order": 8,
+    "promptFr": "Je suis sénégalais.",
+    "answers": [
+      "I am Senegalese.",
+      "I'm Senegalese."
+    ],
+    "tiles": [
+      "a",
+      "from",
+      "the"
+    ],
+    "noteFr": "Pas d’article devant un adjectif de nationalité seul."
+  },
+  {
+    "id": "con-a1-u01-09",
+    "level": "A1",
+    "unit": 1,
+    "unitTitleFr": "Se présenter avec \"I am\"",
+    "order": 9,
+    "promptFr": "Je suis à la maison.",
+    "answers": [
+      "I am at home.",
+      "I'm at home."
+    ],
+    "tiles": [
+      "in",
+      "to",
+      "the"
+    ],
+    "noteFr": "Expression fixe : \"at home\" (sans \"the\")."
+  },
+  {
+    "id": "con-a1-u01-10",
+    "level": "A1",
+    "unit": 1,
+    "unitTitleFr": "Se présenter avec \"I am\"",
+    "order": 10,
+    "promptFr": "Je suis en retard.",
+    "answers": [
+      "I am late.",
+      "I'm late."
+    ],
+    "tiles": [
+      "early",
+      "is",
+      "for"
+    ],
+    "noteFr": "\"To be late\" signifie être en retard."
+  },
+  {
+    "id": "con-a1-u01-11",
+    "level": "A1",
+    "unit": 1,
+    "unitTitleFr": "Se présenter avec \"I am\"",
+    "order": 11,
+    "promptFr": "Je suis prêt pour le cours.",
+    "answers": [
+      "I am ready for the class.",
+      "I'm ready for the class."
+    ],
+    "tiles": [
+      "to",
+      "in",
+      "a"
+    ],
+    "noteFr": "\"Ready for\" signifie prêt pour quelque chose."
+  },
+  {
+    "id": "con-a1-u02-01",
+    "level": "A1",
+    "unit": 2,
+    "unitTitleFr": "Dire ce que l’on veut avec \"I want\"",
+    "order": 1,
+    "promptFr": "Je veux de l’eau.",
+    "answers": [
+      "I want water.",
+      "I want some water."
+    ],
+    "tiles": [
+      "a",
+      "wants",
+      "am"
+    ],
+    "noteFr": "\"Water\" est indénombrable : pas de \"a\"."
+  },
+  {
+    "id": "con-a1-u02-02",
+    "level": "A1",
+    "unit": 2,
+    "unitTitleFr": "Dire ce que l’on veut avec \"I want\"",
+    "order": 2,
+    "promptFr": "Je veux un café.",
+    "answers": [
+      "I want a coffee."
+    ],
+    "tiles": [
+      "an",
+      "the",
+      "wanting"
+    ],
+    "noteFr": "Pour une tasse de café, on dit \"a coffee\"."
+  },
+  {
+    "id": "con-a1-u02-03",
+    "level": "A1",
+    "unit": 2,
+    "unitTitleFr": "Dire ce que l’on veut avec \"I want\"",
+    "order": 3,
+    "promptFr": "Je veux ce livre.",
+    "answers": [
+      "I want this book."
+    ],
+    "tiles": [
+      "these",
+      "that",
+      "books"
+    ],
+    "noteFr": "\"This\" désigne un objet singulier proche."
+  },
+  {
+    "id": "con-a1-u02-04",
+    "level": "A1",
+    "unit": 2,
+    "unitTitleFr": "Dire ce que l’on veut avec \"I want\"",
+    "order": 4,
+    "promptFr": "Je veux un nouveau téléphone.",
+    "answers": [
+      "I want a new phone."
+    ],
+    "tiles": [
+      "old",
+      "an",
+      "phones"
+    ],
+    "noteFr": "L’adjectif \"new\" se place toujours avant le nom \"phone\"."
+  },
+  {
+    "id": "con-a1-u02-05",
+    "level": "A1",
+    "unit": 2,
+    "unitTitleFr": "Dire ce que l’on veut avec \"I want\"",
+    "order": 5,
+    "promptFr": "Je veux du pain frais.",
+    "answers": [
+      "I want fresh bread.",
+      "I want some fresh bread."
+    ],
+    "tiles": [
+      "a",
+      "hot",
+      "the"
+    ],
+    "noteFr": "\"Fresh bread\" : l’adjectif précède le nom."
+  },
+  {
+    "id": "con-a1-u02-06",
+    "level": "A1",
+    "unit": 2,
+    "unitTitleFr": "Dire ce que l’on veut avec \"I want\"",
+    "order": 6,
+    "promptFr": "Je veux un billet pour Dakar.",
+    "answers": [
+      "I want a ticket to Dakar.",
+      "I want a ticket for Dakar."
+    ],
+    "tiles": [
+      "in",
+      "an",
+      "tickets"
+    ],
+    "noteFr": "On utilise \"a ticket to\" pour une destination."
+  },
+  {
+    "id": "con-a1-u02-07",
+    "level": "A1",
+    "unit": 2,
+    "unitTitleFr": "Dire ce que l’on veut avec \"I want\"",
+    "order": 7,
+    "promptFr": "Je veux du thé chaud.",
+    "answers": [
+      "I want hot tea.",
+      "I want some hot tea."
+    ],
+    "tiles": [
+      "cold",
+      "a",
+      "is"
+    ],
+    "noteFr": "\"Hot\" se place avant \"tea\"."
+  },
+  {
+    "id": "con-a1-u02-08",
+    "level": "A1",
+    "unit": 2,
+    "unitTitleFr": "Dire ce que l’on veut avec \"I want\"",
+    "order": 8,
+    "promptFr": "Je veux une table près de la fenêtre.",
+    "answers": [
+      "I want a table near the window."
+    ],
+    "tiles": [
+      "on",
+      "an",
+      "chair"
+    ],
+    "noteFr": "\"Near the window\" signifie près de la fenêtre."
+  },
+  {
+    "id": "con-a1-u02-09",
+    "level": "A1",
+    "unit": 2,
+    "unitTitleFr": "Dire ce que l’on veut avec \"I want\"",
+    "order": 9,
+    "promptFr": "Je veux plus de temps.",
+    "answers": [
+      "I want more time."
+    ],
+    "tiles": [
+      "many",
+      "a",
+      "hours"
+    ],
+    "noteFr": "\"More time\" s’utilise avec un nom indénombrable."
+  },
+  {
+    "id": "con-a1-u02-10",
+    "level": "A1",
+    "unit": 2,
+    "unitTitleFr": "Dire ce que l’on veut avec \"I want\"",
+    "order": 10,
+    "promptFr": "Je veux un verre de jus.",
+    "answers": [
+      "I want a glass of juice."
+    ],
+    "tiles": [
+      "cup",
+      "to",
+      "in"
+    ],
+    "noteFr": "\"A glass of...\" signifie un verre de."
+  },
+  {
+    "id": "con-a1-u02-11",
+    "level": "A1",
+    "unit": 2,
+    "unitTitleFr": "Dire ce que l’on veut avec \"I want\"",
+    "order": 11,
+    "promptFr": "Je veux un sac noir.",
+    "answers": [
+      "I want a black bag."
+    ],
+    "tiles": [
+      "white",
+      "an",
+      "bags"
+    ],
+    "noteFr": "La couleur précède toujours le nom en anglais."
+  },
+  {
+    "id": "con-a1-u03-01",
+    "level": "A1",
+    "unit": 3,
+    "unitTitleFr": "Exprimer une action avec \"I want to\"",
+    "order": 1,
+    "promptFr": "Je veux apprendre l’anglais.",
+    "answers": [
+      "I want to learn English."
+    ],
+    "tiles": [
+      "for",
+      "learning",
+      "the"
+    ],
+    "noteFr": "Entre \"want\" et un verbe, on place toujours \"to\"."
+  },
+  {
+    "id": "con-a1-u03-02",
+    "level": "A1",
+    "unit": 3,
+    "unitTitleFr": "Exprimer une action avec \"I want to\"",
+    "order": 2,
+    "promptFr": "Je veux parler anglais.",
+    "answers": [
+      "I want to speak English."
+    ],
+    "tiles": [
+      "say",
+      "speaking",
+      "a"
+    ],
+    "noteFr": "On utilise \"speak\" pour une langue."
+  },
+  {
+    "id": "con-a1-u03-03",
+    "level": "A1",
+    "unit": 3,
+    "unitTitleFr": "Exprimer une action avec \"I want to\"",
+    "order": 3,
+    "promptFr": "Je veux travailler à Dakar.",
+    "answers": [
+      "I want to work in Dakar."
+    ],
+    "tiles": [
+      "at",
+      "working",
+      "for"
+    ],
+    "noteFr": "\"Want to + verbe à l’infinitif\" reste invariable."
+  },
+  {
+    "id": "con-a1-u03-04",
+    "level": "A1",
+    "unit": 3,
+    "unitTitleFr": "Exprimer une action avec \"I want to\"",
+    "order": 4,
+    "promptFr": "Je veux acheter du pain.",
+    "answers": [
+      "I want to buy bread.",
+      "I want to buy some bread."
+    ],
+    "tiles": [
+      "sell",
+      "a",
+      "buying"
+    ],
+    "noteFr": "\"To buy\" signifie acheter."
+  },
+  {
+    "id": "con-a1-u03-05",
+    "level": "A1",
+    "unit": 3,
+    "unitTitleFr": "Exprimer une action avec \"I want to\"",
+    "order": 5,
+    "promptFr": "Je veux rentrer à la maison.",
+    "answers": [
+      "I want to go home."
+    ],
+    "tiles": [
+      "at",
+      "the",
+      "to"
+    ],
+    "noteFr": "On dit directement \"go home\" sans préposition \"to\" devant \"home\"."
+  },
+  {
+    "id": "con-a1-u03-06",
+    "level": "A1",
+    "unit": 3,
+    "unitTitleFr": "Exprimer une action avec \"I want to\"",
+    "order": 6,
+    "promptFr": "Je veux boire de l’eau fraîche.",
+    "answers": [
+      "I want to drink cold water.",
+      "I want to drink fresh water."
+    ],
+    "tiles": [
+      "eat",
+      "a",
+      "hot"
+    ],
+    "noteFr": "\"To drink\" = boire ; \"cold water\" = eau fraîche."
+  },
+  {
+    "id": "con-a1-u03-07",
+    "level": "A1",
+    "unit": 3,
+    "unitTitleFr": "Exprimer une action avec \"I want to\"",
+    "order": 7,
+    "promptFr": "Je veux visiter Saint-Louis.",
+    "answers": [
+      "I want to visit Saint-Louis."
+    ],
+    "tiles": [
+      "in",
+      "visiting",
+      "go"
+    ],
+    "noteFr": "Pas de préposition après \"visit\" : \"visit Saint-Louis\"."
+  },
+  {
+    "id": "con-a1-u03-08",
+    "level": "A1",
+    "unit": 3,
+    "unitTitleFr": "Exprimer une action avec \"I want to\"",
+    "order": 8,
+    "promptFr": "Je veux lire ce livre aujourd’hui.",
+    "answers": [
+      "I want to read this book today."
+    ],
+    "tiles": [
+      "write",
+      "that",
+      "these"
+    ],
+    "noteFr": "Combinaison de \"want to\" avec \"this book today\"."
+  },
+  {
+    "id": "con-a1-u03-09",
+    "level": "A1",
+    "unit": 3,
+    "unitTitleFr": "Exprimer une action avec \"I want to\"",
+    "order": 9,
+    "promptFr": "Je veux manger maintenant.",
+    "answers": [
+      "I want to eat now."
+    ],
+    "tiles": [
+      "drink",
+      "today",
+      "eating"
+    ],
+    "noteFr": "\"Now\" se place en fin de phrase."
+  },
+  {
+    "id": "con-a1-u03-10",
+    "level": "A1",
+    "unit": 3,
+    "unitTitleFr": "Exprimer une action avec \"I want to\"",
+    "order": 10,
+    "promptFr": "Je veux dormir tôt ce soir.",
+    "answers": [
+      "I want to sleep early tonight."
+    ],
+    "tiles": [
+      "late",
+      "morning",
+      "sleeping"
+    ],
+    "noteFr": "\"Tonight\" = ce soir."
+  },
+  {
+    "id": "con-a1-u03-11",
+    "level": "A1",
+    "unit": 3,
+    "unitTitleFr": "Exprimer une action avec \"I want to\"",
+    "order": 11,
+    "promptFr": "Je veux aider ma famille.",
+    "answers": [
+      "I want to help my family."
+    ],
+    "tiles": [
+      "your",
+      "helping",
+      "for"
+    ],
+    "noteFr": "\"My family\" = ma famille."
+  },
+  {
+    "id": "con-a1-u04-01",
+    "level": "A1",
+    "unit": 4,
+    "unitTitleFr": "Parler de ce que l’on a avec \"I have\"",
+    "order": 1,
+    "promptFr": "J’ai un frère et une sœur.",
+    "answers": [
+      "I have a brother and a sister."
+    ],
+    "tiles": [
+      "has",
+      "an",
+      "or"
+    ],
+    "noteFr": "Avec \"I\", le verbe avoir est toujours \"have\"."
+  },
+  {
+    "id": "con-a1-u04-02",
+    "level": "A1",
+    "unit": 4,
+    "unitTitleFr": "Parler de ce que l’on a avec \"I have\"",
+    "order": 2,
+    "promptFr": "J’ai deux enfants.",
+    "answers": [
+      "I have two children."
+    ],
+    "tiles": [
+      "childs",
+      "a",
+      "has"
+    ],
+    "noteFr": "Le pluriel de \"child\" est irrégulier : \"children\"."
+  },
+  {
+    "id": "con-a1-u04-03",
+    "level": "A1",
+    "unit": 4,
+    "unitTitleFr": "Parler de ce que l’on a avec \"I have\"",
+    "order": 3,
+    "promptFr": "J’ai un nouveau travail.",
+    "answers": [
+      "I have a new job."
+    ],
+    "tiles": [
+      "work",
+      "an",
+      "has"
+    ],
+    "noteFr": "\"A job\" désigne un emploi précis (dénombrable)."
+  },
+  {
+    "id": "con-a1-u04-04",
+    "level": "A1",
+    "unit": 4,
+    "unitTitleFr": "Parler de ce que l’on a avec \"I have\"",
+    "order": 4,
+    "promptFr": "J’ai une question.",
+    "answers": [
+      "I have a question."
+    ],
+    "tiles": [
+      "an",
+      "answer",
+      "questions"
+    ],
+    "noteFr": "\"Question\" commence par une consonne : \"a question\"."
+  },
+  {
+    "id": "con-a1-u04-05",
+    "level": "A1",
+    "unit": 4,
+    "unitTitleFr": "Parler de ce que l’on a avec \"I have\"",
+    "order": 5,
+    "promptFr": "J’ai le temps aujourd’hui.",
+    "answers": [
+      "I have time today.",
+      "I have the time today."
+    ],
+    "tiles": [
+      "a",
+      "now",
+      "hours"
+    ],
+    "noteFr": "\"I have time\" signifie j’ai du temps."
+  },
+  {
+    "id": "con-a1-u04-06",
+    "level": "A1",
+    "unit": 4,
+    "unitTitleFr": "Parler de ce que l’on a avec \"I have\"",
+    "order": 6,
+    "promptFr": "J’ai un rendez-vous ce matin.",
+    "answers": [
+      "I have an appointment this morning.",
+      "I have a meeting this morning."
+    ],
+    "tiles": [
+      "a",
+      "that",
+      "yesterday"
+    ],
+    "noteFr": "\"Appointment\" commence par une voyelle : \"an appointment\"."
+  },
+  {
+    "id": "con-a1-u04-07",
+    "level": "A1",
+    "unit": 4,
+    "unitTitleFr": "Parler de ce que l’on a avec \"I have\"",
+    "order": 7,
+    "promptFr": "J’ai faim maintenant.",
+    "answers": [
+      "I am hungry now.",
+      "I'm hungry now."
+    ],
+    "tiles": [
+      "have",
+      "thirsty",
+      "a"
+    ],
+    "noteFr": "Attention : en anglais on dit \"I am hungry\" (et non \"I have\")."
+  },
+  {
+    "id": "con-a1-u04-08",
+    "level": "A1",
+    "unit": 4,
+    "unitTitleFr": "Parler de ce que l’on a avec \"I have\"",
+    "order": 8,
+    "promptFr": "J’ai une bonne idée.",
+    "answers": [
+      "I have a good idea."
+    ],
+    "tiles": [
+      "an",
+      "bad",
+      "ideas"
+    ],
+    "noteFr": "\"Good\" précède \"idea\", donc on met \"a\" devant \"good\"."
+  },
+  {
+    "id": "con-a1-u04-09",
+    "level": "A1",
+    "unit": 4,
+    "unitTitleFr": "Parler de ce que l’on a avec \"I have\"",
+    "order": 9,
+    "promptFr": "J’ai besoin d’aide.",
+    "answers": [
+      "I need help."
+    ],
+    "tiles": [
+      "have",
+      "a",
+      "for"
+    ],
+    "noteFr": "Pour exprimer un besoin, on utilise \"I need\"."
+  },
+  {
+    "id": "con-a1-u04-10",
+    "level": "A1",
+    "unit": 4,
+    "unitTitleFr": "Parler de ce que l’on a avec \"I have\"",
+    "order": 10,
+    "promptFr": "J’ai un billet pour le bus.",
+    "answers": [
+      "I have a bus ticket.",
+      "I have a ticket for the bus."
+    ],
+    "tiles": [
+      "train",
+      "an",
+      "in"
+    ],
+    "noteFr": "Le nom composé \"bus ticket\" est très naturel."
+  },
+  {
+    "id": "con-a1-u04-11",
+    "level": "A1",
+    "unit": 4,
+    "unitTitleFr": "Parler de ce que l’on a avec \"I have\"",
+    "order": 11,
+    "promptFr": "J’ai beaucoup d’amis à Dakar.",
+    "answers": [
+      "I have many friends in Dakar.",
+      "I have a lot of friends in Dakar."
+    ],
+    "tiles": [
+      "much",
+      "friend",
+      "at"
+    ],
+    "noteFr": "Avec un nom pluriel dénombrable (\"friends\"), utilisez \"many\"."
+  },
+  {
+    "id": "con-a1-u05-01",
+    "level": "A1",
+    "unit": 5,
+    "unitTitleFr": "Poser une question simple avec \"Do you...?\"",
+    "order": 1,
+    "promptFr": "Parles-tu anglais ?",
+    "answers": [
+      "Do you speak English?"
+    ],
+    "tiles": [
+      "Are",
+      "speaks",
+      "does"
+    ],
+    "noteFr": "Une question au présent simple commence par \"Do you + verbe ?\"."
+  },
+  {
+    "id": "con-a1-u05-02",
+    "level": "A1",
+    "unit": 5,
+    "unitTitleFr": "Poser une question simple avec \"Do you...?\"",
+    "order": 2,
+    "promptFr": "Veux-tu du café ?",
+    "answers": [
+      "Do you want coffee?",
+      "Do you want some coffee?"
+    ],
+    "tiles": [
+      "Are",
+      "a",
+      "wants"
+    ],
+    "noteFr": "Utilisez \"Do you want...?\" pour proposer quelque chose."
+  },
+  {
+    "id": "con-a1-u05-03",
+    "level": "A1",
+    "unit": 5,
+    "unitTitleFr": "Poser une question simple avec \"Do you...?\"",
+    "order": 3,
+    "promptFr": "Aimes-tu la musique ?",
+    "answers": [
+      "Do you like music?"
+    ],
+    "tiles": [
+      "Are",
+      "likes",
+      "the"
+    ],
+    "noteFr": "Pas d’article devant \"music\" au sens général."
+  },
+  {
+    "id": "con-a1-u05-04",
+    "level": "A1",
+    "unit": 5,
+    "unitTitleFr": "Poser une question simple avec \"Do you...?\"",
+    "order": 4,
+    "promptFr": "Habites-tu à Dakar ?",
+    "answers": [
+      "Do you live in Dakar?"
+    ],
+    "tiles": [
+      "Are",
+      "at",
+      "lives"
+    ],
+    "noteFr": "\"To live in\" = habiter à."
+  },
+  {
+    "id": "con-a1-u05-05",
+    "level": "A1",
+    "unit": 5,
+    "unitTitleFr": "Poser une question simple avec \"Do you...?\"",
+    "order": 5,
+    "promptFr": "As-tu le temps maintenant ?",
+    "answers": [
+      "Do you have time now?"
+    ],
+    "tiles": [
+      "Are",
+      "has",
+      "today"
+    ],
+    "noteFr": "Avec \"Do you\", le verbe \"have\" reste à l’infinitif."
+  },
+  {
+    "id": "con-a1-u05-06",
+    "level": "A1",
+    "unit": 5,
+    "unitTitleFr": "Poser une question simple avec \"Do you...?\"",
+    "order": 6,
+    "promptFr": "Veux-tu apprendre l’anglais ?",
+    "answers": [
+      "Do you want to learn English?"
+    ],
+    "tiles": [
+      "Are",
+      "learning",
+      "for"
+    ],
+    "noteFr": "On combine \"Do you\" et \"want to\"."
+  },
+  {
+    "id": "con-a1-u05-07",
+    "level": "A1",
+    "unit": 5,
+    "unitTitleFr": "Poser une question simple avec \"Do you...?\"",
+    "order": 7,
+    "promptFr": "Travailles-tu aujourd’hui ?",
+    "answers": [
+      "Do you work today?"
+    ],
+    "tiles": [
+      "Are",
+      "works",
+      "now"
+    ],
+    "noteFr": "L’auxiliaire \"Do\" porte la marque de la question."
+  },
+  {
+    "id": "con-a1-u05-08",
+    "level": "A1",
+    "unit": 5,
+    "unitTitleFr": "Poser une question simple avec \"Do you...?\"",
+    "order": 8,
+    "promptFr": "Comprends-tu la question ?",
+    "answers": [
+      "Do you understand the question?"
+    ],
+    "tiles": [
+      "Are",
+      "a",
+      "understands"
+    ],
+    "noteFr": "\"To understand\" = comprendre."
+  },
+  {
+    "id": "con-a1-u05-09",
+    "level": "A1",
+    "unit": 5,
+    "unitTitleFr": "Poser une question simple avec \"Do you...?\"",
+    "order": 9,
+    "promptFr": "As-tu besoin d’aide ?",
+    "answers": [
+      "Do you need help?"
+    ],
+    "tiles": [
+      "Are",
+      "a",
+      "needs"
+    ],
+    "noteFr": "\"Do you need help?\" = as-tu besoin d’aide ?"
+  },
+  {
+    "id": "con-a1-u05-10",
+    "level": "A1",
+    "unit": 5,
+    "unitTitleFr": "Poser une question simple avec \"Do you...?\"",
+    "order": 10,
+    "promptFr": "Aimes-tu ce livre ?",
+    "answers": [
+      "Do you like this book?"
+    ],
+    "tiles": [
+      "Are",
+      "these",
+      "books"
+    ],
+    "noteFr": "\"This book\" pour un livre précis proche."
+  },
+  {
+    "id": "con-a1-u05-11",
+    "level": "A1",
+    "unit": 5,
+    "unitTitleFr": "Poser une question simple avec \"Do you...?\"",
+    "order": 11,
+    "promptFr": "Veux-tu boire de l’eau ?",
+    "answers": [
+      "Do you want to drink water?",
+      "Do you want to drink some water?"
+    ],
+    "tiles": [
+      "eat",
+      "a",
+      "Are"
+    ],
+    "noteFr": "N’oubliez pas \"to\" entre \"want\" et \"drink\"."
+  },
+  {
+    "id": "con-a1-u06-01",
+    "level": "A1",
+    "unit": 6,
+    "unitTitleFr": "Dire ce que l’on n’aime pas avec \"I don’t\"",
+    "order": 1,
+    "promptFr": "Je ne parle pas espagnol.",
+    "answers": [
+      "I don't speak Spanish.",
+      "I do not speak Spanish."
+    ],
+    "tiles": [
+      "am",
+      "not",
+      "speaks"
+    ],
+    "noteFr": "La négation au présent simple se forme avec \"don't + verbe\"."
+  },
+  {
+    "id": "con-a1-u06-02",
+    "level": "A1",
+    "unit": 6,
+    "unitTitleFr": "Dire ce que l’on n’aime pas avec \"I don’t\"",
+    "order": 2,
+    "promptFr": "Je ne veux pas attendre.",
+    "answers": [
+      "I don't want to wait.",
+      "I do not want to wait."
+    ],
+    "tiles": [
+      "am",
+      "waiting",
+      "for"
+    ],
+    "noteFr": "\"Don't want to + verbe\"."
+  },
+  {
+    "id": "con-a1-u06-03",
+    "level": "A1",
+    "unit": 6,
+    "unitTitleFr": "Dire ce que l’on n’aime pas avec \"I don’t\"",
+    "order": 3,
+    "promptFr": "Je n’ai pas de voiture.",
+    "answers": [
+      "I don't have a car.",
+      "I do not have a car."
+    ],
+    "tiles": [
+      "am",
+      "has",
+      "the"
+    ],
+    "noteFr": "\"I don't have a...\" pour exprimer l’absence."
+  },
+  {
+    "id": "con-a1-u06-04",
+    "level": "A1",
+    "unit": 6,
+    "unitTitleFr": "Dire ce que l’on n’aime pas avec \"I don’t\"",
+    "order": 4,
+    "promptFr": "Je n’aime pas le thé froid.",
+    "answers": [
+      "I don't like cold tea.",
+      "I do not like cold tea."
+    ],
+    "tiles": [
+      "am",
+      "hot",
+      "likes"
+    ],
+    "noteFr": "\"Cold tea\" = thé froid."
+  },
+  {
+    "id": "con-a1-u06-05",
+    "level": "A1",
+    "unit": 6,
+    "unitTitleFr": "Dire ce que l’on n’aime pas avec \"I don’t\"",
+    "order": 5,
+    "promptFr": "Je ne travaille pas le dimanche.",
+    "answers": [
+      "I don't work on Sunday.",
+      "I do not work on Sunday.",
+      "I don't work on Sundays."
+    ],
+    "tiles": [
+      "in",
+      "at",
+      "am"
+    ],
+    "noteFr": "Devant un jour de la semaine, on utilise \"on\"."
+  },
+  {
+    "id": "con-a1-u06-06",
+    "level": "A1",
+    "unit": 6,
+    "unitTitleFr": "Dire ce que l’on n’aime pas avec \"I don’t\"",
+    "order": 6,
+    "promptFr": "Je ne comprends pas ce mot.",
+    "answers": [
+      "I don't understand this word.",
+      "I do not understand this word."
+    ],
+    "tiles": [
+      "these",
+      "am",
+      "words"
+    ],
+    "noteFr": "\"This word\" = ce mot."
+  },
+  {
+    "id": "con-a1-u06-07",
+    "level": "A1",
+    "unit": 6,
+    "unitTitleFr": "Dire ce que l’on n’aime pas avec \"I don’t\"",
+    "order": 7,
+    "promptFr": "Je n’ai pas besoin de sac.",
+    "answers": [
+      "I don't need a bag.",
+      "I do not need a bag."
+    ],
+    "tiles": [
+      "want",
+      "an",
+      "am"
+    ],
+    "noteFr": "On ajoute \"a\" devant \"bag\"."
+  },
+  {
+    "id": "con-a1-u06-08",
+    "level": "A1",
+    "unit": 6,
+    "unitTitleFr": "Dire ce que l’on n’aime pas avec \"I don’t\"",
+    "order": 8,
+    "promptFr": "Je n’habite pas loin d’ici.",
+    "answers": [
+      "I don't live far from here.",
+      "I do not live far from here."
+    ],
+    "tiles": [
+      "near",
+      "in",
+      "am"
+    ],
+    "noteFr": "\"Far from here\" = loin d’ici."
+  },
+  {
+    "id": "con-a1-u06-09",
+    "level": "A1",
+    "unit": 6,
+    "unitTitleFr": "Dire ce que l’on n’aime pas avec \"I don’t\"",
+    "order": 9,
+    "promptFr": "Je ne bois pas de café le soir.",
+    "answers": [
+      "I don't drink coffee in the evening.",
+      "I do not drink coffee in the evening."
+    ],
+    "tiles": [
+      "at",
+      "on",
+      "a"
+    ],
+    "noteFr": "On dit \"in the evening\" pour le soir."
+  },
+  {
+    "id": "con-a1-u06-10",
+    "level": "A1",
+    "unit": 6,
+    "unitTitleFr": "Dire ce que l’on n’aime pas avec \"I don’t\"",
+    "order": 10,
+    "promptFr": "Je ne connais pas cette rue.",
+    "answers": [
+      "I don't know this street.",
+      "I do not know this street."
+    ],
+    "tiles": [
+      "these",
+      "am",
+      "knows"
+    ],
+    "noteFr": "\"To know\" = connaître ou savoir."
+  },
+  {
+    "id": "con-a1-u06-11",
+    "level": "A1",
+    "unit": 6,
+    "unitTitleFr": "Dire ce que l’on n’aime pas avec \"I don’t\"",
+    "order": 11,
+    "promptFr": "Je ne veux pas partir maintenant.",
+    "answers": [
+      "I don't want to leave now.",
+      "I do not want to leave now."
+    ],
+    "tiles": [
+      "go",
+      "am",
+      "today"
+    ],
+    "noteFr": "\"To leave\" = partir."
+  },
+  {
+    "id": "con-a1-u07-01",
+    "level": "A1",
+    "unit": 7,
+    "unitTitleFr": "Parler des autres avec \"He / She\" (-s)",
+    "order": 1,
+    "promptFr": "Elle travaille à l’hôpital.",
+    "answers": [
+      "She works at the hospital.",
+      "She works in the hospital."
+    ],
+    "tiles": [
+      "work",
+      "working",
+      "a"
+    ],
+    "noteFr": "Avec \"he/she/it\", le verbe prend un \"-s\" au présent : works."
+  },
+  {
+    "id": "con-a1-u07-02",
+    "level": "A1",
+    "unit": 7,
+    "unitTitleFr": "Parler des autres avec \"He / She\" (-s)",
+    "order": 2,
+    "promptFr": "Il parle très bien anglais.",
+    "answers": [
+      "He speaks English very well."
+    ],
+    "tiles": [
+      "speak",
+      "good",
+      "the"
+    ],
+    "noteFr": "\"Very well\" est un adverbe qui suit le complément."
+  },
+  {
+    "id": "con-a1-u07-03",
+    "level": "A1",
+    "unit": 7,
+    "unitTitleFr": "Parler des autres avec \"He / She\" (-s)",
+    "order": 3,
+    "promptFr": "Elle habite à Mermoz.",
+    "answers": [
+      "She lives in Mermoz."
+    ],
+    "tiles": [
+      "live",
+      "at",
+      "on"
+    ],
+    "noteFr": "N’oubliez pas le \"-s\" à \"lives\"."
+  },
+  {
+    "id": "con-a1-u07-04",
+    "level": "A1",
+    "unit": 7,
+    "unitTitleFr": "Parler des autres avec \"He / She\" (-s)",
+    "order": 4,
+    "promptFr": "Il veut apprendre le français.",
+    "answers": [
+      "He wants to learn French."
+    ],
+    "tiles": [
+      "want",
+      "learning",
+      "the"
+    ],
+    "noteFr": "Avec \"He\", on écrit \"wants to\"."
+  },
+  {
+    "id": "con-a1-u07-05",
+    "level": "A1",
+    "unit": 7,
+    "unitTitleFr": "Parler des autres avec \"He / She\" (-s)",
+    "order": 5,
+    "promptFr": "Elle a deux frères.",
+    "answers": [
+      "She has two brothers."
+    ],
+    "tiles": [
+      "have",
+      "brother",
+      "a"
+    ],
+    "noteFr": "Attention : avec \"he/she\", \"have\" devient \"has\"."
+  },
+  {
+    "id": "con-a1-u07-06",
+    "level": "A1",
+    "unit": 7,
+    "unitTitleFr": "Parler des autres avec \"He / She\" (-s)",
+    "order": 6,
+    "promptFr": "Il aime cuisiner le week-end.",
+    "answers": [
+      "He likes to cook on the weekend.",
+      "He likes cooking on the weekend.",
+      "He likes to cook at the weekend."
+    ],
+    "tiles": [
+      "like",
+      "in",
+      "cooks"
+    ],
+    "noteFr": "\"Likes to + verbe\" avec \"He\"."
+  },
+  {
+    "id": "con-a1-u07-07",
+    "level": "A1",
+    "unit": 7,
+    "unitTitleFr": "Parler des autres avec \"He / She\" (-s)",
+    "order": 7,
+    "promptFr": "Elle ne travaille pas aujourd’hui.",
+    "answers": [
+      "She doesn't work today.",
+      "She does not work today."
+    ],
+    "tiles": [
+      "don't",
+      "works",
+      "now"
+    ],
+    "noteFr": "À la négation avec \"he/she\", on utilise \"doesn't\" et le verbe perd son \"-s\"."
+  },
+  {
+    "id": "con-a1-u07-08",
+    "level": "A1",
+    "unit": 7,
+    "unitTitleFr": "Parler des autres avec \"He / She\" (-s)",
+    "order": 8,
+    "promptFr": "Il n’a pas de téléphone.",
+    "answers": [
+      "He doesn't have a phone.",
+      "He does not have a phone."
+    ],
+    "tiles": [
+      "has",
+      "don't",
+      "an"
+    ],
+    "noteFr": "Après \"doesn't\", \"have\" reste à l’infinitif (pas de \"has\")."
+  },
+  {
+    "id": "con-a1-u07-09",
+    "level": "A1",
+    "unit": 7,
+    "unitTitleFr": "Parler des autres avec \"He / She\" (-s)",
+    "order": 9,
+    "promptFr": "Parle-t-elle anglais ?",
+    "answers": [
+      "Does she speak English?"
+    ],
+    "tiles": [
+      "Do",
+      "speaks",
+      "Is"
+    ],
+    "noteFr": "Question avec \"he/she\" : \"Does + sujet + verbe sans -s ?\"."
+  },
+  {
+    "id": "con-a1-u07-10",
+    "level": "A1",
+    "unit": 7,
+    "unitTitleFr": "Parler des autres avec \"He / She\" (-s)",
+    "order": 10,
+    "promptFr": "Mon frère étudie à l’université.",
+    "answers": [
+      "My brother studies at university.",
+      "My brother studies at the university."
+    ],
+    "tiles": [
+      "study",
+      "in",
+      "a"
+    ],
+    "noteFr": "Les verbes en consonne + \"-y\" prennent \"-ies\" : studies."
+  },
+  {
+    "id": "con-a1-u07-11",
+    "level": "A1",
+    "unit": 7,
+    "unitTitleFr": "Parler des autres avec \"He / She\" (-s)",
+    "order": 11,
+    "promptFr": "Elle prend le bus chaque matin.",
+    "answers": [
+      "She takes the bus every morning."
+    ],
+    "tiles": [
+      "take",
+      "a",
+      "all"
+    ],
+    "noteFr": "\"Every morning\" = chaque matin."
+  },
+  {
+    "id": "con-a1-u08-01",
+    "level": "A1",
+    "unit": 8,
+    "unitTitleFr": "Poser des questions avec \"Where, What, When\"",
+    "order": 1,
+    "promptFr": "Où habites-tu ?",
+    "answers": [
+      "Where do you live?"
+    ],
+    "tiles": [
+      "What",
+      "does",
+      "are"
+    ],
+    "noteFr": "Mot interrogatif + \"do/does\" + sujet + verbe."
+  },
+  {
+    "id": "con-a1-u08-02",
+    "level": "A1",
+    "unit": 8,
+    "unitTitleFr": "Poser des questions avec \"Where, What, When\"",
+    "order": 2,
+    "promptFr": "Que veux-tu manger ?",
+    "answers": [
+      "What do you want to eat?"
+    ],
+    "tiles": [
+      "Where",
+      "are",
+      "eating"
+    ],
+    "noteFr": "\"What\" = que / quoi."
+  },
+  {
+    "id": "con-a1-u08-03",
+    "level": "A1",
+    "unit": 8,
+    "unitTitleFr": "Poser des questions avec \"Where, What, When\"",
+    "order": 3,
+    "promptFr": "Quand commences-tu le travail ?",
+    "answers": [
+      "When do you start work?"
+    ],
+    "tiles": [
+      "Where",
+      "does",
+      "a"
+    ],
+    "noteFr": "\"When\" = quand."
+  },
+  {
+    "id": "con-a1-u08-04",
+    "level": "A1",
+    "unit": 8,
+    "unitTitleFr": "Poser des questions avec \"Where, What, When\"",
+    "order": 4,
+    "promptFr": "Où est la gare ?",
+    "answers": [
+      "Where is the station?",
+      "Where is the train station?"
+    ],
+    "tiles": [
+      "do",
+      "are",
+      "a"
+    ],
+    "noteFr": "Avec le verbe \"to be\", on n’utilise pas \"do\"."
+  },
+  {
+    "id": "con-a1-u08-05",
+    "level": "A1",
+    "unit": 8,
+    "unitTitleFr": "Poser des questions avec \"Where, What, When\"",
+    "order": 5,
+    "promptFr": "Quel est ton prénom ?",
+    "answers": [
+      "What is your first name?",
+      "What's your first name?",
+      "What is your name?"
+    ],
+    "tiles": [
+      "Who",
+      "are",
+      "my"
+    ],
+    "noteFr": "\"First name\" = prénom."
+  },
+  {
+    "id": "con-a1-u08-06",
+    "level": "A1",
+    "unit": 8,
+    "unitTitleFr": "Poser des questions avec \"Where, What, When\"",
+    "order": 6,
+    "promptFr": "Où travaille-t-il ?",
+    "answers": [
+      "Where does he work?"
+    ],
+    "tiles": [
+      "do",
+      "works",
+      "is"
+    ],
+    "noteFr": "Avec \"he\", l’auxiliaire devient \"does\"."
+  },
+  {
+    "id": "con-a1-u08-07",
+    "level": "A1",
+    "unit": 8,
+    "unitTitleFr": "Poser des questions avec \"Where, What, When\"",
+    "order": 7,
+    "promptFr": "Que fait-elle maintenant ?",
+    "answers": [
+      "What is she doing now?",
+      "What does she do now?"
+    ],
+    "tiles": [
+      "are",
+      "do",
+      "today"
+    ],
+    "noteFr": "Pour une action en cours : \"What is she doing?\"."
+  },
+  {
+    "id": "con-a1-u08-08",
+    "level": "A1",
+    "unit": 8,
+    "unitTitleFr": "Poser des questions avec \"Where, What, When\"",
+    "order": 8,
+    "promptFr": "Quand arrive le bus ?",
+    "answers": [
+      "When does the bus arrive?"
+    ],
+    "tiles": [
+      "do",
+      "arrives",
+      "is"
+    ],
+    "noteFr": "\"The bus\" équivaut à \"it\", donc on utilise \"does\"."
+  },
+  {
+    "id": "con-a1-u08-09",
+    "level": "A1",
+    "unit": 8,
+    "unitTitleFr": "Poser des questions avec \"Where, What, When\"",
+    "order": 9,
+    "promptFr": "Où puis-je acheter un billet ?",
+    "answers": [
+      "Where can I buy a ticket?"
+    ],
+    "tiles": [
+      "do",
+      "buying",
+      "an"
+    ],
+    "noteFr": "Avec \"can\", on inverse simplement \"can I\"."
+  },
+  {
+    "id": "con-a1-u08-10",
+    "level": "A1",
+    "unit": 8,
+    "unitTitleFr": "Poser des questions avec \"Where, What, When\"",
+    "order": 10,
+    "promptFr": "À quelle heure ouvres-tu ?",
+    "answers": [
+      "What time do you open?"
+    ],
+    "tiles": [
+      "When",
+      "are",
+      "opens"
+    ],
+    "noteFr": "\"What time\" = à quelle heure."
+  },
+  {
+    "id": "con-a1-u08-11",
+    "level": "A1",
+    "unit": 8,
+    "unitTitleFr": "Poser des questions avec \"Where, What, When\"",
+    "order": 11,
+    "promptFr": "Qu’est-ce que tu étudies ?",
+    "answers": [
+      "What do you study?",
+      "What are you studying?"
+    ],
+    "tiles": [
+      "Where",
+      "does",
+      "studies"
+    ],
+    "noteFr": "\"What\" interroge sur l’objet de l’étude."
+  },
+  {
+    "id": "con-a1-u09-01",
+    "level": "A1",
+    "unit": 9,
+    "unitTitleFr": "Décrire l’instant présent avec \"am / is / are + -ing\"",
+    "order": 1,
+    "promptFr": "Je suis en train de lire un livre.",
+    "answers": [
+      "I am reading a book.",
+      "I'm reading a book."
+    ],
+    "tiles": [
+      "read",
+      "reads",
+      "the"
+    ],
+    "noteFr": "Action en cours : \"be + verbe-ing\"."
+  },
+  {
+    "id": "con-a1-u09-02",
+    "level": "A1",
+    "unit": 9,
+    "unitTitleFr": "Décrire l’instant présent avec \"am / is / are + -ing\"",
+    "order": 2,
+    "promptFr": "Elle prépare le dîner.",
+    "answers": [
+      "She is cooking dinner.",
+      "She's cooking dinner.",
+      "She is making dinner."
+    ],
+    "tiles": [
+      "cooks",
+      "a",
+      "are"
+    ],
+    "noteFr": "Pas d’article devant les repas (\"dinner\")."
+  },
+  {
+    "id": "con-a1-u09-03",
+    "level": "A1",
+    "unit": 9,
+    "unitTitleFr": "Décrire l’instant présent avec \"am / is / are + -ing\"",
+    "order": 3,
+    "promptFr": "Nous attendons le bus.",
+    "answers": [
+      "We are waiting for the bus.",
+      "We're waiting for the bus."
+    ],
+    "tiles": [
+      "wait",
+      "at",
+      "is"
+    ],
+    "noteFr": "On dit toujours \"wait for\" (attendre quelque chose)."
+  },
+  {
+    "id": "con-a1-u09-04",
+    "level": "A1",
+    "unit": 9,
+    "unitTitleFr": "Décrire l’instant présent avec \"am / is / are + -ing\"",
+    "order": 4,
+    "promptFr": "Il parle au téléphone.",
+    "answers": [
+      "He is talking on the phone.",
+      "He's talking on the phone."
+    ],
+    "tiles": [
+      "at",
+      "in",
+      "talks"
+    ],
+    "noteFr": "Expression fixe : \"on the phone\"."
+  },
+  {
+    "id": "con-a1-u09-05",
+    "level": "A1",
+    "unit": 9,
+    "unitTitleFr": "Décrire l’instant présent avec \"am / is / are + -ing\"",
+    "order": 5,
+    "promptFr": "Ils apprennent de nouveaux mots.",
+    "answers": [
+      "They are learning new words.",
+      "They're learning new words."
+    ],
+    "tiles": [
+      "learn",
+      "a",
+      "is"
+    ],
+    "noteFr": "\"They are\" pour le pluriel."
+  },
+  {
+    "id": "con-a1-u09-06",
+    "level": "A1",
+    "unit": 9,
+    "unitTitleFr": "Décrire l’instant présent avec \"am / is / are + -ing\"",
+    "order": 6,
+    "promptFr": "Je ne travaille pas en ce moment.",
+    "answers": [
+      "I am not working right now.",
+      "I'm not working right now."
+    ],
+    "tiles": [
+      "don't",
+      "work",
+      "today"
+    ],
+    "noteFr": "Négation en \"-ing\" : \"am not / isn't / aren't + -ing\"."
+  },
+  {
+    "id": "con-a1-u09-07",
+    "level": "A1",
+    "unit": 9,
+    "unitTitleFr": "Décrire l’instant présent avec \"am / is / are + -ing\"",
+    "order": 7,
+    "promptFr": "Écoutes-tu de la musique ?",
+    "answers": [
+      "Are you listening to music?"
+    ],
+    "tiles": [
+      "Do",
+      "listen",
+      "at"
+    ],
+    "noteFr": "On utilise toujours \"listen to\"."
+  },
+  {
+    "id": "con-a1-u09-08",
+    "level": "A1",
+    "unit": 9,
+    "unitTitleFr": "Décrire l’instant présent avec \"am / is / are + -ing\"",
+    "order": 8,
+    "promptFr": "Le train arrive maintenant.",
+    "answers": [
+      "The train is arriving now."
+    ],
+    "tiles": [
+      "are",
+      "arrive",
+      "a"
+    ],
+    "noteFr": "Les verbes en \"-e\" muet perdent le \"e\" devant \"-ing\" : arriving."
+  },
+  {
+    "id": "con-a1-u09-09",
+    "level": "A1",
+    "unit": 9,
+    "unitTitleFr": "Décrire l’instant présent avec \"am / is / are + -ing\"",
+    "order": 9,
+    "promptFr": "Elle écrit un message à son ami.",
+    "answers": [
+      "She is writing a message to her friend.",
+      "She's writing a message to her friend."
+    ],
+    "tiles": [
+      "write",
+      "his",
+      "for"
+    ],
+    "noteFr": "\"Her friend\" pour une femme."
+  },
+  {
+    "id": "con-a1-u09-10",
+    "level": "A1",
+    "unit": 9,
+    "unitTitleFr": "Décrire l’instant présent avec \"am / is / are + -ing\"",
+    "order": 10,
+    "promptFr": "Nous marchons vers le marché.",
+    "answers": [
+      "We are walking to the market.",
+      "We're walking to the market."
+    ],
+    "tiles": [
+      "at",
+      "walk",
+      "in"
+    ],
+    "noteFr": "\"Walking to\" indique la direction."
+  },
+  {
+    "id": "con-a1-u09-11",
+    "level": "A1",
+    "unit": 9,
+    "unitTitleFr": "Décrire l’instant présent avec \"am / is / are + -ing\"",
+    "order": 11,
+    "promptFr": "Pourquoi ris-tu ?",
+    "answers": [
+      "Why are you laughing?"
+    ],
+    "tiles": [
+      "do",
+      "laugh",
+      "is"
+    ],
+    "noteFr": "\"Why\" = pourquoi."
+  },
+  {
+    "id": "con-a1-u10-01",
+    "level": "A1",
+    "unit": 10,
+    "unitTitleFr": "Parler de sa capacité avec \"can / can’t\"",
+    "order": 1,
+    "promptFr": "Je peux t’aider aujourd’hui.",
+    "answers": [
+      "I can help you today."
+    ],
+    "tiles": [
+      "to",
+      "helps",
+      "am"
+    ],
+    "noteFr": "Après \"can\", jamais de \"to\" : directement le verbe."
+  },
+  {
+    "id": "con-a1-u10-02",
+    "level": "A1",
+    "unit": 10,
+    "unitTitleFr": "Parler de sa capacité avec \"can / can’t\"",
+    "order": 2,
+    "promptFr": "Elle sait parler trois langues.",
+    "answers": [
+      "She can speak three languages."
+    ],
+    "tiles": [
+      "speaks",
+      "to",
+      "language"
+    ],
+    "noteFr": "\"Can\" exprime aussi un savoir-faire (savoir parler)."
+  },
+  {
+    "id": "con-a1-u10-03",
+    "level": "A1",
+    "unit": 10,
+    "unitTitleFr": "Parler de sa capacité avec \"can / can’t\"",
+    "order": 3,
+    "promptFr": "Je ne peux pas venir ce soir.",
+    "answers": [
+      "I can't come tonight.",
+      "I cannot come tonight."
+    ],
+    "tiles": [
+      "don't",
+      "to",
+      "coming"
+    ],
+    "noteFr": "Négation de \"can\" : \"can't\" ou \"cannot\"."
+  },
+  {
+    "id": "con-a1-u10-04",
+    "level": "A1",
+    "unit": 10,
+    "unitTitleFr": "Parler de sa capacité avec \"can / can’t\"",
+    "order": 4,
+    "promptFr": "Peux-tu répéter cela, s’il te plaît ?",
+    "answers": [
+      "Can you repeat that, please?",
+      "Can you repeat that please?"
+    ],
+    "tiles": [
+      "Do",
+      "to",
+      "this"
+    ],
+    "noteFr": "Pour demander poliment, utilisez \"Can you..., please?\"."
+  },
+  {
+    "id": "con-a1-u10-05",
+    "level": "A1",
+    "unit": 10,
+    "unitTitleFr": "Parler de sa capacité avec \"can / can’t\"",
+    "order": 5,
+    "promptFr": "Il ne sait pas nager.",
+    "answers": [
+      "He can't swim.",
+      "He cannot swim."
+    ],
+    "tiles": [
+      "doesn't",
+      "swims",
+      "to"
+    ],
+    "noteFr": "\"Can\" est invariable : pas de \"-s\" avec \"he\"."
+  },
+  {
+    "id": "con-a1-u10-06",
+    "level": "A1",
+    "unit": 10,
+    "unitTitleFr": "Parler de sa capacité avec \"can / can’t\"",
+    "order": 6,
+    "promptFr": "Nous pouvons commencer maintenant.",
+    "answers": [
+      "We can start now."
+    ],
+    "tiles": [
+      "to",
+      "starting",
+      "are"
+    ],
+    "noteFr": "\"Start\" suit directement \"can\"."
+  },
+  {
+    "id": "con-a1-u10-07",
+    "level": "A1",
+    "unit": 10,
+    "unitTitleFr": "Parler de sa capacité avec \"can / can’t\"",
+    "order": 7,
+    "promptFr": "Peux-tu ouvrir la fenêtre ?",
+    "answers": [
+      "Can you open the window?"
+    ],
+    "tiles": [
+      "Do",
+      "opens",
+      "a"
+    ],
+    "noteFr": "Demande simple avec \"Can you\"."
+  },
+  {
+    "id": "con-a1-u10-08",
+    "level": "A1",
+    "unit": 10,
+    "unitTitleFr": "Parler de sa capacité avec \"can / can’t\"",
+    "order": 8,
+    "promptFr": "Je peux payer par téléphone.",
+    "answers": [
+      "I can pay by phone."
+    ],
+    "tiles": [
+      "with",
+      "to",
+      "on"
+    ],
+    "noteFr": "On dit \"pay by phone\" ou \"pay by card\"."
+  },
+  {
+    "id": "con-a1-u10-09",
+    "level": "A1",
+    "unit": 10,
+    "unitTitleFr": "Parler de sa capacité avec \"can / can’t\"",
+    "order": 9,
+    "promptFr": "Elle ne peut pas trouver ses clés.",
+    "answers": [
+      "She can't find her keys.",
+      "She cannot find her keys."
+    ],
+    "tiles": [
+      "his",
+      "to",
+      "finds"
+    ],
+    "noteFr": "\"Her keys\" = ses clés (à elle)."
+  },
+  {
+    "id": "con-a1-u10-10",
+    "level": "A1",
+    "unit": 10,
+    "unitTitleFr": "Parler de sa capacité avec \"can / can’t\"",
+    "order": 10,
+    "promptFr": "Pouvons-nous nous asseoir ici ?",
+    "answers": [
+      "Can we sit here?"
+    ],
+    "tiles": [
+      "Do",
+      "there",
+      "to"
+    ],
+    "noteFr": "\"Sit here\" = s’asseoir ici."
+  },
+  {
+    "id": "con-a1-u10-11",
+    "level": "A1",
+    "unit": 10,
+    "unitTitleFr": "Parler de sa capacité avec \"can / can’t\"",
+    "order": 11,
+    "promptFr": "Je peux lire le menu sans lunettes.",
+    "answers": [
+      "I can read the menu without glasses."
+    ],
+    "tiles": [
+      "with",
+      "to",
+      "a"
+    ],
+    "noteFr": "\"Without\" = sans."
+  },
+  {
+    "id": "con-a1-u11-01",
+    "level": "A1",
+    "unit": 11,
+    "unitTitleFr": "Localiser avec \"There is / There are\"",
+    "order": 1,
+    "promptFr": "Il y a une pharmacie près d’ici.",
+    "answers": [
+      "There is a pharmacy near here.",
+      "There's a pharmacy near here."
+    ],
+    "tiles": [
+      "are",
+      "It",
+      "an"
+    ],
+    "noteFr": "\"There is\" s’emploie devant un nom singulier."
+  },
+  {
+    "id": "con-a1-u11-02",
+    "level": "A1",
+    "unit": 11,
+    "unitTitleFr": "Localiser avec \"There is / There are\"",
+    "order": 2,
+    "promptFr": "Il y a trois chaises dans la salle.",
+    "answers": [
+      "There are three chairs in the room."
+    ],
+    "tiles": [
+      "is",
+      "chair",
+      "on"
+    ],
+    "noteFr": "\"There are\" s’emploie devant un nom pluriel."
+  },
+  {
+    "id": "con-a1-u11-03",
+    "level": "A1",
+    "unit": 11,
+    "unitTitleFr": "Localiser avec \"There is / There are\"",
+    "order": 3,
+    "promptFr": "Il n’y a pas de lait dans le frigo.",
+    "answers": [
+      "There isn't any milk in the fridge.",
+      "There is no milk in the fridge."
+    ],
+    "tiles": [
+      "aren't",
+      "a",
+      "milks"
+    ],
+    "noteFr": "Dans une phrase négative, on utilise \"any\" devant un indénombrable."
+  },
+  {
+    "id": "con-a1-u11-04",
+    "level": "A1",
+    "unit": 11,
+    "unitTitleFr": "Localiser avec \"There is / There are\"",
+    "order": 4,
+    "promptFr": "Y a-t-il un arrêt de bus ici ?",
+    "answers": [
+      "Is there a bus stop here?"
+    ],
+    "tiles": [
+      "Are",
+      "Have",
+      "an"
+    ],
+    "noteFr": "Question singulier : \"Is there...?\"."
+  },
+  {
+    "id": "con-a1-u11-05",
+    "level": "A1",
+    "unit": 11,
+    "unitTitleFr": "Localiser avec \"There is / There are\"",
+    "order": 5,
+    "promptFr": "Il y a beaucoup de gens aujourd’hui.",
+    "answers": [
+      "There are many people today.",
+      "There are a lot of people today."
+    ],
+    "tiles": [
+      "is",
+      "peoples",
+      "much"
+    ],
+    "noteFr": "\"People\" est toujours pluriel en anglais."
+  },
+  {
+    "id": "con-a1-u11-06",
+    "level": "A1",
+    "unit": 11,
+    "unitTitleFr": "Localiser avec \"There is / There are\"",
+    "order": 6,
+    "promptFr": "Il y a un bon restaurant dans cette rue.",
+    "answers": [
+      "There is a good restaurant on this street.",
+      "There is a good restaurant in this street.",
+      "There's a good restaurant on this street."
+    ],
+    "tiles": [
+      "are",
+      "at",
+      "these"
+    ],
+    "noteFr": "\"There is\" + groupe nominal singulier."
+  },
+  {
+    "id": "con-a1-u11-07",
+    "level": "A1",
+    "unit": 11,
+    "unitTitleFr": "Localiser avec \"There is / There are\"",
+    "order": 7,
+    "promptFr": "Y a-t-il des questions ?",
+    "answers": [
+      "Are there any questions?"
+    ],
+    "tiles": [
+      "Is",
+      "some",
+      "question"
+    ],
+    "noteFr": "Dans une question plurielle, utilisez \"Are there any...?\"."
+  },
+  {
+    "id": "con-a1-u11-08",
+    "level": "A1",
+    "unit": 11,
+    "unitTitleFr": "Localiser avec \"There is / There are\"",
+    "order": 8,
+    "promptFr": "Il y a deux marchés à Saint-Louis.",
+    "answers": [
+      "There are two markets in Saint-Louis."
+    ],
+    "tiles": [
+      "is",
+      "market",
+      "at"
+    ],
+    "noteFr": "Toujours \"in\" devant le nom d’une ville."
+  },
+  {
+    "id": "con-a1-u11-09",
+    "level": "A1",
+    "unit": 11,
+    "unitTitleFr": "Localiser avec \"There is / There are\"",
+    "order": 9,
+    "promptFr": "Il n’y a plus de place.",
+    "answers": [
+      "There is no space left.",
+      "There is no more room.",
+      "There isn't any room left."
+    ],
+    "tiles": [
+      "are",
+      "many",
+      "a"
+    ],
+    "noteFr": "\"There is no...\" est une forme claire et fréquente."
+  },
+  {
+    "id": "con-a1-u11-10",
+    "level": "A1",
+    "unit": 11,
+    "unitTitleFr": "Localiser avec \"There is / There are\"",
+    "order": 10,
+    "promptFr": "Il y a du soleil ce matin.",
+    "answers": [
+      "It is sunny this morning.",
+      "It's sunny this morning."
+    ],
+    "tiles": [
+      "There",
+      "are",
+      "sun"
+    ],
+    "noteFr": "Pour la météo, on préfère \"It is + adjectif\"."
+  },
+  {
+    "id": "con-a1-u11-11",
+    "level": "A1",
+    "unit": 11,
+    "unitTitleFr": "Localiser avec \"There is / There are\"",
+    "order": 11,
+    "promptFr": "Il y a une erreur sur la facture.",
+    "answers": [
+      "There is a mistake on the bill.",
+      "There's a mistake on the bill."
+    ],
+    "tiles": [
+      "are",
+      "in",
+      "an"
+    ],
+    "noteFr": "\"A mistake on the bill\" = une erreur sur la facture."
+  },
+  {
+    "id": "con-a1-u12-01",
+    "level": "A1",
+    "unit": 12,
+    "unitTitleFr": "Parler du futur proche avec \"going to\"",
+    "order": 1,
+    "promptFr": "Je vais appeler ma mère ce soir.",
+    "answers": [
+      "I am going to call my mother tonight.",
+      "I'm going to call my mother tonight."
+    ],
+    "tiles": [
+      "will",
+      "calling",
+      "to"
+    ],
+    "noteFr": "Projet décidé : \"be + going to + verbe\"."
+  },
+  {
+    "id": "con-a1-u12-02",
+    "level": "A1",
+    "unit": 12,
+    "unitTitleFr": "Parler du futur proche avec \"going to\"",
+    "order": 2,
+    "promptFr": "Elle va voyager à Ziguinchor demain.",
+    "answers": [
+      "She is going to travel to Ziguinchor tomorrow.",
+      "She's going to travel to Ziguinchor tomorrow."
+    ],
+    "tiles": [
+      "are",
+      "in",
+      "travels"
+    ],
+    "noteFr": "\"Going to\" ne change pas ; seul \"be\" s’accorde."
+  },
+  {
+    "id": "con-a1-u12-03",
+    "level": "A1",
+    "unit": 12,
+    "unitTitleFr": "Parler du futur proche avec \"going to\"",
+    "order": 3,
+    "promptFr": "Nous allons acheter des fruits.",
+    "answers": [
+      "We are going to buy fruit.",
+      "We're going to buy fruit.",
+      "We are going to buy some fruit."
+    ],
+    "tiles": [
+      "is",
+      "buying",
+      "a"
+    ],
+    "noteFr": "\"Fruit\" est souvent utilisé au singulier collectif en anglais."
+  },
+  {
+    "id": "con-a1-u12-04",
+    "level": "A1",
+    "unit": 12,
+    "unitTitleFr": "Parler du futur proche avec \"going to\"",
+    "order": 4,
+    "promptFr": "Il va pleuvoir cet après-midi.",
+    "answers": [
+      "It is going to rain this afternoon.",
+      "It's going to rain this afternoon."
+    ],
+    "tiles": [
+      "are",
+      "raining",
+      "in"
+    ],
+    "noteFr": "Prévision météo visible : \"It is going to rain\"."
+  },
+  {
+    "id": "con-a1-u12-05",
+    "level": "A1",
+    "unit": 12,
+    "unitTitleFr": "Parler du futur proche avec \"going to\"",
+    "order": 5,
+    "promptFr": "Vas-tu regarder le match ?",
+    "answers": [
+      "Are you going to watch the match?",
+      "Are you going to watch the game?"
+    ],
+    "tiles": [
+      "Do",
+      "watching",
+      "Is"
+    ],
+    "noteFr": "Question avec \"going to\" : \"Are you going to...?\"."
+  },
+  {
+    "id": "con-a1-u12-06",
+    "level": "A1",
+    "unit": 12,
+    "unitTitleFr": "Parler du futur proche avec \"going to\"",
+    "order": 6,
+    "promptFr": "Je ne vais pas travailler demain.",
+    "answers": [
+      "I am not going to work tomorrow.",
+      "I'm not going to work tomorrow."
+    ],
+    "tiles": [
+      "don't",
+      "working",
+      "yesterday"
+    ],
+    "noteFr": "Négation : \"am not / isn't / aren't going to\"."
+  },
+  {
+    "id": "con-a1-u12-07",
+    "level": "A1",
+    "unit": 12,
+    "unitTitleFr": "Parler du futur proche avec \"going to\"",
+    "order": 7,
+    "promptFr": "Ils vont ouvrir une boutique.",
+    "answers": [
+      "They are going to open a shop.",
+      "They're going to open a shop."
+    ],
+    "tiles": [
+      "is",
+      "opening",
+      "an"
+    ],
+    "noteFr": "\"A shop\" = une boutique."
+  },
+  {
+    "id": "con-a1-u12-08",
+    "level": "A1",
+    "unit": 12,
+    "unitTitleFr": "Parler du futur proche avec \"going to\"",
+    "order": 8,
+    "promptFr": "Qu’est-ce que tu vas faire ce week-end ?",
+    "answers": [
+      "What are you going to do this weekend?"
+    ],
+    "tiles": [
+      "do",
+      "doing",
+      "is"
+    ],
+    "noteFr": "\"What are you going to do...?\""
+  },
+  {
+    "id": "con-a1-u12-09",
+    "level": "A1",
+    "unit": 12,
+    "unitTitleFr": "Parler du futur proche avec \"going to\"",
+    "order": 9,
+    "promptFr": "Elle va préparer le déjeuner.",
+    "answers": [
+      "She is going to make lunch.",
+      "She's going to make lunch.",
+      "She is going to prepare lunch."
+    ],
+    "tiles": [
+      "a",
+      "making",
+      "are"
+    ],
+    "noteFr": "Pas d’article devant \"lunch\"."
+  },
+  {
+    "id": "con-a1-u12-10",
+    "level": "A1",
+    "unit": 12,
+    "unitTitleFr": "Parler du futur proche avec \"going to\"",
+    "order": 10,
+    "promptFr": "Nous allons prendre un taxi.",
+    "answers": [
+      "We are going to take a taxi.",
+      "We're going to take a taxi."
+    ],
+    "tiles": [
+      "is",
+      "taking",
+      "the"
+    ],
+    "noteFr": "\"Take a taxi\" = prendre un taxi."
+  },
+  {
+    "id": "con-a1-u12-11",
+    "level": "A1",
+    "unit": 12,
+    "unitTitleFr": "Parler du futur proche avec \"going to\"",
+    "order": 11,
+    "promptFr": "Tu vas réussir ton examen.",
+    "answers": [
+      "You are going to pass your exam.",
+      "You're going to pass your exam."
+    ],
+    "tiles": [
+      "is",
+      "passing",
+      "my"
+    ],
+    "noteFr": "\"Pass an exam\" = réussir un examen."
+  },
+  {
+    "id": "con-a2-u01-01",
+    "level": "A2",
+    "unit": 1,
+    "unitTitleFr": "Raconter un événement passé avec le prétérit en -ed",
+    "order": 1,
+    "promptFr": "J’ai travaillé tard hier soir.",
+    "answers": [
+      "I worked late last night."
+    ],
+    "tiles": [
+      "work",
+      "working",
+      "yesterday"
+    ],
+    "noteFr": "Au prétérit régulier, on ajoute \"-ed\" au verbe : worked."
+  },
+  {
+    "id": "con-a2-u01-02",
+    "level": "A2",
+    "unit": 1,
+    "unitTitleFr": "Raconter un événement passé avec le prétérit en -ed",
+    "order": 2,
+    "promptFr": "Elle a visité le musée samedi.",
+    "answers": [
+      "She visited the museum on Saturday."
+    ],
+    "tiles": [
+      "visit",
+      "in",
+      "visits"
+    ],
+    "noteFr": "\"Visited\" est invariable à toutes les personnes."
+  },
+  {
+    "id": "con-a2-u01-03",
+    "level": "A2",
+    "unit": 1,
+    "unitTitleFr": "Raconter un événement passé avec le prétérit en -ed",
+    "order": 3,
+    "promptFr": "Nous avons écouté la radio ce matin.",
+    "answers": [
+      "We listened to the radio this morning."
+    ],
+    "tiles": [
+      "listen",
+      "at",
+      "listening"
+    ],
+    "noteFr": "N’oubliez pas \"to\" après \"listened\"."
+  },
+  {
+    "id": "con-a2-u01-04",
+    "level": "A2",
+    "unit": 1,
+    "unitTitleFr": "Raconter un événement passé avec le prétérit en -ed",
+    "order": 4,
+    "promptFr": "Il a appelé son collègue.",
+    "answers": [
+      "He called his colleague."
+    ],
+    "tiles": [
+      "call",
+      "her",
+      "calling"
+    ],
+    "noteFr": "\"Called\" = a appelé."
+  },
+  {
+    "id": "con-a2-u01-05",
+    "level": "A2",
+    "unit": 1,
+    "unitTitleFr": "Raconter un événement passé avec le prétérit en -ed",
+    "order": 5,
+    "promptFr": "Ils ont terminé le projet à temps.",
+    "answers": [
+      "They finished the project on time."
+    ],
+    "tiles": [
+      "finish",
+      "in",
+      "finishing"
+    ],
+    "noteFr": "\"On time\" = à l’heure / à temps."
+  },
+  {
+    "id": "con-a2-u01-06",
+    "level": "A2",
+    "unit": 1,
+    "unitTitleFr": "Raconter un événement passé avec le prétérit en -ed",
+    "order": 6,
+    "promptFr": "J’ai étudié l’anglais pendant deux heures.",
+    "answers": [
+      "I studied English for two hours."
+    ],
+    "tiles": [
+      "study",
+      "since",
+      "during"
+    ],
+    "noteFr": "Un \"y\" précédé d’une consonne devient \"-ied\" : studied."
+  },
+  {
+    "id": "con-a2-u01-07",
+    "level": "A2",
+    "unit": 1,
+    "unitTitleFr": "Raconter un événement passé avec le prétérit en -ed",
+    "order": 7,
+    "promptFr": "Elle a préparé un bon repas.",
+    "answers": [
+      "She cooked a good meal.",
+      "She prepared a good meal."
+    ],
+    "tiles": [
+      "cook",
+      "an",
+      "meals"
+    ],
+    "noteFr": "\"A good meal\" = un bon repas."
+  },
+  {
+    "id": "con-a2-u01-08",
+    "level": "A2",
+    "unit": 1,
+    "unitTitleFr": "Raconter un événement passé avec le prétérit en -ed",
+    "order": 8,
+    "promptFr": "Nous avons marché jusqu’à la plage.",
+    "answers": [
+      "We walked to the beach."
+    ],
+    "tiles": [
+      "walk",
+      "at",
+      "in"
+    ],
+    "noteFr": "\"Walked to\" exprime le déplacement à pied vers un lieu."
+  },
+  {
+    "id": "con-a2-u01-09",
+    "level": "A2",
+    "unit": 1,
+    "unitTitleFr": "Raconter un événement passé avec le prétérit en -ed",
+    "order": 9,
+    "promptFr": "Tu as répondu très vite.",
+    "answers": [
+      "You answered very quickly.",
+      "You replied very quickly."
+    ],
+    "tiles": [
+      "answer",
+      "quick",
+      "answering"
+    ],
+    "noteFr": "\"Quickly\" est l’adverbe correspondant à \"quick\"."
+  },
+  {
+    "id": "con-a2-u01-10",
+    "level": "A2",
+    "unit": 1,
+    "unitTitleFr": "Raconter un événement passé avec le prétérit en -ed",
+    "order": 10,
+    "promptFr": "Le magasin a fermé à dix-neuf heures.",
+    "answers": [
+      "The shop closed at seven p.m.",
+      "The store closed at seven p.m.",
+      "The shop closed at 7 p.m."
+    ],
+    "tiles": [
+      "close",
+      "in",
+      "on"
+    ],
+    "noteFr": "Pour une heure précise, on utilise \"at\"."
+  },
+  {
+    "id": "con-a2-u01-11",
+    "level": "A2",
+    "unit": 1,
+    "unitTitleFr": "Raconter un événement passé avec le prétérit en -ed",
+    "order": 11,
+    "promptFr": "J’ai nettoyé la cuisine après le dîner.",
+    "answers": [
+      "I cleaned the kitchen after dinner."
+    ],
+    "tiles": [
+      "clean",
+      "before",
+      "a"
+    ],
+    "noteFr": "\"After dinner\" = après le dîner."
+  },
+  {
+    "id": "con-a2-u02-01",
+    "level": "A2",
+    "unit": 2,
+    "unitTitleFr": "Les verbes irréguliers courants au passé",
+    "order": 1,
+    "promptFr": "Je suis allé au marché tôt.",
+    "answers": [
+      "I went to the market early."
+    ],
+    "tiles": [
+      "go",
+      "goed",
+      "at"
+    ],
+    "noteFr": "Le prétérit de \"go\" est irrégulier : \"went\"."
+  },
+  {
+    "id": "con-a2-u02-02",
+    "level": "A2",
+    "unit": 2,
+    "unitTitleFr": "Les verbes irréguliers courants au passé",
+    "order": 2,
+    "promptFr": "Elle a acheté des légumes frais.",
+    "answers": [
+      "She bought fresh vegetables.",
+      "She bought some fresh vegetables."
+    ],
+    "tiles": [
+      "buy",
+      "buyed",
+      "a"
+    ],
+    "noteFr": "Prétérit de \"buy\" : \"bought\"."
+  },
+  {
+    "id": "con-a2-u02-03",
+    "level": "A2",
+    "unit": 2,
+    "unitTitleFr": "Les verbes irréguliers courants au passé",
+    "order": 3,
+    "promptFr": "Nous avons pris le premier train.",
+    "answers": [
+      "We took the first train."
+    ],
+    "tiles": [
+      "take",
+      "taked",
+      "a"
+    ],
+    "noteFr": "Prétérit de \"take\" : \"took\"."
+  },
+  {
+    "id": "con-a2-u02-04",
+    "level": "A2",
+    "unit": 2,
+    "unitTitleFr": "Les verbes irréguliers courants au passé",
+    "order": 4,
+    "promptFr": "Il a vu son ami à la gare.",
+    "answers": [
+      "He saw his friend at the station."
+    ],
+    "tiles": [
+      "see",
+      "seed",
+      "in"
+    ],
+    "noteFr": "Prétérit de \"see\" : \"saw\"."
+  },
+  {
+    "id": "con-a2-u02-05",
+    "level": "A2",
+    "unit": 2,
+    "unitTitleFr": "Les verbes irréguliers courants au passé",
+    "order": 5,
+    "promptFr": "J’ai écrit un e-mail au client.",
+    "answers": [
+      "I wrote an email to the client.",
+      "I wrote an e-mail to the client."
+    ],
+    "tiles": [
+      "write",
+      "a",
+      "for"
+    ],
+    "noteFr": "Prétérit de \"write\" : \"wrote\" ; \"an email\" commence par une voyelle."
+  },
+  {
+    "id": "con-a2-u02-06",
+    "level": "A2",
+    "unit": 2,
+    "unitTitleFr": "Les verbes irréguliers courants au passé",
+    "order": 6,
+    "promptFr": "Ils ont bu du thé à la menthe.",
+    "answers": [
+      "They drank mint tea.",
+      "They drank some mint tea."
+    ],
+    "tiles": [
+      "drink",
+      "drunk",
+      "a"
+    ],
+    "noteFr": "Prétérit de \"drink\" : \"drank\"."
+  },
+  {
+    "id": "con-a2-u02-07",
+    "level": "A2",
+    "unit": 2,
+    "unitTitleFr": "Les verbes irréguliers courants au passé",
+    "order": 7,
+    "promptFr": "Elle a fait une erreur.",
+    "answers": [
+      "She made a mistake."
+    ],
+    "tiles": [
+      "do",
+      "make",
+      "an"
+    ],
+    "noteFr": "On dit \"make a mistake\" (prétérit : \"made\")."
+  },
+  {
+    "id": "con-a2-u02-08",
+    "level": "A2",
+    "unit": 2,
+    "unitTitleFr": "Les verbes irréguliers courants au passé",
+    "order": 8,
+    "promptFr": "J’ai trouvé mes clés sous la table.",
+    "answers": [
+      "I found my keys under the table."
+    ],
+    "tiles": [
+      "find",
+      "founded",
+      "on"
+    ],
+    "noteFr": "Prétérit de \"find\" : \"found\"."
+  },
+  {
+    "id": "con-a2-u02-09",
+    "level": "A2",
+    "unit": 2,
+    "unitTitleFr": "Les verbes irréguliers courants au passé",
+    "order": 9,
+    "promptFr": "Nous sommes venus en bus.",
+    "answers": [
+      "We came by bus."
+    ],
+    "tiles": [
+      "come",
+      "with",
+      "in"
+    ],
+    "noteFr": "Prétérit de \"come\" : \"came\" ; transport : \"by bus\"."
+  },
+  {
+    "id": "con-a2-u02-10",
+    "level": "A2",
+    "unit": 2,
+    "unitTitleFr": "Les verbes irréguliers courants au passé",
+    "order": 10,
+    "promptFr": "Il a donné un bon conseil.",
+    "answers": [
+      "He gave good advice.",
+      "He gave some good advice."
+    ],
+    "tiles": [
+      "give",
+      "a",
+      "advices"
+    ],
+    "noteFr": "\"Advice\" est toujours indénombrable en anglais (pas de \"a\" ni \"-s\")."
+  },
+  {
+    "id": "con-a2-u02-11",
+    "level": "A2",
+    "unit": 2,
+    "unitTitleFr": "Les verbes irréguliers courants au passé",
+    "order": 11,
+    "promptFr": "J’ai dormi huit heures cette nuit.",
+    "answers": [
+      "I slept for eight hours last night.",
+      "I slept eight hours last night."
+    ],
+    "tiles": [
+      "sleep",
+      "sleeped",
+      "since"
+    ],
+    "noteFr": "Prétérit de \"sleep\" : \"slept\"."
+  },
+  {
+    "id": "con-a2-u03-01",
+    "level": "A2",
+    "unit": 3,
+    "unitTitleFr": "Nier et interroger au passé avec \"didn’t\" et \"Did you\"",
+    "order": 1,
+    "promptFr": "Je n’ai pas vu ton message.",
+    "answers": [
+      "I didn't see your message.",
+      "I did not see your message."
+    ],
+    "tiles": [
+      "saw",
+      "don't",
+      "seen"
+    ],
+    "noteFr": "Après \"didn't\", le verbe revient toujours à la base verbale (\"see\")."
+  },
+  {
+    "id": "con-a2-u03-02",
+    "level": "A2",
+    "unit": 3,
+    "unitTitleFr": "Nier et interroger au passé avec \"didn’t\" et \"Did you\"",
+    "order": 2,
+    "promptFr": "As-tu bien dormi ?",
+    "answers": [
+      "Did you sleep well?"
+    ],
+    "tiles": [
+      "Do",
+      "slept",
+      "good"
+    ],
+    "noteFr": "Question au passé : \"Did + sujet + base verbale ?\"."
+  },
+  {
+    "id": "con-a2-u03-03",
+    "level": "A2",
+    "unit": 3,
+    "unitTitleFr": "Nier et interroger au passé avec \"didn’t\" et \"Did you\"",
+    "order": 3,
+    "promptFr": "Elle n’est pas venue à la réunion.",
+    "answers": [
+      "She didn't come to the meeting.",
+      "She did not come to the meeting."
+    ],
+    "tiles": [
+      "came",
+      "doesn't",
+      "at"
+    ],
+    "noteFr": "Base verbale \"come\" après \"didn't\"."
+  },
+  {
+    "id": "con-a2-u03-04",
+    "level": "A2",
+    "unit": 3,
+    "unitTitleFr": "Nier et interroger au passé avec \"didn’t\" et \"Did you\"",
+    "order": 4,
+    "promptFr": "Où as-tu acheté ce sac ?",
+    "answers": [
+      "Where did you buy this bag?"
+    ],
+    "tiles": [
+      "bought",
+      "do",
+      "these"
+    ],
+    "noteFr": "\"Where did you + verbe ?\""
+  },
+  {
+    "id": "con-a2-u03-05",
+    "level": "A2",
+    "unit": 3,
+    "unitTitleFr": "Nier et interroger au passé avec \"didn’t\" et \"Did you\"",
+    "order": 5,
+    "promptFr": "Nous n’avons pas eu le temps.",
+    "answers": [
+      "We didn't have time.",
+      "We did not have time."
+    ],
+    "tiles": [
+      "had",
+      "haven't",
+      "a"
+    ],
+    "noteFr": "\"Didn't have\" remplace \"had\"."
+  },
+  {
+    "id": "con-a2-u03-06",
+    "level": "A2",
+    "unit": 3,
+    "unitTitleFr": "Nier et interroger au passé avec \"didn’t\" et \"Did you\"",
+    "order": 6,
+    "promptFr": "As-tu fini ton rapport ?",
+    "answers": [
+      "Did you finish your report?"
+    ],
+    "tiles": [
+      "finished",
+      "Have",
+      "Do"
+    ],
+    "noteFr": "Ne mettez pas \"-ed\" après \"Did\"."
+  },
+  {
+    "id": "con-a2-u03-07",
+    "level": "A2",
+    "unit": 3,
+    "unitTitleFr": "Nier et interroger au passé avec \"didn’t\" et \"Did you\"",
+    "order": 7,
+    "promptFr": "Il n’a pas compris l’exercice.",
+    "answers": [
+      "He didn't understand the exercise.",
+      "He did not understand the exercise."
+    ],
+    "tiles": [
+      "understood",
+      "doesn't",
+      "an"
+    ],
+    "noteFr": "Base verbale \"understand\"."
+  },
+  {
+    "id": "con-a2-u03-08",
+    "level": "A2",
+    "unit": 3,
+    "unitTitleFr": "Nier et interroger au passé avec \"didn’t\" et \"Did you\"",
+    "order": 8,
+    "promptFr": "Quand sont-ils arrivés ?",
+    "answers": [
+      "When did they arrive?"
+    ],
+    "tiles": [
+      "arrived",
+      "do",
+      "were"
+    ],
+    "noteFr": "Pas de \"-d\" à \"arrive\" après \"did\"."
+  },
+  {
+    "id": "con-a2-u03-09",
+    "level": "A2",
+    "unit": 3,
+    "unitTitleFr": "Nier et interroger au passé avec \"didn’t\" et \"Did you\"",
+    "order": 9,
+    "promptFr": "Je n’ai rien payé.",
+    "answers": [
+      "I didn't pay anything.",
+      "I paid nothing."
+    ],
+    "tiles": [
+      "nothing",
+      "paid",
+      "don't"
+    ],
+    "noteFr": "Avec \"didn't\", on utilise \"anything\" (pas de double négation)."
+  },
+  {
+    "id": "con-a2-u03-10",
+    "level": "A2",
+    "unit": 3,
+    "unitTitleFr": "Nier et interroger au passé avec \"didn’t\" et \"Did you\"",
+    "order": 10,
+    "promptFr": "Pourquoi as-tu choisi cette option ?",
+    "answers": [
+      "Why did you choose this option?"
+    ],
+    "tiles": [
+      "chose",
+      "do",
+      "these"
+    ],
+    "noteFr": "Base verbale \"choose\"."
+  },
+  {
+    "id": "con-a2-u03-11",
+    "level": "A2",
+    "unit": 3,
+    "unitTitleFr": "Nier et interroger au passé avec \"didn’t\" et \"Did you\"",
+    "order": 11,
+    "promptFr": "Elle n’a pas oublié le rendez-vous.",
+    "answers": [
+      "She didn't forget the appointment.",
+      "She did not forget the appointment."
+    ],
+    "tiles": [
+      "forgot",
+      "doesn't",
+      "a"
+    ],
+    "noteFr": "\"Forget\" reste invariable après \"didn't\"."
+  },
+  {
+    "id": "con-a2-u04-01",
+    "level": "A2",
+    "unit": 4,
+    "unitTitleFr": "Comparer avec \"-er than\" et \"more ... than\"",
+    "order": 1,
+    "promptFr": "Ce téléphone est plus rapide que l’ancien.",
+    "answers": [
+      "This phone is faster than the old one."
+    ],
+    "tiles": [
+      "more",
+      "that",
+      "then"
+    ],
+    "noteFr": "Adjectif court : on ajoute \"-er + than\"."
+  },
+  {
+    "id": "con-a2-u04-02",
+    "level": "A2",
+    "unit": 4,
+    "unitTitleFr": "Comparer avec \"-er than\" et \"more ... than\"",
+    "order": 2,
+    "promptFr": "Le train est plus confortable que le bus.",
+    "answers": [
+      "The train is more comfortable than the bus."
+    ],
+    "tiles": [
+      "comfortabler",
+      "then",
+      "most"
+    ],
+    "noteFr": "Adjectif long : on utilise \"more + adjectif + than\"."
+  },
+  {
+    "id": "con-a2-u04-03",
+    "level": "A2",
+    "unit": 4,
+    "unitTitleFr": "Comparer avec \"-er than\" et \"more ... than\"",
+    "order": 3,
+    "promptFr": "Dakar est plus grand que Saint-Louis.",
+    "answers": [
+      "Dakar is bigger than Saint-Louis."
+    ],
+    "tiles": [
+      "more",
+      "biger",
+      "then"
+    ],
+    "noteFr": "On double le \"g\" dans \"bigger\"."
+  },
+  {
+    "id": "con-a2-u04-04",
+    "level": "A2",
+    "unit": 4,
+    "unitTitleFr": "Comparer avec \"-er than\" et \"more ... than\"",
+    "order": 4,
+    "promptFr": "Cet exercice est plus facile que le premier.",
+    "answers": [
+      "This exercise is easier than the first one."
+    ],
+    "tiles": [
+      "easyer",
+      "more",
+      "then"
+    ],
+    "noteFr": "\"Easy\" devient \"easier\"."
+  },
+  {
+    "id": "con-a2-u04-05",
+    "level": "A2",
+    "unit": 4,
+    "unitTitleFr": "Comparer avec \"-er than\" et \"more ... than\"",
+    "order": 5,
+    "promptFr": "Mon nouveau bureau est plus calme.",
+    "answers": [
+      "My new office is quieter."
+    ],
+    "tiles": [
+      "more",
+      "quiet",
+      "most"
+    ],
+    "noteFr": "Comparatif sans complément : pas besoin de \"than\"."
+  },
+  {
+    "id": "con-a2-u04-06",
+    "level": "A2",
+    "unit": 4,
+    "unitTitleFr": "Comparer avec \"-er than\" et \"more ... than\"",
+    "order": 6,
+    "promptFr": "Le poisson est meilleur que la viande ici.",
+    "answers": [
+      "The fish is better than the meat here."
+    ],
+    "tiles": [
+      "gooder",
+      "more",
+      "best"
+    ],
+    "noteFr": "Comparatif irrégulier de \"good\" : \"better\"."
+  },
+  {
+    "id": "con-a2-u04-07",
+    "level": "A2",
+    "unit": 4,
+    "unitTitleFr": "Comparer avec \"-er than\" et \"more ... than\"",
+    "order": 7,
+    "promptFr": "Ce trajet est plus long le matin.",
+    "answers": [
+      "This trip is longer in the morning.",
+      "This journey is longer in the morning."
+    ],
+    "tiles": [
+      "more",
+      "at",
+      "longest"
+    ],
+    "noteFr": "\"Longer\" = plus long."
+  },
+  {
+    "id": "con-a2-u04-08",
+    "level": "A2",
+    "unit": 4,
+    "unitTitleFr": "Comparer avec \"-er than\" et \"more ... than\"",
+    "order": 8,
+    "promptFr": "La météo est pire qu’hier.",
+    "answers": [
+      "The weather is worse than yesterday."
+    ],
+    "tiles": [
+      "badder",
+      "more",
+      "worst"
+    ],
+    "noteFr": "Comparatif irrégulier de \"bad\" : \"worse\"."
+  },
+  {
+    "id": "con-a2-u04-09",
+    "level": "A2",
+    "unit": 4,
+    "unitTitleFr": "Comparer avec \"-er than\" et \"more ... than\"",
+    "order": 9,
+    "promptFr": "Cette veste est plus chère que la chemise.",
+    "answers": [
+      "This jacket is more expensive than the shirt."
+    ],
+    "tiles": [
+      "expensiver",
+      "then",
+      "most"
+    ],
+    "noteFr": "\"Expensive\" est un adjectif long : \"more expensive than\"."
+  },
+  {
+    "id": "con-a2-u04-10",
+    "level": "A2",
+    "unit": 4,
+    "unitTitleFr": "Comparer avec \"-er than\" et \"more ... than\"",
+    "order": 10,
+    "promptFr": "Elle parle plus lentement aujourd’hui.",
+    "answers": [
+      "She speaks more slowly today."
+    ],
+    "tiles": [
+      "slowlier",
+      "most",
+      "slow"
+    ],
+    "noteFr": "Comparatif d’adverbe en \"-ly\" : \"more slowly\"."
+  },
+  {
+    "id": "con-a2-u04-11",
+    "level": "A2",
+    "unit": 4,
+    "unitTitleFr": "Comparer avec \"-er than\" et \"more ... than\"",
+    "order": 11,
+    "promptFr": "Cette salle est plus lumineuse que l’autre.",
+    "answers": [
+      "This room is brighter than the other one."
+    ],
+    "tiles": [
+      "more",
+      "brightest",
+      "then"
+    ],
+    "noteFr": "\"Brighter than\" = plus lumineuse que."
+  },
+  {
+    "id": "con-a2-u05-01",
+    "level": "A2",
+    "unit": 5,
+    "unitTitleFr": "Le superlatif avec \"the -est\" et \"the most\"",
+    "order": 1,
+    "promptFr": "C’est le meilleur restaurant du quartier.",
+    "answers": [
+      "It is the best restaurant in the neighborhood.",
+      "It's the best restaurant in the neighborhood.",
+      "It is the best restaurant in the area."
+    ],
+    "tiles": [
+      "better",
+      "goodest",
+      "of"
+    ],
+    "noteFr": "Superlatif irrégulier de \"good\" : \"the best\". Après un superlatif de lieu, on dit \"in\"."
+  },
+  {
+    "id": "con-a2-u05-02",
+    "level": "A2",
+    "unit": 5,
+    "unitTitleFr": "Le superlatif avec \"the -est\" et \"the most\"",
+    "order": 2,
+    "promptFr": "Voici la rue la plus animée de la ville.",
+    "answers": [
+      "Here is the busiest street in the city.",
+      "This is the busiest street in the city."
+    ],
+    "tiles": [
+      "more",
+      "most",
+      "of"
+    ],
+    "noteFr": "\"Busy\" devient \"the busiest\"."
+  },
+  {
+    "id": "con-a2-u05-03",
+    "level": "A2",
+    "unit": 5,
+    "unitTitleFr": "Le superlatif avec \"the -est\" et \"the most\"",
+    "order": 3,
+    "promptFr": "C’est la leçon la plus importante.",
+    "answers": [
+      "It is the most important lesson.",
+      "It's the most important lesson.",
+      "This is the most important lesson."
+    ],
+    "tiles": [
+      "more",
+      "importantest",
+      "a"
+    ],
+    "noteFr": "Adjectif long : \"the most + adjectif\"."
+  },
+  {
+    "id": "con-a2-u05-04",
+    "level": "A2",
+    "unit": 5,
+    "unitTitleFr": "Le superlatif avec \"the -est\" et \"the most\"",
+    "order": 4,
+    "promptFr": "Janvier est le mois le plus frais ici.",
+    "answers": [
+      "January is the coolest month here."
+    ],
+    "tiles": [
+      "cooler",
+      "most",
+      "a"
+    ],
+    "noteFr": "N’oubliez pas \"the\" devant le superlatif."
+  },
+  {
+    "id": "con-a2-u05-05",
+    "level": "A2",
+    "unit": 5,
+    "unitTitleFr": "Le superlatif avec \"the -est\" et \"the most\"",
+    "order": 5,
+    "promptFr": "Quel est l’hôtel le moins cher ?",
+    "answers": [
+      "Which is the cheapest hotel?",
+      "What is the cheapest hotel?"
+    ],
+    "tiles": [
+      "cheaper",
+      "most",
+      "less"
+    ],
+    "noteFr": "\"Cheapest\" = le moins cher / le plus abordable."
+  },
+  {
+    "id": "con-a2-u05-06",
+    "level": "A2",
+    "unit": 5,
+    "unitTitleFr": "Le superlatif avec \"the -est\" et \"the most\"",
+    "order": 6,
+    "promptFr": "C’est le plus grand bâtiment du Plateau.",
+    "answers": [
+      "It is the tallest building in Plateau.",
+      "It's the tallest building in Plateau.",
+      "It is the biggest building in Plateau."
+    ],
+    "tiles": [
+      "taller",
+      "of",
+      "more"
+    ],
+    "noteFr": "\"The tallest\" pour la hauteur d’un immeuble."
+  },
+  {
+    "id": "con-a2-u05-07",
+    "level": "A2",
+    "unit": 5,
+    "unitTitleFr": "Le superlatif avec \"the -est\" et \"the most\"",
+    "order": 7,
+    "promptFr": "C’était la pire journée de la semaine.",
+    "answers": [
+      "It was the worst day of the week."
+    ],
+    "tiles": [
+      "worse",
+      "baddest",
+      "in"
+    ],
+    "noteFr": "Superlatif de \"bad\" : \"the worst\"."
+  },
+  {
+    "id": "con-a2-u05-08",
+    "level": "A2",
+    "unit": 5,
+    "unitTitleFr": "Le superlatif avec \"the -est\" et \"the most\"",
+    "order": 8,
+    "promptFr": "Elle a choisi l’option la plus simple.",
+    "answers": [
+      "She chose the simplest option.",
+      "She chose the easiest option."
+    ],
+    "tiles": [
+      "simpler",
+      "most",
+      "an"
+    ],
+    "noteFr": "\"The simplest\" = la plus simple."
+  },
+  {
+    "id": "con-a2-u05-09",
+    "level": "A2",
+    "unit": 5,
+    "unitTitleFr": "Le superlatif avec \"the -est\" et \"the most\"",
+    "order": 9,
+    "promptFr": "C’est le film le plus intéressant que j’aie vu.",
+    "answers": [
+      "It is the most interesting movie I have seen.",
+      "It's the most interesting movie I've seen."
+    ],
+    "tiles": [
+      "more",
+      "saw",
+      "a"
+    ],
+    "noteFr": "Combinaison naturelle avec un superlatif long."
+  },
+  {
+    "id": "con-a2-u05-10",
+    "level": "A2",
+    "unit": 5,
+    "unitTitleFr": "Le superlatif avec \"the -est\" et \"the most\"",
+    "order": 10,
+    "promptFr": "Prends le siège le plus proche de la porte.",
+    "answers": [
+      "Take the seat closest to the door.",
+      "Take the nearest seat to the door."
+    ],
+    "tiles": [
+      "closer",
+      "most",
+      "at"
+    ],
+    "noteFr": "\"Closest to\" = le plus proche de."
+  },
+  {
+    "id": "con-a2-u05-11",
+    "level": "A2",
+    "unit": 5,
+    "unitTitleFr": "Le superlatif avec \"the -est\" et \"the most\"",
+    "order": 11,
+    "promptFr": "C’est la solution la plus rapide.",
+    "answers": [
+      "It is the fastest solution.",
+      "It's the fastest solution."
+    ],
+    "tiles": [
+      "faster",
+      "most",
+      "quick"
+    ],
+    "noteFr": "\"The fastest\" = la plus rapide."
+  },
+  {
+    "id": "con-a2-u06-01",
+    "level": "A2",
+    "unit": 6,
+    "unitTitleFr": "Parler du futur avec \"will\" et \"won’t\"",
+    "order": 1,
+    "promptFr": "Je t’enverrai le document demain.",
+    "answers": [
+      "I will send you the document tomorrow.",
+      "I'll send you the document tomorrow."
+    ],
+    "tiles": [
+      "am",
+      "to",
+      "sends"
+    ],
+    "noteFr": "Décision ou promesse : \"will + base verbale\"."
+  },
+  {
+    "id": "con-a2-u06-02",
+    "level": "A2",
+    "unit": 6,
+    "unitTitleFr": "Parler du futur avec \"will\" et \"won’t\"",
+    "order": 2,
+    "promptFr": "Elle ne sera pas en retard.",
+    "answers": [
+      "She won't be late.",
+      "She will not be late."
+    ],
+    "tiles": [
+      "isn't",
+      "to",
+      "being"
+    ],
+    "noteFr": "Négation de \"will\" : \"won't\"."
+  },
+  {
+    "id": "con-a2-u06-03",
+    "level": "A2",
+    "unit": 6,
+    "unitTitleFr": "Parler du futur avec \"will\" et \"won’t\"",
+    "order": 3,
+    "promptFr": "Nous aurons une réponse lundi.",
+    "answers": [
+      "We will have an answer on Monday.",
+      "We'll have an answer on Monday."
+    ],
+    "tiles": [
+      "a",
+      "in",
+      "having"
+    ],
+    "noteFr": "\"On Monday\" pour un jour précis."
+  },
+  {
+    "id": "con-a2-u06-04",
+    "level": "A2",
+    "unit": 6,
+    "unitTitleFr": "Parler du futur avec \"will\" et \"won’t\"",
+    "order": 4,
+    "promptFr": "M’aideras-tu à porter ce carton ?",
+    "answers": [
+      "Will you help me carry this box?"
+    ],
+    "tiles": [
+      "Do",
+      "to",
+      "helps"
+    ],
+    "noteFr": "Demande ou proposition au futur : \"Will you...?\"."
+  },
+  {
+    "id": "con-a2-u06-05",
+    "level": "A2",
+    "unit": 6,
+    "unitTitleFr": "Parler du futur avec \"will\" et \"won’t\"",
+    "order": 5,
+    "promptFr": "Le vol partira à l’heure.",
+    "answers": [
+      "The flight will leave on time."
+    ],
+    "tiles": [
+      "is",
+      "leaves",
+      "in"
+    ],
+    "noteFr": "\"Leave on time\" = partir à l’heure."
+  },
+  {
+    "id": "con-a2-u06-06",
+    "level": "A2",
+    "unit": 6,
+    "unitTitleFr": "Parler du futur avec \"will\" et \"won’t\"",
+    "order": 6,
+    "promptFr": "Je n’oublierai pas ton anniversaire.",
+    "answers": [
+      "I won't forget your birthday.",
+      "I will not forget your birthday."
+    ],
+    "tiles": [
+      "don't",
+      "forgot",
+      "to"
+    ],
+    "noteFr": "\"Won't forget\" = je n’oublierai pas."
+  },
+  {
+    "id": "con-a2-u06-07",
+    "level": "A2",
+    "unit": 6,
+    "unitTitleFr": "Parler du futur avec \"will\" et \"won’t\"",
+    "order": 7,
+    "promptFr": "Il fera chaud la semaine prochaine.",
+    "answers": [
+      "It will be hot next week.",
+      "It'll be hot next week."
+    ],
+    "tiles": [
+      "is",
+      "the",
+      "warm"
+    ],
+    "noteFr": "Pas d’article devant \"next week\"."
+  },
+  {
+    "id": "con-a2-u06-08",
+    "level": "A2",
+    "unit": 6,
+    "unitTitleFr": "Parler du futur avec \"will\" et \"won’t\"",
+    "order": 8,
+    "promptFr": "Quand sauras-tu le résultat ?",
+    "answers": [
+      "When will you know the result?"
+    ],
+    "tiles": [
+      "do",
+      "knew",
+      "to"
+    ],
+    "noteFr": "\"When will you know...?\""
+  },
+  {
+    "id": "con-a2-u06-09",
+    "level": "A2",
+    "unit": 6,
+    "unitTitleFr": "Parler du futur avec \"will\" et \"won’t\"",
+    "order": 9,
+    "promptFr": "Ils ouvriront le nouveau bureau en mai.",
+    "answers": [
+      "They will open the new office in May.",
+      "They'll open the new office in May."
+    ],
+    "tiles": [
+      "on",
+      "at",
+      "opening"
+    ],
+    "noteFr": "Devant un mois, on utilise \"in\"."
+  },
+  {
+    "id": "con-a2-u06-10",
+    "level": "A2",
+    "unit": 6,
+    "unitTitleFr": "Parler du futur avec \"will\" et \"won’t\"",
+    "order": 10,
+    "promptFr": "Cela prendra seulement cinq minutes.",
+    "answers": [
+      "It will take only five minutes.",
+      "It'll take only five minutes.",
+      "That will take only five minutes."
+    ],
+    "tiles": [
+      "takes",
+      "to",
+      "minute"
+    ],
+    "noteFr": "\"It will take\" = cela prendra."
+  },
+  {
+    "id": "con-a2-u06-11",
+    "level": "A2",
+    "unit": 6,
+    "unitTitleFr": "Parler du futur avec \"will\" et \"won’t\"",
+    "order": 11,
+    "promptFr": "Je te rappellerai ce soir.",
+    "answers": [
+      "I will call you back tonight.",
+      "I'll call you back tonight."
+    ],
+    "tiles": [
+      "calling",
+      "to",
+      "tomorrow"
+    ],
+    "noteFr": "\"Call someone back\" = rappeler quelqu’un."
+  },
+  {
+    "id": "con-a2-u07-01",
+    "level": "A2",
+    "unit": 7,
+    "unitTitleFr": "Donner un conseil avec \"should / shouldn’t\"",
+    "order": 1,
+    "promptFr": "Tu devrais boire plus d’eau.",
+    "answers": [
+      "You should drink more water."
+    ],
+    "tiles": [
+      "to",
+      "drinks",
+      "must"
+    ],
+    "noteFr": "Après \"should\", jamais de \"to\"."
+  },
+  {
+    "id": "con-a2-u07-02",
+    "level": "A2",
+    "unit": 7,
+    "unitTitleFr": "Donner un conseil avec \"should / shouldn’t\"",
+    "order": 2,
+    "promptFr": "Nous devrions partir maintenant.",
+    "answers": [
+      "We should leave now."
+    ],
+    "tiles": [
+      "to",
+      "leaving",
+      "are"
+    ],
+    "noteFr": "Conseil ou suggestion : \"We should...\"."
+  },
+  {
+    "id": "con-a2-u07-03",
+    "level": "A2",
+    "unit": 7,
+    "unitTitleFr": "Donner un conseil avec \"should / shouldn’t\"",
+    "order": 3,
+    "promptFr": "Tu ne devrais pas travailler si tard.",
+    "answers": [
+      "You shouldn't work so late.",
+      "You should not work so late."
+    ],
+    "tiles": [
+      "don't",
+      "to",
+      "works"
+    ],
+    "noteFr": "Négation : \"shouldn't\"."
+  },
+  {
+    "id": "con-a2-u07-04",
+    "level": "A2",
+    "unit": 7,
+    "unitTitleFr": "Donner un conseil avec \"should / shouldn’t\"",
+    "order": 4,
+    "promptFr": "Elle devrait consulter un médecin.",
+    "answers": [
+      "She should see a doctor."
+    ],
+    "tiles": [
+      "to",
+      "sees",
+      "an"
+    ],
+    "noteFr": "En anglais on dit \"see a doctor\"."
+  },
+  {
+    "id": "con-a2-u07-05",
+    "level": "A2",
+    "unit": 7,
+    "unitTitleFr": "Donner un conseil avec \"should / shouldn’t\"",
+    "order": 5,
+    "promptFr": "Devrais-je apporter mon ordinateur ?",
+    "answers": [
+      "Should I bring my laptop?",
+      "Should I bring my computer?"
+    ],
+    "tiles": [
+      "Do",
+      "to",
+      "bringing"
+    ],
+    "noteFr": "Question : \"Should I + verbe ?\"."
+  },
+  {
+    "id": "con-a2-u07-06",
+    "level": "A2",
+    "unit": 7,
+    "unitTitleFr": "Donner un conseil avec \"should / shouldn’t\"",
+    "order": 6,
+    "promptFr": "Il ne devrait pas conduire aussi vite.",
+    "answers": [
+      "He shouldn't drive so fast.",
+      "He should not drive so fast."
+    ],
+    "tiles": [
+      "drives",
+      "to",
+      "fastly"
+    ],
+    "noteFr": "\"Fast\" est déjà un adverbe (jamais \"fastly\")."
+  },
+  {
+    "id": "con-a2-u07-07",
+    "level": "A2",
+    "unit": 7,
+    "unitTitleFr": "Donner un conseil avec \"should / shouldn’t\"",
+    "order": 7,
+    "promptFr": "Vous devriez vérifier votre adresse.",
+    "answers": [
+      "You should check your address."
+    ],
+    "tiles": [
+      "to",
+      "checks",
+      "an"
+    ],
+    "noteFr": "\"To check\" = vérifier."
+  },
+  {
+    "id": "con-a2-u07-08",
+    "level": "A2",
+    "unit": 7,
+    "unitTitleFr": "Donner un conseil avec \"should / shouldn’t\"",
+    "order": 8,
+    "promptFr": "On ne devrait pas gaspiller la nourriture.",
+    "answers": [
+      "We shouldn't waste food.",
+      "We should not waste food."
+    ],
+    "tiles": [
+      "to",
+      "the",
+      "wastes"
+    ],
+    "noteFr": "\"Waste food\" = gaspiller la nourriture."
+  },
+  {
+    "id": "con-a2-u07-09",
+    "level": "A2",
+    "unit": 7,
+    "unitTitleFr": "Donner un conseil avec \"should / shouldn’t\"",
+    "order": 9,
+    "promptFr": "Tu devrais réserver tes billets tôt.",
+    "answers": [
+      "You should book your tickets early."
+    ],
+    "tiles": [
+      "to",
+      "books",
+      "ticket"
+    ],
+    "noteFr": "\"To book\" = réserver."
+  },
+  {
+    "id": "con-a2-u07-10",
+    "level": "A2",
+    "unit": 7,
+    "unitTitleFr": "Donner un conseil avec \"should / shouldn’t\"",
+    "order": 10,
+    "promptFr": "Que devrions-nous faire ensuite ?",
+    "answers": [
+      "What should we do next?"
+    ],
+    "tiles": [
+      "do",
+      "to",
+      "did"
+    ],
+    "noteFr": "\"What should we do next?\""
+  },
+  {
+    "id": "con-a2-u07-11",
+    "level": "A2",
+    "unit": 7,
+    "unitTitleFr": "Donner un conseil avec \"should / shouldn’t\"",
+    "order": 11,
+    "promptFr": "Il devrait prendre une pause.",
+    "answers": [
+      "He should take a break."
+    ],
+    "tiles": [
+      "make",
+      "to",
+      "takes"
+    ],
+    "noteFr": "Expression fixe : \"take a break\"."
+  },
+  {
+    "id": "con-a2-u08-01",
+    "level": "A2",
+    "unit": 8,
+    "unitTitleFr": "Exprimer l’obligation avec \"have to / must\"",
+    "order": 1,
+    "promptFr": "Je dois finir ce rapport aujourd’hui.",
+    "answers": [
+      "I have to finish this report today.",
+      "I must finish this report today."
+    ],
+    "tiles": [
+      "has",
+      "finishing",
+      "these"
+    ],
+    "noteFr": "\"Have to\" exprime une obligation pratique."
+  },
+  {
+    "id": "con-a2-u08-02",
+    "level": "A2",
+    "unit": 8,
+    "unitTitleFr": "Exprimer l’obligation avec \"have to / must\"",
+    "order": 2,
+    "promptFr": "Elle doit prendre le bus de sept heures.",
+    "answers": [
+      "She has to take the seven o’clock bus.",
+      "She has to take the 7 o'clock bus.",
+      "She has to catch the seven o’clock bus."
+    ],
+    "tiles": [
+      "have",
+      "takes",
+      "a"
+    ],
+    "noteFr": "Avec \"she\", \"have to\" devient \"has to\"."
+  },
+  {
+    "id": "con-a2-u08-03",
+    "level": "A2",
+    "unit": 8,
+    "unitTitleFr": "Exprimer l’obligation avec \"have to / must\"",
+    "order": 3,
+    "promptFr": "Tu n’as pas besoin de payer maintenant.",
+    "answers": [
+      "You don't have to pay now.",
+      "You do not have to pay now."
+    ],
+    "tiles": [
+      "mustn't",
+      "pays",
+      "to"
+    ],
+    "noteFr": "\"Don't have to\" signifie \"ce n’est pas obligatoire\" (différent de l’interdiction)."
+  },
+  {
+    "id": "con-a2-u08-04",
+    "level": "A2",
+    "unit": 8,
+    "unitTitleFr": "Exprimer l’obligation avec \"have to / must\"",
+    "order": 4,
+    "promptFr": "Nous devons respecter les règles.",
+    "answers": [
+      "We must follow the rules.",
+      "We have to follow the rules."
+    ],
+    "tiles": [
+      "to",
+      "following",
+      "rule"
+    ],
+    "noteFr": "Après \"must\", pas de \"to\"."
+  },
+  {
+    "id": "con-a2-u08-05",
+    "level": "A2",
+    "unit": 8,
+    "unitTitleFr": "Exprimer l’obligation avec \"have to / must\"",
+    "order": 5,
+    "promptFr": "Il ne faut pas garer la voiture ici.",
+    "answers": [
+      "You mustn't park the car here.",
+      "You must not park the car here."
+    ],
+    "tiles": [
+      "don't",
+      "to",
+      "parks"
+    ],
+    "noteFr": "\"Mustn't\" exprime une interdiction."
+  },
+  {
+    "id": "con-a2-u08-06",
+    "level": "A2",
+    "unit": 8,
+    "unitTitleFr": "Exprimer l’obligation avec \"have to / must\"",
+    "order": 6,
+    "promptFr": "Dois-tu travailler samedi ?",
+    "answers": [
+      "Do you have to work on Saturday?"
+    ],
+    "tiles": [
+      "Are",
+      "has",
+      "in"
+    ],
+    "noteFr": "Question avec \"have to\" : \"Do you have to...?\"."
+  },
+  {
+    "id": "con-a2-u08-07",
+    "level": "A2",
+    "unit": 8,
+    "unitTitleFr": "Exprimer l’obligation avec \"have to / must\"",
+    "order": 7,
+    "promptFr": "J’ai dû attendre vingt minutes.",
+    "answers": [
+      "I had to wait for twenty minutes.",
+      "I had to wait twenty minutes."
+    ],
+    "tiles": [
+      "have",
+      "must",
+      "waited"
+    ],
+    "noteFr": "Au passé, \"have to\" et \"must\" deviennent \"had to\"."
+  },
+  {
+    "id": "con-a2-u08-08",
+    "level": "A2",
+    "unit": 8,
+    "unitTitleFr": "Exprimer l’obligation avec \"have to / must\"",
+    "order": 8,
+    "promptFr": "Ils doivent porter un badge.",
+    "answers": [
+      "They have to wear a badge.",
+      "They must wear a badge."
+    ],
+    "tiles": [
+      "has",
+      "wearing",
+      "an"
+    ],
+    "noteFr": "\"To wear\" = porter (un vêtement, un badge)."
+  },
+  {
+    "id": "con-a2-u08-09",
+    "level": "A2",
+    "unit": 8,
+    "unitTitleFr": "Exprimer l’obligation avec \"have to / must\"",
+    "order": 9,
+    "promptFr": "Elle n’a pas à s’inquiéter.",
+    "answers": [
+      "She doesn't have to worry.",
+      "She does not have to worry."
+    ],
+    "tiles": [
+      "don't",
+      "has",
+      "worries"
+    ],
+    "noteFr": "\"Doesn't have to\" = elle n’est pas obligée de."
+  },
+  {
+    "id": "con-a2-u08-10",
+    "level": "A2",
+    "unit": 8,
+    "unitTitleFr": "Exprimer l’obligation avec \"have to / must\"",
+    "order": 10,
+    "promptFr": "Vous devez signer ce formulaire.",
+    "answers": [
+      "You must sign this form.",
+      "You have to sign this form."
+    ],
+    "tiles": [
+      "to",
+      "these",
+      "signs"
+    ],
+    "noteFr": "\"This form\" = ce formulaire."
+  },
+  {
+    "id": "con-a2-u08-11",
+    "level": "A2",
+    "unit": 8,
+    "unitTitleFr": "Exprimer l’obligation avec \"have to / must\"",
+    "order": 11,
+    "promptFr": "Je dois appeler la banque avant midi.",
+    "answers": [
+      "I have to call the bank before noon.",
+      "I must call the bank before noon."
+    ],
+    "tiles": [
+      "after",
+      "has",
+      "calling"
+    ],
+    "noteFr": "\"Before noon\" = avant midi."
+  },
+  {
+    "id": "con-a2-u09-01",
+    "level": "A2",
+    "unit": 9,
+    "unitTitleFr": "Décrire une action en cours dans le passé (\"was / were + -ing\")",
+    "order": 1,
+    "promptFr": "Je dormais quand tu as appelé.",
+    "answers": [
+      "I was sleeping when you called."
+    ],
+    "tiles": [
+      "were",
+      "sleep",
+      "calling"
+    ],
+    "noteFr": "Action en cours dans le passé : \"was/were + verbe-ing\"."
+  },
+  {
+    "id": "con-a2-u09-02",
+    "level": "A2",
+    "unit": 9,
+    "unitTitleFr": "Décrire une action en cours dans le passé (\"was / were + -ing\")",
+    "order": 2,
+    "promptFr": "Elle lisait un journal dans le salon.",
+    "answers": [
+      "She was reading a newspaper in the living room."
+    ],
+    "tiles": [
+      "were",
+      "read",
+      "on"
+    ],
+    "noteFr": "\"She was reading\" = elle était en train de lire."
+  },
+  {
+    "id": "con-a2-u09-03",
+    "level": "A2",
+    "unit": 9,
+    "unitTitleFr": "Décrire une action en cours dans le passé (\"was / were + -ing\")",
+    "order": 3,
+    "promptFr": "Nous préparions le dîner à huit heures.",
+    "answers": [
+      "We were cooking dinner at eight.",
+      "We were making dinner at eight o'clock.",
+      "We were cooking dinner at 8."
+    ],
+    "tiles": [
+      "was",
+      "cook",
+      "in"
+    ],
+    "noteFr": "Avec \"we\", on utilise \"were\"."
+  },
+  {
+    "id": "con-a2-u09-04",
+    "level": "A2",
+    "unit": 9,
+    "unitTitleFr": "Décrire une action en cours dans le passé (\"was / were + -ing\")",
+    "order": 4,
+    "promptFr": "Il pleuvait quand je suis sorti.",
+    "answers": [
+      "It was raining when I went out.",
+      "It was raining when I left."
+    ],
+    "tiles": [
+      "were",
+      "rained",
+      "go"
+    ],
+    "noteFr": "\"It was raining\" = il pleuvait."
+  },
+  {
+    "id": "con-a2-u09-05",
+    "level": "A2",
+    "unit": 9,
+    "unitTitleFr": "Décrire une action en cours dans le passé (\"was / were + -ing\")",
+    "order": 5,
+    "promptFr": "Que faisais-tu hier après-midi ?",
+    "answers": [
+      "What were you doing yesterday afternoon?"
+    ],
+    "tiles": [
+      "was",
+      "did",
+      "do"
+    ],
+    "noteFr": "Question : \"What were you doing...?\"."
+  },
+  {
+    "id": "con-a2-u09-06",
+    "level": "A2",
+    "unit": 9,
+    "unitTitleFr": "Décrire une action en cours dans le passé (\"was / were + -ing\")",
+    "order": 6,
+    "promptFr": "Ils ne regardaient pas la télévision.",
+    "answers": [
+      "They weren't watching TV.",
+      "They were not watching TV.",
+      "They weren't watching television."
+    ],
+    "tiles": [
+      "wasn't",
+      "watch",
+      "the"
+    ],
+    "noteFr": "\"Weren't watching\" = ils ne regardaient pas."
+  },
+  {
+    "id": "con-a2-u09-07",
+    "level": "A2",
+    "unit": 9,
+    "unitTitleFr": "Décrire une action en cours dans le passé (\"was / were + -ing\")",
+    "order": 7,
+    "promptFr": "Mon téléphone a sonné pendant que je conduisais.",
+    "answers": [
+      "My phone rang while I was driving."
+    ],
+    "tiles": [
+      "ring",
+      "drive",
+      "were"
+    ],
+    "noteFr": "\"While\" introduit l’action longue en \"-ing\"."
+  },
+  {
+    "id": "con-a2-u09-08",
+    "level": "A2",
+    "unit": 9,
+    "unitTitleFr": "Décrire une action en cours dans le passé (\"was / were + -ing\")",
+    "order": 8,
+    "promptFr": "Elle cherchait ses lunettes.",
+    "answers": [
+      "She was looking for her glasses."
+    ],
+    "tiles": [
+      "were",
+      "look",
+      "his"
+    ],
+    "noteFr": "\"Look for\" = chercher."
+  },
+  {
+    "id": "con-a2-u09-09",
+    "level": "A2",
+    "unit": 9,
+    "unitTitleFr": "Décrire une action en cours dans le passé (\"was / were + -ing\")",
+    "order": 9,
+    "promptFr": "Les enfants jouaient dans la cour.",
+    "answers": [
+      "The children were playing in the yard.",
+      "The children were playing in the courtyard."
+    ],
+    "tiles": [
+      "was",
+      "play",
+      "on"
+    ],
+    "noteFr": "\"Children\" est pluriel -> \"were\"."
+  },
+  {
+    "id": "con-a2-u09-10",
+    "level": "A2",
+    "unit": 9,
+    "unitTitleFr": "Décrire une action en cours dans le passé (\"was / were + -ing\")",
+    "order": 10,
+    "promptFr": "Je ne faisais pas attention à l’heure.",
+    "answers": [
+      "I wasn't paying attention to the time.",
+      "I was not paying attention to the time."
+    ],
+    "tiles": [
+      "weren't",
+      "pay",
+      "at"
+    ],
+    "noteFr": "\"Pay attention to\" = faire attention à."
+  },
+  {
+    "id": "con-a2-u09-11",
+    "level": "A2",
+    "unit": 9,
+    "unitTitleFr": "Décrire une action en cours dans le passé (\"was / were + -ing\")",
+    "order": 11,
+    "promptFr": "Écoutait-il la réunion ?",
+    "answers": [
+      "Was he listening to the meeting?"
+    ],
+    "tiles": [
+      "Were",
+      "listen",
+      "at"
+    ],
+    "noteFr": "Inversion \"Was he + -ing ?\"."
+  },
+  {
+    "id": "con-a2-u10-01",
+    "level": "A2",
+    "unit": 10,
+    "unitTitleFr": "Parler de son expérience avec le Present Perfect (\"have / has + p.p.\")",
+    "order": 1,
+    "promptFr": "J’ai déjà visité Gorée.",
+    "answers": [
+      "I have already visited Gorée.",
+      "I've already visited Gorée."
+    ],
+    "tiles": [
+      "has",
+      "visit",
+      "yet"
+    ],
+    "noteFr": "\"Already\" se place entre \"have\" et le participe passé."
+  },
+  {
+    "id": "con-a2-u10-02",
+    "level": "A2",
+    "unit": 10,
+    "unitTitleFr": "Parler de son expérience avec le Present Perfect (\"have / has + p.p.\")",
+    "order": 2,
+    "promptFr": "As-tu jamais mangé ce plat ?",
+    "answers": [
+      "Have you ever eaten this dish?"
+    ],
+    "tiles": [
+      "Did",
+      "ate",
+      "never"
+    ],
+    "noteFr": "Dans une question sur l’expérience, \"ever\" signifie déjà / jamais."
+  },
+  {
+    "id": "con-a2-u10-03",
+    "level": "A2",
+    "unit": 10,
+    "unitTitleFr": "Parler de son expérience avec le Present Perfect (\"have / has + p.p.\")",
+    "order": 3,
+    "promptFr": "Elle n’a pas encore répondu.",
+    "answers": [
+      "She hasn't replied yet.",
+      "She has not replied yet.",
+      "She hasn't answered yet."
+    ],
+    "tiles": [
+      "haven't",
+      "reply",
+      "already"
+    ],
+    "noteFr": "\"Yet\" se place en fin de phrase négative ou interrogative."
+  },
+  {
+    "id": "con-a2-u10-04",
+    "level": "A2",
+    "unit": 10,
+    "unitTitleFr": "Parler de son expérience avec le Present Perfect (\"have / has + p.p.\")",
+    "order": 4,
+    "promptFr": "Nous avons perdu nos billets.",
+    "answers": [
+      "We have lost our tickets.",
+      "We've lost our tickets."
+    ],
+    "tiles": [
+      "lose",
+      "has",
+      "their"
+    ],
+    "noteFr": "Participe passé de \"lose\" : \"lost\"."
+  },
+  {
+    "id": "con-a2-u10-05",
+    "level": "A2",
+    "unit": 10,
+    "unitTitleFr": "Parler de son expérience avec le Present Perfect (\"have / has + p.p.\")",
+    "order": 5,
+    "promptFr": "Il vient juste d’arriver.",
+    "answers": [
+      "He has just arrived.",
+      "He's just arrived."
+    ],
+    "tiles": [
+      "have",
+      "arrive",
+      "yet"
+    ],
+    "noteFr": "\"Just\" exprime un passé très récent."
+  },
+  {
+    "id": "con-a2-u10-06",
+    "level": "A2",
+    "unit": 10,
+    "unitTitleFr": "Parler de son expérience avec le Present Perfect (\"have / has + p.p.\")",
+    "order": 6,
+    "promptFr": "Je n’ai jamais vu ce film.",
+    "answers": [
+      "I have never seen this movie.",
+      "I've never seen this movie.",
+      "I have never seen this film."
+    ],
+    "tiles": [
+      "saw",
+      "ever",
+      "has"
+    ],
+    "noteFr": "Avec \"never\", le verbe reste affirmatif."
+  },
+  {
+    "id": "con-a2-u10-07",
+    "level": "A2",
+    "unit": 10,
+    "unitTitleFr": "Parler de son expérience avec le Present Perfect (\"have / has + p.p.\")",
+    "order": 7,
+    "promptFr": "Ont-ils terminé le travail ?",
+    "answers": [
+      "Have they finished the work?"
+    ],
+    "tiles": [
+      "Has",
+      "finish",
+      "Did"
+    ],
+    "noteFr": "Question : \"Have + sujet + participe passé ?\"."
+  },
+  {
+    "id": "con-a2-u10-08",
+    "level": "A2",
+    "unit": 10,
+    "unitTitleFr": "Parler de son expérience avec le Present Perfect (\"have / has + p.p.\")",
+    "order": 8,
+    "promptFr": "J’habite ici depuis trois ans.",
+    "answers": [
+      "I have lived here for three years.",
+      "I've lived here for three years."
+    ],
+    "tiles": [
+      "since",
+      "live",
+      "am"
+    ],
+    "noteFr": "\"For\" indique une durée (three years)."
+  },
+  {
+    "id": "con-a2-u10-09",
+    "level": "A2",
+    "unit": 10,
+    "unitTitleFr": "Parler de son expérience avec le Present Perfect (\"have / has + p.p.\")",
+    "order": 9,
+    "promptFr": "Elle travaille dans cette école depuis 2022.",
+    "answers": [
+      "She has worked in this school since 2022.",
+      "She has worked at this school since 2022."
+    ],
+    "tiles": [
+      "for",
+      "have",
+      "work"
+    ],
+    "noteFr": "\"Since\" indique un point de départ précis (2022)."
+  },
+  {
+    "id": "con-a2-u10-10",
+    "level": "A2",
+    "unit": 10,
+    "unitTitleFr": "Parler de son expérience avec le Present Perfect (\"have / has + p.p.\")",
+    "order": 10,
+    "promptFr": "As-tu déjà fini ton café ?",
+    "answers": [
+      "Have you finished your coffee yet?",
+      "Have you already finished your coffee?"
+    ],
+    "tiles": [
+      "finish",
+      "Did",
+      "has"
+    ],
+    "noteFr": "\"Yet\" en fin de question signifie déjà."
+  },
+  {
+    "id": "con-a2-u10-11",
+    "level": "A2",
+    "unit": 10,
+    "unitTitleFr": "Parler de son expérience avec le Present Perfect (\"have / has + p.p.\")",
+    "order": 11,
+    "promptFr": "Nous avons beaucoup appris cette semaine.",
+    "answers": [
+      "We have learned a lot this week.",
+      "We've learned a lot this week.",
+      "We have learnt a lot this week."
+    ],
+    "tiles": [
+      "learn",
+      "many",
+      "has"
+    ],
+    "noteFr": "\"A lot\" = beaucoup."
+  },
+  {
+    "id": "con-a2-u11-01",
+    "level": "A2",
+    "unit": 11,
+    "unitTitleFr": "Quantifier avec \"some, any, much, many\"",
+    "order": 1,
+    "promptFr": "Je voudrais un peu de sucre, s’il vous plaît.",
+    "answers": [
+      "I would like some sugar, please.",
+      "I'd like some sugar, please."
+    ],
+    "tiles": [
+      "any",
+      "a",
+      "many"
+    ],
+    "noteFr": "Dans une demande polie, on utilise \"some\"."
+  },
+  {
+    "id": "con-a2-u11-02",
+    "level": "A2",
+    "unit": 11,
+    "unitTitleFr": "Quantifier avec \"some, any, much, many\"",
+    "order": 2,
+    "promptFr": "Nous n’avons pas beaucoup de temps.",
+    "answers": [
+      "We don't have much time.",
+      "We do not have much time."
+    ],
+    "tiles": [
+      "many",
+      "some",
+      "a"
+    ],
+    "noteFr": "\"Time\" est indénombrable -> \"much\"."
+  },
+  {
+    "id": "con-a2-u11-03",
+    "level": "A2",
+    "unit": 11,
+    "unitTitleFr": "Quantifier avec \"some, any, much, many\"",
+    "order": 3,
+    "promptFr": "Combien de frères as-tu ?",
+    "answers": [
+      "How many brothers do you have?"
+    ],
+    "tiles": [
+      "much",
+      "brother",
+      "are"
+    ],
+    "noteFr": "Nom pluriel dénombrable -> \"How many\"."
+  },
+  {
+    "id": "con-a2-u11-04",
+    "level": "A2",
+    "unit": 11,
+    "unitTitleFr": "Quantifier avec \"some, any, much, many\"",
+    "order": 4,
+    "promptFr": "Combien coûte ce tissu ?",
+    "answers": [
+      "How much does this fabric cost?",
+      "How much is this fabric?"
+    ],
+    "tiles": [
+      "many",
+      "do",
+      "costs"
+    ],
+    "noteFr": "Pour un prix, toujours \"How much\"."
+  },
+  {
+    "id": "con-a2-u11-05",
+    "level": "A2",
+    "unit": 11,
+    "unitTitleFr": "Quantifier avec \"some, any, much, many\"",
+    "order": 5,
+    "promptFr": "Y a-t-il des places disponibles ?",
+    "answers": [
+      "Are there any seats available?"
+    ],
+    "tiles": [
+      "some",
+      "Is",
+      "seat"
+    ],
+    "noteFr": "Question ouverte -> \"any\"."
+  },
+  {
+    "id": "con-a2-u11-06",
+    "level": "A2",
+    "unit": 11,
+    "unitTitleFr": "Quantifier avec \"some, any, much, many\"",
+    "order": 6,
+    "promptFr": "Elle a apporté quelques gâteaux.",
+    "answers": [
+      "She brought some cakes.",
+      "She brought a few cakes."
+    ],
+    "tiles": [
+      "any",
+      "much",
+      "cake"
+    ],
+    "noteFr": "Phrase affirmative -> \"some\" ou \"a few\"."
+  },
+  {
+    "id": "con-a2-u11-07",
+    "level": "A2",
+    "unit": 11,
+    "unitTitleFr": "Quantifier avec \"some, any, much, many\"",
+    "order": 7,
+    "promptFr": "Il n’y a pas d’erreur dans ton texte.",
+    "answers": [
+      "There are no mistakes in your text.",
+      "There aren't any mistakes in your text."
+    ],
+    "tiles": [
+      "some",
+      "is",
+      "much"
+    ],
+    "noteFr": "Aucune erreur : \"no mistakes\" ou \"aren't any mistakes\"."
+  },
+  {
+    "id": "con-a2-u11-08",
+    "level": "A2",
+    "unit": 11,
+    "unitTitleFr": "Quantifier avec \"some, any, much, many\"",
+    "order": 8,
+    "promptFr": "As-tu besoin d’autres informations ?",
+    "answers": [
+      "Do you need any more information?"
+    ],
+    "tiles": [
+      "informations",
+      "many",
+      "some"
+    ],
+    "noteFr": "\"Information\" est toujours indénombrable (sans \"-s\")."
+  },
+  {
+    "id": "con-a2-u11-09",
+    "level": "A2",
+    "unit": 11,
+    "unitTitleFr": "Quantifier avec \"some, any, much, many\"",
+    "order": 9,
+    "promptFr": "J’ai acheté trop de pain.",
+    "answers": [
+      "I bought too much bread."
+    ],
+    "tiles": [
+      "many",
+      "a",
+      "breads"
+    ],
+    "noteFr": "\"Bread\" est indénombrable -> \"too much\"."
+  },
+  {
+    "id": "con-a2-u11-10",
+    "level": "A2",
+    "unit": 11,
+    "unitTitleFr": "Quantifier avec \"some, any, much, many\"",
+    "order": 10,
+    "promptFr": "Il y avait trop de voitures sur la route.",
+    "answers": [
+      "There were too many cars on the road."
+    ],
+    "tiles": [
+      "much",
+      "was",
+      "in"
+    ],
+    "noteFr": "\"Cars\" est pluriel -> \"too many\"."
+  },
+  {
+    "id": "con-a2-u11-11",
+    "level": "A2",
+    "unit": 11,
+    "unitTitleFr": "Quantifier avec \"some, any, much, many\"",
+    "order": 11,
+    "promptFr": "Prends un peu de repos cet après-midi.",
+    "answers": [
+      "Get some rest this afternoon.",
+      "Take some rest this afternoon."
+    ],
+    "tiles": [
+      "any",
+      "a",
+      "many"
+    ],
+    "noteFr": "\"Get some rest\" est l’expression la plus naturelle."
+  },
+  {
+    "id": "con-a2-u12-01",
+    "level": "A2",
+    "unit": 12,
+    "unitTitleFr": "Relier des idées avec \"because, so, but, although\"",
+    "order": 1,
+    "promptFr": "Je suis resté à la maison parce qu’il pleuvait.",
+    "answers": [
+      "I stayed at home because it was raining.",
+      "I stayed home because it was raining."
+    ],
+    "tiles": [
+      "so",
+      "but",
+      "rained"
+    ],
+    "noteFr": "\"Because\" introduit la cause."
+  },
+  {
+    "id": "con-a2-u12-02",
+    "level": "A2",
+    "unit": 12,
+    "unitTitleFr": "Relier des idées avec \"because, so, but, although\"",
+    "order": 2,
+    "promptFr": "Il était tard, donc nous avons pris un taxi.",
+    "answers": [
+      "It was late, so we took a taxi.",
+      "It was late so we took a taxi."
+    ],
+    "tiles": [
+      "because",
+      "but",
+      "take"
+    ],
+    "noteFr": "\"So\" introduit la conséquence."
+  },
+  {
+    "id": "con-a2-u12-03",
+    "level": "A2",
+    "unit": 12,
+    "unitTitleFr": "Relier des idées avec \"because, so, but, although\"",
+    "order": 3,
+    "promptFr": "J’ai essayé d’appeler, mais personne n’a répondu.",
+    "answers": [
+      "I tried to call, but nobody answered.",
+      "I tried to call but nobody answered.",
+      "I tried to call, but no one answered."
+    ],
+    "tiles": [
+      "so",
+      "because",
+      "anyone"
+    ],
+    "noteFr": "\"But\" marque une opposition."
+  },
+  {
+    "id": "con-a2-u12-04",
+    "level": "A2",
+    "unit": 12,
+    "unitTitleFr": "Relier des idées avec \"because, so, but, although\"",
+    "order": 4,
+    "promptFr": "Bien qu’il soit fatigué, il continue à travailler.",
+    "answers": [
+      "Although he is tired, he keeps working.",
+      "Although he is tired, he continues working."
+    ],
+    "tiles": [
+      "Because",
+      "so",
+      "work"
+    ],
+    "noteFr": "\"Although\" = bien que (sans \"but\" après la virgule)."
+  },
+  {
+    "id": "con-a2-u12-05",
+    "level": "A2",
+    "unit": 12,
+    "unitTitleFr": "Relier des idées avec \"because, so, but, although\"",
+    "order": 5,
+    "promptFr": "Elle apprend vite parce qu’elle pratique chaque jour.",
+    "answers": [
+      "She learns fast because she practices every day.",
+      "She learns quickly because she practices every day."
+    ],
+    "tiles": [
+      "so",
+      "but",
+      "practice"
+    ],
+    "noteFr": "\"Every day\" en deux mots signifie \"chaque jour\"."
+  },
+  {
+    "id": "con-a2-u12-06",
+    "level": "A2",
+    "unit": 12,
+    "unitTitleFr": "Relier des idées avec \"because, so, but, although\"",
+    "order": 6,
+    "promptFr": "Le café était cher, mais très bon.",
+    "answers": [
+      "The coffee was expensive, but very good.",
+      "The coffee was expensive but very good."
+    ],
+    "tiles": [
+      "so",
+      "because",
+      "well"
+    ],
+    "noteFr": "Opposition simple avec \"but\"."
+  },
+  {
+    "id": "con-a2-u12-07",
+    "level": "A2",
+    "unit": 12,
+    "unitTitleFr": "Relier des idées avec \"because, so, but, although\"",
+    "order": 7,
+    "promptFr": "J’ai oublié mon parapluie, alors je suis mouillé.",
+    "answers": [
+      "I forgot my umbrella, so I am wet.",
+      "I forgot my umbrella, so I got wet."
+    ],
+    "tiles": [
+      "because",
+      "but",
+      "an"
+    ],
+    "noteFr": "\"So\" relie l’oubli au résultat."
+  },
+  {
+    "id": "con-a2-u12-08",
+    "level": "A2",
+    "unit": 12,
+    "unitTitleFr": "Relier des idées avec \"because, so, but, although\"",
+    "order": 8,
+    "promptFr": "Bien que le test fût difficile, j’ai réussi.",
+    "answers": [
+      "Although the test was hard, I passed.",
+      "Although the test was difficult, I passed."
+    ],
+    "tiles": [
+      "So",
+      "but",
+      "pass"
+    ],
+    "noteFr": "En anglais, \"Although\" suffit pour exprimer la concession."
+  },
+  {
+    "id": "con-a2-u12-09",
+    "level": "A2",
+    "unit": 12,
+    "unitTitleFr": "Relier des idées avec \"because, so, but, although\"",
+    "order": 9,
+    "promptFr": "Nous sommes partis tôt pour éviter les embouteillages.",
+    "answers": [
+      "We left early to avoid the traffic.",
+      "We left early to avoid traffic."
+    ],
+    "tiles": [
+      "for",
+      "because",
+      "leaving"
+    ],
+    "noteFr": "Pour exprimer le but devant un verbe : \"to + infinitif\"."
+  },
+  {
+    "id": "con-a2-u12-10",
+    "level": "A2",
+    "unit": 12,
+    "unitTitleFr": "Relier des idées avec \"because, so, but, although\"",
+    "order": 10,
+    "promptFr": "Elle sourit souvent, même quand elle est occupée.",
+    "answers": [
+      "She often smiles, even when she is busy.",
+      "She often smiles even when she is busy."
+    ],
+    "tiles": [
+      "smile",
+      "because",
+      "so"
+    ],
+    "noteFr": "\"Even when\" = même quand."
+  },
+  {
+    "id": "con-a2-u12-11",
+    "level": "A2",
+    "unit": 12,
+    "unitTitleFr": "Relier des idées avec \"because, so, but, although\"",
+    "order": 11,
+    "promptFr": "Prends une veste parce qu’il fait frais dehors.",
+    "answers": [
+      "Take a jacket because it is cool outside.",
+      "Take a jacket because it is chilly outside."
+    ],
+    "tiles": [
+      "so",
+      "but",
+      "coldly"
+    ],
+    "noteFr": "\"Cool\" ou \"chilly\" = frais (météo)."
+  },
+  {
+    "id": "con-b1-u01-01",
+    "level": "B1",
+    "unit": 1,
+    "unitTitleFr": "Exprimer une condition probable (1er conditionnel)",
+    "order": 1,
+    "promptFr": "S’il pleut demain, nous resterons à la maison.",
+    "answers": [
+      "If it rains tomorrow, we will stay at home.",
+      "If it rains tomorrow, we'll stay at home.",
+      "If it rains tomorrow, we will stay home."
+    ],
+    "noteFr": "1er conditionnel : \"If + présent simple, will + base verbale\"."
+  },
+  {
+    "id": "con-b1-u01-02",
+    "level": "B1",
+    "unit": 1,
+    "unitTitleFr": "Exprimer une condition probable (1er conditionnel)",
+    "order": 2,
+    "promptFr": "Si tu pars maintenant, tu attraperas le train.",
+    "answers": [
+      "If you leave now, you will catch the train.",
+      "If you leave now, you'll catch the train."
+    ],
+    "noteFr": "Pas de \"will\" dans la proposition introduite par \"if\"."
+  },
+  {
+    "id": "con-b1-u01-03",
+    "level": "B1",
+    "unit": 1,
+    "unitTitleFr": "Exprimer une condition probable (1er conditionnel)",
+    "order": 3,
+    "promptFr": "Je t’appellerai dès que j’arriverai au bureau.",
+    "answers": [
+      "I will call you as soon as I arrive at the office.",
+      "I'll call you as soon as I arrive at the office."
+    ],
+    "noteFr": "Après \"as soon as\", on utilise aussi le présent simple."
+  },
+  {
+    "id": "con-b1-u01-04",
+    "level": "B1",
+    "unit": 1,
+    "unitTitleFr": "Exprimer une condition probable (1er conditionnel)",
+    "order": 4,
+    "promptFr": "Si elle ne révise pas, elle risque d’échouer.",
+    "answers": [
+      "If she doesn't review, she might fail.",
+      "If she doesn't study, she may fail.",
+      "If she does not review, she might fail."
+    ],
+    "noteFr": "On peut utiliser \"might\" ou \"may\" à la place de \"will\"."
+  },
+  {
+    "id": "con-b1-u01-05",
+    "level": "B1",
+    "unit": 1,
+    "unitTitleFr": "Exprimer une condition probable (1er conditionnel)",
+    "order": 5,
+    "promptFr": "Nous commencerons la réunion quand tout le monde sera prêt.",
+    "answers": [
+      "We will start the meeting when everyone is ready.",
+      "We'll start the meeting when everyone is ready."
+    ],
+    "noteFr": "\"Everyone\" s’accorde avec le singulier (\"is\")."
+  },
+  {
+    "id": "con-b1-u01-06",
+    "level": "B1",
+    "unit": 1,
+    "unitTitleFr": "Exprimer une condition probable (1er conditionnel)",
+    "order": 6,
+    "promptFr": "À moins que tu ne réserves tôt, l’hôtel sera complet.",
+    "answers": [
+      "Unless you book early, the hotel will be full."
+    ],
+    "noteFr": "\"Unless\" signifie \"à moins que\" (suivi d’un verbe affirmatif)."
+  },
+  {
+    "id": "con-b1-u01-07",
+    "level": "B1",
+    "unit": 1,
+    "unitTitleFr": "Exprimer une condition probable (1er conditionnel)",
+    "order": 7,
+    "promptFr": "Si le colis arrive aujourd’hui, préviens-moi.",
+    "answers": [
+      "If the package arrives today, let me know.",
+      "If the parcel arrives today, let me know."
+    ],
+    "noteFr": "La proposition principale peut être à l’impératif."
+  },
+  {
+    "id": "con-b1-u01-08",
+    "level": "B1",
+    "unit": 1,
+    "unitTitleFr": "Exprimer une condition probable (1er conditionnel)",
+    "order": 8,
+    "promptFr": "Que feras-tu si le vol est annulé ?",
+    "answers": [
+      "What will you do if the flight is canceled?",
+      "What will you do if the flight is cancelled?"
+    ],
+    "noteFr": "Orthographe US \"canceled\" et GB \"cancelled\" sont toutes deux acceptées."
+  },
+  {
+    "id": "con-b1-u01-09",
+    "level": "B1",
+    "unit": 1,
+    "unitTitleFr": "Exprimer une condition probable (1er conditionnel)",
+    "order": 9,
+    "promptFr": "Si nous partageons les frais, cela coûtera moins cher.",
+    "answers": [
+      "If we share the costs, it will be cheaper.",
+      "If we split the costs, it will cost less."
+    ],
+    "noteFr": "\"Split/share the costs\" = partager les frais."
+  },
+  {
+    "id": "con-b1-u01-10",
+    "level": "B1",
+    "unit": 1,
+    "unitTitleFr": "Exprimer une condition probable (1er conditionnel)",
+    "order": 10,
+    "promptFr": "Je ne signerai pas le contrat si les conditions changent.",
+    "answers": [
+      "I won't sign the contract if the terms change.",
+      "I won't sign the contract if the conditions change."
+    ],
+    "noteFr": "Forme négative : \"won't + base verbale\"."
+  },
+  {
+    "id": "con-b1-u01-11",
+    "level": "B1",
+    "unit": 1,
+    "unitTitleFr": "Exprimer une condition probable (1er conditionnel)",
+    "order": 11,
+    "promptFr": "Si tu pratiques dix minutes par jour, tu progresseras vite.",
+    "answers": [
+      "If you practice ten minutes a day, you will improve quickly.",
+      "If you practise ten minutes a day, you will improve quickly.",
+      "If you practice ten minutes a day, you'll improve fast."
+    ],
+    "noteFr": "\"Ten minutes a day\" = dix minutes par jour."
+  },
+  {
+    "id": "con-b1-u02-01",
+    "level": "B1",
+    "unit": 2,
+    "unitTitleFr": "Imaginer une situation (2e conditionnel)",
+    "order": 1,
+    "promptFr": "Si j’avais plus de temps, j’apprendrais une troisième langue.",
+    "answers": [
+      "If I had more time, I would learn a third language.",
+      "If I had more time, I'd learn a third language."
+    ],
+    "noteFr": "2e conditionnel : \"If + prétérit, would + base verbale\"."
+  },
+  {
+    "id": "con-b1-u02-02",
+    "level": "B1",
+    "unit": 2,
+    "unitTitleFr": "Imaginer une situation (2e conditionnel)",
+    "order": 2,
+    "promptFr": "À ta place, j’accepterais cette offre.",
+    "answers": [
+      "If I were you, I would accept this offer.",
+      "If I were you, I'd accept this offer.",
+      "If I was you, I would accept this offer."
+    ],
+    "noteFr": "On préfère \"If I were you\" pour donner un conseil."
+  },
+  {
+    "id": "con-b1-u02-03",
+    "level": "B1",
+    "unit": 2,
+    "unitTitleFr": "Imaginer une situation (2e conditionnel)",
+    "order": 3,
+    "promptFr": "Que ferais-tu si tu gagnais une bourse d’études ?",
+    "answers": [
+      "What would you do if you won a scholarship?"
+    ],
+    "noteFr": "\"A scholarship\" = une bourse d’études."
+  },
+  {
+    "id": "con-b1-u02-04",
+    "level": "B1",
+    "unit": 2,
+    "unitTitleFr": "Imaginer une situation (2e conditionnel)",
+    "order": 4,
+    "promptFr": "S’il habitait plus près, il viendrait à pied.",
+    "answers": [
+      "If he lived closer, he would walk.",
+      "If he lived nearer, he would come on foot."
+    ],
+    "noteFr": "\"Come on foot\" ou \"walk\"."
+  },
+  {
+    "id": "con-b1-u02-05",
+    "level": "B1",
+    "unit": 2,
+    "unitTitleFr": "Imaginer une situation (2e conditionnel)",
+    "order": 5,
+    "promptFr": "Nous voyagerions davantage si les billets étaient moins chers.",
+    "answers": [
+      "We would travel more if tickets were cheaper.",
+      "We'd travel more if the tickets were cheaper."
+    ],
+    "noteFr": "Dans la condition, \"were\" est standard pour tous les sujets."
+  },
+  {
+    "id": "con-b1-u02-06",
+    "level": "B1",
+    "unit": 2,
+    "unitTitleFr": "Imaginer une situation (2e conditionnel)",
+    "order": 6,
+    "promptFr": "Elle ne dirait pas cela si elle connaissait toute l’histoire.",
+    "answers": [
+      "She wouldn't say that if she knew the whole story.",
+      "She would not say that if she knew the whole story."
+    ],
+    "noteFr": "\"Wouldn't + base verbale\"."
+  },
+  {
+    "id": "con-b1-u02-07",
+    "level": "B1",
+    "unit": 2,
+    "unitTitleFr": "Imaginer une situation (2e conditionnel)",
+    "order": 7,
+    "promptFr": "Si nous avions une voiture plus grande, nous pourrions emmener tout le monde.",
+    "answers": [
+      "If we had a bigger car, we could take everyone."
+    ],
+    "noteFr": "\"Could\" remplace \"would be able to\" dans la principale."
+  },
+  {
+    "id": "con-b1-u02-08",
+    "level": "B1",
+    "unit": 2,
+    "unitTitleFr": "Imaginer une situation (2e conditionnel)",
+    "order": 8,
+    "promptFr": "Ce serait plus simple si tu m’envoyais le lien.",
+    "answers": [
+      "It would be easier if you sent me the link.",
+      "It'd be simpler if you sent me the link."
+    ],
+    "noteFr": "Prétérit irrégulier de \"send\" : \"sent\"."
+  },
+  {
+    "id": "con-b1-u02-09",
+    "level": "B1",
+    "unit": 2,
+    "unitTitleFr": "Imaginer une situation (2e conditionnel)",
+    "order": 9,
+    "promptFr": "S’il faisait moins chaud, nous déjeunerions dehors.",
+    "answers": [
+      "If it were cooler, we would have lunch outside.",
+      "If it was less hot, we would have lunch outside."
+    ],
+    "noteFr": "\"Have lunch outside\" = déjeuner dehors."
+  },
+  {
+    "id": "con-b1-u02-10",
+    "level": "B1",
+    "unit": 2,
+    "unitTitleFr": "Imaginer une situation (2e conditionnel)",
+    "order": 10,
+    "promptFr": "Je dormirais mieux si la rue était plus calme.",
+    "answers": [
+      "I would sleep better if the street were quieter.",
+      "I'd sleep better if the street was quieter."
+    ],
+    "noteFr": "Combinaison du comparatif \"quieter\" avec le 2e conditionnel."
+  },
+  {
+    "id": "con-b1-u02-11",
+    "level": "B1",
+    "unit": 2,
+    "unitTitleFr": "Imaginer une situation (2e conditionnel)",
+    "order": 11,
+    "promptFr": "S’ils pouvaient travailler à distance, ils déménageraient à Saint-Louis.",
+    "answers": [
+      "If they could work remotely, they would move to Saint-Louis."
+    ],
+    "noteFr": "\"Work remotely\" = travailler à distance."
+  },
+  {
+    "id": "con-b1-u03-01",
+    "level": "B1",
+    "unit": 3,
+    "unitTitleFr": "Parler des habitudes passées avec \"used to\"",
+    "order": 1,
+    "promptFr": "Avant, j’habitais près de la mer.",
+    "answers": [
+      "I used to live near the sea."
+    ],
+    "noteFr": "\"Used to + verbe\" exprime une habitude ou un état passé révolu."
+  },
+  {
+    "id": "con-b1-u03-02",
+    "level": "B1",
+    "unit": 3,
+    "unitTitleFr": "Parler des habitudes passées avec \"used to\"",
+    "order": 2,
+    "promptFr": "Elle prenait le bus tous les matins quand elle était étudiante.",
+    "answers": [
+      "She used to take the bus every morning when she was a student."
+    ],
+    "noteFr": "\"Every morning\" souligne la régularité passée."
+  },
+  {
+    "id": "con-b1-u03-03",
+    "level": "B1",
+    "unit": 3,
+    "unitTitleFr": "Parler des habitudes passées avec \"used to\"",
+    "order": 3,
+    "promptFr": "Nous n’avions pas l’habitude de boire du café.",
+    "answers": [
+      "We didn't use to drink coffee.",
+      "We did not use to drink coffee."
+    ],
+    "noteFr": "À la forme négative, \"used\" perd son \"-d\" : \"didn't use to\"."
+  },
+  {
+    "id": "con-b1-u03-04",
+    "level": "B1",
+    "unit": 3,
+    "unitTitleFr": "Parler des habitudes passées avec \"used to\"",
+    "order": 4,
+    "promptFr": "Jouais-tu au football après l’école ?",
+    "answers": [
+      "Did you use to play football after school?",
+      "Did you use to play soccer after school?"
+    ],
+    "noteFr": "Question : \"Did you use to + verbe ?\"."
+  },
+  {
+    "id": "con-b1-u03-05",
+    "level": "B1",
+    "unit": 3,
+    "unitTitleFr": "Parler des habitudes passées avec \"used to\"",
+    "order": 5,
+    "promptFr": "Il y avait une petite boulangerie au coin de cette rue.",
+    "answers": [
+      "There used to be a small bakery on the corner of this street.",
+      "There used to be a little bakery at the corner of this street."
+    ],
+    "noteFr": "\"There used to be\" = il y avait autrefois."
+  },
+  {
+    "id": "con-b1-u03-06",
+    "level": "B1",
+    "unit": 3,
+    "unitTitleFr": "Parler des habitudes passées avec \"used to\"",
+    "order": 6,
+    "promptFr": "Je n’aimais pas lire, mais maintenant j’adore ça.",
+    "answers": [
+      "I didn't use to like reading, but now I love it.",
+      "I did not use to like reading, but now I love it."
+    ],
+    "noteFr": "Contraste classique entre le passé (\"didn't use to\") et le présent."
+  },
+  {
+    "id": "con-b1-u03-07",
+    "level": "B1",
+    "unit": 3,
+    "unitTitleFr": "Parler des habitudes passées avec \"used to\"",
+    "order": 7,
+    "promptFr": "Mon père travaillait dans une banque avant sa retraite.",
+    "answers": [
+      "My father used to work in a bank before his retirement.",
+      "My father used to work at a bank before he retired."
+    ],
+    "noteFr": "\"Before he retired\" est très idiomatique."
+  },
+  {
+    "id": "con-b1-u03-08",
+    "level": "B1",
+    "unit": 3,
+    "unitTitleFr": "Parler des habitudes passées avec \"used to\"",
+    "order": 8,
+    "promptFr": "Alliez-vous souvent à la plage pendant les vacances ?",
+    "answers": [
+      "Did you use to go to the beach often during the holidays?",
+      "Did you use to go to the beach often during vacations?"
+    ],
+    "noteFr": "\"During the holidays\" = pendant les vacances."
+  },
+  {
+    "id": "con-b1-u03-09",
+    "level": "B1",
+    "unit": 3,
+    "unitTitleFr": "Parler des habitudes passées avec \"used to\"",
+    "order": 9,
+    "promptFr": "Cette route était beaucoup plus calme il y a dix ans.",
+    "answers": [
+      "This road used to be much quieter ten years ago."
+    ],
+    "noteFr": "\"Ten years ago\" = il y a dix ans."
+  },
+  {
+    "id": "con-b1-u03-10",
+    "level": "B1",
+    "unit": 3,
+    "unitTitleFr": "Parler des habitudes passées avec \"used to\"",
+    "order": 10,
+    "promptFr": "Ils se retrouvaient chaque vendredi soir.",
+    "answers": [
+      "They used to meet every Friday evening.",
+      "They used to meet up every Friday night."
+    ],
+    "noteFr": "\"Meet up\" = se retrouver."
+  },
+  {
+    "id": "con-b1-u03-11",
+    "level": "B1",
+    "unit": 3,
+    "unitTitleFr": "Parler des habitudes passées avec \"used to\"",
+    "order": 11,
+    "promptFr": "Je me levais très tôt pour aller au marché.",
+    "answers": [
+      "I used to get up very early to go to the market.",
+      "I used to wake up very early to go to the market."
+    ],
+    "noteFr": "\"Get up\" = se lever."
+  },
+  {
+    "id": "con-b1-u04-01",
+    "level": "B1",
+    "unit": 4,
+    "unitTitleFr": "Les propositions relatives (who, which, that, where)",
+    "order": 1,
+    "promptFr": "La femme qui gère le magasin est très accueillante.",
+    "answers": [
+      "The woman who runs the shop is very welcoming.",
+      "The woman that manages the store is very welcoming."
+    ],
+    "noteFr": "Pour une personne, utilisez \"who\" ou \"that\"."
+  },
+  {
+    "id": "con-b1-u04-02",
+    "level": "B1",
+    "unit": 4,
+    "unitTitleFr": "Les propositions relatives (who, which, that, where)",
+    "order": 2,
+    "promptFr": "C’est le livre dont je t’ai parlé hier.",
+    "answers": [
+      "This is the book that I told you about yesterday.",
+      "This is the book which I told you about yesterday.",
+      "This is the book I told you about yesterday."
+    ],
+    "noteFr": "La préposition \"about\" se place à la fin de la relative."
+  },
+  {
+    "id": "con-b1-u04-03",
+    "level": "B1",
+    "unit": 4,
+    "unitTitleFr": "Les propositions relatives (who, which, that, where)",
+    "order": 3,
+    "promptFr": "Le quartier où je travaille est très animé.",
+    "answers": [
+      "The neighborhood where I work is very lively.",
+      "The neighbourhood where I work is very lively."
+    ],
+    "noteFr": "Pour un lieu, utilisez \"where\"."
+  },
+  {
+    "id": "con-b1-u04-04",
+    "level": "B1",
+    "unit": 4,
+    "unitTitleFr": "Les propositions relatives (who, which, that, where)",
+    "order": 4,
+    "promptFr": "J’ai trouvé un outil qui m’aide à réviser plus vite.",
+    "answers": [
+      "I found a tool that helps me review faster.",
+      "I found a tool which helps me revise faster."
+    ],
+    "noteFr": "Pour une chose, utilisez \"which\" ou \"that\"."
+  },
+  {
+    "id": "con-b1-u04-05",
+    "level": "B1",
+    "unit": 4,
+    "unitTitleFr": "Les propositions relatives (who, which, that, where)",
+    "order": 5,
+    "promptFr": "L’homme à qui j’ai parlé était le directeur.",
+    "answers": [
+      "The man who I spoke to was the manager.",
+      "The man I spoke to was the director.",
+      "The man whom I spoke to was the manager."
+    ],
+    "noteFr": "En anglais courant, \"who\" suivi de \"to\" en fin de proposition est naturel."
+  },
+  {
+    "id": "con-b1-u04-06",
+    "level": "B1",
+    "unit": 4,
+    "unitTitleFr": "Les propositions relatives (who, which, that, where)",
+    "order": 6,
+    "promptFr": "Voici la photo que nous avons prise à Ngor.",
+    "answers": [
+      "Here is the photo that we took in Ngor.",
+      "Here is the picture we took in Ngor.",
+      "Here is the photo which we took in Ngor."
+    ],
+    "noteFr": "Quand le pronom relatif est COD, on peut l’omettre."
+  },
+  {
+    "id": "con-b1-u04-07",
+    "level": "B1",
+    "unit": 4,
+    "unitTitleFr": "Les propositions relatives (who, which, that, where)",
+    "order": 7,
+    "promptFr": "Connais-tu quelqu’un qui répare les ordinateurs ?",
+    "answers": [
+      "Do you know anyone who repairs computers?",
+      "Do you know someone who fixes computers?"
+    ],
+    "noteFr": "\"Anyone\" est naturel dans une question ouverte."
+  },
+  {
+    "id": "con-b1-u04-08",
+    "level": "B1",
+    "unit": 4,
+    "unitTitleFr": "Les propositions relatives (who, which, that, where)",
+    "order": 8,
+    "promptFr": "Le train que je prends chaque matin a été retardé.",
+    "answers": [
+      "The train that I take every morning was delayed.",
+      "The train I take every morning was delayed."
+    ],
+    "noteFr": "\"Was delayed\" = a été retardé."
+  },
+  {
+    "id": "con-b1-u04-09",
+    "level": "B1",
+    "unit": 4,
+    "unitTitleFr": "Les propositions relatives (who, which, that, where)",
+    "order": 9,
+    "promptFr": "C’est une application dont j’ai besoin tous les jours.",
+    "answers": [
+      "It is an app that I need every day.",
+      "It's an app I need every day."
+    ],
+    "noteFr": "\"Need\" ne prend pas de préposition en anglais."
+  },
+  {
+    "id": "con-b1-u04-10",
+    "level": "B1",
+    "unit": 4,
+    "unitTitleFr": "Les propositions relatives (who, which, that, where)",
+    "order": 10,
+    "promptFr": "Le café où nous nous sommes rencontrés a fermé.",
+    "answers": [
+      "The café where we met has closed.",
+      "The cafe where we met closed."
+    ],
+    "noteFr": "\"Where\" remplace \"in which\"."
+  },
+  {
+    "id": "con-b1-u04-11",
+    "level": "B1",
+    "unit": 4,
+    "unitTitleFr": "Les propositions relatives (who, which, that, where)",
+    "order": 11,
+    "promptFr": "Les collègues avec qui je travaille sont très fiables.",
+    "answers": [
+      "The colleagues who I work with are very reliable.",
+      "The colleagues I work with are very reliable."
+    ],
+    "noteFr": "\"Reliable\" = fiable."
+  },
+  {
+    "id": "con-b1-u05-01",
+    "level": "B1",
+    "unit": 5,
+    "unitTitleFr": "La voix passive (présent et passé)",
+    "order": 1,
+    "promptFr": "Ce produit est fabriqué au Sénégal.",
+    "answers": [
+      "This product is made in Senegal."
+    ],
+    "noteFr": "Voix passive au présent : \"is/are + participe passé\"."
+  },
+  {
+    "id": "con-b1-u05-02",
+    "level": "B1",
+    "unit": 5,
+    "unitTitleFr": "La voix passive (présent et passé)",
+    "order": 2,
+    "promptFr": "Le rapport a été envoyé ce matin.",
+    "answers": [
+      "The report was sent this morning."
+    ],
+    "noteFr": "Voix passive au passé : \"was/were + participe passé\"."
+  },
+  {
+    "id": "con-b1-u05-03",
+    "level": "B1",
+    "unit": 5,
+    "unitTitleFr": "La voix passive (présent et passé)",
+    "order": 3,
+    "promptFr": "La réunion a été reportée à jeudi.",
+    "answers": [
+      "The meeting was postponed to Thursday.",
+      "The meeting has been postponed until Thursday."
+    ],
+    "noteFr": "\"Postpone\" = reporter."
+  },
+  {
+    "id": "con-b1-u05-04",
+    "level": "B1",
+    "unit": 5,
+    "unitTitleFr": "La voix passive (présent et passé)",
+    "order": 4,
+    "promptFr": "Les commandes sont livrées sous vingt-quatre heures.",
+    "answers": [
+      "Orders are delivered within twenty-four hours.",
+      "The orders are delivered within 24 hours."
+    ],
+    "noteFr": "\"Within\" = dans un délai de."
+  },
+  {
+    "id": "con-b1-u05-05",
+    "level": "B1",
+    "unit": 5,
+    "unitTitleFr": "La voix passive (présent et passé)",
+    "order": 5,
+    "promptFr": "Cette maison a été construite en 1995.",
+    "answers": [
+      "This house was built in 1995."
+    ],
+    "noteFr": "Participe passé de \"build\" : \"built\"."
+  },
+  {
+    "id": "con-b1-u05-06",
+    "level": "B1",
+    "unit": 5,
+    "unitTitleFr": "La voix passive (présent et passé)",
+    "order": 6,
+    "promptFr": "L’anglais est parlé dans de nombreux pays.",
+    "answers": [
+      "English is spoken in many countries."
+    ],
+    "noteFr": "Participe passé de \"speak\" : \"spoken\"."
+  },
+  {
+    "id": "con-b1-u05-07",
+    "level": "B1",
+    "unit": 5,
+    "unitTitleFr": "La voix passive (présent et passé)",
+    "order": 7,
+    "promptFr": "Mon sac a été retrouvé à l’accueil.",
+    "answers": [
+      "My bag was found at the reception.",
+      "My bag was found at reception."
+    ],
+    "noteFr": "\"Found\" est le participe passé de \"find\"."
+  },
+  {
+    "id": "con-b1-u05-08",
+    "level": "B1",
+    "unit": 5,
+    "unitTitleFr": "La voix passive (présent et passé)",
+    "order": 8,
+    "promptFr": "Les billets ne sont pas remboursés après le départ.",
+    "answers": [
+      "Tickets are not refunded after departure.",
+      "Tickets aren't refunded after departure."
+    ],
+    "noteFr": "\"Refund\" = rembourser."
+  },
+  {
+    "id": "con-b1-u05-09",
+    "level": "B1",
+    "unit": 5,
+    "unitTitleFr": "La voix passive (présent et passé)",
+    "order": 9,
+    "promptFr": "Quand le pont a-t-il été ouvert ?",
+    "answers": [
+      "When was the bridge opened?"
+    ],
+    "noteFr": "Question passive : \"When + was/were + sujet + p.p. ?\"."
+  },
+  {
+    "id": "con-b1-u05-10",
+    "level": "B1",
+    "unit": 5,
+    "unitTitleFr": "La voix passive (présent et passé)",
+    "order": 10,
+    "promptFr": "La facture a déjà été payée par téléphone.",
+    "answers": [
+      "The bill has already been paid by phone.",
+      "The invoice was already paid by phone."
+    ],
+    "noteFr": "Participe passé de \"pay\" : \"paid\"."
+  },
+  {
+    "id": "con-b1-u05-11",
+    "level": "B1",
+    "unit": 5,
+    "unitTitleFr": "La voix passive (présent et passé)",
+    "order": 11,
+    "promptFr": "Ces photos ont été prises par ma sœur.",
+    "answers": [
+      "These photos were taken by my sister.",
+      "These pictures were taken by my sister."
+    ],
+    "noteFr": "On introduit l’agent avec \"by\"."
+  },
+  {
+    "id": "con-b1-u06-01",
+    "level": "B1",
+    "unit": 6,
+    "unitTitleFr": "Rapporter des paroles (Discours indirect)",
+    "order": 1,
+    "promptFr": "Il a dit qu’il était prêt.",
+    "answers": [
+      "He said that he was ready.",
+      "He said he was ready."
+    ],
+    "noteFr": "Après \"said\", le présent recule généralement au passé (\"am\" -> \"was\")."
+  },
+  {
+    "id": "con-b1-u06-02",
+    "level": "B1",
+    "unit": 6,
+    "unitTitleFr": "Rapporter des paroles (Discours indirect)",
+    "order": 2,
+    "promptFr": "Elle m’a dit qu’elle appellerait plus tard.",
+    "answers": [
+      "She told me that she would call later.",
+      "She told me she would call later."
+    ],
+    "noteFr": "On utilise \"tell + personne\", alors que \"say\" n’a pas de COD personne direct."
+  },
+  {
+    "id": "con-b1-u06-03",
+    "level": "B1",
+    "unit": 6,
+    "unitTitleFr": "Rapporter des paroles (Discours indirect)",
+    "order": 3,
+    "promptFr": "Ils ont expliqué qu’ils avaient raté le bus.",
+    "answers": [
+      "They explained that they had missed the bus.",
+      "They explained they missed the bus."
+    ],
+    "noteFr": "\"Miss the bus\" = rater le bus."
+  },
+  {
+    "id": "con-b1-u06-04",
+    "level": "B1",
+    "unit": 6,
+    "unitTitleFr": "Rapporter des paroles (Discours indirect)",
+    "order": 4,
+    "promptFr": "Il m’a demandé où j’habitais.",
+    "answers": [
+      "He asked me where I lived."
+    ],
+    "noteFr": "Dans une question rapportée, l’ordre redevient sujet + verbe (sans \"did\")."
+  },
+  {
+    "id": "con-b1-u06-05",
+    "level": "B1",
+    "unit": 6,
+    "unitTitleFr": "Rapporter des paroles (Discours indirect)",
+    "order": 5,
+    "promptFr": "Elle a demandé si je pouvais l’aider.",
+    "answers": [
+      "She asked if I could help her.",
+      "She asked whether I could help her."
+    ],
+    "noteFr": "Une question fermée rapportée est introduite par \"if\" ou \"whether\"."
+  },
+  {
+    "id": "con-b1-u06-06",
+    "level": "B1",
+    "unit": 6,
+    "unitTitleFr": "Rapporter des paroles (Discours indirect)",
+    "order": 6,
+    "promptFr": "Le médecin m’a conseillé de me reposer.",
+    "answers": [
+      "The doctor advised me to rest.",
+      "The doctor told me to get some rest."
+    ],
+    "noteFr": "\"Advise someone to + verbe\"."
+  },
+  {
+    "id": "con-b1-u06-07",
+    "level": "B1",
+    "unit": 6,
+    "unitTitleFr": "Rapporter des paroles (Discours indirect)",
+    "order": 7,
+    "promptFr": "Il a promis qu’il enverrait le fichier avant midi.",
+    "answers": [
+      "He promised he would send the file before noon.",
+      "He promised that he would send the file before noon."
+    ],
+    "noteFr": "\"Will\" devient \"would\" au discours indirect."
+  },
+  {
+    "id": "con-b1-u06-08",
+    "level": "B1",
+    "unit": 6,
+    "unitTitleFr": "Rapporter des paroles (Discours indirect)",
+    "order": 8,
+    "promptFr": "Elle a dit qu’elle n’avait pas encore reçu le colis.",
+    "answers": [
+      "She said she hadn't received the package yet.",
+      "She said that she hadn't received the parcel yet."
+    ],
+    "noteFr": "Le Present Perfect recule vers le Past Perfect (\"hadn't received\")."
+  },
+  {
+    "id": "con-b1-u06-09",
+    "level": "B1",
+    "unit": 6,
+    "unitTitleFr": "Rapporter des paroles (Discours indirect)",
+    "order": 9,
+    "promptFr": "Ils nous ont demandé d’attendre cinq minutes.",
+    "answers": [
+      "They asked us to wait five minutes.",
+      "They asked us to wait for five minutes."
+    ],
+    "noteFr": "Demande rapportée : \"ask someone to + verbe\"."
+  },
+  {
+    "id": "con-b1-u06-10",
+    "level": "B1",
+    "unit": 6,
+    "unitTitleFr": "Rapporter des paroles (Discours indirect)",
+    "order": 10,
+    "promptFr": "J’ai répondu que je serais là à temps.",
+    "answers": [
+      "I replied that I would be there on time.",
+      "I answered that I would be there on time."
+    ],
+    "noteFr": "\"On time\" = à l’heure."
+  },
+  {
+    "id": "con-b1-u06-11",
+    "level": "B1",
+    "unit": 6,
+    "unitTitleFr": "Rapporter des paroles (Discours indirect)",
+    "order": 11,
+    "promptFr": "Elle a mentionné qu’elle cherchait un nouvel appartement.",
+    "answers": [
+      "She mentioned that she was looking for a new apartment.",
+      "She mentioned she was looking for a new flat."
+    ],
+    "noteFr": "\"Look for\" = chercher."
+  },
+  {
+    "id": "con-b1-u07-01",
+    "level": "B1",
+    "unit": 7,
+    "unitTitleFr": "Le Present Perfect Continuous (\"have been + -ing\")",
+    "order": 1,
+    "promptFr": "J’apprends l’anglais depuis six mois.",
+    "answers": [
+      "I have been learning English for six months.",
+      "I've been learning English for six months."
+    ],
+    "noteFr": "Action commencée dans le passé et qui dure encore : \"have been + -ing\"."
+  },
+  {
+    "id": "con-b1-u07-02",
+    "level": "B1",
+    "unit": 7,
+    "unitTitleFr": "Le Present Perfect Continuous (\"have been + -ing\")",
+    "order": 2,
+    "promptFr": "Il pleut depuis ce matin.",
+    "answers": [
+      "It has been raining since this morning.",
+      "It's been raining since this morning."
+    ],
+    "noteFr": "\"Since\" + point de départ."
+  },
+  {
+    "id": "con-b1-u07-03",
+    "level": "B1",
+    "unit": 7,
+    "unitTitleFr": "Le Present Perfect Continuous (\"have been + -ing\")",
+    "order": 3,
+    "promptFr": "Nous t’attendons depuis vingt minutes.",
+    "answers": [
+      "We have been waiting for you for twenty minutes.",
+      "We've been waiting for you for twenty minutes."
+    ],
+    "noteFr": "Notez \"wait for you\" (attendre quelqu’un) + \"for twenty minutes\" (durée)."
+  },
+  {
+    "id": "con-b1-u07-04",
+    "level": "B1",
+    "unit": 7,
+    "unitTitleFr": "Le Present Perfect Continuous (\"have been + -ing\")",
+    "order": 4,
+    "promptFr": "Depuis combien de temps travailles-tu ici ?",
+    "answers": [
+      "How long have you been working here?"
+    ],
+    "noteFr": "Question de durée : \"How long have you been + -ing ?\"."
+  },
+  {
+    "id": "con-b1-u07-05",
+    "level": "B1",
+    "unit": 7,
+    "unitTitleFr": "Le Present Perfect Continuous (\"have been + -ing\")",
+    "order": 5,
+    "promptFr": "Elle prépare cette présentation toute la journée.",
+    "answers": [
+      "She has been preparing this presentation all day.",
+      "She's been preparing this presentation all day."
+    ],
+    "noteFr": "\"All day\" = toute la journée."
+  },
+  {
+    "id": "con-b1-u07-06",
+    "level": "B1",
+    "unit": 7,
+    "unitTitleFr": "Le Present Perfect Continuous (\"have been + -ing\")",
+    "order": 6,
+    "promptFr": "Ils cherchent un local depuis janvier.",
+    "answers": [
+      "They have been looking for a space since January.",
+      "They have been looking for an office since January."
+    ],
+    "noteFr": "\"Since January\" = depuis janvier."
+  },
+  {
+    "id": "con-b1-u07-07",
+    "level": "B1",
+    "unit": 7,
+    "unitTitleFr": "Le Present Perfect Continuous (\"have been + -ing\")",
+    "order": 7,
+    "promptFr": "As-tu couru ? Tu as l’air essoufflé.",
+    "answers": [
+      "Have you been running? You look out of breath."
+    ],
+    "noteFr": "Le Present Perfect Continuous explique aussi un résultat visible présent."
+  },
+  {
+    "id": "con-b1-u07-08",
+    "level": "B1",
+    "unit": 7,
+    "unitTitleFr": "Le Present Perfect Continuous (\"have been + -ing\")",
+    "order": 8,
+    "promptFr": "Je n’ai pas très bien dormi ces derniers temps.",
+    "answers": [
+      "I haven't been sleeping very well lately.",
+      "I have not been sleeping very well recently."
+    ],
+    "noteFr": "\"Lately\" / \"recently\" = ces derniers temps."
+  },
+  {
+    "id": "con-b1-u07-09",
+    "level": "B1",
+    "unit": 7,
+    "unitTitleFr": "Le Present Perfect Continuous (\"have been + -ing\")",
+    "order": 9,
+    "promptFr": "Il essaie de joindre le client depuis une heure.",
+    "answers": [
+      "He has been trying to reach the client for an hour.",
+      "He's been trying to reach the client for an hour."
+    ],
+    "noteFr": "\"An hour\" (le \"h\" est muet)."
+  },
+  {
+    "id": "con-b1-u07-10",
+    "level": "B1",
+    "unit": 7,
+    "unitTitleFr": "Le Present Perfect Continuous (\"have been + -ing\")",
+    "order": 10,
+    "promptFr": "Nous utilisons ce logiciel depuis deux ans.",
+    "answers": [
+      "We have been using this software for two years.",
+      "We've been using this software for two years."
+    ],
+    "noteFr": "\"Software\" est indénombrable en anglais."
+  },
+  {
+    "id": "con-b1-u07-11",
+    "level": "B1",
+    "unit": 7,
+    "unitTitleFr": "Le Present Perfect Continuous (\"have been + -ing\")",
+    "order": 11,
+    "promptFr": "Elle lit le même roman depuis lundi.",
+    "answers": [
+      "She has been reading the same novel since Monday.",
+      "She's been reading the same novel since Monday."
+    ],
+    "noteFr": "\"The same novel\" = le même roman."
+  },
+  {
+    "id": "con-b1-u08-01",
+    "level": "B1",
+    "unit": 8,
+    "unitTitleFr": "Déduire et nuancer avec \"must, might, can’t\"",
+    "order": 1,
+    "promptFr": "Tu dois être épuisé après ce long voyage.",
+    "answers": [
+      "You must be exhausted after this long trip.",
+      "You must be exhausted after that long journey."
+    ],
+    "noteFr": "\"Must + base verbale\" exprime une quasi-certitude."
+  },
+  {
+    "id": "con-b1-u08-02",
+    "level": "B1",
+    "unit": 8,
+    "unitTitleFr": "Déduire et nuancer avec \"must, might, can’t\"",
+    "order": 2,
+    "promptFr": "Il se peut qu’il arrive un peu en retard.",
+    "answers": [
+      "He might arrive a little late.",
+      "He may arrive a bit late."
+    ],
+    "noteFr": "\"Might\" ou \"may\" exprime une possibilité."
+  },
+  {
+    "id": "con-b1-u08-03",
+    "level": "B1",
+    "unit": 8,
+    "unitTitleFr": "Déduire et nuancer avec \"must, might, can’t\"",
+    "order": 3,
+    "promptFr": "Ce n’est pas possible qu’elle soit déjà partie.",
+    "answers": [
+      "She can't have left already.",
+      "She cannot have left already."
+    ],
+    "noteFr": "Impossibilité logique : \"can't\" (jamais \"mustn't\")."
+  },
+  {
+    "id": "con-b1-u08-04",
+    "level": "B1",
+    "unit": 8,
+    "unitTitleFr": "Déduire et nuancer avec \"must, might, can’t\"",
+    "order": 4,
+    "promptFr": "Ils sont peut-être encore en réunion.",
+    "answers": [
+      "They might still be in a meeting.",
+      "They may still be in a meeting."
+    ],
+    "noteFr": "\"Still\" se place après le modal (\"might still be\")."
+  },
+  {
+    "id": "con-b1-u08-05",
+    "level": "B1",
+    "unit": 8,
+    "unitTitleFr": "Déduire et nuancer avec \"must, might, can’t\"",
+    "order": 5,
+    "promptFr": "Cette facture doit contenir une erreur.",
+    "answers": [
+      "This bill must contain a mistake.",
+      "There must be a mistake on this bill."
+    ],
+    "noteFr": "Déduction logique au présent."
+  },
+  {
+    "id": "con-b1-u08-06",
+    "level": "B1",
+    "unit": 8,
+    "unitTitleFr": "Déduire et nuancer avec \"must, might, can’t\"",
+    "order": 6,
+    "promptFr": "Ce ne doit pas être la bonne adresse.",
+    "answers": [
+      "This can't be the right address.",
+      "It can't be the right address."
+    ],
+    "noteFr": "Certitude négative : \"can't be\"."
+  },
+  {
+    "id": "con-b1-u08-07",
+    "level": "B1",
+    "unit": 8,
+    "unitTitleFr": "Déduire et nuancer avec \"must, might, can’t\"",
+    "order": 7,
+    "promptFr": "Nous pourrions avoir besoin de plus de chaises.",
+    "answers": [
+      "We might need more chairs.",
+      "We may need more chairs."
+    ],
+    "noteFr": "\"Might need\" = il se pourrait que nous ayons besoin."
+  },
+  {
+    "id": "con-b1-u08-08",
+    "level": "B1",
+    "unit": 8,
+    "unitTitleFr": "Déduire et nuancer avec \"must, might, can’t\"",
+    "order": 8,
+    "promptFr": "Elle doit connaître le chemin par cœur.",
+    "answers": [
+      "She must know the way by heart."
+    ],
+    "noteFr": "\"By heart\" = par cœur."
+  },
+  {
+    "id": "con-b1-u08-09",
+    "level": "B1",
+    "unit": 8,
+    "unitTitleFr": "Déduire et nuancer avec \"must, might, can’t\"",
+    "order": 9,
+    "promptFr": "Il n’est peut-être pas disponible cet après-midi.",
+    "answers": [
+      "He might not be available this afternoon.",
+      "He may not be available this afternoon."
+    ],
+    "noteFr": "Négation de la possibilité : \"might not\"."
+  },
+  {
+    "id": "con-b1-u08-10",
+    "level": "B1",
+    "unit": 8,
+    "unitTitleFr": "Déduire et nuancer avec \"must, might, can’t\"",
+    "order": 10,
+    "promptFr": "Cela ne peut pas coûter autant.",
+    "answers": [
+      "It can't cost that much.",
+      "That can't cost so much."
+    ],
+    "noteFr": "\"That much\" = autant."
+  },
+  {
+    "id": "con-b1-u08-11",
+    "level": "B1",
+    "unit": 8,
+    "unitTitleFr": "Déduire et nuancer avec \"must, might, can’t\"",
+    "order": 11,
+    "promptFr": "Tu as dû oublier tes clés au bureau.",
+    "answers": [
+      "You must have left your keys at the office.",
+      "You must have forgotten your keys at the office."
+    ],
+    "noteFr": "Déduction sur le passé : \"must have + participe passé\"."
+  },
+  {
+    "id": "con-b1-u09-01",
+    "level": "B1",
+    "unit": 9,
+    "unitTitleFr": "Les verbes à particule essentiels (Phrasal Verbs)",
+    "order": 1,
+    "promptFr": "N’abandonne pas, tu progresses chaque semaine.",
+    "answers": [
+      "Don't give up, you are improving every week.",
+      "Don't give up, you're making progress every week."
+    ],
+    "noteFr": "\"Give up\" = abandonner."
+  },
+  {
+    "id": "con-b1-u09-02",
+    "level": "B1",
+    "unit": 9,
+    "unitTitleFr": "Les verbes à particule essentiels (Phrasal Verbs)",
+    "order": 2,
+    "promptFr": "Peux-tu baisser un peu le volume ?",
+    "answers": [
+      "Can you turn down the volume a bit?",
+      "Can you turn the volume down a little?"
+    ],
+    "noteFr": "\"Turn down\" = baisser (le son, la lumière)."
+  },
+  {
+    "id": "con-b1-u09-03",
+    "level": "B1",
+    "unit": 9,
+    "unitTitleFr": "Les verbes à particule essentiels (Phrasal Verbs)",
+    "order": 3,
+    "promptFr": "Nous devons reporter le rendez-vous à la semaine prochaine.",
+    "answers": [
+      "We have to put off the meeting until next week.",
+      "We need to put off the meeting until next week."
+    ],
+    "noteFr": "\"Put off\" = reporter à plus tard."
+  },
+  {
+    "id": "con-b1-u09-04",
+    "level": "B1",
+    "unit": 9,
+    "unitTitleFr": "Les verbes à particule essentiels (Phrasal Verbs)",
+    "order": 4,
+    "promptFr": "Je vais chercher ce mot dans le dictionnaire.",
+    "answers": [
+      "I will look up this word in the dictionary.",
+      "I'll look up this word in the dictionary."
+    ],
+    "noteFr": "\"Look up\" = chercher une information dans une source."
+  },
+  {
+    "id": "con-b1-u09-05",
+    "level": "B1",
+    "unit": 9,
+    "unitTitleFr": "Les verbes à particule essentiels (Phrasal Verbs)",
+    "order": 5,
+    "promptFr": "Elle a rempli le formulaire en cinq minutes.",
+    "answers": [
+      "She filled out the form in five minutes.",
+      "She filled in the form in five minutes."
+    ],
+    "noteFr": "\"Fill out / fill in\" = remplir un formulaire."
+  },
+  {
+    "id": "con-b1-u09-06",
+    "level": "B1",
+    "unit": 9,
+    "unitTitleFr": "Les verbes à particule essentiels (Phrasal Verbs)",
+    "order": 6,
+    "promptFr": "Le vol a décollé avec dix minutes de retard.",
+    "answers": [
+      "The flight took off ten minutes late."
+    ],
+    "noteFr": "\"Take off\" = décoller."
+  },
+  {
+    "id": "con-b1-u09-07",
+    "level": "B1",
+    "unit": 9,
+    "unitTitleFr": "Les verbes à particule essentiels (Phrasal Verbs)",
+    "order": 7,
+    "promptFr": "Je suis tombé par hasard sur un ancien collègue.",
+    "answers": [
+      "I ran into a former colleague.",
+      "I bumped into an old colleague."
+    ],
+    "noteFr": "\"Run into / bump into\" = rencontrer par hasard."
+  },
+  {
+    "id": "con-b1-u09-08",
+    "level": "B1",
+    "unit": 9,
+    "unitTitleFr": "Les verbes à particule essentiels (Phrasal Verbs)",
+    "order": 8,
+    "promptFr": "Nous n’avons plus de café.",
+    "answers": [
+      "We have run out of coffee.",
+      "We've run out of coffee.",
+      "We ran out of coffee."
+    ],
+    "noteFr": "\"Run out of\" = être à court de."
+  },
+  {
+    "id": "con-b1-u09-09",
+    "level": "B1",
+    "unit": 9,
+    "unitTitleFr": "Les verbes à particule essentiels (Phrasal Verbs)",
+    "order": 9,
+    "promptFr": "Il s’entend très bien avec son équipe.",
+    "answers": [
+      "He gets along very well with his team.",
+      "He gets on very well with his team."
+    ],
+    "noteFr": "\"Get along with\" = bien s’entendre avec."
+  },
+  {
+    "id": "con-b1-u09-10",
+    "level": "B1",
+    "unit": 9,
+    "unitTitleFr": "Les verbes à particule essentiels (Phrasal Verbs)",
+    "order": 10,
+    "promptFr": "Peux-tu déposer ce colis en rentrant ?",
+    "answers": [
+      "Can you drop off this package on your way home?",
+      "Can you drop this parcel off on your way back?"
+    ],
+    "noteFr": "\"Drop off\" = déposer quelqu’un ou quelque chose."
+  },
+  {
+    "id": "con-b1-u09-11",
+    "level": "B1",
+    "unit": 9,
+    "unitTitleFr": "Les verbes à particule essentiels (Phrasal Verbs)",
+    "order": 11,
+    "promptFr": "J’ai hâte de visiter ta région.",
+    "answers": [
+      "I am looking forward to visiting your region.",
+      "I'm looking forward to visiting your region."
+    ],
+    "noteFr": "Après \"look forward to\", on met toujours un nom ou un verbe en \"-ing\"."
+  },
+  {
+    "id": "con-b1-u10-01",
+    "level": "B1",
+    "unit": 10,
+    "unitTitleFr": "Enchaîner des actions passées avec le Past Perfect",
+    "order": 1,
+    "promptFr": "Quand je suis arrivé à la gare, le train était déjà parti.",
+    "answers": [
+      "When I arrived at the station, the train had already left."
+    ],
+    "noteFr": "L’action la plus ancienne dans le passé prend \"had + participe passé\"."
+  },
+  {
+    "id": "con-b1-u10-02",
+    "level": "B1",
+    "unit": 10,
+    "unitTitleFr": "Enchaîner des actions passées avec le Past Perfect",
+    "order": 2,
+    "promptFr": "Elle avait fini son travail avant que le client n’appelle.",
+    "answers": [
+      "She had finished her work before the client called."
+    ],
+    "noteFr": "Antériorité marquée par \"had finished\"."
+  },
+  {
+    "id": "con-b1-u10-03",
+    "level": "B1",
+    "unit": 10,
+    "unitTitleFr": "Enchaîner des actions passées avec le Past Perfect",
+    "order": 3,
+    "promptFr": "Je n’avais jamais goûté ce plat auparavant.",
+    "answers": [
+      "I had never tasted this dish before.",
+      "I'd never tried this dish before."
+    ],
+    "noteFr": "\"Had never + participe passé\" pour une première fois dans le passé."
+  },
+  {
+    "id": "con-b1-u10-04",
+    "level": "B1",
+    "unit": 10,
+    "unitTitleFr": "Enchaîner des actions passées avec le Past Perfect",
+    "order": 4,
+    "promptFr": "Il s’est rendu compte qu’il avait oublié son portefeuille.",
+    "answers": [
+      "He realized he had forgotten his wallet.",
+      "He realised that he had left his wallet behind."
+    ],
+    "noteFr": "\"Realize\" = se rendre compte."
+  },
+  {
+    "id": "con-b1-u10-05",
+    "level": "B1",
+    "unit": 10,
+    "unitTitleFr": "Enchaîner des actions passées avec le Past Perfect",
+    "order": 5,
+    "promptFr": "Avais-tu déjà lu le contrat avant la réunion ?",
+    "answers": [
+      "Had you already read the contract before the meeting?"
+    ],
+    "noteFr": "Question au Past Perfect : \"Had + sujet + p.p. ?\"."
+  },
+  {
+    "id": "con-b1-u10-06",
+    "level": "B1",
+    "unit": 10,
+    "unitTitleFr": "Enchaîner des actions passées avec le Past Perfect",
+    "order": 6,
+    "promptFr": "Nous avons découvert que quelqu’un avait déjà réservé la salle.",
+    "answers": [
+      "We found out that someone had already booked the room."
+    ],
+    "noteFr": "\"Find out\" = découvrir / apprendre."
+  },
+  {
+    "id": "con-b1-u10-07",
+    "level": "B1",
+    "unit": 10,
+    "unitTitleFr": "Enchaîner des actions passées avec le Past Perfect",
+    "order": 7,
+    "promptFr": "Elle était nerveuse parce qu’elle n’avait jamais pris l’avion.",
+    "answers": [
+      "She was nervous because she had never flown before."
+    ],
+    "noteFr": "Participe passé de \"fly\" : \"flown\"."
+  },
+  {
+    "id": "con-b1-u10-08",
+    "level": "B1",
+    "unit": 10,
+    "unitTitleFr": "Enchaîner des actions passées avec le Past Perfect",
+    "order": 8,
+    "promptFr": "Une fois qu’ils ont eu dîné, ils sont sortis marcher.",
+    "answers": [
+      "After they had eaten dinner, they went out for a walk.",
+      "Once they had had dinner, they went for a walk."
+    ],
+    "noteFr": "\"Go for a walk\" = aller se promener."
+  },
+  {
+    "id": "con-b1-u10-09",
+    "level": "B1",
+    "unit": 10,
+    "unitTitleFr": "Enchaîner des actions passées avec le Past Perfect",
+    "order": 9,
+    "promptFr": "Le film avait commencé depuis dix minutes quand nous sommes entrés.",
+    "answers": [
+      "The movie had been on for ten minutes when we came in.",
+      "The film had already started ten minutes earlier when we walked in."
+    ],
+    "noteFr": "Bien distinguer le point de repère passé et ce qui précède."
+  },
+  {
+    "id": "con-b1-u10-10",
+    "level": "B1",
+    "unit": 10,
+    "unitTitleFr": "Enchaîner des actions passées avec le Past Perfect",
+    "order": 10,
+    "promptFr": "Il m’a remercié parce que je l’avais aidé la veille.",
+    "answers": [
+      "He thanked me because I had helped him the day before."
+    ],
+    "noteFr": "\"The day before\" = la veille."
+  },
+  {
+    "id": "con-b1-u10-11",
+    "level": "B1",
+    "unit": 10,
+    "unitTitleFr": "Enchaîner des actions passées avec le Past Perfect",
+    "order": 11,
+    "promptFr": "Je n’avais pas compris la règle jusqu’à ce que tu l’expliques.",
+    "answers": [
+      "I hadn't understood the rule until you explained it.",
+      "I had not understood the rule until you explained it."
+    ],
+    "noteFr": "\"Until\" = jusqu’à ce que."
+  },
+  {
+    "id": "con-b2-u01-01",
+    "level": "B2",
+    "unit": 1,
+    "unitTitleFr": "Exprimer des regrets sur le passé (3e conditionnel)",
+    "order": 1,
+    "promptFr": "Si j’avais su, je serais parti plus tôt.",
+    "answers": [
+      "If I had known, I would have left earlier.",
+      "If I'd known, I would have left earlier."
+    ],
+    "noteFr": "3e conditionnel : \"If + had + p.p., would have + p.p.\"."
+  },
+  {
+    "id": "con-b2-u01-02",
+    "level": "B2",
+    "unit": 1,
+    "unitTitleFr": "Exprimer des regrets sur le passé (3e conditionnel)",
+    "order": 2,
+    "promptFr": "Nous n’aurions pas raté le vol si la circulation avait été fluide.",
+    "answers": [
+      "We wouldn't have missed the flight if the traffic had been smooth.",
+      "We would not have missed the flight if traffic had been light."
+    ],
+    "noteFr": "Hypothèse irréelle dans le passé."
+  },
+  {
+    "id": "con-b2-u01-03",
+    "level": "B2",
+    "unit": 1,
+    "unitTitleFr": "Exprimer des regrets sur le passé (3e conditionnel)",
+    "order": 3,
+    "promptFr": "Elle aurait accepté le poste si le salaire avait été plus élevé.",
+    "answers": [
+      "She would have accepted the job if the salary had been higher.",
+      "She would have taken the position if the salary had been higher."
+    ],
+    "noteFr": "\"Higher salary\" = salaire plus élevé."
+  },
+  {
+    "id": "con-b2-u01-04",
+    "level": "B2",
+    "unit": 1,
+    "unitTitleFr": "Exprimer des regrets sur le passé (3e conditionnel)",
+    "order": 4,
+    "promptFr": "Si tu m’avais prévenu, j’aurais pu t’aider.",
+    "answers": [
+      "If you had warned me, I could have helped you.",
+      "If you had told me in advance, I could have helped you."
+    ],
+    "noteFr": "\"Could have + p.p.\" exprime une capacité passée non réalisée."
+  },
+  {
+    "id": "con-b2-u01-05",
+    "level": "B2",
+    "unit": 1,
+    "unitTitleFr": "Exprimer des regrets sur le passé (3e conditionnel)",
+    "order": 5,
+    "promptFr": "Il n’aurait pas fait cette erreur s’il avait relu son texte.",
+    "answers": [
+      "He wouldn't have made that mistake if he had proofread his text.",
+      "He would not have made this mistake if he had checked his text."
+    ],
+    "noteFr": "\"Proofread\" = relire pour corriger."
+  },
+  {
+    "id": "con-b2-u01-06",
+    "level": "B2",
+    "unit": 1,
+    "unitTitleFr": "Exprimer des regrets sur le passé (3e conditionnel)",
+    "order": 6,
+    "promptFr": "Qu’aurais-tu fait à ma place ?",
+    "answers": [
+      "What would you have done in my place?",
+      "What would you have done if you had been in my shoes?"
+    ],
+    "noteFr": "\"In my shoes\" est très idiomatique en B2."
+  },
+  {
+    "id": "con-b2-u01-07",
+    "level": "B2",
+    "unit": 1,
+    "unitTitleFr": "Exprimer des regrets sur le passé (3e conditionnel)",
+    "order": 7,
+    "promptFr": "Si le fournisseur avait livré à temps, le projet serait déjà fini.",
+    "answers": [
+      "If the supplier had delivered on time, the project would already be finished."
+    ],
+    "noteFr": "Conditionnel mixte : cause passée (\"had delivered\"), conséquence présente (\"would be\")."
+  },
+  {
+    "id": "con-b2-u01-08",
+    "level": "B2",
+    "unit": 1,
+    "unitTitleFr": "Exprimer des regrets sur le passé (3e conditionnel)",
+    "order": 8,
+    "promptFr": "J’aurais préféré qu’on m’informe avant la réunion.",
+    "answers": [
+      "I would have preferred to be informed before the meeting.",
+      "I'd have preferred to be told before the meeting."
+    ],
+    "noteFr": "Infinitif passif : \"to be informed\"."
+  },
+  {
+    "id": "con-b2-u01-09",
+    "level": "B2",
+    "unit": 1,
+    "unitTitleFr": "Exprimer des regrets sur le passé (3e conditionnel)",
+    "order": 9,
+    "promptFr": "Sans ton soutien, je n’aurais jamais réussi.",
+    "answers": [
+      "Without your support, I would never have succeeded.",
+      "If it had not been for your support, I would never have succeeded."
+    ],
+    "noteFr": "\"Without\" remplace parfois une subordonnée en \"if\"."
+  },
+  {
+    "id": "con-b2-u01-10",
+    "level": "B2",
+    "unit": 1,
+    "unitTitleFr": "Exprimer des regrets sur le passé (3e conditionnel)",
+    "order": 10,
+    "promptFr": "Si nous avions comparé les devis, nous aurions économisé de l’argent.",
+    "answers": [
+      "If we had compared the quotes, we would have saved money."
+    ],
+    "noteFr": "\"Quotes\" = devis ; \"save money\" = économiser de l’argent."
+  },
+  {
+    "id": "con-b2-u01-11",
+    "level": "B2",
+    "unit": 1,
+    "unitTitleFr": "Exprimer des regrets sur le passé (3e conditionnel)",
+    "order": 11,
+    "promptFr": "Elle aurait dû vérifier les horaires avant de partir.",
+    "answers": [
+      "She should have checked the schedule before leaving.",
+      "She should have checked the timetable before leaving."
+    ],
+    "noteFr": "\"Should have + p.p.\" exprime un reproche ou un regret."
+  },
+  {
+    "id": "con-b2-u02-01",
+    "level": "B2",
+    "unit": 2,
+    "unitTitleFr": "Nuancer l’argumentation (despite, whereas, however)",
+    "order": 1,
+    "promptFr": "Malgré la pluie, l’événement a attiré beaucoup de monde.",
+    "answers": [
+      "Despite the rain, the event attracted many people.",
+      "In spite of the rain, the event attracted a lot of people."
+    ],
+    "noteFr": "\"Despite\" est toujours suivi d’un nom ou d’un gérondif (jamais \"despite of\")."
+  },
+  {
+    "id": "con-b2-u02-02",
+    "level": "B2",
+    "unit": 2,
+    "unitTitleFr": "Nuancer l’argumentation (despite, whereas, however)",
+    "order": 2,
+    "promptFr": "Il préfère travailler le matin, alors que sa sœur est plus productive le soir.",
+    "answers": [
+      "He prefers working in the morning, whereas his sister is more productive in the evening."
+    ],
+    "noteFr": "\"Whereas\" oppose deux faits symétriques."
+  },
+  {
+    "id": "con-b2-u02-03",
+    "level": "B2",
+    "unit": 2,
+    "unitTitleFr": "Nuancer l’argumentation (despite, whereas, however)",
+    "order": 3,
+    "promptFr": "Le budget est serré ; cependant, la qualité reste notre priorité.",
+    "answers": [
+      "The budget is tight; however, quality remains our priority.",
+      "The budget is tight. However, quality remains our priority."
+    ],
+    "noteFr": "\"However\" est suivi d’une virgule."
+  },
+  {
+    "id": "con-b2-u02-04",
+    "level": "B2",
+    "unit": 2,
+    "unitTitleFr": "Nuancer l’argumentation (despite, whereas, however)",
+    "order": 4,
+    "promptFr": "Bien qu’il ait peu d’expérience, il apprend très vite.",
+    "answers": [
+      "Despite having little experience, he learns very quickly.",
+      "Although he has little experience, he learns very fast."
+    ],
+    "noteFr": "\"Despite + verbe-ing\" est élégant et concis."
+  },
+  {
+    "id": "con-b2-u02-05",
+    "level": "B2",
+    "unit": 2,
+    "unitTitleFr": "Nuancer l’argumentation (despite, whereas, however)",
+    "order": 5,
+    "promptFr": "D’un côté, cette solution est rapide ; de l’autre, elle coûte cher.",
+    "answers": [
+      "On the one hand, this solution is fast; on the other hand, it is expensive."
+    ],
+    "noteFr": "Balancement classique : \"On the one hand... on the other hand...\"."
+  },
+  {
+    "id": "con-b2-u02-06",
+    "level": "B2",
+    "unit": 2,
+    "unitTitleFr": "Nuancer l’argumentation (despite, whereas, however)",
+    "order": 6,
+    "promptFr": "En dépit des difficultés techniques, l’équipe a tenu les délais.",
+    "answers": [
+      "Despite the technical difficulties, the team met the deadline.",
+      "In spite of the technical issues, the team met the deadlines."
+    ],
+    "noteFr": "\"Meet a deadline\" = respecter un délai."
+  },
+  {
+    "id": "con-b2-u02-07",
+    "level": "B2",
+    "unit": 2,
+    "unitTitleFr": "Nuancer l’argumentation (despite, whereas, however)",
+    "order": 7,
+    "promptFr": "Contrairement à l’an dernier, les ventes ont fortement augmenté.",
+    "answers": [
+      "Unlike last year, sales have increased sharply."
+    ],
+    "noteFr": "\"Unlike\" = contrairement à."
+  },
+  {
+    "id": "con-b2-u02-08",
+    "level": "B2",
+    "unit": 2,
+    "unitTitleFr": "Nuancer l’argumentation (despite, whereas, however)",
+    "order": 8,
+    "promptFr": "Certes, le plan est ambitieux, mais il reste réalisable.",
+    "answers": [
+      "Admittedly, the plan is ambitious, yet it remains achievable.",
+      "Granted, the plan is ambitious, but it is still achievable."
+    ],
+    "noteFr": "\"Yet\" peut remplacer \"but\" dans un registre soutenu."
+  },
+  {
+    "id": "con-b2-u02-09",
+    "level": "B2",
+    "unit": 2,
+    "unitTitleFr": "Nuancer l’argumentation (despite, whereas, however)",
+    "order": 9,
+    "promptFr": "Toutefois, nous devons vérifier les chiffres avant de publier.",
+    "answers": [
+      "Nevertheless, we need to verify the figures before publishing.",
+      "However, we must check the figures before publishing."
+    ],
+    "noteFr": "Après une préposition (\"before\"), le verbe prend \"-ing\"."
+  },
+  {
+    "id": "con-b2-u02-10",
+    "level": "B2",
+    "unit": 2,
+    "unitTitleFr": "Nuancer l’argumentation (despite, whereas, however)",
+    "order": 10,
+    "promptFr": "Au lieu d’attendre, nous devrions proposer une alternative.",
+    "answers": [
+      "Instead of waiting, we should propose an alternative.",
+      "Instead of waiting, we should suggest an alternative."
+    ],
+    "noteFr": "\"Instead of + -ing\"."
+  },
+  {
+    "id": "con-b2-u02-11",
+    "level": "B2",
+    "unit": 2,
+    "unitTitleFr": "Nuancer l’argumentation (despite, whereas, however)",
+    "order": 11,
+    "promptFr": "Non seulement ce quartier est sûr, mais il est aussi bien desservi.",
+    "answers": [
+      "Not only is this neighborhood safe, but it is also well connected.",
+      "Not only is this area safe, but it also has good transport links."
+    ],
+    "noteFr": "Après \"Not only\" en début de phrase, on inverse le sujet et l’auxiliaire."
+  },
+  {
+    "id": "con-b2-u03-01",
+    "level": "B2",
+    "unit": 3,
+    "unitTitleFr": "Le gérondif et l’infinitif après les verbes complexes",
+    "order": 1,
+    "promptFr": "J’ai évité de mentionner ce problème pendant l’appel.",
+    "answers": [
+      "I avoided mentioning that issue during the call.",
+      "I avoided mentioning this problem during the call."
+    ],
+    "noteFr": "Après \"avoid\", on utilise toujours le gérondif (\"-ing\")."
+  },
+  {
+    "id": "con-b2-u03-02",
+    "level": "B2",
+    "unit": 3,
+    "unitTitleFr": "Le gérondif et l’infinitif après les verbes complexes",
+    "order": 2,
+    "promptFr": "Elle a accepté de diriger le nouveau service.",
+    "answers": [
+      "She agreed to lead the new department.",
+      "She agreed to manage the new department."
+    ],
+    "noteFr": "Après \"agree\", on utilise \"to + infinitif\"."
+  },
+  {
+    "id": "con-b2-u03-03",
+    "level": "B2",
+    "unit": 3,
+    "unitTitleFr": "Le gérondif et l’infinitif après les verbes complexes",
+    "order": 3,
+    "promptFr": "Je me souviens d’avoir signé ce document.",
+    "answers": [
+      "I remember signing this document.",
+      "I remember signing that document."
+    ],
+    "noteFr": "\"Remember + -ing\" = se souvenir d’une action passée."
+  },
+  {
+    "id": "con-b2-u03-04",
+    "level": "B2",
+    "unit": 3,
+    "unitTitleFr": "Le gérondif et l’infinitif après les verbes complexes",
+    "order": 4,
+    "promptFr": "N’oublie pas d’envoyer la facture avant vendredi.",
+    "answers": [
+      "Don't forget to send the invoice before Friday."
+    ],
+    "noteFr": "\"Forget + to + verbe\" = oublier de faire quelque chose."
+  },
+  {
+    "id": "con-b2-u03-05",
+    "level": "B2",
+    "unit": 3,
+    "unitTitleFr": "Le gérondif et l’infinitif après les verbes complexes",
+    "order": 5,
+    "promptFr": "Nous envisageons d’ouvrir une agence à Thiès.",
+    "answers": [
+      "We are considering opening a branch in Thiès.",
+      "We're considering opening an office in Thiès."
+    ],
+    "noteFr": "Après \"consider\", toujours le gérondif (\"-ing\")."
+  },
+  {
+    "id": "con-b2-u03-06",
+    "level": "B2",
+    "unit": 3,
+    "unitTitleFr": "Le gérondif et l’infinitif après les verbes complexes",
+    "order": 6,
+    "promptFr": "Il a réussi à convaincre tous les partenaires.",
+    "answers": [
+      "He managed to convince all the partners."
+    ],
+    "noteFr": "\"Manage to + infinitif\" = réussir à faire quelque chose de difficile."
+  },
+  {
+    "id": "con-b2-u03-07",
+    "level": "B2",
+    "unit": 3,
+    "unitTitleFr": "Le gérondif et l’infinitif après les verbes complexes",
+    "order": 7,
+    "promptFr": "J’ai arrêté de vérifier mes e-mails après vingt heures.",
+    "answers": [
+      "I stopped checking my emails after eight p.m.",
+      "I stopped checking my emails after 8 p.m."
+    ],
+    "noteFr": "\"Stop + -ing\" = cesser une activité."
+  },
+  {
+    "id": "con-b2-u03-08",
+    "level": "B2",
+    "unit": 3,
+    "unitTitleFr": "Le gérondif et l’infinitif après les verbes complexes",
+    "order": 8,
+    "promptFr": "Nous nous sommes arrêtés pour acheter de l’eau.",
+    "answers": [
+      "We stopped to buy some water.",
+      "We stopped to buy water."
+    ],
+    "noteFr": "\"Stop + to + verbe\" = s’arrêter dans le but de."
+  },
+  {
+    "id": "con-b2-u03-09",
+    "level": "B2",
+    "unit": 3,
+    "unitTitleFr": "Le gérondif et l’infinitif après les verbes complexes",
+    "order": 9,
+    "promptFr": "Elle a refusé de signer sans relire les annexes.",
+    "answers": [
+      "She refused to sign without reading the appendices again.",
+      "She refused to sign without rereading the attachments."
+    ],
+    "noteFr": "\"Refuse to + infinitif\"."
+  },
+  {
+    "id": "con-b2-u03-10",
+    "level": "B2",
+    "unit": 3,
+    "unitTitleFr": "Le gérondif et l’infinitif après les verbes complexes",
+    "order": 10,
+    "promptFr": "Cela ne vaut pas la peine de s’inquiéter pour ça.",
+    "answers": [
+      "It's not worth worrying about that.",
+      "It is not worth worrying about it."
+    ],
+    "noteFr": "Expression fixe : \"It is worth + -ing\"."
+  },
+  {
+    "id": "con-b2-u03-11",
+    "level": "B2",
+    "unit": 3,
+    "unitTitleFr": "Le gérondif et l’infinitif après les verbes complexes",
+    "order": 11,
+    "promptFr": "Je vous suggère de tester cette méthode pendant une semaine.",
+    "answers": [
+      "I suggest testing this method for a week.",
+      "I suggest that you try this method for a week."
+    ],
+    "noteFr": "\"Suggest\" ne prend jamais \"to\" devant le verbe (\"suggest + -ing\")."
+  },
+  {
+    "id": "con-b2-u04-01",
+    "level": "B2",
+    "unit": 4,
+    "unitTitleFr": "Exposer des souhaits et regrets avec \"wish / if only\"",
+    "order": 1,
+    "promptFr": "J’aimerais parler anglais plus couramment.",
+    "answers": [
+      "I wish I spoke English more fluently."
+    ],
+    "noteFr": "Souhait sur le présent : \"I wish + prétérit\"."
+  },
+  {
+    "id": "con-b2-u04-02",
+    "level": "B2",
+    "unit": 4,
+    "unitTitleFr": "Exposer des souhaits et regrets avec \"wish / if only\"",
+    "order": 2,
+    "promptFr": "J’aurais aimé prendre des notes pendant la conférence.",
+    "answers": [
+      "I wish I had taken notes during the lecture.",
+      "I wish I had taken notes during the conference."
+    ],
+    "noteFr": "Regret sur le passé : \"I wish + had + participe passé\"."
+  },
+  {
+    "id": "con-b2-u04-03",
+    "level": "B2",
+    "unit": 4,
+    "unitTitleFr": "Exposer des souhaits et regrets avec \"wish / if only\"",
+    "order": 3,
+    "promptFr": "Si seulement il arrêtait de pleuvoir !",
+    "answers": [
+      "If only it would stop raining!"
+    ],
+    "noteFr": "Souhait qu’une situation extérieure change : \"would + verbe\"."
+  },
+  {
+    "id": "con-b2-u04-04",
+    "level": "B2",
+    "unit": 4,
+    "unitTitleFr": "Exposer des souhaits et regrets avec \"wish / if only\"",
+    "order": 4,
+    "promptFr": "Elle regrette de ne pas avoir posé plus de questions.",
+    "answers": [
+      "She wishes she had asked more questions."
+    ],
+    "noteFr": "\"Wish + had + p.p.\" exprime le regret."
+  },
+  {
+    "id": "con-b2-u04-05",
+    "level": "B2",
+    "unit": 4,
+    "unitTitleFr": "Exposer des souhaits et regrets avec \"wish / if only\"",
+    "order": 5,
+    "promptFr": "J’aimerais que nous ayons plus de temps pour préparer ce projet.",
+    "answers": [
+      "I wish we had more time to prepare this project."
+    ],
+    "noteFr": "Attention : après \"I wish\", le passé exprime un souhait présent."
+  },
+  {
+    "id": "con-b2-u04-06",
+    "level": "B2",
+    "unit": 4,
+    "unitTitleFr": "Exposer des souhaits et regrets avec \"wish / if only\"",
+    "order": 6,
+    "promptFr": "Si seulement j’avais vérifié mon passeport la semaine dernière.",
+    "answers": [
+      "If only I had checked my passport last week."
+    ],
+    "noteFr": "\"If only\" renforce l’expression du regret."
+  },
+  {
+    "id": "con-b2-u04-07",
+    "level": "B2",
+    "unit": 4,
+    "unitTitleFr": "Exposer des souhaits et regrets avec \"wish / if only\"",
+    "order": 7,
+    "promptFr": "Il aimerait ne pas travailler ce week-end.",
+    "answers": [
+      "He wishes he didn't have to work this weekend.",
+      "He wishes he were not working this weekend."
+    ],
+    "noteFr": "Forme négative au prétérit après \"wish\"."
+  },
+  {
+    "id": "con-b2-u04-08",
+    "level": "B2",
+    "unit": 4,
+    "unitTitleFr": "Exposer des souhaits et regrets avec \"wish / if only\"",
+    "order": 8,
+    "promptFr": "J’aimerais que tu m’écoutes quand je parle.",
+    "answers": [
+      "I wish you would listen to me when I speak."
+    ],
+    "noteFr": "\"I wish you would...\" exprime souvent une légère impatience."
+  },
+  {
+    "id": "con-b2-u04-09",
+    "level": "B2",
+    "unit": 4,
+    "unitTitleFr": "Exposer des souhaits et regrets avec \"wish / if only\"",
+    "order": 9,
+    "promptFr": "Nous regrettons de ne pas être partis une heure plus tôt.",
+    "answers": [
+      "We wish we had left an hour earlier."
+    ],
+    "noteFr": "Regret passé : \"had left\"."
+  },
+  {
+    "id": "con-b2-u04-10",
+    "level": "B2",
+    "unit": 4,
+    "unitTitleFr": "Exposer des souhaits et regrets avec \"wish / if only\"",
+    "order": 10,
+    "promptFr": "J’aimerais habiter plus près du centre.",
+    "answers": [
+      "I wish I lived closer to the center.",
+      "I wish I lived closer to the centre."
+    ],
+    "noteFr": "Prétérit modal \"lived\"."
+  },
+  {
+    "id": "con-b2-u04-11",
+    "level": "B2",
+    "unit": 4,
+    "unitTitleFr": "Exposer des souhaits et regrets avec \"wish / if only\"",
+    "order": 11,
+    "promptFr": "Si seulement cette réunion pouvait être plus courte.",
+    "answers": [
+      "If only this meeting could be shorter."
+    ],
+    "noteFr": "\"Could\" joue le rôle de prétérit de \"can\" après \"If only\"."
+  },
+  {
+    "id": "con-b2-u05-01",
+    "level": "B2",
+    "unit": 5,
+    "unitTitleFr": "Mettre en relief et inverser pour convaincre",
+    "order": 1,
+    "promptFr": "Ce dont nous avons vraiment besoin, c’est d’un calendrier clair.",
+    "answers": [
+      "What we really need is a clear schedule."
+    ],
+    "noteFr": "Structure clivée : \"What + sujet + verbe + is...\"."
+  },
+  {
+    "id": "con-b2-u05-02",
+    "level": "B2",
+    "unit": 5,
+    "unitTitleFr": "Mettre en relief et inverser pour convaincre",
+    "order": 2,
+    "promptFr": "C’est la régularité qui fait la différence.",
+    "answers": [
+      "It is consistency that makes the difference.",
+      "It's consistency that makes the difference."
+    ],
+    "noteFr": "Mise en relief avec \"It is ... that ...\"."
+  },
+  {
+    "id": "con-b2-u05-03",
+    "level": "B2",
+    "unit": 5,
+    "unitTitleFr": "Mettre en relief et inverser pour convaincre",
+    "order": 3,
+    "promptFr": "Jamais je n’avais vu une organisation aussi efficace.",
+    "answers": [
+      "Never have I seen such an efficient organization.",
+      "Never had I seen such an efficient organisation."
+    ],
+    "noteFr": "Adverbe négatif en tête de phrase -> inversion auxiliaire-sujet."
+  },
+  {
+    "id": "con-b2-u05-04",
+    "level": "B2",
+    "unit": 5,
+    "unitTitleFr": "Mettre en relief et inverser pour convaincre",
+    "order": 4,
+    "promptFr": "Ce que j’apprécie le plus, c’est sa disponibilité.",
+    "answers": [
+      "What I appreciate most is her availability.",
+      "What I appreciate the most is his availability."
+    ],
+    "noteFr": "\"What I appreciate most is...\"."
+  },
+  {
+    "id": "con-b2-u05-05",
+    "level": "B2",
+    "unit": 5,
+    "unitTitleFr": "Mettre en relief et inverser pour convaincre",
+    "order": 5,
+    "promptFr": "Rarement une décision a été prise aussi rapidement.",
+    "answers": [
+      "Rarely has a decision been made so quickly.",
+      "Seldom has a decision been made so fast."
+    ],
+    "noteFr": "\"Rarely\" / \"Seldom\" en tête entraîne l’inversion."
+  },
+  {
+    "id": "con-b2-u05-06",
+    "level": "B2",
+    "unit": 5,
+    "unitTitleFr": "Mettre en relief et inverser pour convaincre",
+    "order": 6,
+    "promptFr": "C’est seulement après l’essai que nous avons compris le bug.",
+    "answers": [
+      "Only after testing did we understand the bug.",
+      "It was only after the test that we understood the bug."
+    ],
+    "noteFr": "\"Only after...\" en tête entraîne \"did we understand\"."
+  },
+  {
+    "id": "con-b2-u05-07",
+    "level": "B2",
+    "unit": 5,
+    "unitTitleFr": "Mettre en relief et inverser pour convaincre",
+    "order": 7,
+    "promptFr": "Ce qui compte, c’est de pratiquer un peu chaque jour.",
+    "answers": [
+      "What matters is practicing a little every day.",
+      "What matters is to practice a little every day."
+    ],
+    "noteFr": "\"What matters is...\" = ce qui compte, c’est."
+  },
+  {
+    "id": "con-b2-u05-08",
+    "level": "B2",
+    "unit": 5,
+    "unitTitleFr": "Mettre en relief et inverser pour convaincre",
+    "order": 8,
+    "promptFr": "À aucun moment nous n’avons envisagé d’abandonner.",
+    "answers": [
+      "At no time did we consider giving up."
+    ],
+    "noteFr": "\"At no time + did + sujet + base verbale\"."
+  },
+  {
+    "id": "con-b2-u05-09",
+    "level": "B2",
+    "unit": 5,
+    "unitTitleFr": "Mettre en relief et inverser pour convaincre",
+    "order": 9,
+    "promptFr": "C’est ici que tout a commencé il y a cinq ans.",
+    "answers": [
+      "This is where it all started five years ago.",
+      "It is here that everything started five years ago."
+    ],
+    "noteFr": "Mise en relief d’un lieu."
+  },
+  {
+    "id": "con-b2-u05-10",
+    "level": "B2",
+    "unit": 5,
+    "unitTitleFr": "Mettre en relief et inverser pour convaincre",
+    "order": 10,
+    "promptFr": "Non seulement il a fini à temps, mais il a aussi aidé l’équipe.",
+    "answers": [
+      "Not only did he finish on time, but he also helped the team."
+    ],
+    "noteFr": "Inversion \"did he finish\" après \"Not only\"."
+  },
+  {
+    "id": "con-b2-u05-11",
+    "level": "B2",
+    "unit": 5,
+    "unitTitleFr": "Mettre en relief et inverser pour convaincre",
+    "order": 11,
+    "promptFr": "Tout ce que je demande, c’est une réponse honnête.",
+    "answers": [
+      "All I ask for is an honest answer.",
+      "All I am asking for is an honest answer."
+    ],
+    "noteFr": "\"All I ask for is...\" = tout ce que je demande."
+  },
+  {
+    "id": "con-b2-u06-01",
+    "level": "B2",
+    "unit": 6,
+    "unitTitleFr": "Le Futur Antérieur et le Futur Continu",
+    "order": 1,
+    "promptFr": "À cette heure demain, nous serons en train de survoler l’océan.",
+    "answers": [
+      "This time tomorrow, we will be flying over the ocean.",
+      "This time tomorrow, we'll be flying over the ocean."
+    ],
+    "noteFr": "Action en cours à un moment futur : \"will be + -ing\"."
+  },
+  {
+    "id": "con-b2-u06-02",
+    "level": "B2",
+    "unit": 6,
+    "unitTitleFr": "Le Futur Antérieur et le Futur Continu",
+    "order": 2,
+    "promptFr": "D’ici vendredi, j’aurai terminé toutes les révisions.",
+    "answers": [
+      "By Friday, I will have finished all the reviews.",
+      "By Friday, I'll have finished all the revisions."
+    ],
+    "noteFr": "Action achevée avant un repère futur : \"by + date, will have + p.p.\"."
+  },
+  {
+    "id": "con-b2-u06-03",
+    "level": "B2",
+    "unit": 6,
+    "unitTitleFr": "Le Futur Antérieur et le Futur Continu",
+    "order": 3,
+    "promptFr": "En juin, elle travaillera ici depuis dix ans.",
+    "answers": [
+      "By June, she will have been working here for ten years."
+    ],
+    "noteFr": "Durée cumulée jusqu’à un moment futur : \"will have been + -ing\"."
+  },
+  {
+    "id": "con-b2-u06-04",
+    "level": "B2",
+    "unit": 6,
+    "unitTitleFr": "Le Futur Antérieur et le Futur Continu",
+    "order": 4,
+    "promptFr": "Ne m’appelle pas à huit heures, je serai en train de conduire.",
+    "answers": [
+      "Don't call me at eight, I will be driving.",
+      "Don't call me at 8, I'll be driving."
+    ],
+    "noteFr": "Futur continu pour une action en cours à une heure précise."
+  },
+  {
+    "id": "con-b2-u06-05",
+    "level": "B2",
+    "unit": 6,
+    "unitTitleFr": "Le Futur Antérieur et le Futur Continu",
+    "order": 5,
+    "promptFr": "Penses-tu qu’ils auront reçu le courrier avant midi ?",
+    "answers": [
+      "Do you think they will have received the mail before noon?"
+    ],
+    "noteFr": "\"Will have + p.p.\" dans une subordonnée."
+  },
+  {
+    "id": "con-b2-u06-06",
+    "level": "B2",
+    "unit": 6,
+    "unitTitleFr": "Le Futur Antérieur et le Futur Continu",
+    "order": 6,
+    "promptFr": "D’ici la fin de l’année, notre équipe aura doublé.",
+    "answers": [
+      "By the end of the year, our team will have doubled."
+    ],
+    "noteFr": "\"By the end of the year\" = d’ici la fin de l’année."
+  },
+  {
+    "id": "con-b2-u06-07",
+    "level": "B2",
+    "unit": 6,
+    "unitTitleFr": "Le Futur Antérieur et le Futur Continu",
+    "order": 7,
+    "promptFr": "Je t’attendrai devant l’entrée à quinze heures.",
+    "answers": [
+      "I will be waiting for you in front of the entrance at three p.m.",
+      "I'll be waiting for you outside the entrance at 3 p.m."
+    ],
+    "noteFr": "\"In front of\" = devant."
+  },
+  {
+    "id": "con-b2-u06-08",
+    "level": "B2",
+    "unit": 6,
+    "unitTitleFr": "Le Futur Antérieur et le Futur Continu",
+    "order": 8,
+    "promptFr": "Dans deux mois, nous aurons remboursé tout le prêt.",
+    "answers": [
+      "In two months, we will have paid off the whole loan.",
+      "In two months, we'll have repaid the entire loan."
+    ],
+    "noteFr": "\"Pay off a loan\" = solder un prêt."
+  },
+  {
+    "id": "con-b2-u06-09",
+    "level": "B2",
+    "unit": 6,
+    "unitTitleFr": "Le Futur Antérieur et le Futur Continu",
+    "order": 9,
+    "promptFr": "Seras-tu en train d’utiliser la salle de réunion demain matin ?",
+    "answers": [
+      "Will you be using the meeting room tomorrow morning?"
+    ],
+    "noteFr": "Question polie sur les projets immédiats avec \"Will you be + -ing ?\"."
+  },
+  {
+    "id": "con-b2-u06-10",
+    "level": "B2",
+    "unit": 6,
+    "unitTitleFr": "Le Futur Antérieur et le Futur Continu",
+    "order": 10,
+    "promptFr": "D’ici son retour, nous aurons déjà installé le matériel.",
+    "answers": [
+      "By the time he returns, we will already have set up the equipment.",
+      "By the time he gets back, we will have already installed the equipment."
+    ],
+    "noteFr": "Après \"by the time\", on utilise le présent simple."
+  },
+  {
+    "id": "con-b2-u06-11",
+    "level": "B2",
+    "unit": 6,
+    "unitTitleFr": "Le Futur Antérieur et le Futur Continu",
+    "order": 11,
+    "promptFr": "Ce soir à vingt heures, je regarderai la finale avec mes amis.",
+    "answers": [
+      "Tonight at eight p.m., I will be watching the final with my friends.",
+      "Tonight at 8 p.m., I'll be watching the final with my friends."
+    ],
+    "noteFr": "Action en cours prévue dans le futur."
+  },
+  {
+    "id": "con-b2-u07-01",
+    "level": "B2",
+    "unit": 7,
+    "unitTitleFr": "Les propositions participiales et la synthèse concise",
+    "order": 1,
+    "promptFr": "Ayant terminé ses études, il a lancé son entreprise.",
+    "answers": [
+      "Having finished his studies, he started his own business.",
+      "Having completed his studies, he launched his company."
+    ],
+    "noteFr": "Participe passé composé : \"Having + p.p.\" indique une cause ou antériorité."
+  },
+  {
+    "id": "con-b2-u07-02",
+    "level": "B2",
+    "unit": 7,
+    "unitTitleFr": "Les propositions participiales et la synthèse concise",
+    "order": 2,
+    "promptFr": "Conçu pour les débutants, ce guide reste très complet.",
+    "answers": [
+      "Designed for beginners, this guide remains very thorough.",
+      "Designed for beginners, this guide is still very comprehensive."
+    ],
+    "noteFr": "Participe passé passif en tête de phrase."
+  },
+  {
+    "id": "con-b2-u07-03",
+    "level": "B2",
+    "unit": 7,
+    "unitTitleFr": "Les propositions participiales et la synthèse concise",
+    "order": 3,
+    "promptFr": "En ouvrant la porte, elle a aperçu le colis.",
+    "answers": [
+      "Opening the door, she noticed the package.",
+      "On opening the door, she saw the parcel."
+    ],
+    "noteFr": "Participe présent pour deux actions simultanées."
+  },
+  {
+    "id": "con-b2-u07-04",
+    "level": "B2",
+    "unit": 7,
+    "unitTitleFr": "Les propositions participiales et la synthèse concise",
+    "order": 4,
+    "promptFr": "Ne sachant pas quoi répondre, il a demandé un délai.",
+    "answers": [
+      "Not knowing what to say, he asked for more time.",
+      "Not knowing how to reply, he asked for some time."
+    ],
+    "noteFr": "Négation du participe : \"Not + verbe-ing\"."
+  },
+  {
+    "id": "con-b2-u07-05",
+    "level": "B2",
+    "unit": 7,
+    "unitTitleFr": "Les propositions participiales et la synthèse concise",
+    "order": 5,
+    "promptFr": "Situé au cœur du Plateau, le cabinet est facile d’accès.",
+    "answers": [
+      "Located in the heart of Plateau, the office is easy to reach."
+    ],
+    "noteFr": "\"Easy to reach\" = facile d’accès."
+  },
+  {
+    "id": "con-b2-u07-06",
+    "level": "B2",
+    "unit": 7,
+    "unitTitleFr": "Les propositions participiales et la synthèse concise",
+    "order": 6,
+    "promptFr": "Fatigués par la route, nous avons préféré dîner à l’hôtel.",
+    "answers": [
+      "Tired from the drive, we preferred to have dinner at the hotel.",
+      "Exhausted by the journey, we preferred dining at the hotel."
+    ],
+    "noteFr": "\"Tired from\" = fatigué par."
+  },
+  {
+    "id": "con-b2-u07-07",
+    "level": "B2",
+    "unit": 7,
+    "unitTitleFr": "Les propositions participiales et la synthèse concise",
+    "order": 7,
+    "promptFr": "Travaillant à temps plein, elle suit pourtant des cours du soir.",
+    "answers": [
+      "Working full-time, she still takes evening classes."
+    ],
+    "noteFr": "\"Full-time\" = à temps plein."
+  },
+  {
+    "id": "con-b2-u07-08",
+    "level": "B2",
+    "unit": 7,
+    "unitTitleFr": "Les propositions participiales et la synthèse concise",
+    "order": 8,
+    "promptFr": "N’ayant reçu aucune confirmation, j’ai rappelé le service client.",
+    "answers": [
+      "Having received no confirmation, I called customer service back."
+    ],
+    "noteFr": "\"Customer service\" = service client."
+  },
+  {
+    "id": "con-b2-u07-09",
+    "level": "B2",
+    "unit": 7,
+    "unitTitleFr": "Les propositions participiales et la synthèse concise",
+    "order": 9,
+    "promptFr": "Écrit dans un style clair, le rapport a convaincu le jury.",
+    "answers": [
+      "Written in a clear style, the report convinced the panel.",
+      "Written clearly, the report convinced the jury."
+    ],
+    "noteFr": "\"Written\" en tête évite une relative lourde."
+  },
+  {
+    "id": "con-b2-u07-10",
+    "level": "B2",
+    "unit": 7,
+    "unitTitleFr": "Les propositions participiales et la synthèse concise",
+    "order": 10,
+    "promptFr": "En comparant les deux offres, on remarque vite la différence.",
+    "answers": [
+      "Comparing the two offers, you quickly notice the difference."
+    ],
+    "noteFr": "\"Comparing...\" synthétise \"When you compare...\"."
+  },
+  {
+    "id": "con-b2-u07-11",
+    "level": "B2",
+    "unit": 7,
+    "unitTitleFr": "Les propositions participiales et la synthèse concise",
+    "order": 11,
+    "promptFr": "Encouragée par ses premiers résultats, elle vise maintenant le niveau B2.",
+    "answers": [
+      "Encouraged by her first results, she is now aiming for B2.",
+      "Encouraged by her initial results, she is now targeting level B2."
+    ],
+    "noteFr": "\"Aim for\" = viser."
+  },
+  {
+    "id": "con-b2-u08-01",
+    "level": "B2",
+    "unit": 8,
+    "unitTitleFr": "Communication professionnelle et négociation nuancée",
+    "order": 1,
+    "promptFr": "Seriez-vous disponible pour faire le point jeudi matin ?",
+    "answers": [
+      "Would you be available to catch up on Thursday morning?",
+      "Would you be available for a quick update on Thursday morning?"
+    ],
+    "noteFr": "\"Catch up\" ou \"have a quick update\" = faire le point."
+  },
+  {
+    "id": "con-b2-u08-02",
+    "level": "B2",
+    "unit": 8,
+    "unitTitleFr": "Communication professionnelle et négociation nuancée",
+    "order": 2,
+    "promptFr": "Je me permets de vous relancer au sujet de notre proposition.",
+    "answers": [
+      "I am following up on our proposal.",
+      "I'm writing to follow up on our proposal."
+    ],
+    "noteFr": "\"Follow up on\" = relancer au sujet de."
+  },
+  {
+    "id": "con-b2-u08-03",
+    "level": "B2",
+    "unit": 8,
+    "unitTitleFr": "Communication professionnelle et négociation nuancée",
+    "order": 3,
+    "promptFr": "Pourrions-nous trouver un compromis sur le calendrier ?",
+    "answers": [
+      "Could we reach a compromise on the timeline?",
+      "Could we find a compromise on the schedule?"
+    ],
+    "noteFr": "\"Reach a compromise\" = trouver un compromis."
+  },
+  {
+    "id": "con-b2-u08-04",
+    "level": "B2",
+    "unit": 8,
+    "unitTitleFr": "Communication professionnelle et négociation nuancée",
+    "order": 4,
+    "promptFr": "Je comprends votre inquiétude ; cependant, ce délai est nécessaire.",
+    "answers": [
+      "I understand your concern; however, this delay is necessary.",
+      "I see your concern; however, this timeframe is needed."
+    ],
+    "noteFr": "Valider le point de vue de l’autre avant de nuancer."
+  },
+  {
+    "id": "con-b2-u08-05",
+    "level": "B2",
+    "unit": 8,
+    "unitTitleFr": "Communication professionnelle et négociation nuancée",
+    "order": 5,
+    "promptFr": "Veuillez trouver ci-joint la version mise à jour du devis.",
+    "answers": [
+      "Please find attached the updated version of the quote."
+    ],
+    "noteFr": "Formule standard d’e-mail : \"Please find attached...\"."
+  },
+  {
+    "id": "con-b2-u08-06",
+    "level": "B2",
+    "unit": 8,
+    "unitTitleFr": "Communication professionnelle et négociation nuancée",
+    "order": 6,
+    "promptFr": "Il serait préférable de clarifier ce point par écrit.",
+    "answers": [
+      "It would be better to clarify this point in writing.",
+      "It would be preferable to clarify this in writing."
+    ],
+    "noteFr": "\"In writing\" = par écrit."
+  },
+  {
+    "id": "con-b2-u08-07",
+    "level": "B2",
+    "unit": 8,
+    "unitTitleFr": "Communication professionnelle et négociation nuancée",
+    "order": 7,
+    "promptFr": "Nous apprécierions votre retour d’ici la fin de la journée.",
+    "answers": [
+      "We would appreciate your feedback by the end of the day."
+    ],
+    "noteFr": "\"By the end of the day\" = d’ici la fin de la journée."
+  },
+  {
+    "id": "con-b2-u08-08",
+    "level": "B2",
+    "unit": 8,
+    "unitTitleFr": "Communication professionnelle et négociation nuancée",
+    "order": 8,
+    "promptFr": "N’hésitez pas à me contacter si vous avez besoin de précisions.",
+    "answers": [
+      "Please do not hesitate to contact me if you need further details.",
+      "Feel free to reach out if you need any clarification."
+    ],
+    "noteFr": "\"Feel free to reach out\" est moderne et poli."
+  },
+  {
+    "id": "con-b2-u08-09",
+    "level": "B2",
+    "unit": 8,
+    "unitTitleFr": "Communication professionnelle et négociation nuancée",
+    "order": 9,
+    "promptFr": "Dans quelle mesure pouvons-nous adapter cette offre ?",
+    "answers": [
+      "To what extent can we adapt this offer?",
+      "To what extent can we tailor this offer?"
+    ],
+    "noteFr": "\"To what extent\" = dans quelle mesure."
+  },
+  {
+    "id": "con-b2-u08-10",
+    "level": "B2",
+    "unit": 8,
+    "unitTitleFr": "Communication professionnelle et négociation nuancée",
+    "order": 10,
+    "promptFr": "Je crains que nous ne puissions pas réduire le tarif davantage.",
+    "answers": [
+      "I am afraid we can't lower the price any further.",
+      "I'm afraid we cannot reduce the rate any further."
+    ],
+    "noteFr": "\"I'm afraid...\" adoucit un refus."
+  },
+  {
+    "id": "con-b2-u08-11",
+    "level": "B2",
+    "unit": 8,
+    "unitTitleFr": "Communication professionnelle et négociation nuancée",
+    "order": 11,
+    "promptFr": "Merci d’avance pour votre réactivité et votre confiance.",
+    "answers": [
+      "Thank you in advance for your prompt response and your trust.",
+      "Thanks in advance for your responsiveness and trust."
+    ],
+    "noteFr": "\"Prompt response\" / \"responsiveness\" = réactivité."
+  }
+]

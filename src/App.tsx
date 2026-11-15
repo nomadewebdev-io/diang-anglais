@@ -13,6 +13,11 @@ import { ProgressView } from './components/ProgressView';
 import { ReviewView } from './components/ReviewView';
 import { SettingsView } from './components/SettingsView';
 import { TodayView } from './components/TodayView';
+import {
+  recordUnitCompletion,
+  unlockNextUnitManually,
+  updateConstructionSM2,
+} from './lib/construction';
 import { calculateStreak, getDefaultTargetLevel } from './lib/planner';
 import { addDaysISO, formatDateISO } from './lib/sm2';
 import {
@@ -26,6 +31,7 @@ import {
 } from './lib/theme';
 import {
   AppState,
+  CEFRLevel,
   PlacementResult,
   PlacementSessionState,
   PlaybackSpeed,
@@ -200,7 +206,7 @@ export function App(): React.ReactElement {
 
   const handleRecordPracticeMinutes = (
     minutes: number,
-    kind: 'flashcards' | 'lesson' | 'dictation' | 'quiz'
+    kind: 'flashcards' | 'lesson' | 'dictation' | 'quiz' | 'construction'
   ) => {
     setState((prev) => ({
       ...prev,
@@ -212,6 +218,59 @@ export function App(): React.ReactElement {
           : prev.dictationCompletedCount,
       quizzesCompletedCount:
         kind === 'quiz' ? prev.quizzesCompletedCount + 1 : prev.quizzesCompletedCount,
+    }));
+  };
+
+  const handleRecordConstructionItemSM2 = (
+    itemId: string,
+    firstTrySuccess: boolean
+  ) => {
+    setState((prev) => ({
+      ...prev,
+      sm2States: {
+        ...prev.sm2States,
+        [itemId]: updateConstructionSM2(
+          prev.sm2States,
+          itemId,
+          firstTrySuccess,
+          todayStr
+        ),
+      },
+      studyDates: registerStudyToday(prev.studyDates),
+    }));
+  };
+
+  const handleCompleteConstructionUnit = (
+    level: CEFRLevel,
+    unit: number,
+    firstTryCorrect: number,
+    total: number
+  ) => {
+    setState((prev) => ({
+      ...prev,
+      constructionProgress: recordUnitCompletion(
+        prev.constructionProgress,
+        level,
+        unit,
+        firstTryCorrect,
+        total,
+        todayStr
+      ),
+      studyDates: registerStudyToday(prev.studyDates),
+    }));
+  };
+
+  const handleUnlockNextConstructionUnit = (
+    level: CEFRLevel,
+    currentUnit: number
+  ) => {
+    setState((prev) => ({
+      ...prev,
+      constructionProgress: unlockNextUnitManually(
+        prev.constructionProgress,
+        level,
+        currentUnit
+      ),
     }));
   };
 
@@ -424,6 +483,8 @@ export function App(): React.ReactElement {
               <TodayView
                 state={state}
                 onRateCard={handleRateCard}
+                onRecordConstructionItemSM2={handleRecordConstructionItemSM2}
+                onCompleteConstructionUnit={handleCompleteConstructionUnit}
                 onCompleteActivity={handleCompleteActivity}
                 onCompleteMilestoneTest={handleCompleteMilestoneTest}
                 onCompleteFinalTest={handleCompleteFinalTest}
@@ -436,6 +497,9 @@ export function App(): React.ReactElement {
               <ReviewView
                 state={state}
                 onRateCard={handleRateCard}
+                onRecordConstructionItemSM2={handleRecordConstructionItemSM2}
+                onCompleteConstructionUnit={handleCompleteConstructionUnit}
+                onUnlockNextConstructionUnit={handleUnlockNextConstructionUnit}
                 onRecordPracticeMinutes={handleRecordPracticeMinutes}
               />
             )}

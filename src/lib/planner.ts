@@ -2,6 +2,7 @@ import { addDaysISO, formatDateISO } from './sm2';
 import { CEFR_LEVELS, getNextHigherLevel } from './placementTest';
 import {
   CEFRLevel,
+  ConstructionItem,
   FeasibilityAnalysis,
   FlashcardItem,
   LearningGoal,
@@ -16,6 +17,7 @@ import {
   StudyPlanConfig,
   StudySession,
 } from './types';
+import { getConstructionUnits } from './construction';
 
 export function getDefaultTargetLevel(currentLevel: CEFRLevel): CEFRLevel {
   return getNextHigherLevel(currentLevel);
@@ -110,6 +112,7 @@ export interface ContentCatalog {
   lessons: LessonItem[];
   placement: PlacementQuestion[];
   sentences: SentenceItem[];
+  constructions?: ConstructionItem[];
 }
 
 function getRelevantLevels(current: CEFRLevel, target: CEFRLevel): CEFRLevel[] {
@@ -135,10 +138,12 @@ function pickCyclingIds<T extends { id: string }>(
   return picked;
 }
 
+export type CoreActivityType = Exclude<SessionActivityType, 'construction'>;
+
 export function allocateSessionMinutes(
   totalMinutes: number,
   weaknesses: SkillType[]
-): Record<SessionActivityType, { minutes: number; isPriority: boolean }> {
+): Record<CoreActivityType, { minutes: number; isPriority: boolean }> {
   const weaknessSet = new Set(weaknesses);
 
   const isVocabWeak = weaknessSet.has('vocab');
@@ -146,7 +151,7 @@ export function allocateSessionMinutes(
   const isListeningWeak = weaknessSet.has('listening');
   const isReadingWeak = weaknessSet.has('reading');
 
-  const rawWeights: Record<SessionActivityType, { weight: number; isPriority: boolean }> = {
+  const rawWeights: Record<CoreActivityType, { weight: number; isPriority: boolean }> = {
     vocab: { weight: isVocabWeak ? 1.5 : 1.0, isPriority: isVocabWeak },
     grammar: { weight: isGrammarWeak ? 1.5 : 1.0, isPriority: isGrammarWeak },
     listening: { weight: isListeningWeak ? 1.5 : 1.0, isPriority: isListeningWeak },
@@ -160,10 +165,10 @@ export function allocateSessionMinutes(
     },
   };
 
-  const types: SessionActivityType[] = ['vocab', 'grammar', 'listening', 'dictation', 'quiz'];
+  const types: CoreActivityType[] = ['vocab', 'grammar', 'listening', 'dictation', 'quiz'];
   const totalWeight = types.reduce((acc, t) => acc + rawWeights[t].weight, 0);
 
-  const result: Record<SessionActivityType, { minutes: number; isPriority: boolean }> = {
+  const result: Record<CoreActivityType, { minutes: number; isPriority: boolean }> = {
     vocab: { minutes: 0, isPriority: rawWeights.vocab.isPriority },
     grammar: { minutes: 0, isPriority: rawWeights.grammar.isPriority },
     listening: { minutes: 0, isPriority: rawWeights.listening.isPriority },
@@ -238,6 +243,12 @@ export function generateStudyPlan(
   const levelSentences = catalog.sentences.filter((s) => relevantLevels.includes(s.level));
   const activeSentences = levelSentences.length > 0 ? levelSentences : catalog.sentences;
 
+  const allConstructions = catalog.constructions ?? [];
+  const levelUnits = getConstructionUnits(allConstructions, config.currentLevel);
+  const fallbackUnits =
+    levelUnits.length > 0 ? levelUnits : getConstructionUnits(allConstructions);
+  let constructionUnitCursor = 0;
+
   const totalSessions = config.durationWeeks * config.sessionsPerWeek;
   const dayStep = Math.max(1, Math.floor(7 / Math.max(1, config.sessionsPerWeek)));
 
@@ -271,6 +282,35 @@ export function generateStudyPlan(
       const listeningCount = allocation.listening.isPriority ? 3 : 2;
       const quizCount = allocation.quiz.isPriority ? 5 : 4;
 
+      const useConstruction = fallbackUnits.length > 0 && globalIdx % 3 === 1;
+      const chosenConstructionUnit = useConstruction
+        ? fallbackUnits[constructionUnitCursor++ % fallbackUnits.length]
+        : null;
+
+      const grammarOrConstructionActivity: SessionActivity = chosenConstructionUnit
+        ? {
+            id: `act-w${week}-s${s}-construction`,
+            type: 'construction',
+            title: `Construis la phrase · Unité ${chosenConstructionUnit.unit}`,
+            description: `${chosenConstructionUnit.unitTitleFr} (${chosenConstructionUnit.level})`,
+            durationMinutes: allocation.grammar.minutes,
+            isPriorityWeakness: allocation.grammar.isPriority,
+            itemIds: chosenConstructionUnit.items.map((item) => item.id),
+            completed: false,
+          }
+        : {
+            id: `act-w${week}-s${s}-grammar`,
+            type: 'grammar',
+            title: 'Grammaire appliquée',
+            description: allocation.grammar.isPriority
+              ? 'Règle structurante, exemples commentés et exercices de renforcement'
+              : 'Point grammatical ciblé et mise en pratique immédiate',
+            durationMinutes: allocation.grammar.minutes,
+            isPriorityWeakness: allocation.grammar.isPriority,
+            itemIds: pickCyclingIds(activeLessons, globalIdx, 1),
+            completed: false,
+          };
+
       const activities: SessionActivity[] = [
         {
           id: `act-w${week}-s${s}-vocab`,
@@ -284,18 +324,7 @@ export function generateStudyPlan(
           itemIds: pickCyclingIds(sortedCards, globalIdx * cardCount, cardCount),
           completed: false,
         },
-        {
-          id: `act-w${week}-s${s}-grammar`,
-          type: 'grammar',
-          title: 'Grammaire appliquée',
-          description: allocation.grammar.isPriority
-            ? 'Règle structurante, exemples commentés et exercices de renforcement'
-            : 'Point grammatical ciblé et mise en pratique immédiate',
-          durationMinutes: allocation.grammar.minutes,
-          isPriorityWeakness: allocation.grammar.isPriority,
-          itemIds: pickCyclingIds(activeLessons, globalIdx, 1),
-          completed: false,
-        },
+        grammarOrConstructionActivity,
         {
           id: `act-w${week}-s${s}-listening`,
           type: 'listening',

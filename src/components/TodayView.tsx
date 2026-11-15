@@ -9,10 +9,12 @@ import {
 import { formatDateISO } from '../lib/sm2';
 import {
   AppState,
+  CEFRLevel,
   SessionActivity,
   SM2CardState,
   StudySession,
 } from '../lib/types';
+import { ConstructionPractice } from './ConstructionPractice';
 import { DictationPractice } from './DictationPractice';
 import { FlashcardsPractice } from './FlashcardsPractice';
 import {
@@ -32,6 +34,13 @@ import { QuizPractice } from './QuizPractice';
 interface TodayViewProps {
   state: AppState;
   onRateCard: (cardId: string, updatedState: SM2CardState) => void;
+  onRecordConstructionItemSM2: (itemId: string, firstTrySuccess: boolean) => void;
+  onCompleteConstructionUnit: (
+    level: CEFRLevel,
+    unit: number,
+    firstTryCorrect: number,
+    total: number
+  ) => void;
   onCompleteActivity: (
     sessionId: string,
     activityId: string,
@@ -52,6 +61,8 @@ interface TodayViewProps {
 export function TodayView({
   state,
   onRateCard,
+  onRecordConstructionItemSM2,
+  onCompleteConstructionUnit,
   onCompleteActivity,
   onCompleteMilestoneTest,
   onCompleteFinalTest,
@@ -172,6 +183,45 @@ export function TodayView({
             onClose={() => setActiveActivity(null)}
             onComplete={(score) => {
               onCompleteActivity(session.id, activity.id, activity.durationMinutes, score);
+              setActiveActivity(null);
+            }}
+          />
+        </div>
+      );
+    }
+
+    if (activity.type === 'construction') {
+      const allConstructions = catalog.constructions ?? [];
+      const unitItems = allConstructions.filter((c) =>
+        activity.itemIds.includes(c.id)
+      );
+      const itemsToUse =
+        unitItems.length > 0 ? unitItems : allConstructions.slice(0, 10);
+      const firstItem = itemsToUse[0];
+
+      return (
+        <div className="max-w-2xl mx-auto">
+          <ConstructionPractice
+            items={itemsToUse}
+            title={activity.title}
+            subtitle={activity.description}
+            onRecordItemSM2={onRecordConstructionItemSM2}
+            onClose={() => setActiveActivity(null)}
+            onComplete={({ firstTryCorrect, total, percentage }) => {
+              if (firstItem) {
+                onCompleteConstructionUnit(
+                  firstItem.level,
+                  firstItem.unit,
+                  firstTryCorrect,
+                  total
+                );
+              }
+              onCompleteActivity(
+                session.id,
+                activity.id,
+                activity.durationMinutes,
+                percentage
+              );
               setActiveActivity(null);
             }}
           />

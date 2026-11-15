@@ -170,6 +170,14 @@ def collect_all_texts() -> dict[str, str]:
             if exercise.get("audioText"):
                 texts_list.append(str(exercise["audioText"]).strip())
 
+    constructions_path = DATA_DIR / "constructions.json"
+    if constructions_path.exists():
+        constructions = json.loads(constructions_path.read_text(encoding="utf-8"))
+        for item in constructions:
+            answers = item.get("answers", [])
+            if isinstance(answers, list) and len(answers) > 0 and answers[0]:
+                texts_list.append(str(answers[0]).strip())
+
     text_to_hash: dict[str, str] = {}
     hash_to_text: dict[str, str] = {}
 
