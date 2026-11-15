@@ -5,24 +5,31 @@ import {
   IconChart,
   IconFlame,
   IconRoadmap,
+  IconSettings,
 } from './components/Icons';
 import { OnboardingFlow } from './components/OnboardingFlow';
 import { ProgramView } from './components/ProgramView';
 import { ProgressView } from './components/ProgressView';
 import { ReviewView } from './components/ReviewView';
+import { SettingsView } from './components/SettingsView';
 import { TodayView } from './components/TodayView';
-import { getDefaultTargetLevel, calculateStreak } from './lib/planner';
+import { calculateStreak, getDefaultTargetLevel } from './lib/planner';
 import { addDaysISO, formatDateISO } from './lib/sm2';
 import {
-  createInitialAppState,
+  clearAppState,
   loadAppState,
   saveAppState,
 } from './lib/storage';
+import {
+  applyThemeToDocument,
+  subscribeToSystemThemeChanges,
+} from './lib/theme';
 import {
   AppState,
   PlacementResult,
   SM2CardState,
   StudyPlan,
+  ThemePreference,
   UserProfile,
 } from './lib/types';
 
@@ -42,6 +49,7 @@ const NAV_TABS: Array<{
 export function App(): React.ReactElement {
   const [state, setState] = useState<AppState>(() => loadAppState());
   const [activeTab, setActiveTab] = useState<MainTab>('today');
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   useEffect(() => {
     document.title = 'Diang-Anglais';
@@ -51,11 +59,34 @@ export function App(): React.ReactElement {
     saveAppState(state);
   }, [state]);
 
+  useEffect(() => {
+    applyThemeToDocument(state.theme);
+    if (state.theme !== 'system') {
+      return;
+    }
+    return subscribeToSystemThemeChanges((prefersDark) => {
+      applyThemeToDocument('system', document, prefersDark);
+    });
+  }, [state.theme]);
+
   const todayStr = formatDateISO(new Date());
   const streak = calculateStreak(state.studyDates, todayStr);
 
   const registerStudyToday = (dates: string[]): string[] => {
     return dates.includes(todayStr) ? dates : [...dates, todayStr];
+  };
+
+  const handleChangeTheme = (theme: ThemePreference) => {
+    setState((prev) => ({
+      ...prev,
+      theme,
+    }));
+  };
+
+  const handleResetAll = () => {
+    const fresh = clearAppState();
+    setState(fresh);
+    setActiveTab('today');
   };
 
   const handleCompleteProfile = (profile: UserProfile) => {
@@ -268,42 +299,69 @@ export function App(): React.ReactElement {
   };
 
   return (
-    <div className="min-h-dvh flex flex-col bg-[#FAF8F5] text-[#111827] pb-20">
+    <div className="min-h-dvh flex flex-col bg-[#FAF8F5] dark:bg-[#141817] text-[#111827] dark:text-[#F3F4F6] pb-20">
       {/* Top Header */}
-      <header className="sticky top-0 z-20 bg-[#FAF8F5]/95 border-b border-[#E4DFD3] px-4 py-3.5">
+      <header className="sticky top-0 z-20 bg-[#FAF8F5]/95 dark:bg-[#141817]/95 border-b border-[#E4DFD3] dark:border-[#343F3B] px-4 py-3.5">
         <div className="max-w-4xl mx-auto flex items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[#0F4C3A] text-[#FAF8F5] flex items-center justify-center font-bold text-sm">
+            <div className="w-8 h-8 rounded-lg bg-[#0F4C3A] text-white flex items-center justify-center font-bold text-sm">
               DA
             </div>
             <div>
-              <span className="font-bold text-base sm:text-lg tracking-tight text-[#111827] block leading-none">
+              <span className="font-bold text-base sm:text-lg tracking-tight text-[#111827] dark:text-[#F3F4F6] block leading-none">
                 Diang-Anglais
               </span>
-              <span className="text-[11px] text-[#6B7280] font-medium">
+              <span className="text-[11px] text-[#6B7280] dark:text-[#9CA3AF] font-medium">
                 Parcours CECRL A1 → B2
               </span>
             </div>
           </div>
 
-          {state.onboardingStep === 'ready' && state.studyPlan && (
-            <div className="flex items-center gap-2.5">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white border border-[#E4DFD3] text-xs font-bold text-[#111827]">
-                <IconFlame className="w-3.5 h-3.5 text-[#C85A32]" />
-                <span>{streak} j</span>
-              </div>
-              <div className="px-2.5 py-1 rounded-full bg-[#E6F0EC] text-[#0F4C3A] text-xs font-bold">
-                {state.studyPlan.config.currentLevel} →{' '}
-                {state.studyPlan.config.targetLevel}
-              </div>
-            </div>
-          )}
+          <div className="flex items-center gap-2">
+            {state.onboardingStep === 'ready' && state.studyPlan && (
+              <>
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] text-xs font-bold text-[#111827] dark:text-[#F3F4F6]">
+                  <IconFlame className="w-3.5 h-3.5 text-[#C85A32]" />
+                  <span>{streak} j</span>
+                </div>
+                <div className="px-2.5 py-1 rounded-full bg-[#E6F0EC] dark:bg-[#13362B] text-[#0F4C3A] dark:text-[#6EE7B7] text-xs font-bold">
+                  {state.studyPlan.config.currentLevel} →{' '}
+                  {state.studyPlan.config.targetLevel}
+                </div>
+              </>
+            )}
+
+            <button
+              type="button"
+              onClick={() => setIsSettingsOpen((prev) => !prev)}
+              aria-label="Ouvrir les paramètres"
+              aria-expanded={isSettingsOpen}
+              className={`p-2 rounded-xl border transition cursor-pointer ${
+                isSettingsOpen
+                  ? 'bg-[#0F4C3A] text-white border-[#0F4C3A]'
+                  : 'bg-white dark:bg-[#1E2422] border-[#E4DFD3] dark:border-[#343F3B] text-[#374151] dark:text-[#D1D5DB] hover:bg-[#F3EFE6] dark:hover:bg-[#252D2A]'
+              }`}
+            >
+              <IconSettings className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </header>
 
       {/* Main Content */}
       <main className="flex-1 w-full max-w-4xl mx-auto px-4 py-5">
-        {state.onboardingStep !== 'ready' || !state.studyPlan ? (
+        {isSettingsOpen ? (
+          <SettingsView
+            state={state}
+            onChangeTheme={handleChangeTheme}
+            onImportState={(imported) => {
+              setState(imported);
+              setIsSettingsOpen(false);
+            }}
+            onResetAll={handleResetAll}
+            onClose={() => setIsSettingsOpen(false)}
+          />
+        ) : state.onboardingStep !== 'ready' || !state.studyPlan ? (
           <OnboardingFlow
             step={state.onboardingStep}
             initialProfile={state.profile}
@@ -356,7 +414,7 @@ export function App(): React.ReactElement {
                     onboardingStep: 'placement',
                   }))
                 }
-                onResetAll={() => setState(createInitialAppState())}
+                onResetAll={handleResetAll}
               />
             )}
           </>
@@ -367,21 +425,24 @@ export function App(): React.ReactElement {
       {state.onboardingStep === 'ready' && state.studyPlan && (
         <nav
           aria-label="Navigation principale"
-          className="fixed bottom-0 inset-x-0 z-30 bg-white border-t border-[#E4DFD3] px-2 py-1.5"
+          className="fixed bottom-0 inset-x-0 z-30 bg-white dark:bg-[#1E2422] border-t border-[#E4DFD3] dark:border-[#343F3B] px-2 py-1.5"
         >
           <div className="max-w-md mx-auto grid grid-cols-4 gap-1">
             {NAV_TABS.map((tab) => {
               const Icon = tab.icon;
-              const isActive = activeTab === tab.id;
+              const isActive = activeTab === tab.id && !isSettingsOpen;
               return (
                 <button
                   key={tab.id}
                   type="button"
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => {
+                    setIsSettingsOpen(false);
+                    setActiveTab(tab.id);
+                  }}
                   className={`flex flex-col items-center justify-center py-2 px-1 rounded-xl text-xs font-semibold transition cursor-pointer ${
                     isActive
-                      ? 'text-[#0F4C3A] bg-[#E6F0EC]/70'
-                      : 'text-[#6B7280] hover:text-[#111827]'
+                      ? 'text-[#0F4C3A] dark:text-[#6EE7B7] bg-[#E6F0EC]/70 dark:bg-[#13362B]'
+                      : 'text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#111827] dark:hover:text-[#F3F4F6]'
                   }`}
                 >
                   <Icon className="w-5 h-5 mb-0.5" />

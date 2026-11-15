@@ -1,16 +1,125 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color: #111827;
-    background-color: #FAF8F5;
-  }
+@custom-variant dark (&:where(.dark, .dark *));
 
+:root {
+  --bg-page: #FAF8F5;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F3EFE6;
+  --border-base: #E4DFD3;
+  --border-strong: #D5CFC2;
+  --text-main: #111827;
+  --text-secondary: #374151;
+  --text-muted: #4B5563;
+  --brand-green: #0F4C3A;
+  --brand-green-hover: #0A3628;
+  --brand-green-surface: #E6F0EC;
+  --brand-green-text: #0F4C3A;
+  --accent-terra: #C85A32;
+  --accent-terra-hover: #B04B25;
+  --accent-terra-surface: #FDF1EC;
+  --accent-terra-text: #9A3412;
+
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-page);
+}
+
+.dark {
+  --bg-page: #141817;
+  --bg-card: #1E2422;
+  --bg-subtle: #252D2A;
+  --border-base: #343F3B;
+  --border-strong: #45534E;
+  --text-main: #F3F4F6;
+  --text-secondary: #D1D5DB;
+  --text-muted: #9CA3AF;
+  --brand-green: #0F4C3A;
+  --brand-green-hover: #14634C;
+  --brand-green-surface: #13362B;
+  --brand-green-text: #6EE7B7;
+  --accent-terra: #C85A32;
+  --accent-terra-hover: #D96B43;
+  --accent-terra-surface: #3A2018;
+  --accent-terra-text: #FDBA8C;
+}
+
+@layer base {
   body {
     margin: 0;
     min-height: 100dvh;
-    background-color: #FAF8F5;
-    color: #111827;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    transition: background-color 150ms ease, color 150ms ease;
   }
+
+  input,
+  select,
+  textarea {
+    color: var(--text-main);
+  }
+}
+
+/* Harmonisation globale des surfaces et contrastes WCAG AA en mode sombre */
+.dark .bg-\[\#FAF8F5\],
+.dark .bg-\[\#FAF8F5\]\/95,
+.dark .bg-\[\#FAF8F5\]\/60,
+.dark .bg-\[\#FAF8F5\]\/50 {
+  background-color: var(--bg-subtle) !important;
+}
+
+.dark header.bg-\[\#FAF8F5\]\/95 {
+  background-color: rgba(20, 24, 23, 0.95) !important;
+}
+
+.dark .bg-white {
+  background-color: var(--bg-card) !important;
+}
+
+.dark .bg-\[\#F3EFE6\] {
+  background-color: #2C3632 !important;
+}
+
+.dark .border-\[\#E4DFD3\] {
+  border-color: var(--border-base) !important;
+}
+
+.dark .border-\[\#D5CFC2\],
+.dark .border-\[\#C5BEB0\] {
+  border-color: var(--border-strong) !important;
+}
+
+.dark .text-\[\#111827\],
+.dark .text-\[\#1F2937\] {
+  color: var(--text-main) !important;
+}
+
+.dark .text-\[\#374151\],
+.dark .text-\[\#4B5563\] {
+  color: var(--text-secondary) !important;
+}
+
+.dark .text-\[\#6B7280\] {
+  color: var(--text-muted) !important;
+}
+
+.dark .bg-\[\#E6F0EC\],
+.dark .bg-\[\#E6F0EC\]\/70,
+.dark .bg-\[\#E6F0EC\]\/60,
+.dark .bg-\[\#E6F0EC\]\/50 {
+  background-color: var(--brand-green-surface) !important;
+}
+
+.dark .text-\[\#0F4C3A\] {
+  color: var(--brand-green-text) !important;
+}
+
+.dark .bg-\[\#FDF1EC\],
+.dark .bg-\[\#FDF1EC\]\/70 {
+  background-color: var(--accent-terra-surface) !important;
+}
+
+.dark .text-\[\#9A3412\],
+.dark .text-\[\#C85A32\] {
+  color: var(--accent-terra-text) !important;
 }

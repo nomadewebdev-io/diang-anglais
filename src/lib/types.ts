@@ -6,6 +6,8 @@ export type SkillType = 'vocab' | 'grammar' | 'reading' | 'listening';
 
 export type SM2Rating = 'again' | 'hard' | 'good' | 'easy';
 
+export type ThemePreference = 'light' | 'dark' | 'system';
+
 export interface FlashcardItem {
   id: string;
   en: string;
@@ -162,6 +164,7 @@ export type OnboardingStep = 'profile' | 'placement' | 'plan' | 'ready';
 
 export interface AppState {
   version: number;
+  theme: ThemePreference;
   onboardingStep: OnboardingStep;
   profile: UserProfile | null;
   placementResult: PlacementResult | null;
