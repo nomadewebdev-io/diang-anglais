@@ -18,7 +18,12 @@ import {
   unlockNextUnitManually,
   updateConstructionSM2,
 } from './lib/construction';
-import { calculateStreak, getDefaultTargetLevel } from './lib/planner';
+import { getDefaultTargetLevel } from './lib/planner';
+import {
+  calculateActivityXP,
+  calculateStrictStreak,
+  computeBadges,
+} from './lib/progression';
 import { addDaysISO, formatDateISO } from './lib/sm2';
 import {
   clearAppState,
@@ -79,7 +84,11 @@ export function App(): React.ReactElement {
   }, [state.theme]);
 
   const todayStr = formatDateISO(new Date());
-  const streak = calculateStreak(state.studyDates, todayStr);
+  const streak = calculateStrictStreak(
+    state.dailyLogs,
+    todayStr,
+    state.studyDates
+  );
 
   const registerStudyToday = (dates: string[]): string[] => {
     return dates.includes(todayStr) ? dates : [...dates, todayStr];
@@ -103,6 +112,14 @@ export function App(): React.ReactElement {
     setState((prev) => ({
       ...prev,
       playbackRate,
+    }));
+  };
+
+  const handleChangeDailyNewCardsLimit = (limit: number) => {
+    const safeLimit = Math.min(100, Math.max(5, Math.round(limit)));
+    setState((prev) => ({
+      ...prev,
+      dailyNewCardsLimit: safeLimit,
     }));
   };
 
@@ -155,24 +172,67 @@ export function App(): React.ReactElement {
   };
 
   const handleRateCard = (cardId: string, updatedState: SM2CardState) => {
-    setState((prev) => ({
-      ...prev,
-      sm2States: {
-        ...prev.sm2States,
-        [cardId]: updatedState,
-      },
-      studyDates: registerStudyToday(prev.studyDates),
-    }));
+    setState((prev) => {
+      const isNewCard = !prev.sm2States[cardId];
+      const currentLog = prev.dailyLogs[todayStr] ?? {
+        sessionsCompleted: 0,
+        validatedMinutes: 0,
+        bonusSessions: 0,
+        newCardsCount: 0,
+        xpEarned: 0,
+      };
+      return {
+        ...prev,
+        sm2States: {
+          ...prev.sm2States,
+          [cardId]: updatedState,
+        },
+        dailyLogs: isNewCard
+          ? {
+              ...prev.dailyLogs,
+              [todayStr]: {
+                ...currentLog,
+                newCardsCount: currentLog.newCardsCount + 1,
+              },
+            }
+          : prev.dailyLogs,
+        studyDates: registerStudyToday(prev.studyDates),
+      };
+    });
   };
 
   const handleCompleteActivity = (
     sessionId: string,
     activityId: string,
     minutesEarned: number,
-    score?: number
+    score?: number,
+    answeredRatio: number = 1
   ) => {
     setState((prev) => {
       if (!prev.studyPlan) return prev;
+
+      const targetSession = prev.studyPlan.sessions.find((s) => s.id === sessionId);
+      const targetActivity = targetSession?.activities.find(
+        (a) => a.id === activityId
+      );
+      const isRepeat = Boolean(targetActivity?.completed);
+      const currentLog = prev.dailyLogs[todayStr] ?? {
+        sessionsCompleted: 0,
+        validatedMinutes: 0,
+        bonusSessions: 0,
+        newCardsCount: 0,
+        xpEarned: 0,
+      };
+
+      const bonusSessionIndexToday =
+        currentLog.sessionsCompleted >= 1 ? currentLog.sessionsCompleted : 0;
+
+      const xpEval = calculateActivityXP({
+        durationMinutes: minutesEarned,
+        answeredRatio,
+        isRepeat,
+        bonusSessionIndexToday,
+      });
 
       const updatedSessions = prev.studyPlan.sessions.map((session) => {
         if (session.id !== sessionId) return session;
@@ -192,14 +252,49 @@ export function App(): React.ReactElement {
         };
       });
 
-      return {
+      const wasSessionCompleted = Boolean(targetSession?.completed);
+      const updatedTarget = updatedSessions.find((s) => s.id === sessionId);
+      const justFinishedSession =
+        !wasSessionCompleted && Boolean(updatedTarget?.completed);
+
+      const nextSessionsCompleted =
+        currentLog.sessionsCompleted + (justFinishedSession ? 1 : 0);
+      const nextBonusSessions =
+        justFinishedSession && currentLog.sessionsCompleted >= 1
+          ? currentLog.bonusSessions + 1
+          : currentLog.bonusSessions;
+
+      const nextDailyLogs = {
+        ...prev.dailyLogs,
+        [todayStr]: {
+          ...currentLog,
+          sessionsCompleted: nextSessionsCompleted,
+          validatedMinutes:
+            currentLog.validatedMinutes + (xpEval.eligible ? minutesEarned : 0),
+          bonusSessions: nextBonusSessions,
+          xpEarned: currentLog.xpEarned + xpEval.xp,
+        },
+      };
+
+      const nextStateDraft: AppState = {
         ...prev,
+        xp: prev.xp + xpEval.xp,
+        dailyLogs: nextDailyLogs,
         studyPlan: {
           ...prev.studyPlan,
           sessions: updatedSessions,
         },
         studyDates: registerStudyToday(prev.studyDates),
         totalMinutesStudied: prev.totalMinutesStudied + minutesEarned,
+      };
+
+      const newlyEarned = computeBadges(nextStateDraft, todayStr)
+        .filter((b) => b.earned)
+        .map((b) => b.id);
+
+      return {
+        ...nextStateDraft,
+        earnedBadges: newlyEarned,
       };
     });
   };
@@ -394,7 +489,7 @@ export function App(): React.ReactElement {
   return (
     <div className="min-h-dvh flex flex-col bg-[#FAF8F5] dark:bg-[#141817] text-[#111827] dark:text-[#F3F4F6] pb-20">
       {/* Top Header */}
-      <header className="sticky top-0 z-20 bg-[#FAF8F5]/95 dark:bg-[#141817]/95 border-b border-[#E4DFD3] dark:border-[#343F3B] px-4 py-3.5">
+      <header className="sticky top-0 z-20 bg-[#FAF8F5] dark:bg-[#141817] border-b border-[#E4DFD3] dark:border-[#343F3B] px-4 pt-[calc(0.875rem+env(safe-area-inset-top))] pb-3.5">
         <div className="max-w-4xl mx-auto flex items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-[#0F4C3A] text-white flex items-center justify-center font-bold text-sm">
@@ -449,6 +544,7 @@ export function App(): React.ReactElement {
             onChangeTheme={handleChangeTheme}
             onChangeVoice={handleChangeVoice}
             onChangePlaybackRate={handleChangePlaybackRate}
+            onChangeDailyNewCardsLimit={handleChangeDailyNewCardsLimit}
             onImportState={(imported) => {
               setState(imported);
               setIsSettingsOpen(false);
@@ -537,7 +633,7 @@ export function App(): React.ReactElement {
       {state.onboardingStep === 'ready' && state.studyPlan && (
         <nav
           aria-label="Navigation principale"
-          className="fixed bottom-0 inset-x-0 z-30 bg-white dark:bg-[#1E2422] border-t border-[#E4DFD3] dark:border-[#343F3B] px-2 py-1.5"
+          className="fixed bottom-0 inset-x-0 z-30 bg-white dark:bg-[#1E2422] border-t border-[#E4DFD3] dark:border-[#343F3B] px-2 pt-1.5 pb-[calc(0.375rem+env(safe-area-inset-bottom))]"
         >
           <div className="max-w-md mx-auto grid grid-cols-4 gap-1">
             {NAV_TABS.map((tab) => {

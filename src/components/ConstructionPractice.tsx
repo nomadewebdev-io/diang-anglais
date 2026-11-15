@@ -29,6 +29,7 @@ interface ConstructionPracticeProps {
     firstTryCorrect: number;
     total: number;
     percentage: number;
+    answeredRatio: number;
   }) => void;
   onSkipToNextUnit?: () => void;
   onClose?: () => void;
@@ -58,6 +59,7 @@ export function ConstructionPractice({
   const [typedAnswer, setTypedAnswer] = useState('');
   const [feedback, setFeedback] = useState<StepFeedback>(null);
   const [firstTrySuccessIds, setFirstTrySuccessIds] = useState<string[]>([]);
+  const [dontKnowIds, setDontKnowIds] = useState<string[]>([]);
   const [completedUniqueIds, setCompletedUniqueIds] = useState<string[]>([]);
   const [completionRecorded, setCompletionRecorded] = useState(false);
 
@@ -91,6 +93,10 @@ export function ConstructionPractice({
   const firstTryCount = firstTrySuccessIds.length;
   const scorePercentage =
     totalUnique > 0 ? Math.round((firstTryCount / totalUnique) * 100) : 100;
+  const answeredRatio =
+    totalUnique > 0
+      ? Math.max(0, (totalUnique - dontKnowIds.length) / totalUnique)
+      : 1;
 
   useEffect(() => {
     if (queue.length === 0 && totalUnique > 0 && !completionRecorded) {
@@ -151,6 +157,7 @@ export function ConstructionPractice({
                 firstTryCorrect: firstTryCount,
                 total: totalUnique,
                 percentage: scorePercentage,
+                answeredRatio,
               })
             }
             className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#0F4C3A] hover:bg-[#0A3628] text-white text-sm font-semibold transition cursor-pointer"
@@ -166,6 +173,7 @@ export function ConstructionPractice({
                   firstTryCorrect: firstTryCount,
                   total: totalUnique,
                   percentage: scorePercentage,
+                  answeredRatio,
                 });
                 onSkipToNextUnit();
               }}
@@ -217,6 +225,9 @@ export function ConstructionPractice({
 
   const handleDontKnow = () => {
     if (feedback) return;
+    setDontKnowIds((prev) =>
+      prev.includes(currentItem.id) ? prev : [...prev, currentItem.id]
+    );
     const evaluation = evaluateConstruction('', currentItem.answers);
     setFeedback({
       kind: 'dont_know',

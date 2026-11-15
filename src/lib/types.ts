@@ -225,11 +225,23 @@ export interface UserProfile {
 
 export type OnboardingStep = 'profile' | 'placement' | 'plan' | 'ready';
 
+export interface DailyActivityLog {
+  sessionsCompleted: number;
+  validatedMinutes: number;
+  bonusSessions: number;
+  newCardsCount: number;
+  xpEarned: number;
+}
+
 export interface AppState {
   version: number;
   theme: ThemePreference;
   voiceId: VoiceId;
   playbackRate: PlaybackSpeed;
+  dailyNewCardsLimit: number;
+  xp: number;
+  dailyLogs: Record<string, DailyActivityLog>;
+  earnedBadges: string[];
   onboardingStep: OnboardingStep;
   profile: UserProfile | null;
   placementResult: PlacementResult | null;

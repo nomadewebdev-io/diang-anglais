@@ -6,8 +6,9 @@ import {
   isUnitUnlocked,
   UNIT_UNLOCK_THRESHOLD,
 } from '../lib/construction';
+import { getDueAndNewCardsForToday } from '../lib/progression';
 import { CEFR_LEVELS, SKILL_LABELS_FR } from '../lib/placementTest';
-import { formatDateISO, getDueCards } from '../lib/sm2';
+import { formatDateISO } from '../lib/sm2';
 import { AppState, CEFRLevel, SkillType, SM2CardState } from '../lib/types';
 import { ConstructionPractice } from './ConstructionPractice';
 import { DictationPractice } from './DictationPractice';
@@ -67,6 +68,7 @@ export function ReviewView({
   const [activeConstructionUnit, setActiveConstructionUnit] = useState<number | null>(
     null
   );
+  const [includeNewCards, setIncludeNewCards] = useState(false);
 
   const todayStr = formatDateISO(new Date());
 
@@ -74,12 +76,23 @@ export function ReviewView({
     levelFilter === 'ALL'
       ? catalog.cards
       : catalog.cards.filter((c) => c.level === levelFilter);
-  const dueCards = getDueCards(filteredCards, state.sm2States, todayStr);
+  const todayNewCount = state.dailyLogs[todayStr]?.newCardsCount ?? 0;
+  const { dueCards, newCards, remainingNewQuota } = getDueAndNewCardsForToday(
+    filteredCards,
+    state.sm2States,
+    todayNewCount,
+    state.dailyNewCardsLimit ?? 20,
+    todayStr
+  );
 
-  const dueTodayCount = catalog.cards.filter((c) => {
-    const st = state.sm2States[c.id];
-    return !st || st.nextReviewDate <= todayStr;
-  }).length;
+  const { dueCards: allDueCards } = getDueAndNewCardsForToday(
+    catalog.cards,
+    state.sm2States,
+    todayNewCount,
+    state.dailyNewCardsLimit ?? 20,
+    todayStr
+  );
+  const dueTodayCount = allDueCards.length;
 
   const allConstructions = catalog.constructions ?? [];
   const constructionUnits = getConstructionUnits(allConstructions, constructionLevel);
@@ -283,10 +296,57 @@ export function ReviewView({
   }
 
   if (mode === 'flashcards') {
+    const cardsToPractice =
+      dueCards.length > 0
+        ? dueCards.slice(0, 12)
+        : includeNewCards
+          ? newCards.slice(0, 12)
+          : [];
+
+    if (cardsToPractice.length === 0) {
+      return (
+        <div className="max-w-2xl mx-auto bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] rounded-2xl p-6 text-center space-y-4">
+          <h2 className="text-lg font-bold text-[#111827] dark:text-[#F3F4F6]">
+            Révisions à jour, reviens demain pour consolider
+          </h2>
+          <p className="text-sm text-[#4B5563] dark:text-[#D1D5DB]">
+            {remainingNewQuota > 0 && newCards.length > 0
+              ? `Aucune carte SM-2 n’est due pour l’instant. Vous pouvez découvrir jusqu’à ${Math.min(remainingNewQuota, newCards.length)} nouvelles cartes ou pratiquer une autre activité.`
+              : 'Toutes vos révisions SM-2 sont à jour et votre plafond quotidien de nouvelles cartes est atteint.'}
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {remainingNewQuota > 0 && newCards.length > 0 && (
+              <button
+                type="button"
+                onClick={() => setIncludeNewCards(true)}
+                className="px-4 py-2.5 rounded-xl bg-[#0F4C3A] hover:bg-[#0A3628] text-white text-xs sm:text-sm font-semibold transition cursor-pointer"
+              >
+                Découvrir de nouvelles cartes ({Math.min(12, newCards.length)})
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={() => setMode('construction')}
+              className="px-4 py-2.5 rounded-xl border border-[#D5CFC2] dark:border-[#45534E] bg-[#FAF8F5] dark:bg-[#252D2A] text-[#111827] dark:text-[#F3F4F6] text-xs sm:text-sm font-semibold transition cursor-pointer"
+            >
+              Ouvrir Construire
+            </button>
+            <button
+              type="button"
+              onClick={() => setMode('menu')}
+              className="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#111827] dark:hover:text-[#F3F4F6] cursor-pointer"
+            >
+              Retour
+            </button>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="max-w-2xl mx-auto">
         <FlashcardsPractice
-          cards={dueCards.slice(0, 12)}
+          cards={cardsToPractice}
           sm2States={state.sm2States}
           title={
             levelFilter === 'ALL'
@@ -294,9 +354,13 @@ export function ReviewView({
               : `Révision SM-2 · Niveau ${levelFilter}`
           }
           onRateCard={onRateCard}
-          onClose={() => setMode('menu')}
+          onClose={() => {
+            setIncludeNewCards(false);
+            setMode('menu');
+          }}
           onComplete={(count) => {
             onRecordPracticeMinutes(Math.max(5, count * 2), 'flashcards');
+            setIncludeNewCards(false);
             setMode('menu');
           }}
         />
@@ -427,7 +491,9 @@ export function ReviewView({
                 <IconCards className="w-5 h-5" />
               </span>
               <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-[#FDF1EC] text-[#C85A32]">
-                {dueTodayCount} cartes à revoir aujourd’hui
+                {dueTodayCount === 0
+                  ? 'Révisions à jour'
+                  : `${dueTodayCount} cartes à revoir aujourd’hui`}
               </span>
             </div>
             <h2 className="text-lg font-bold text-[#111827] mb-1">
@@ -440,10 +506,17 @@ export function ReviewView({
           </div>
           <button
             type="button"
-            onClick={() => setMode('flashcards')}
+            onClick={() => {
+              setIncludeNewCards(false);
+              setMode('flashcards');
+            }}
             className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[#0F4C3A] hover:bg-[#0A3628] text-white text-xs sm:text-sm font-semibold transition cursor-pointer"
           >
-            Lancer une série de cartes ({dueCards.length} disponibles)
+            {dueCards.length > 0
+              ? `Réviser les cartes dues (${dueCards.length})`
+              : newCards.length > 0 && remainingNewQuota > 0
+                ? `Découvrir de nouvelles cartes (${Math.min(remainingNewQuota, newCards.length)} dispo)`
+                : 'Révisions à jour'}
           </button>
         </div>
 

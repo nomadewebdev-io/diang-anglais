@@ -6,6 +6,7 @@ import {
   generateStudyPlan,
   getMilestoneWeeks,
 } from '../lib/planner';
+import { formatFrenchDateNatural } from '../lib/progression';
 import { formatDateISO } from '../lib/sm2';
 import {
   AppState,
@@ -362,7 +363,7 @@ export function ProgramView({
             <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
               <div>
                 <span className="text-xs font-bold text-[#0F4C3A] block">
-                  Date planifiée : {session.scheduledDate} · Niveau {session.level}
+                  Prévue : {formatFrenchDateNatural(session.scheduledDate)} · Niveau {session.level}
                 </span>
                 <h3 className="text-base font-bold text-[#111827]">{session.title}</h3>
               </div>

@@ -68,8 +68,12 @@
   background-color: var(--bg-subtle) !important;
 }
 
-.dark header.bg-\[\#FAF8F5\]\/95 {
-  background-color: rgba(20, 24, 23, 0.95) !important;
+.dark header {
+  background-color: var(--bg-page) !important;
+}
+
+.dark nav {
+  background-color: var(--bg-card) !important;
 }
 
 .dark .bg-white {
@@ -122,4 +126,15 @@
 .dark .text-\[\#9A3412\],
 .dark .text-\[\#C85A32\] {
   color: var(--accent-terra-text) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

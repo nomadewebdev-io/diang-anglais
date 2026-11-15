@@ -33,6 +33,7 @@ interface SettingsViewProps {
   onChangeTheme: (theme: ThemePreference) => void;
   onChangeVoice?: (voiceId: VoiceId) => void;
   onChangePlaybackRate?: (rate: PlaybackSpeed) => void;
+  onChangeDailyNewCardsLimit?: (limit: number) => void;
   onImportState: (newState: AppState) => void;
   onResetAll: () => void;
   onClose: () => void;
@@ -69,6 +70,7 @@ export function SettingsView({
   onChangeTheme,
   onChangeVoice,
   onChangePlaybackRate,
+  onChangeDailyNewCardsLimit,
   onImportState,
   onResetAll,
   onClose,
@@ -371,6 +373,40 @@ export function SettingsView({
               </button>
             );
           })}
+        </div>
+      </div>
+
+      {/* Daily New Cards Soft Limit */}
+      <div className="bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] rounded-2xl p-6">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h2 className="text-base font-bold text-[#111827] dark:text-[#F3F4F6] mb-1">
+              Plafond de nouvelles cartes SM-2 par jour
+            </h2>
+            <p className="text-xs sm:text-sm text-[#4B5563] dark:text-[#D1D5DB]">
+              Limite souple recommandée pour mémoriser durablement sans surcharge (20 par défaut).
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            {[10, 20, 30, 50].map((val) => {
+              const active = (state.dailyNewCardsLimit ?? 20) === val;
+              return (
+                <button
+                  key={val}
+                  type="button"
+                  onClick={() => onChangeDailyNewCardsLimit?.(val)}
+                  aria-pressed={active}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
+                    active
+                      ? 'bg-[#0F4C3A] text-white'
+                      : 'border border-[#D5CFC2] dark:border-[#45534E] bg-[#FAF8F5] dark:bg-[#252D2A] text-[#374151] dark:text-[#D1D5DB]'
+                  }`}
+                >
+                  {val} / j
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 

@@ -45,6 +45,10 @@ export function createInitialAppState(): AppState {
     theme: 'system',
     voiceId: DEFAULT_VOICE_ID,
     playbackRate: DEFAULT_PLAYBACK_RATE,
+    dailyNewCardsLimit: 20,
+    xp: 0,
+    dailyLogs: {},
+    earnedBadges: [],
     onboardingStep: 'profile',
     profile: null,
     placementResult: null,
@@ -221,11 +225,34 @@ export function migrateAndValidateState(
     ? normalizeStringArray([...rawSeenIds, ...placementSession.questionIds])
     : rawSeenIds;
 
+  const dailyNewCardsLimit =
+    typeof candidate.dailyNewCardsLimit === 'number' &&
+    Number.isFinite(candidate.dailyNewCardsLimit) &&
+    candidate.dailyNewCardsLimit >= 5 &&
+    candidate.dailyNewCardsLimit <= 100
+      ? Math.round(candidate.dailyNewCardsLimit)
+      : 20;
+
+  const xp =
+    typeof candidate.xp === 'number' && Number.isFinite(candidate.xp)
+      ? Math.max(0, Math.round(candidate.xp))
+      : 0;
+
+  const dailyLogs = isPlainObject(candidate.dailyLogs)
+    ? (candidate.dailyLogs as unknown as AppState['dailyLogs'])
+    : {};
+
+  const earnedBadges = normalizeStringArray(candidate.earnedBadges);
+
   return {
     version: CURRENT_SCHEMA_VERSION,
     theme,
     voiceId,
     playbackRate,
+    dailyNewCardsLimit,
+    xp,
+    dailyLogs,
+    earnedBadges,
     onboardingStep,
     profile,
     placementResult,

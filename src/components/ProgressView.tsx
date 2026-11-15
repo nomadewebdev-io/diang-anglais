@@ -5,7 +5,7 @@ import {
   getPlacementLockStatus,
   SKILL_LABELS_FR,
 } from '../lib/placementTest';
-import { calculateStreak } from '../lib/planner';
+import { calculateStrictStreak } from '../lib/progression';
 import { formatDateISO } from '../lib/sm2';
 import {
   parseImportedProgressJSON,
@@ -48,7 +48,7 @@ export function ProgressView({
   const lockStatus = getPlacementLockStatus(state.placementResult);
 
   const todayStr = formatDateISO(new Date());
-  const streak = calculateStreak(state.studyDates, todayStr);
+  const streak = calculateStrictStreak(state.dailyLogs, todayStr, state.studyDates);
 
   // SM-2 Card Mastery Stats
   const totalCards = catalog.cards.length;
@@ -183,9 +183,12 @@ export function ProgressView({
           </div>
 
           <div className="p-4 rounded-xl bg-[#FAF8F5] border border-[#E4DFD3]">
-            <div className="text-xs text-[#6B7280] mb-1">Dictées & Quiz validés</div>
+            <div className="text-xs text-[#6B7280] mb-1">Expérience &amp; Activités</div>
             <div className="text-2xl font-bold text-[#111827]">
-              {state.dictationCompletedCount + state.quizzesCompletedCount}
+              {state.xp} XP
+            </div>
+            <div className="text-[11px] text-[#6B7280] mt-0.5">
+              {state.dictationCompletedCount + state.quizzesCompletedCount} dictées &amp; quiz
             </div>
           </div>
         </div>
