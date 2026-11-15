@@ -8,6 +8,23 @@ export type SM2Rating = 'again' | 'hard' | 'good' | 'easy';
 
 export type ThemePreference = 'light' | 'dark' | 'system';
 
+export type VoiceId = 'aminata' | 'fatou' | 'khady' | 'moussa' | 'cheikh' | 'ibrahima';
+
+export type PlaybackSpeed = 0.8 | 1 | 1.2;
+
+export interface VoiceProfile {
+  id: VoiceId;
+  name: string;
+  prenom: string;
+  gender: 'female' | 'male';
+  genre: 'femme' | 'homme';
+  accent: 'US' | 'GB';
+  locale: 'en-US' | 'en-GB';
+  accentLabel: string;
+  model: string;
+  license: string;
+}
+
 export interface FlashcardItem {
   id: string;
   en: string;
@@ -184,6 +201,8 @@ export type OnboardingStep = 'profile' | 'placement' | 'plan' | 'ready';
 export interface AppState {
   version: number;
   theme: ThemePreference;
+  voiceId: VoiceId;
+  playbackRate: PlaybackSpeed;
   onboardingStep: OnboardingStep;
   profile: UserProfile | null;
   placementResult: PlacementResult | null;

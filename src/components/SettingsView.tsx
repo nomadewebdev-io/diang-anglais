@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
+import {
+  PLAYBACK_SPEED_OPTIONS,
+  playAudio,
+  VOICE_SAMPLE_TEXT,
+  VOICES,
+} from '../lib/audio';
 import { formatDateISO } from '../lib/sm2';
 import {
   parseImportedProgressJSON,
   serializeProgressJSON,
 } from '../lib/storage';
-import { AppState, ThemePreference } from '../lib/types';
+import {
+  AppState,
+  PlaybackSpeed,
+  ThemePreference,
+  VoiceId,
+} from '../lib/types';
 import {
   IconAlert,
   IconArrowLeft,
@@ -14,11 +25,14 @@ import {
   IconMoon,
   IconSun,
   IconUpload,
+  IconVolume,
 } from './Icons';
 
 interface SettingsViewProps {
   state: AppState;
   onChangeTheme: (theme: ThemePreference) => void;
+  onChangeVoice?: (voiceId: VoiceId) => void;
+  onChangePlaybackRate?: (rate: PlaybackSpeed) => void;
   onImportState: (newState: AppState) => void;
   onResetAll: () => void;
   onClose: () => void;
@@ -53,6 +67,8 @@ const THEME_OPTIONS: Array<{
 export function SettingsView({
   state,
   onChangeTheme,
+  onChangeVoice,
+  onChangePlaybackRate,
   onImportState,
   onResetAll,
   onClose,
@@ -62,8 +78,25 @@ export function SettingsView({
     message: string;
   } | null>(null);
   const [confirmReset, setConfirmReset] = useState(false);
+  const [previewingVoiceId, setPreviewingVoiceId] = useState<VoiceId | null>(null);
 
   const todayStr = formatDateISO(new Date());
+  const selectedVoiceId: VoiceId = state.voiceId ?? 'aminata';
+  const selectedPlaybackRate: PlaybackSpeed = state.playbackRate ?? 1;
+
+  const handlePreviewVoice = async (voiceId: VoiceId) => {
+    setPreviewingVoiceId(voiceId);
+    try {
+      await playAudio(VOICE_SAMPLE_TEXT, {
+        voiceId,
+        playbackRate: selectedPlaybackRate,
+      });
+    } finally {
+      window.setTimeout(() => {
+        setPreviewingVoiceId((prev) => (prev === voiceId ? null : prev));
+      }, 900);
+    }
+  };
 
   const handleExportJSON = () => {
     const jsonString = serializeProgressJSON(state);
@@ -119,7 +152,7 @@ export function SettingsView({
               Paramètres
             </h1>
             <p className="text-xs sm:text-sm text-[#4B5563] dark:text-[#D1D5DB]">
-              Apparence, sauvegarde JSON et gestion de vos données locales.
+              Voix du professeur, apparence, sauvegarde JSON et gestion des données.
             </p>
           </div>
         </div>
@@ -131,6 +164,158 @@ export function SettingsView({
           Retour
         </button>
       </div>
+
+      {/* Section Voix du professeur */}
+      <section
+        aria-labelledby="voice-settings-heading"
+        className="bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] rounded-2xl p-6 space-y-5"
+      >
+        <div className="flex flex-wrap items-start justify-between gap-2">
+          <div>
+            <h2
+              id="voice-settings-heading"
+              className="text-base font-bold text-[#111827] dark:text-[#F3F4F6]"
+            >
+              Voix du professeur
+            </h2>
+            <p className="text-xs sm:text-sm text-[#4B5563] dark:text-[#D1D5DB] mt-0.5">
+              Choisissez la voix anglaise utilisée pour les cartes, la dictée, les leçons et le test
+              de niveau.
+            </p>
+          </div>
+          <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-[#E6F0EC] dark:bg-[#13362B] text-[#0F4C3A] dark:text-[#6EE7B7]">
+            Voix de synthèse naturelle
+          </span>
+        </div>
+
+        <div
+          role="radiogroup"
+          aria-label="Sélection de la voix du professeur"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+        >
+          {VOICES.map((voice) => {
+            const isSelected = selectedVoiceId === voice.id;
+            const isPreviewing = previewingVoiceId === voice.id;
+            const genderLabel = voice.genre === 'femme' ? 'Femme' : 'Homme';
+
+            return (
+              <div
+                key={voice.id}
+                className={`p-4 rounded-xl border transition flex flex-col justify-between gap-3 ${
+                  isSelected
+                    ? 'border-[#0F4C3A] dark:border-[#6EE7B7] bg-[#E6F0EC]/70 dark:bg-[#13362B] ring-1 ring-[#0F4C3A] dark:ring-[#6EE7B7]'
+                    : 'border-[#E4DFD3] dark:border-[#343F3B] bg-[#FAF8F5] dark:bg-[#252D2A]'
+                }`}
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked={isSelected}
+                    aria-label={`Choisir la voix ${voice.prenom} (${genderLabel}, ${voice.accentLabel})`}
+                    onClick={() => onChangeVoice?.(voice.id)}
+                    className="text-left flex-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F4C3A] rounded-lg cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-base font-bold text-[#111827] dark:text-[#F3F4F6]">
+                        {voice.prenom}
+                      </span>
+                      {voice.id === 'aminata' && (
+                        <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-white/80 dark:bg-[#1E2422] text-[#4B5563] dark:text-[#D1D5DB] border border-[#E4DFD3] dark:border-[#343F3B]">
+                          Par défaut
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-xs font-medium text-[#4B5563] dark:text-[#D1D5DB] mt-1">
+                      {genderLabel} · {voice.accentLabel}
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => onChangeVoice?.(voice.id)}
+                    aria-label={`Sélectionner ${voice.prenom}`}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold transition cursor-pointer ${
+                      isSelected
+                        ? 'bg-[#0F4C3A] text-white'
+                        : 'bg-white dark:bg-[#1E2422] text-[#374151] dark:text-[#D1D5DB] border border-[#D5CFC2] dark:border-[#45534E] hover:bg-[#F3EFE6] dark:hover:bg-[#2C3632]'
+                    }`}
+                  >
+                    {isSelected ? (
+                      <span className="inline-flex items-center gap-1">
+                        <IconCheck className="w-3.5 h-3.5" />
+                        <span>Choisie</span>
+                      </span>
+                    ) : (
+                      <span>Choisir</span>
+                    )}
+                  </button>
+                </div>
+
+                <div className="pt-2 border-t border-[#E4DFD3]/80 dark:border-[#343F3B] flex items-center justify-between gap-2">
+                  <button
+                    type="button"
+                    onClick={() => handlePreviewVoice(voice.id)}
+                    aria-label={`Écouter un exemple de la voix ${voice.prenom}`}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-[#1E2422] hover:bg-[#F3EFE6] dark:hover:bg-[#2C3632] border border-[#D5CFC2] dark:border-[#45534E] text-xs font-semibold text-[#0F4C3A] dark:text-[#6EE7B7] transition cursor-pointer"
+                  >
+                    <IconVolume className="w-3.5 h-3.5" />
+                    <span>
+                      {isPreviewing ? 'Lecture en cours...' : 'Écouter un exemple'}
+                    </span>
+                  </button>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] dark:text-[#9CA3AF]">
+                    {voice.locale}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Vitesse de lecture */}
+        <div className="pt-3 border-t border-[#E4DFD3] dark:border-[#343F3B]">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h3
+                id="playback-speed-label"
+                className="text-sm font-bold text-[#111827] dark:text-[#F3F4F6]"
+              >
+                Vitesse de lecture
+              </h3>
+              <p className="text-xs text-[#4B5563] dark:text-[#D1D5DB]">
+                Ajuste la cadence de prononciation sur tous les exercices audio.
+              </p>
+            </div>
+
+            <div
+              role="radiogroup"
+              aria-labelledby="playback-speed-label"
+              className="inline-flex rounded-xl p-1 bg-[#FAF8F5] dark:bg-[#252D2A] border border-[#E4DFD3] dark:border-[#343F3B] gap-1"
+            >
+              {PLAYBACK_SPEED_OPTIONS.map((opt) => {
+                const isSelected = selectedPlaybackRate === opt.rate;
+                return (
+                  <button
+                    key={opt.rate}
+                    type="button"
+                    role="radio"
+                    aria-checked={isSelected}
+                    onClick={() => onChangePlaybackRate?.(opt.rate)}
+                    className={`px-3.5 py-2 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                      isSelected
+                        ? 'bg-[#0F4C3A] text-white'
+                        : 'text-[#374151] dark:text-[#D1D5DB] hover:bg-white dark:hover:bg-[#1E2422]'
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Theme Selection */}
       <div className="bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] rounded-2xl p-6">

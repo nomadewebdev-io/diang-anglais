@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { speakEnglish } from '../lib/audio';
+import React, { useEffect, useState } from 'react';
+import { preloadAudioClip, speakEnglish } from '../lib/audio';
 import {
   calculateNextSM2State,
   createInitialSM2State,
@@ -60,6 +60,18 @@ export function FlashcardsPractice({
   const [index, setIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [reviewedCount, setReviewedCount] = useState(0);
+
+  useEffect(() => {
+    const active = cards[index];
+    if (active) {
+      preloadAudioClip(active.en);
+      preloadAudioClip(active.example);
+    }
+    const next = cards[index + 1];
+    if (next) {
+      preloadAudioClip(next.en);
+    }
+  }, [cards, index]);
 
   if (cards.length === 0) {
     return (

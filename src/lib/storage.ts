@@ -1,3 +1,10 @@
+import {
+  DEFAULT_PLAYBACK_RATE,
+  DEFAULT_VOICE_ID,
+  isValidPlaybackSpeed,
+  isValidVoiceId,
+  syncAudioPreferences,
+} from './audio';
 import { applyAutomaticCatchUp } from './planner';
 import { formatDateISO } from './sm2';
 import { isValidThemePreference } from './theme';
@@ -32,9 +39,12 @@ const VALID_SESSION_STATUSES: PlacementSessionStatus[] = [
 ];
 
 export function createInitialAppState(): AppState {
+  syncAudioPreferences(DEFAULT_VOICE_ID, DEFAULT_PLAYBACK_RATE);
   return {
     version: CURRENT_SCHEMA_VERSION,
     theme: 'system',
+    voiceId: DEFAULT_VOICE_ID,
+    playbackRate: DEFAULT_PLAYBACK_RATE,
     onboardingStep: 'profile',
     profile: null,
     placementResult: null,
@@ -113,6 +123,8 @@ export function migrateAndValidateState(
     'placementResult' in candidate ||
     'seenQuestionIds' in candidate ||
     'placementSession' in candidate ||
+    'voiceId' in candidate ||
+    'playbackRate' in candidate ||
     'studyPlan' in candidate ||
     'sm2States' in candidate ||
     'studyDates' in candidate;
@@ -191,6 +203,12 @@ export function migrateAndValidateState(
     : [];
 
   const theme = isValidThemePreference(candidate.theme) ? candidate.theme : 'system';
+  const voiceId = isValidVoiceId(candidate.voiceId) ? candidate.voiceId : DEFAULT_VOICE_ID;
+  const playbackRate = isValidPlaybackSpeed(candidate.playbackRate)
+    ? candidate.playbackRate
+    : DEFAULT_PLAYBACK_RATE;
+
+  syncAudioPreferences(voiceId, playbackRate);
 
   const placementSession = normalizePlacementSession(candidate.placementSession);
   const rawSeenIds = normalizeStringArray(candidate.seenQuestionIds);
@@ -201,6 +219,8 @@ export function migrateAndValidateState(
   return {
     version: CURRENT_SCHEMA_VERSION,
     theme,
+    voiceId,
+    playbackRate,
     onboardingStep,
     profile,
     placementResult,
@@ -283,6 +303,7 @@ function safeRemoveItem(key: string): void {
 }
 
 export function saveAppState(state: AppState): boolean {
+  syncAudioPreferences(state.voiceId, state.playbackRate);
   return safeSetItem(STORAGE_KEY, JSON.stringify(state));
 }
 

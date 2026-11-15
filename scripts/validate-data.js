@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -5,9 +6,20 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const dataDir = path.resolve(__dirname, '../src/data');
+const audioDir = path.resolve(__dirname, '../public/audio');
 
 const VALID_LEVELS = new Set(['A1', 'A2', 'B1', 'B2']);
 const VALID_SKILLS = new Set(['vocab', 'grammar', 'reading', 'listening']);
+const EXPECTED_VOICE_IDS = ['aminata', 'fatou', 'khady', 'moussa', 'cheikh', 'ibrahima'];
+const SAMPLE_PREVIEW_TEXT = "Good morning! Let's practice English together today.";
+
+function computeTextHash(text) {
+  return crypto
+    .createHash('sha1')
+    .update(String(text ?? '').trim(), 'utf-8')
+    .digest('hex')
+    .slice(0, 12);
+}
 
 function readJson(filename) {
   const fullPath = path.join(dataDir, filename);
@@ -271,6 +283,82 @@ function validateSentences(sentences) {
   }
 }
 
+function validateAudioClips(cards, lessons, placement, sentences) {
+  const manifestPath = path.join(audioDir, 'manifest.json');
+  assert(
+    fs.existsSync(manifestPath),
+    `manifest.json manquant dans public/audio/ (${manifestPath}). Lancez 'npm run audio:generate'.`
+  );
+
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+  assert(
+    Array.isArray(manifest.voices) && manifest.voices.length === 6,
+    `manifest.json doit contenir exactement 6 voix (actuel : ${manifest.voices?.length}).`
+  );
+
+  const manifestVoiceIds = manifest.voices.map((v) => v.id);
+  for (const vid of EXPECTED_VOICE_IDS) {
+    assert(
+      manifestVoiceIds.includes(vid),
+      `manifest.json : voix attendue "${vid}" absente.`
+    );
+  }
+
+  assert(
+    manifest.texts && typeof manifest.texts === 'object',
+    `manifest.json doit contenir la table texte-hash 'texts'.`
+  );
+
+  const requiredTexts = new Set([SAMPLE_PREVIEW_TEXT]);
+  for (const c of cards) {
+    requiredTexts.add(c.en.trim());
+    requiredTexts.add(c.example.trim());
+  }
+  for (const s of sentences) {
+    requiredTexts.add(s.en.trim());
+  }
+  for (const q of placement) {
+    if (q.audioText) {
+      requiredTexts.add(q.audioText.trim());
+    }
+  }
+  for (const l of lessons) {
+    if (l.audioText) {
+      requiredTexts.add(l.audioText.trim());
+    }
+    for (const ex of l.examples ?? []) {
+      if (ex.en) {
+        requiredTexts.add(ex.en.trim());
+      }
+    }
+  }
+
+  let verifiedCount = 0;
+  for (const text of requiredTexts) {
+    const hash = computeTextHash(text);
+    assert(
+      manifest.texts[text] === hash,
+      `manifest.json : hash manquant ou invalide pour le texte "${text.slice(0, 40)}..." (attendu ${hash}).`
+    );
+
+    for (const voiceId of EXPECTED_VOICE_IDS) {
+      const clipPath = path.join(audioDir, voiceId, `${hash}.mp3`);
+      assert(
+        fs.existsSync(clipPath),
+        `Clip audio manquant : public/audio/${voiceId}/${hash}.mp3 pour "${text.slice(0, 40)}..."`
+      );
+      const stat = fs.statSync(clipPath);
+      assert(
+        stat.size > 100,
+        `Clip audio vide ou corrompu (${stat.size} octets) : public/audio/${voiceId}/${hash}.mp3`
+      );
+      verifiedCount += 1;
+    }
+  }
+
+  return { uniqueTexts: requiredTexts.size, totalClips: verifiedCount };
+}
+
 function main() {
   const cards = readJson('cards.json');
   const lessons = readJson('lessons.json');
@@ -281,9 +369,10 @@ function main() {
   validateLessons(lessons);
   validatePlacement(placement);
   validateSentences(sentences);
+  const audioStats = validateAudioClips(cards, lessons, placement, sentences);
 
   console.log(
-    `[validate-data] OK — cards: ${cards.length}, lessons: ${lessons.length}, placement: ${placement.length}, sentences: ${sentences.length}`
+    `[validate-data] OK — cards: ${cards.length}, lessons: ${lessons.length}, placement: ${placement.length}, sentences: ${sentences.length}, audioTexts: ${audioStats.uniqueTexts}, audioClips: ${audioStats.totalClips}`
   );
 }
 

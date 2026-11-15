@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { speakEnglish } from '../lib/audio';
+import { preloadAudioClip, speakEnglish } from '../lib/audio';
 import { catalog } from '../lib/catalog';
 import {
   abandonPlacementSession,
@@ -297,6 +297,10 @@ export function OnboardingFlow({
       placementState.session.status !== 'in_progress'
     ) {
       return;
+    }
+
+    if (placementState.currentQuestion.audioText) {
+      preloadAudioClip(placementState.currentQuestion.audioText);
     }
 
     const timerId = window.setInterval(() => {

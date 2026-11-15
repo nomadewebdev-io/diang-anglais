@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { speakEnglish } from '../lib/audio';
+import React, { useEffect, useState } from 'react';
+import { preloadAudioClip, speakEnglish } from '../lib/audio';
 import { LessonItem } from '../lib/types';
 import { IconArrowLeft, IconArrowRight, IconCheck, IconVolume } from './Icons';
 
@@ -19,6 +19,14 @@ export function LessonPractice({
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
+
+  useEffect(() => {
+    for (const ex of lesson.examples) {
+      if (ex.en) {
+        preloadAudioClip(ex.en);
+      }
+    }
+  }, [lesson]);
 
   const currentExercise = lesson.exercises[exerciseIdx];
 

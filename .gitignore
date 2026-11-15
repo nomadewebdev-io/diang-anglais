@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 dev-dist
+.venv
+.piper-models
+__pycache__
+*.pyc
 
 # Editor directories and files
 .vscode/*

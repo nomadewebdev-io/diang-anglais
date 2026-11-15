@@ -28,10 +28,12 @@ import {
   AppState,
   PlacementResult,
   PlacementSessionState,
+  PlaybackSpeed,
   SM2CardState,
   StudyPlan,
   ThemePreference,
   UserProfile,
+  VoiceId,
 } from './lib/types';
 
 export type MainTab = 'today' | 'review' | 'program' | 'progress';
@@ -81,6 +83,20 @@ export function App(): React.ReactElement {
     setState((prev) => ({
       ...prev,
       theme,
+    }));
+  };
+
+  const handleChangeVoice = (voiceId: VoiceId) => {
+    setState((prev) => ({
+      ...prev,
+      voiceId,
+    }));
+  };
+
+  const handleChangePlaybackRate = (playbackRate: PlaybackSpeed) => {
+    setState((prev) => ({
+      ...prev,
+      playbackRate,
     }));
   };
 
@@ -372,6 +388,8 @@ export function App(): React.ReactElement {
           <SettingsView
             state={state}
             onChangeTheme={handleChangeTheme}
+            onChangeVoice={handleChangeVoice}
+            onChangePlaybackRate={handleChangePlaybackRate}
             onImportState={(imported) => {
               setState(imported);
               setIsSettingsOpen(false);

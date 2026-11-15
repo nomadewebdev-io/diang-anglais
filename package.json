@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
+    "audio:generate": "node scripts/generate-audio.js",
     "validate:data": "node scripts/validate-data.js",
     "test": "node scripts/validate-data.js && vitest run",
     "test:watch": "vitest"

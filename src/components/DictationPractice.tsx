@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { speakEnglish } from '../lib/audio';
+import React, { useEffect, useState } from 'react';
+import { preloadAudioClip, speakEnglish } from '../lib/audio';
 import { DictationEvaluation, evaluateDictation } from '../lib/dictation';
 import { SentenceItem } from '../lib/types';
 import { IconArrowLeft, IconArrowRight, IconCheck, IconVolume } from './Icons';
@@ -21,6 +21,17 @@ export function DictationPractice({
   const [typedText, setTypedText] = useState('');
   const [evaluation, setEvaluation] = useState<DictationEvaluation | null>(null);
   const [scores, setScores] = useState<number[]>([]);
+
+  useEffect(() => {
+    const active = sentences[index];
+    if (active) {
+      preloadAudioClip(active.en);
+    }
+    const next = sentences[index + 1];
+    if (next) {
+      preloadAudioClip(next.en);
+    }
+  }, [sentences, index]);
 
   if (sentences.length === 0) {
     return (

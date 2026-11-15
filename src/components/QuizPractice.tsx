@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { speakEnglish } from '../lib/audio';
+import React, { useEffect, useState } from 'react';
+import { preloadAudioClip, speakEnglish } from '../lib/audio';
 import { SKILL_LABELS_FR } from '../lib/placementTest';
 import { PlacementQuestion } from '../lib/types';
 import { IconArrowLeft, IconArrowRight, IconCheck, IconVolume } from './Icons';
@@ -25,6 +25,17 @@ export function QuizPractice({
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
+
+  useEffect(() => {
+    const active = questions[index];
+    if (active?.audioText) {
+      preloadAudioClip(active.audioText);
+    }
+    const nextWithAudio = questions.slice(index + 1).find((q) => Boolean(q.audioText));
+    if (nextWithAudio?.audioText) {
+      preloadAudioClip(nextWithAudio.audioText);
+    }
+  }, [questions, index]);
 
   if (questions.length === 0) {
     return (

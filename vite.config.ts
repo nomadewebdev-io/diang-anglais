@@ -43,7 +43,31 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,json,woff2}'],
+        globPatterns: ['**/*.{js,css,html,svg,woff2}'],
+        globIgnores: ['**/audio/**/*.mp3'],
+        runtimeCaching: [
+          {
+            urlPattern: /\/audio\/(aminata|fatou|khady|moussa|cheikh|ibrahima)\/[a-f0-9]{12}\.mp3$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'diang-anglais-voice-audio-v1',
+              expiration: {
+                maxEntries: 3000,
+                maxAgeSeconds: 60 * 60 * 24 * 90,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+          {
+            urlPattern: /\/audio\/manifest\.json$/i,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'diang-anglais-audio-manifest-v1',
+            },
+          },
+        ],
       },
     }),
   ],
