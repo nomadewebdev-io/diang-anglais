@@ -662,6 +662,669 @@
     "answerIndex": 0
   },
   {
+    "id": "pl-a1-51",
+    "level": "A1",
+    "skill": "vocab",
+    "prompt": "Quel mot anglais désigne « l’oreiller » sur un lit ?",
+    "options": [
+      "pillow",
+      "plate",
+      "pocket",
+      "pencil"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a1-52",
+    "level": "A1",
+    "skill": "vocab",
+    "prompt": "Complétez : « Please dry your hands with a clean ___. »",
+    "options": [
+      "towel",
+      "table",
+      "ticket",
+      "train"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a1-53",
+    "level": "A1",
+    "skill": "vocab",
+    "prompt": "Que signifie le mot « spoon » à table ?",
+    "options": [
+      "fourchette",
+      "cuillère",
+      "couteau",
+      "assiette"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-54",
+    "level": "A1",
+    "skill": "vocab",
+    "prompt": "Complétez : « Put the fresh milk in the ___. »",
+    "options": [
+      "fridge",
+      "floor",
+      "fence",
+      "folder"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a1-55",
+    "level": "A1",
+    "skill": "vocab",
+    "prompt": "Quel mot désigne le « chauffeur » d’un bus ou d’un taxi ?",
+    "options": [
+      "driver",
+      "doctor",
+      "dancer",
+      "dentist"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a1-56",
+    "level": "A1",
+    "skill": "vocab",
+    "prompt": "Que signifie « heavy » (ex. a heavy suitcase) ?",
+    "options": [
+      "léger",
+      "lourd",
+      "vide",
+      "propre"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-57",
+    "level": "A1",
+    "skill": "vocab",
+    "prompt": "Complétez : « He wears a ___ on his left wrist to check the time. »",
+    "options": [
+      "watch",
+      "wallet",
+      "window",
+      "wall"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a1-58",
+    "level": "A1",
+    "skill": "vocab",
+    "prompt": "Quel est le contraire de « open » (ouvert) ?",
+    "options": [
+      "closed",
+      "clean",
+      "cold",
+      "clear"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a1-59",
+    "level": "A1",
+    "skill": "vocab",
+    "prompt": "Que signifie « uncle » dans une famille ?",
+    "options": [
+      "oncle",
+      "cousin",
+      "neveu",
+      "grand-père"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a1-60",
+    "level": "A1",
+    "skill": "vocab",
+    "prompt": "Complétez : « Boil some water in the ___ to make tea. »",
+    "options": [
+      "kettle",
+      "keyboard",
+      "key",
+      "knife"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a1-61",
+    "level": "A1",
+    "skill": "vocab",
+    "prompt": "Quel mot anglais correspond à « savon » ?",
+    "options": [
+      "soap",
+      "soup",
+      "salt",
+      "sand"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a1-62",
+    "level": "A1",
+    "skill": "vocab",
+    "prompt": "Complétez : « Take the ___ to go up to the second floor. »",
+    "options": [
+      "stairs",
+      "streets",
+      "stamps",
+      "shoes"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a1-63",
+    "level": "A1",
+    "skill": "grammar",
+    "prompt": "Complétez : « My parents ___ in Kaolack. »",
+    "options": [
+      "lives",
+      "live",
+      "living",
+      "to live"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-64",
+    "level": "A1",
+    "skill": "grammar",
+    "prompt": "Complétez : « ___ she have a ticket for the train? »",
+    "options": [
+      "Do",
+      "Does",
+      "Is",
+      "Are"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-65",
+    "level": "A1",
+    "skill": "grammar",
+    "prompt": "Complétez : « There ___ twenty desks in this classroom. »",
+    "options": [
+      "is",
+      "are",
+      "have",
+      "be"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-66",
+    "level": "A1",
+    "skill": "grammar",
+    "prompt": "Complétez : « I am talking to my sister. Can you hear ___? »",
+    "options": [
+      "she",
+      "her",
+      "hers",
+      "him"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-67",
+    "level": "A1",
+    "skill": "grammar",
+    "prompt": "Complétez : « The bank opens ___ eight o’clock. »",
+    "options": [
+      "on",
+      "in",
+      "at",
+      "for"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a1-68",
+    "level": "A1",
+    "skill": "grammar",
+    "prompt": "Complétez : « Look! The bus ___ coming now. »",
+    "options": [
+      "are",
+      "is",
+      "do",
+      "does"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-69",
+    "level": "A1",
+    "skill": "grammar",
+    "prompt": "Complétez : « ___ many brothers and sisters do you have? »",
+    "options": [
+      "What",
+      "How",
+      "Who",
+      "Where"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-70",
+    "level": "A1",
+    "skill": "grammar",
+    "prompt": "Complétez : « She ___ drink coffee in the evening. »",
+    "options": [
+      "don't",
+      "doesn't",
+      "isn't",
+      "aren't"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-71",
+    "level": "A1",
+    "skill": "grammar",
+    "prompt": "Complétez : « These bags are heavy. Can you help ___? »",
+    "options": [
+      "we",
+      "our",
+      "us",
+      "ours"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a1-72",
+    "level": "A1",
+    "skill": "grammar",
+    "prompt": "Complétez : « My birthday is ___ May. »",
+    "options": [
+      "on",
+      "at",
+      "in",
+      "to"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a1-73",
+    "level": "A1",
+    "skill": "grammar",
+    "prompt": "Complétez : « Would you like ___ cup of tea? »",
+    "options": [
+      "an",
+      "a",
+      "some",
+      "any"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-74",
+    "level": "A1",
+    "skill": "grammar",
+    "prompt": "Complétez : « ___ quiet, please. The baby is sleeping. »",
+    "options": [
+      "Are",
+      "Be",
+      "Do",
+      "To be"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-75",
+    "level": "A1",
+    "skill": "reading",
+    "prompt": "Lisez : « Bakery hours: 6:30 AM – 8:00 PM daily. Hot bread at 7:00 AM and 5:00 PM. » — À quelle heure peut-on acheter du pain chaud le matin ?",
+    "options": [
+      "À 6h00",
+      "À 7h00",
+      "À 10h00",
+      "À 20h00"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-76",
+    "level": "A1",
+    "skill": "reading",
+    "prompt": "Lisez : « Hi Moussa, my phone battery is dead. Please call me on the office landline. — Omar » — Pourquoi Omar demande-t-il d’appeler sur le fixe du bureau ?",
+    "options": [
+      "Il a perdu son téléphone dans le bus",
+      "La batterie de son téléphone est déchargée",
+      "Il est en réunion toute la journée",
+      "Il a changé de numéro"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-77",
+    "level": "A1",
+    "skill": "reading",
+    "prompt": "Lisez : « Ferry to Gorée: Adult ticket 2,000 FCFA, Child ticket (under 12) 1,000 FCFA. » — Combien paie un enfant de 8 ans ?",
+    "options": [
+      "500 FCFA",
+      "1 000 FCFA",
+      "2 000 FCFA",
+      "C’est gratuit"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-78",
+    "level": "A1",
+    "skill": "reading",
+    "prompt": "Lisez : « Room 102: English Level A1. Teacher: Mrs. Faye. Please bring a notebook and a blue pen. » — Dans quelle salle a lieu le cours de Mme Faye ?",
+    "options": [
+      "Salle 12",
+      "Salle 102",
+      "Salle 201",
+      "Salle 4"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-79",
+    "level": "A1",
+    "skill": "reading",
+    "prompt": "Lisez : « Supermarket Promo: Buy 2 bottles of peanut oil, get 1 kg of rice free. » — Qu’obtient-on gratuitement en achetant deux bouteilles d’huile ?",
+    "options": [
+      "Une troisième bouteille d’huile",
+      "Un kilo de riz",
+      "Un paquet de sucre",
+      "Une boîte de thé"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-80",
+    "level": "A1",
+    "skill": "reading",
+    "prompt": "Lisez : « Dear Guest, breakfast is served on the first floor from 7:00 AM to 9:30 AM. » — Où le petit-déjeuner est-il servi ?",
+    "options": [
+      "Au rez-de-chaussée",
+      "Au premier étage",
+      "Sur la plage",
+      "Dans la chambre uniquement"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-81",
+    "level": "A1",
+    "skill": "reading",
+    "prompt": "Lisez : « Notice: The swimming pool is closed on Mondays for cleaning. » — Pourquoi la piscine est-elle fermée le lundi ?",
+    "options": [
+      "Pour le nettoyage",
+      "Parce qu’il fait froid",
+      "Pour une compétition",
+      "Parce qu’il n’y a pas d’eau"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a1-82",
+    "level": "A1",
+    "skill": "reading",
+    "prompt": "Lisez : « Bus ticket to Thiès: Seat 14B, Departure 10:15 AM, Gate 3. » — Quel est le numéro du siège ?",
+    "options": [
+      "Siège 3",
+      "Siège 10",
+      "Siège 14B",
+      "Siège 15"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a1-83",
+    "level": "A1",
+    "skill": "reading",
+    "prompt": "Lisez : « Pharmacy on duty tonight: Pharmacie du Plateau, Avenue Lamine Guèye. Open 24 hours. » — Quand cette pharmacie est-elle ouverte ?",
+    "options": [
+      "Seulement le matin",
+      "Jusqu’à 19h00",
+      "24h/24 (toute la nuit)",
+      "Fermée le soir"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a1-84",
+    "level": "A1",
+    "skill": "reading",
+    "prompt": "Lisez : « For sale: Red bicycle in good condition. Price: 35,000 FCFA. Call Abdou at 77 000 00 00. » — Que vend Abdou ?",
+    "options": [
+      "Une voiture rouge",
+      "Un vélo rouge en bon état",
+      "Un téléphone portable",
+      "Une table en bois"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-85",
+    "level": "A1",
+    "skill": "reading",
+    "prompt": "Lisez : « Please do not feed the animals in the park. » — Qu’est-il interdit de faire dans le parc ?",
+    "options": [
+      "Prendre des photos",
+      "Donner à manger aux animaux",
+      "Marcher sur l’allée",
+      "S’asseoir sur les bancs"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-86",
+    "level": "A1",
+    "skill": "reading",
+    "prompt": "Lisez : « Hello Aïda, I left your dictionary on your desk. Thank you! — Seydou » — Qu’a fait Seydou ?",
+    "options": [
+      "Il a perdu le dictionnaire",
+      "Il a posé le dictionnaire sur le bureau d’Aïda",
+      "Il cherche le bureau d’Aïda",
+      "Il a acheté un nouveau livre"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-87",
+    "level": "A1",
+    "skill": "reading",
+    "prompt": "Lisez : «Tailor Shop: Trousers hemmed in 1 hour. Shirts made in 3 days. » — En combien de temps une chemise est-elle confectionnée ?",
+    "options": [
+      "En une heure",
+      "En trois jours",
+      "En une semaine",
+      "En dix minutes"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-88",
+    "level": "A1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez combien de frères et sœurs a la locutrice :",
+    "audioText": "I have two older brothers and one younger sister.",
+    "options": [
+      "Deux frères et une sœur",
+      "Un frère et deux sœurs",
+      "Trois sœurs",
+      "Elle est fille unique"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a1-89",
+    "level": "A1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez où se trouve la banque :",
+    "audioText": "The bank is across the street from the supermarket.",
+    "options": [
+      "À l’intérieur du supermarché",
+      "En face du supermarché, de l’autre côté de la rue",
+      "Derrière la gare",
+      "À côté de l’hôpital"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-90",
+    "level": "A1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez à quelle heure ferme la boutique :",
+    "audioText": "Our neighborhood shop closes at eight o’clock every evening.",
+    "options": [
+      "À 18h00",
+      "À 19h00",
+      "À 20h00 tous les soirs",
+      "À minuit"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a1-91",
+    "level": "A1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez ce que l’homme prend au petit-déjeuner :",
+    "audioText": "Every morning, I eat bread with butter and drink a cup of coffee.",
+    "options": [
+      "Du riz et du poisson",
+      "Du pain beurré et une tasse de café",
+      "Des fruits et du thé froid",
+      "Il ne prend pas de petit-déjeuner"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-92",
+    "level": "A1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez de quelle couleur est la valise :",
+    "audioText": "My suitcase is dark green with a small white label.",
+    "options": [
+      "Noire avec un ruban rouge",
+      "Vert foncé avec une petite étiquette blanche",
+      "Bleu clair",
+      "Jaune"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-93",
+    "level": "A1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez quel jour les grands-parents viennent déjeuner :",
+    "audioText": "Our grandparents come to our house for lunch every Sunday.",
+    "options": [
+      "Le vendredi midi",
+      "Le samedi soir",
+      "Tous les dimanches midi",
+      "Le mardi"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a1-94",
+    "level": "A1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez pourquoi l’enfant reste à la maison :",
+    "audioText": "The little boy is staying in bed today because he has a fever.",
+    "options": [
+      "C’est un jour férié",
+      "Il a de la fièvre",
+      "Il attend un ami",
+      "Il regarde la télévision"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-95",
+    "level": "A1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez sur quel quai part le train :",
+    "audioText": "The train to Rufisque is ready to leave from platform one.",
+    "options": [
+      "Quai n° 1",
+      "Quai n° 3",
+      "Quai n° 4",
+      "Quai n° 5"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a1-96",
+    "level": "A1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez où la personne a laissé son parapluie :",
+    "audioText": "Oh no, I left my black umbrella on the bus this morning.",
+    "options": [
+      "Au bureau",
+      "Dans le bus ce matin",
+      "Au restaurant",
+      "À la maison"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-97",
+    "level": "A1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez quelle matière enseigne la mère du locuteur :",
+    "audioText": "My mother teaches mathematics at the high school in Thiès.",
+    "options": [
+      "L’anglais",
+      "Les mathématiques",
+      "L’histoire",
+      "La biologie"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-98",
+    "level": "A1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez combien d’ordinateurs se trouvent dans la salle :",
+    "audioText": "There are twelve computers and one printer in the study room.",
+    "options": [
+      "Deux ordinateurs",
+      "Dix ordinateurs",
+      "Douze ordinateurs",
+      "Vingt ordinateurs"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a1-99",
+    "level": "A1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez comment payer à la caisse :",
+    "audioText": "You can pay in cash or by mobile money at the counter.",
+    "options": [
+      "Uniquement par chèque",
+      "En espèces ou par paiement mobile",
+      "Seulement en devises étrangères",
+      "Le mois prochain"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a1-100",
+    "level": "A1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez ce que fait le père dans le jardin :",
+    "audioText": "My father is watering the mango tree in the garden right now.",
+    "options": [
+      "Il répare sa bicyclette",
+      "Il arrose le manguier dans le jardin",
+      "Il lit le journal",
+      "Il peint la porte"
+    ],
+    "answerIndex": 1
+  },
+  {
     "id": "pl-a2-01",
     "level": "A2",
     "skill": "vocab",
@@ -1320,6 +1983,669 @@
       "Mercredi après-midi à 15h",
       "Jeudi soir à 18h",
       "Vendredi midi"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-51",
+    "level": "A2",
+    "skill": "vocab",
+    "prompt": "Quel terme désigne le « propriétaire (bailleur) » d’un logement ?",
+    "options": [
+      "landlord",
+      "neighbor",
+      "passenger",
+      "cashier"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-52",
+    "level": "A2",
+    "skill": "vocab",
+    "prompt": "Complétez : « Can I exchange this shirt if I keep the ___? »",
+    "options": [
+      "receipt",
+      "recipe",
+      "routine",
+      "roof"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-53",
+    "level": "A2",
+    "skill": "vocab",
+    "prompt": "Que signifie « aisle seat » dans un avion ou un train ?",
+    "options": [
+      "siège côté couloir",
+      "siège côté hublot",
+      "siège du pilote",
+      "strapontin pliant"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-54",
+    "level": "A2",
+    "skill": "vocab",
+    "prompt": "Complétez : « The refrigerator comes with a two-year ___. »",
+    "options": [
+      "warranty",
+      "weather",
+      "wallet",
+      "wedding"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-55",
+    "level": "A2",
+    "skill": "vocab",
+    "prompt": "Quel mot désigne une « file d’attente » devant un guichet ?",
+    "options": [
+      "queue",
+      "quote",
+      "quarter",
+      "quiz"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-56",
+    "level": "A2",
+    "skill": "vocab",
+    "prompt": "Que signifie le verbe « to lend » (ex. She lent me her book) ?",
+    "options": [
+      "prêter",
+      "emprunter",
+      "perdre",
+      "vendre"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-57",
+    "level": "A2",
+    "skill": "vocab",
+    "prompt": "Complétez : « Avoid driving in the city center during ___. »",
+    "options": [
+      "rush hour",
+      "lunch break",
+      "spare time",
+      "living room"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-58",
+    "level": "A2",
+    "skill": "vocab",
+    "prompt": "Quel mot anglais correspond à « ordonnance médicale » ?",
+    "options": [
+      "prescription",
+      "permission",
+      "presentation",
+      "preparation"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-59",
+    "level": "A2",
+    "skill": "vocab",
+    "prompt": "Que signifie « spare key » ?",
+    "options": [
+      "double de clé / clé de rechange",
+      "clé cassée",
+      "serrure électronique",
+      "porte blindée"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-60",
+    "level": "A2",
+    "skill": "vocab",
+    "prompt": "Complétez : « The driver changed the ___ tire in fifteen minutes. »",
+    "options": [
+      "flat",
+      "fast",
+      "full",
+      "free"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-61",
+    "level": "A2",
+    "skill": "vocab",
+    "prompt": "Quel professionnel répare les fuites d’eau et les canalisations ?",
+    "options": [
+      "plumber",
+      "baker",
+      "tailor",
+      "butcher"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-62",
+    "level": "A2",
+    "skill": "vocab",
+    "prompt": "Complétez : « Copy the presentation onto a USB ___. »",
+    "options": [
+      "flash drive",
+      "flashlight",
+      "headlight",
+      "hard hat"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-63",
+    "level": "A2",
+    "skill": "grammar",
+    "prompt": "Complétez : « Where ___ you go for your holidays last year? »",
+    "options": [
+      "were",
+      "did",
+      "have",
+      "was"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-64",
+    "level": "A2",
+    "skill": "grammar",
+    "prompt": "Complétez : « Today’s meeting was ___ than Monday’s briefing. »",
+    "options": [
+      "shorter",
+      "more short",
+      "shortest",
+      "short"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-65",
+    "level": "A2",
+    "skill": "grammar",
+    "prompt": "Complétez : « They ___ having lunch when the director walked in. »",
+    "options": [
+      "was",
+      "were",
+      "did",
+      "have"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-66",
+    "level": "A2",
+    "skill": "grammar",
+    "prompt": "Complétez : « I have ___ lost my passport during a trip. »",
+    "options": [
+      "ever",
+      "never",
+      "yet",
+      "since"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-67",
+    "level": "A2",
+    "skill": "grammar",
+    "prompt": "Complétez : « We only have ___ minutes before the gate closes. »",
+    "options": [
+      "a little",
+      "a few",
+      "much",
+      "any"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-68",
+    "level": "A2",
+    "skill": "grammar",
+    "prompt": "Complétez : « You ___ wear a helmet when riding a motorcycle. »",
+    "options": [
+      "must",
+      "must to",
+      "have",
+      "ought"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-69",
+    "level": "A2",
+    "skill": "grammar",
+    "prompt": "Complétez : « As soon as the plane ___, I will send you a message. »",
+    "options": [
+      "will land",
+      "lands",
+      "landed",
+      "landing"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-70",
+    "level": "A2",
+    "skill": "grammar",
+    "prompt": "Complétez : « She decided ___ for the scholarship in agronomy. »",
+    "options": [
+      "applying",
+      "to apply",
+      "apply",
+      "applied"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-71",
+    "level": "A2",
+    "skill": "grammar",
+    "prompt": "Complétez : « Thank you for ___ me with the luggage. »",
+    "options": [
+      "help",
+      "to help",
+      "helping",
+      "helped"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a2-72",
+    "level": "A2",
+    "skill": "grammar",
+    "prompt": "Complétez : « That is the clinic ___ my cousin works as a midwife. »",
+    "options": [
+      "which",
+      "who",
+      "where",
+      "whom"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a2-73",
+    "level": "A2",
+    "skill": "grammar",
+    "prompt": "Complétez : « Please read the contract ___ before signing. »",
+    "options": [
+      "careful",
+      "carefully",
+      "more careful",
+      "carefulness"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-74",
+    "level": "A2",
+    "skill": "grammar",
+    "prompt": "Complétez : « ___ the hotel was small, the rooms were very clean. »",
+    "options": [
+      "Because",
+      "So",
+      "Although",
+      "However"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a2-75",
+    "level": "A2",
+    "skill": "reading",
+    "prompt": "Lisez : « Bus Pass Info: A weekly pass costs 3,000 FCFA for unlimited rides. A single ticket costs 250 FCFA. » — À partir de combien de trajets dans la semaine l’abonnement hebdomadaire est-il plus avantageux ?",
+    "options": [
+      "Dès le 2e trajet",
+      "Au-delà de 12 trajets (car 12 × 250 = 3 000 FCFA)",
+      "Seulement après 50 trajets",
+      "Il n’est jamais avantageux"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-76",
+    "level": "A2",
+    "skill": "reading",
+    "prompt": "Lisez : « Hi Salif, I left the warehouse keys with the gatekeeper because I had to go to the dentist. — Lamine » — Où Salif peut-il récupérer les clés de l’entrepôt ?",
+    "options": [
+      "Au cabinet dentaire",
+      "Auprès du gardien",
+      "Sur le bureau de Lamine",
+      "À la poste"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-77",
+    "level": "A2",
+    "skill": "reading",
+    "prompt": "Lisez : « Baggage Rules: Economy passengers may check in one suitcase up to 23 kg free of charge. A second suitcase costs 25,000 FCFA. » — Que paie un passager qui enregistre une seule valise de 20 kg ?",
+    "options": [
+      "Rien, c’est inclus gratuitement",
+      "20 000 FCFA",
+      "25 000 FCFA",
+      "50 000 FCFA"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-78",
+    "level": "A2",
+    "skill": "reading",
+    "prompt": "Lisez : « Laundry Service: Drop off your clothes before 9:00 AM for same-day delivery at 6:00 PM. » — Que faut-il faire pour récupérer son linge le soir même ?",
+    "options": [
+      "Le déposer avant 9h00 du matin",
+      "Appeler la veille à minuit",
+      "Le laver soi-même",
+      "Venir uniquement le dimanche"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-79",
+    "level": "A2",
+    "skill": "reading",
+    "prompt": "Lisez : « Notice to Tenants: The building water tank will be cleaned on Tuesday between 10:00 AM and 1:00 PM. Please store enough water beforehand. » — Que conseille-t-on aux locataires pour mardi matin ?",
+    "options": [
+      "De quitter définitivement l’immeuble",
+      "De prévoir une réserve d’eau avant 10h00",
+      "D’appeler un plombier",
+      "De fermer les fenêtres"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-80",
+    "level": "A2",
+    "skill": "reading",
+    "prompt": "Lisez : « Computer Lab Rules: Food and drinks are not allowed near the keyboards. Please save your work on a USB flash drive before logging out. » — Que doivent faire les étudiants avant de se déconnecter ?",
+    "options": [
+      "Éteindre le routeur Wi-Fi",
+      "Sauvegarder leur travail sur une clé USB",
+      "Nettoyer l’écran avec de l’eau",
+      "Imprimer cent pages"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-81",
+    "level": "A2",
+    "skill": "reading",
+    "prompt": "Lisez : « Pharmacy Receipt: Cough syrup (2,500 FCFA) + Painkillers (1,500 FCFA). Total paid by mobile money: 4,000 FCFA. » — Comment le client a-t-il réglé ses achats ?",
+    "options": [
+      "En espèces",
+      "Par paiement mobile",
+      "Par virement bancaire",
+      "À crédit"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-82",
+    "level": "A2",
+    "skill": "reading",
+    "prompt": "Lisez : « Dear Applicant, your interview has been moved from Room 12 to Room 24 on the third floor. The time (10:30 AM) remains unchanged. » — Qu’est-ce qui a changé pour l’entretien ?",
+    "options": [
+      "L’heure et le jour",
+      "Uniquement la salle (salle 24 au 3e étage au lieu de la salle 12)",
+      "L’entretien est annulé",
+      "Il a lieu par téléphone"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-83",
+    "level": "A2",
+    "skill": "reading",
+    "prompt": "Lisez : « Special Offer at Saint-Louis Bookshop: Buy any two English grammar books and receive a pocket dictionary free of charge. » — Comment obtenir le dictionnaire de poche gratuit ?",
+    "options": [
+      "En achetant deux livres de grammaire anglaise",
+      "En s’inscrivant à la bibliothèque",
+      "En venant après 20h00",
+      "En payant 5 000 FCFA de plus"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-84",
+    "level": "A2",
+    "skill": "reading",
+    "prompt": "Lisez : « Weather Alert: Strong coastal winds expected this afternoon. Small fishing boats are advised to stay in the harbor. » — Quelle recommandation est donnée aux petits bateaux de pêche ?",
+    "options": [
+      "Partir en haute mer immédiatement",
+      "Rester au port cet après-midi",
+      "Naviguer uniquement la nuit",
+      "Vendre leurs filets"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-85",
+    "level": "A2",
+    "skill": "reading",
+    "prompt": "Lisez : « Tailor’s Note: Your blue suit is ready for a final fitting. Please stop by the shop between 4:00 PM and 7:00 PM today. » — Pourquoi le tailleur écrit-il au client ?",
+    "options": [
+      "Pour dire que le tissu est épuisé",
+      "Pour inviter le client à un dernier essayage entre 16h et 19h",
+      "Pour demander un nouveau paiement",
+      "Pour fermer la boutique"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-86",
+    "level": "A2",
+    "skill": "reading",
+    "prompt": "Lisez : « Museum Ticket: Entry is 1,500 FCFA for adults, free for students with a valid student card on Wednesdays. » — Comment un étudiant peut-il visiter le musée gratuitement ?",
+    "options": [
+      "En venant le mercredi avec sa carte d’étudiant valide",
+      "En venant le dimanche soir",
+      "En réservant un groupe de vingt personnes",
+      "Le musée est toujours payant"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-87",
+    "level": "A2",
+    "skill": "reading",
+    "prompt": "Lisez : « Train Station Café: Free Wi-Fi for customers (ask the cashier for the code). Maximum connection time: 1 hour. » — Comment obtient-on le code Wi-Fi ?",
+    "options": [
+      "En le demandant à la caisse",
+      "En achetant un billet de première classe",
+      "Il n’y a pas de mot de passe",
+      "En envoyant un courriel"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-88",
+    "level": "A2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez quel siège la passagère préfère :",
+    "audioText": "Could you give me a window seat near the front of the plane, please?",
+    "options": [
+      "Un siège côté couloir au fond",
+      "Un siège côté hublot vers l’avant de l’avion",
+      "N’importe quel siège au milieu",
+      "Elle voyage en train"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-89",
+    "level": "A2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez pourquoi l’homme est arrivé en retard :",
+    "audioText": "Sorry I am late; my car had a flat tire on the highway.",
+    "options": [
+      "Son réveil n’a pas sonné",
+      "Sa voiture a eu un pneu crevé sur l’autoroute",
+      "Le pont était fermé",
+      "Il a oublié ses clés"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-90",
+    "level": "A2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez combien de temps dure la garantie :",
+    "audioText": "This washing machine comes with a full two-year warranty.",
+    "options": [
+      "Six mois",
+      "Un an",
+      "Deux ans",
+      "Cinq ans"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-a2-91",
+    "level": "A2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez quand le locataire paie son loyer :",
+    "audioText": "We pay the rent to our landlord on the fifth of every month.",
+    "options": [
+      "Le 1er du mois",
+      "Le 5 de chaque mois",
+      "Le 15 du mois",
+      "Tous les lundis"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-92",
+    "level": "A2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez ce que la femme va faire mardi prochain :",
+    "audioText": "I am going to renew my driving license next Tuesday morning.",
+    "options": [
+      "Acheter une moto",
+      "Renouveler son permis de conduire mardi matin",
+      "Passer son baccalauréat",
+      "Déménager à Ziguinchor"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-93",
+    "level": "A2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez pourquoi ils ont pris un billet aller-retour :",
+    "audioText": "We bought a round-trip ticket because it was much cheaper than two single tickets.",
+    "options": [
+      "Parce que c’était beaucoup moins cher que deux billets simples",
+      "Parce qu’il n’y avait plus d’aller simple",
+      "Pour voyager en première classe",
+      "Pour avoir un repas gratuit"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-94",
+    "level": "A2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez où la personne a laissé le double des clés :",
+    "audioText": "I left a spare key with my neighbor in case you arrive before me.",
+    "options": [
+      "Sous le tapis",
+      "Chez son voisin",
+      "À la banque",
+      "Dans la boîte aux lettres"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-95",
+    "level": "A2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez en combien de temps le technicien a réparé l’imprimante :",
+    "audioText": "The technician repaired the office printer in just ten minutes.",
+    "options": [
+      "En dix minutes",
+      "En deux heures",
+      "En trois jours",
+      "Il n’a pas pu la réparer"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-a2-96",
+    "level": "A2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez ce que le client demande au magasin :",
+    "audioText": "Can I exchange this jacket for a larger size? I still have the receipt.",
+    "options": [
+      "Un remboursement sans ticket",
+      "Échanger la veste contre une taille plus grande",
+      "Faire nettoyer la veste",
+      "Acheter un pantalon"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-97",
+    "level": "A2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez comment le patient s’est blessé :",
+    "audioText": "He twisted his ankle while playing football with his friends yesterday.",
+    "options": [
+      "En tombant dans les escaliers",
+      "En jouant au football avec ses amis hier",
+      "En courant après le bus",
+      "En soulevant une caisse"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-98",
+    "level": "A2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez à quelle fréquence ils commandent les fournitures de bureau :",
+    "audioText": "We usually order office supplies at the beginning of every month.",
+    "options": [
+      "Tous les jours",
+      "Au début de chaque mois",
+      "Une fois par an",
+      "Tous les vendredis"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-99",
+    "level": "A2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez pourquoi l’appel vidéo n’a pas fonctionné :",
+    "audioText": "The internet connection was too slow for a video call, so we used the phone.",
+    "options": [
+      "La caméra était cassée",
+      "La connexion internet était trop lente",
+      "Il n’y avait plus de batterie",
+      "Le correspondant dormait"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-a2-100",
+    "level": "A2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez combien de personnes assistent au dîner :",
+    "audioText": "Fourteen guests are attending the retirement dinner tonight.",
+    "options": [
+      "Quatre invités",
+      "Quatorze invités",
+      "Quarante invités",
+      "Cent invités"
     ],
     "answerIndex": 1
   },
@@ -1986,6 +3312,669 @@
     "answerIndex": 1
   },
   {
+    "id": "pl-b1-51",
+    "level": "B1",
+    "skill": "vocab",
+    "prompt": "Quel terme désigne une « période d’essai » au début d’un contrat de travail ?",
+    "options": [
+      "probation period",
+      "retirement plan",
+      "vacation leave",
+      "layover time"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-52",
+    "level": "B1",
+    "skill": "vocab",
+    "prompt": "Complétez : « Sorry, that printer model is currently ___. »",
+    "options": [
+      "out of stock",
+      "out of breath",
+      "out of order",
+      "out of sight"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-53",
+    "level": "B1",
+    "skill": "vocab",
+    "prompt": "Que signifie « wholesale » par opposition à « retail » ?",
+    "options": [
+      "vente en gros",
+      "vente au détail à l’unité",
+      "location saisonnière",
+      "service après-vente"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-54",
+    "level": "B1",
+    "skill": "vocab",
+    "prompt": "Complétez : « The group opened a new ___ in Abidjan last year. »",
+    "options": [
+      "subsidiary",
+      "summary",
+      "symptom",
+      "syllable"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-55",
+    "level": "B1",
+    "skill": "vocab",
+    "prompt": "Quel mot désigne le « procès-verbal / compte rendu » d’une réunion ?",
+    "options": [
+      "minutes",
+      "seconds",
+      "hours",
+      "schedules"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-56",
+    "level": "B1",
+    "skill": "vocab",
+    "prompt": "Que signifie « installment » (ex. to pay in six monthly installments) ?",
+    "options": [
+      "mensualité / versement échelonné",
+      "remboursement d’impôt",
+      "amende de retard",
+      "pourboire"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-57",
+    "level": "B1",
+    "skill": "vocab",
+    "prompt": "Complétez : « Always check the ___ date on dairy products before buying. »",
+    "options": [
+      "expiration",
+      "explanation",
+      "exportation",
+      "exhibition"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-58",
+    "level": "B1",
+    "skill": "vocab",
+    "prompt": "Quel verbe à particule signifie « annuler » un événement prévu (ex. ___ the match due to rain) ?",
+    "options": [
+      "call off",
+      "set up",
+      "look after",
+      "carry on"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-59",
+    "level": "B1",
+    "skill": "vocab",
+    "prompt": "Que signifie l’adjectif « faulty » (ex. a faulty charger) ?",
+    "options": [
+      "défectueux",
+      "coûteux",
+      "bruyant",
+      "lourd"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-60",
+    "level": "B1",
+    "skill": "vocab",
+    "prompt": "Complétez : « Drowsiness is a possible ___ of this medication. »",
+    "options": [
+      "side effect",
+      "spare part",
+      "shortlist",
+      "slide deck"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-61",
+    "level": "B1",
+    "skill": "vocab",
+    "prompt": "Quel terme désigne le « trajet quotidien domicile-travail » ?",
+    "options": [
+      "commute",
+      "cruise",
+      "customs",
+      "campaign"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-62",
+    "level": "B1",
+    "skill": "vocab",
+    "prompt": "Complétez : « Both neighbors reached a fair ___ to settle the dispute. »",
+    "options": [
+      "compromise",
+      "competitor",
+      "complaint",
+      "commuter"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-63",
+    "level": "B1",
+    "skill": "grammar",
+    "prompt": "Complétez : « Our engineers ___ testing the new solar pump since Monday. »",
+    "options": [
+      "are",
+      "have been",
+      "were",
+      "had"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-64",
+    "level": "B1",
+    "skill": "grammar",
+    "prompt": "Complétez : « By the time the technician arrived, we ___ already fixed the fault. »",
+    "options": [
+      "have",
+      "had",
+      "were",
+      "did"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-65",
+    "level": "B1",
+    "skill": "grammar",
+    "prompt": "Complétez : « Do you know ___ the regional director is in the office today? »",
+    "options": [
+      "that",
+      "if",
+      "what",
+      "which"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-66",
+    "level": "B1",
+    "skill": "grammar",
+    "prompt": "Complétez : « You ought ___ back up your files before updating the system. »",
+    "options": [
+      "for",
+      "to",
+      "at",
+      "— (rien)"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-67",
+    "level": "B1",
+    "skill": "grammar",
+    "prompt": "Complétez : « The meeting room has already ___ booked for the afternoon. »",
+    "options": [
+      "be",
+      "being",
+      "been",
+      "was"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-b1-68",
+    "level": "B1",
+    "skill": "grammar",
+    "prompt": "Complétez : « If they partnered with a local cooperative, their sales ___ grow faster. »",
+    "options": [
+      "will",
+      "would",
+      "did",
+      "have"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-69",
+    "level": "B1",
+    "skill": "grammar",
+    "prompt": "Complétez : « He asked me where the seminar ___ taking place. »",
+    "options": [
+      "is",
+      "was",
+      "will",
+      "has"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-70",
+    "level": "B1",
+    "skill": "grammar",
+    "prompt": "Complétez : « It took me a month to get used to ___ with the new accounting tool. »",
+    "options": [
+      "work",
+      "working",
+      "worked",
+      "be work"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-71",
+    "level": "B1",
+    "skill": "grammar",
+    "prompt": "Complétez : « Neither the manager nor his assistant ___ available yesterday. »",
+    "options": [
+      "were",
+      "was",
+      "are",
+      "have been"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-72",
+    "level": "B1",
+    "skill": "grammar",
+    "prompt": "Complétez : « Would you mind ___ me a copy of the signed invoice? »",
+    "options": [
+      "to send",
+      "sending",
+      "send",
+      "sent"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-73",
+    "level": "B1",
+    "skill": "grammar",
+    "prompt": "Complétez : « We have ___ printer paper; please order five reams. »",
+    "options": [
+      "run out of",
+      "looked into",
+      "put off",
+      "taken after"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-74",
+    "level": "B1",
+    "skill": "grammar",
+    "prompt": "Complétez : « She apologized for not ___ to the message earlier. »",
+    "options": [
+      "reply",
+      "to reply",
+      "replying",
+      "replied"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-b1-75",
+    "level": "B1",
+    "skill": "reading",
+    "prompt": "Lisez : « Solar Kit Financing: Customers pay a 20% down payment upon installation, followed by 12 monthly installments of 15,000 FCFA. Maintenance is included during the first two years. » — Que couvre le contrat pendant les deux premières années ?",
+    "options": [
+      "Le remplacement gratuit du toit",
+      "La maintenance incluse pendant les deux premières années",
+      "La gratuité des 12 mensualités",
+      "L’assurance automobile"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-76",
+    "level": "B1",
+    "skill": "reading",
+    "prompt": "Lisez : « Port Logistics Update: Starting next month, all export declarations must be submitted through the digital portal at least 24 hours before vessel loading. Paper forms will no longer be accepted. » — Quel changement entre en vigueur le mois prochain ?",
+    "options": [
+      "Les déclarations papier deviennent obligatoires",
+      "Toutes les déclarations d’exportation devront être soumises en ligne au moins 24 h avant le chargement",
+      "Le port sera fermé pendant un mois",
+      "Les frais de port sont supprimés"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-77",
+    "level": "B1",
+    "skill": "reading",
+    "prompt": "Lisez : « Internship Opportunity: Our agronomy institute in Thiès is recruiting two final-year students for a four-month fieldwork project on drought-resistant millet. A monthly stipend of 100,000 FCFA is provided. » — À qui s’adresse cette offre de stage ?",
+    "options": [
+      "Aux lycéens de première année",
+      "Aux étudiants en dernière année pour un travail de terrain de quatre mois sur le mil résistant à la sécheresse",
+      "Aux ingénieurs retraités",
+      "Aux comptables bancaires"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-78",
+    "level": "B1",
+    "skill": "reading",
+    "prompt": "Lisez : « Company Carpool Policy: Employees who share a ride with at least two colleagues three times a week receive a reserved parking spot and a 25% fuel voucher. » — Quel avantage reçoivent les salariés qui pratiquent le covoiturage selon ces règles ?",
+    "options": [
+      "Une voiture neuve offerte",
+      "Une place de parking réservée et un bon de carburant de 25 %",
+      "Deux semaines de congés supplémentaires",
+      "Une dispense de travail le lundi"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-79",
+    "level": "B1",
+    "skill": "reading",
+    "prompt": "Lisez : « Health Center Notice: To reduce waiting times, routine check-ups and vaccination appointments must now be booked by phone or WhatsApp. Emergency cases are still treated immediately without appointment. » — Comment sont prises en charge les urgences ?",
+    "options": [
+      "Elles doivent prendre rendez-vous un mois à l’avance",
+      "Elles restent traitées immédiatement sans rendez-vous",
+      "Elles sont orientées vers une autre ville",
+      "Elles ne sont reçues que le dimanche"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-80",
+    "level": "B1",
+    "skill": "reading",
+    "prompt": "Lisez : « Quality Control Report: Out of 500 mango crates inspected this morning, 485 met export standards. The remaining 15 crates were redirected to the local juice processing unit. » — Qu’est-il advenu des 15 caisses qui ne répondaient pas aux normes d’exportation ?",
+    "options": [
+      "Elles ont été jetées à la mer",
+      "Elles ont été réorientées vers l’unité locale de transformation en jus",
+      "Elles ont quand même été expédiées par avion",
+      "Elles ont été vendues comme semences"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-81",
+    "level": "B1",
+    "skill": "reading",
+    "prompt": "Lisez : « Conference Speakers: Please upload your final slide deck to the shared folder by Wednesday at 5:00 PM so our technical team can test all videos and fonts on the main projector. » — Pourquoi les intervenants doivent-ils déposer leur présentation avant mercredi 17h00 ?",
+    "options": [
+      "Pour que l’équipe technique puisse tester les vidéos et polices sur le vidéoprojecteur principal",
+      "Pour la faire traduire en dix langues",
+      "Parce que la conférence a été avancée à mercredi soir",
+      "Pour l’imprimer en mille exemplaires"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-82",
+    "level": "B1",
+    "skill": "reading",
+    "prompt": "Lisez : « Warranty Conditions: The two-year warranty covers manufacturing defects and motor failure, but excludes damage caused by voltage fluctuations if no surge protector was used. » — Dans quel cas la garantie ne s’applique-t-elle pas ?",
+    "options": [
+      "En cas de défaut de fabrication",
+      "En cas de dommage dû aux variations de tension si aucun parasurtenseur n’a été utilisé",
+      "Si la panne survient la première année",
+      "Si l’appareil a été acheté en magasin"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-83",
+    "level": "B1",
+    "skill": "reading",
+    "prompt": "Lisez : « Library Digitization Project: Over 3,000 historical manuscripts from Saint-Louis have been scanned in high resolution, allowing researchers worldwide to consult them without handling the fragile originals. » — Quel est le double intérêt de cette numérisation ?",
+    "options": [
+      "Vendre les manuscrits originaux aux enchères",
+      "Permettre aux chercheurs du monde entier de les consulter tout en préservant les originaux fragiles",
+      "Fermer définitivement la bibliothèque",
+      "Remplacer tous les livres par des vidéos"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-84",
+    "level": "B1",
+    "skill": "reading",
+    "prompt": "Lisez : « Supplier Evaluation: Although Supplier A offers a 5% lower unit price than Supplier B, Supplier B has a 99% on-time delivery record compared to 74% for Supplier A. » — Quel est l’atout majeur du fournisseur B ?",
+    "options": [
+      "Ses tarifs sont les plus bas du marché",
+      "Sa fiabilité de livraison à l’heure atteint 99 % contre 74 % pour le fournisseur A",
+      "Il ne demande jamais de paiement",
+      "Il est situé sur un autre continent"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-85",
+    "level": "B1",
+    "skill": "reading",
+    "prompt": "Lisez : « Training Feedback: Participants requested fewer theoretical slides in the morning session and more hands-on role-play exercises in the afternoon to practice real client negotiations. » — Que souhaitent les participants pour améliorer la formation ?",
+    "options": [
+      "Plus de théorie et aucun exercice pratique",
+      "Moins de diapositives théoriques le matin et davantage de mises en situation pratiques l’après-midi",
+      "La suppression de la séance de l’après-midi",
+      "Un examen écrit de quatre heures"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-86",
+    "level": "B1",
+    "skill": "reading",
+    "prompt": "Lisez : « Eco-Lodge Charter: All hot water in our rooms is heated by solar energy, and single-use plastic bottles have been replaced with filtered water fountains. » — Quelle mesure l’éco-lodge a-t-il prise concernant l’eau potable ?",
+    "options": [
+      "Il vend uniquement des bouteilles en plastique",
+      "Il a remplacé les bouteilles en plastique à usage unique par des fontaines à eau filtrée",
+      "Il a coupé l’eau chaude dans les chambres",
+      "Les clients doivent apporter leur propre eau"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-87",
+    "level": "B1",
+    "skill": "reading",
+    "prompt": "Lisez : « Probation Review: After completing her three-month probation period with excellent feedback from clients, Aminata has been confirmed as permanent regional coordinator. » — Quelle est l’issue de la période d’essai d’Aminata ?",
+    "options": [
+      "Sa période d’essai est prolongée de six mois",
+      "Elle est confirmée à son poste permanent de coordinatrice régionale",
+      "Elle change d’entreprise",
+      "Elle reprend ses études à temps plein"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-88",
+    "level": "B1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez pourquoi la traversée en ferry a été suspendue :",
+    "audioText": "The ferry service was temporarily suspended this morning due to strong coastal winds.",
+    "options": [
+      "Une panne de moteur",
+      "De forts vents côtiers ce matin",
+      "Un manque de passagers",
+      "Une fête sur le port"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-89",
+    "level": "B1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez ce que le directeur a demandé à son équipe :",
+    "audioText": "The manager reminded everyone to lock their computer screens before leaving their desks.",
+    "options": [
+      "D’éteindre la climatisation à midi",
+      "De verrouiller leurs écrans d’ordinateur avant de quitter leurs bureaux",
+      "De venir travailler dimanche",
+      "De changer de bureau"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-90",
+    "level": "B1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez comment la pharmacie aide les patients âgés :",
+    "audioText": "Our neighborhood pharmacy offers free home delivery for elderly patients.",
+    "options": [
+      "Elle leur offre une livraison gratuite à domicile",
+      "Elle ouvre uniquement la nuit",
+      "Elle vend des lunettes de soleil",
+      "Elle organise des voyages"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-91",
+    "level": "B1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez de combien l’usine doit réduire sa consommation d’énergie :",
+    "audioText": "We need to reduce our factory’s energy consumption by ten percent this year.",
+    "options": [
+      "De 2 %",
+      "De 10 % cette année",
+      "De 50 % ce mois-ci",
+      "Elle va doubler sa consommation"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-92",
+    "level": "B1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez pourquoi la séance de formation a été annulée :",
+    "audioText": "Yesterday’s training session was canceled because the instructor fell ill.",
+    "options": [
+      "Il n’y avait plus d’électricité",
+      "Le formateur est tombé malade",
+      "La salle était trop petite",
+      "C’était un jour férié"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-93",
+    "level": "B1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez combien de clients locaux ont testé le produit :",
+    "audioText": "Before launching the new service, we tested it with fifty local customers.",
+    "options": [
+      "Cinq clients",
+      "Quinze clients",
+      "Cinquante clients locaux",
+      "Cinq cents clients"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-b1-94",
+    "level": "B1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez ce qu’a accepté de faire le propriétaire avant l’emménagement :",
+    "audioText": "The landlord agreed to repaint the entire apartment before we moved in.",
+    "options": [
+      "Baisser le loyer de moitié",
+      "Repeindre tout l’appartement avant l’emménagement",
+      "Construire un garage",
+      "Acheter un réfrigérateur"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-95",
+    "level": "B1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez pourquoi le colis a pris du retard :",
+    "audioText": "Your parcel was held at customs for two days because the commercial invoice was missing.",
+    "options": [
+      "L’adresse était illisible",
+      "La facture commerciale manquait au dossier douanier",
+      "Le camion est tombé en panne",
+      "Le destinataire était absent"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-96",
+    "level": "B1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez quel avantage donne le surclassement du billet :",
+    "audioText": "If you upgrade your train ticket, you will have access to the quiet business lounge.",
+    "options": [
+      "Un billet gratuit pour le retour",
+      "L’accès au salon d’affaires calme",
+      "Le remboursement intégral du voyage",
+      "Le transport d’une voiture"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-97",
+    "level": "B1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez depuis combien de temps la coopérative exporte des mangues :",
+    "audioText": "They have been exporting fresh mangoes to Europe for over ten years.",
+    "options": [
+      "Depuis six mois",
+      "Depuis deux ans",
+      "Depuis plus de dix ans",
+      "Elle vient tout juste de commencer"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "pl-b1-98",
+    "level": "B1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez ce que fait automatiquement le groupe électrogène :",
+    "audioText": "The backup generator starts automatically within five seconds during a power outage.",
+    "options": [
+      "Il démarre automatiquement en cinq secondes lors d’une coupure de courant",
+      "Il s’éteint à midi",
+      "Il envoie un SMS au directeur",
+      "Il refroidit l’entrepôt"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b1-99",
+    "level": "B1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez combien de candidats ont été retenus pour l’entretien final :",
+    "audioText": "Five applicants were put on the shortlist for the final panel interview.",
+    "options": [
+      "Deux candidats",
+      "Cinq candidats",
+      "Quinze candidats",
+      "Cinquante candidats"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b1-100",
+    "level": "B1",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez quand les horaires de la bibliothèque sont prolongés :",
+    "audioText": "The university library extends its opening hours until ten PM during the exam period.",
+    "options": [
+      "Pendant les vacances d’été",
+      "Jusqu’à 22h00 pendant la période des examens",
+      "Uniquement le dimanche matin",
+      "Lors des jours fériés"
+    ],
+    "answerIndex": 1
+  },
+  {
     "id": "pl-b2-01",
     "level": "B2",
     "skill": "vocab",
@@ -2644,6 +4633,669 @@
       "Plus de la moitié de l’approvisionnement électrique du site industriel",
       "Exactement 25 %",
       "L’usine n’utilisera pas d’énergie solaire"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-51",
+    "level": "B2",
+    "skill": "vocab",
+    "prompt": "Quel verbe signifie « atténuer / réduire » la gravité d’un risque financier ou climatique ?",
+    "options": [
+      "to mitigate",
+      "to exacerbate",
+      "to instigate",
+      "to fabricate"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-52",
+    "level": "B2",
+    "skill": "vocab",
+    "prompt": "Que signifie l’adjectif « stringent » dans « stringent safety regulations » ?",
+    "options": [
+      "strictes / rigoureuses",
+      "facultatives / souples",
+      "obsolètes / dépassées",
+      "provisoires / floues"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-53",
+    "level": "B2",
+    "skill": "vocab",
+    "prompt": "Complétez : « Due to ___ market volatility, the central bank kept interest rates unchanged. »",
+    "options": [
+      "unprecedented",
+      "inconsequential",
+      "complacent",
+      "superfluous"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-54",
+    "level": "B2",
+    "skill": "vocab",
+    "prompt": "Quel nom désigne un « effet levier » ou un moyen d’influence dans une négociation ?",
+    "options": [
+      "leverage",
+      "shortfall",
+      "standstill",
+      "oversight"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-55",
+    "level": "B2",
+    "skill": "vocab",
+    "prompt": "Que signifie « to overhaul » dans « They decided to overhaul the entire billing system » ?",
+    "options": [
+      "remanier / refondre entièrement",
+      "supprimer sans remplacement",
+      "sous-traiter à l’étranger",
+      "reporter à l’exercice suivant"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-56",
+    "level": "B2",
+    "skill": "vocab",
+    "prompt": "Quel adjectif qualifie un objectif « réalisable / atteignable » mais exigeant ?",
+    "options": [
+      "feasible",
+      "futile",
+      "fickle",
+      "flawed"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-57",
+    "level": "B2",
+    "skill": "vocab",
+    "prompt": "Complétez : « Prolonged drought could ___ food security across the entire subregion. »",
+    "options": [
+      "jeopardize",
+      "bolster",
+      "subsidize",
+      "endorse"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-58",
+    "level": "B2",
+    "skill": "vocab",
+    "prompt": "Que signifie l’expression « a double-edged sword » ?",
+    "options": [
+      "une arme à double tranchant (avantage et inconvénient)",
+      "une victoire écrasante",
+      "un contrat sans risque",
+      "une perte sèche immédiate"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-59",
+    "level": "B2",
+    "skill": "vocab",
+    "prompt": "Quel verbe signifie « corroborer / appuyer par des preuves solides » une affirmation ?",
+    "options": [
+      "to substantiate",
+      "to speculate",
+      "to circumvent",
+      "to relinquish"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-60",
+    "level": "B2",
+    "skill": "vocab",
+    "prompt": "Complétez : « The ministry launched a ___ inquiry into the port crane collapse. »",
+    "options": [
+      "thorough",
+      "lenient",
+      "cursory",
+      "trivial"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-61",
+    "level": "B2",
+    "skill": "vocab",
+    "prompt": "Que signifie « to phased out » (ex. Single-use plastics are being phased out) ?",
+    "options": [
+      "être supprimé progressivement",
+      "être imposé du jour au lendemain",
+      "être subventionné par l’État",
+      "être recyclé à 100 %"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-62",
+    "level": "B2",
+    "skill": "vocab",
+    "prompt": "Quel nom désigne un « déficit / manque à gagner » par rapport aux prévisions budgétaires ?",
+    "options": [
+      "a shortfall",
+      "a windfall",
+      "a benchmark",
+      "a milestone"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-63",
+    "level": "B2",
+    "skill": "grammar",
+    "prompt": "Complétez : « Scarcely ___ the press conference begun when the power went out. »",
+    "options": [
+      "had",
+      "has",
+      "did",
+      "was"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-64",
+    "level": "B2",
+    "skill": "grammar",
+    "prompt": "Complétez : « Little ___ that the prototype would attract international venture capital. »",
+    "options": [
+      "they knew",
+      "did they know",
+      "knew they",
+      "had they know"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-65",
+    "level": "B2",
+    "skill": "grammar",
+    "prompt": "Complétez : « ___ for the emergency bridge loan, the refinery would have halted operations. »",
+    "options": [
+      "But",
+      "Except",
+      "Unless",
+      "If"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-66",
+    "level": "B2",
+    "skill": "grammar",
+    "prompt": "Complétez : « It is high time the municipality ___ the drainage network in the commercial district. »",
+    "options": [
+      "upgrades",
+      "upgraded",
+      "will upgrade",
+      "has upgraded"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-67",
+    "level": "B2",
+    "skill": "grammar",
+    "prompt": "Complétez : « The CEO insisted that every department head ___ the compliance workshop. »",
+    "options": [
+      "attends",
+      "attend",
+      "attended",
+      "to attend"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-68",
+    "level": "B2",
+    "skill": "grammar",
+    "prompt": "Complétez : « ___ having three decades of maritime experience, the captain remained cautious in the fog. »",
+    "options": [
+      "Although",
+      "Despite",
+      "Even though",
+      "Whereas"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-69",
+    "level": "B2",
+    "skill": "grammar",
+    "prompt": "Complétez : « Only after the laboratory tests were repeated ___ the source of the contamination. »",
+    "options": [
+      "they identified",
+      "did they identify",
+      "identified they",
+      "have they identify"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-70",
+    "level": "B2",
+    "skill": "grammar",
+    "prompt": "Complétez : « If you hadn’t delayed the shipment last week, the goods ___ in Bamako right now. »",
+    "options": [
+      "would have been",
+      "would be",
+      "will be",
+      "had been"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-71",
+    "level": "B2",
+    "skill": "grammar",
+    "prompt": "Complétez : « Much ___ I respect her analytical skills, I disagree with her revenue forecast. »",
+    "options": [
+      "as",
+      "even",
+      "despite",
+      "however"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-72",
+    "level": "B2",
+    "skill": "grammar",
+    "prompt": "Complétez : « The delegates are reported ___ a preliminary framework late last night. »",
+    "options": [
+      "to reach",
+      "to have reached",
+      "having reached",
+      "that they reached"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-73",
+    "level": "B2",
+    "skill": "grammar",
+    "prompt": "Complétez : « Whatever ___ the committee decides, we must be ready to adapt our operations. »",
+    "options": [
+      "course of action",
+      "does course",
+      "is the course",
+      "that course"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-74",
+    "level": "B2",
+    "skill": "grammar",
+    "prompt": "Complétez : « Seldom ___ such unanimous support for a public transport reform. »",
+    "options": [
+      "we have witnessed",
+      "have we witnessed",
+      "witnessed we",
+      "do we witnessed"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-75",
+    "level": "B2",
+    "skill": "reading",
+    "prompt": "Lisez : « While drip irrigation entails a substantial initial outlay for smallholder cooperatives, empirical studies across the Sahel indicate that water consumption drops by up to 50% while crop yields rise by a third. » — Que montrent les études empiriques sur l’irrigation au goutte-à-goutte ?",
+    "options": [
+      "Elle double la consommation d’eau sans améliorer les récoltes",
+      "Malgré un coût initial élevé, elle réduit la consommation d’eau jusqu’à 50 % et augmente les rendements d’un tiers",
+      "Elle est gratuite à installer mais peu fiable",
+      "Elle ne fonctionne que pour les cultures sous serre froide"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-76",
+    "level": "B2",
+    "skill": "reading",
+    "prompt": "Lisez : « The central bank’s decision to tighten reserve requirements was aimed not at curbing credit to productive SMEs, but rather at reining in speculative real-estate lending. » — Quel était l’objectif précis de la banque centrale ?",
+    "options": [
+      "Freiner les prêts immobiliers spéculatifs sans restreindre le crédit aux PME productives",
+      "Interdire tout prêt bancaire aux PME",
+      "Encourager la spéculation immobilière",
+      "Fermer les banques régionales"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-77",
+    "level": "B2",
+    "skill": "reading",
+    "prompt": "Lisez : « Proponents of open-source hospital software argue that avoiding proprietary licensing fees allows regional health authorities to allocate more funds toward staff training and diagnostic hardware. » — Quel avantage les partisans des logiciels libres hospitaliers mettent-ils en avant ?",
+    "options": [
+      "Les économies sur les licences propriétaires permettent de financer la formation et le matériel de diagnostic",
+      "Les logiciels libres ne nécessitent aucune formation du personnel",
+      "Le matériel médical devient gratuit",
+      "Les hôpitaux n’ont plus besoin d’informaticiens"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-78",
+    "level": "B2",
+    "skill": "reading",
+    "prompt": "Lisez : « Had the municipality enforced coastal zoning laws a decade ago, the current erosion threatening seaside hotels in Saly would have been largely preventable. » — Que sous-entend l’auteur de ce constat ?",
+    "options": [
+      "Les lois d’urbanisme côtier ont été appliquées trop strictement",
+      "L’application des règles il y a dix ans aurait permis d’éviter en grande partie l’érosion actuelle",
+      "L’érosion côtière est totalement indépendante des constructions",
+      "Tous les hôtels ont déjà été déplacés à l’intérieur des terres"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-79",
+    "level": "B2",
+    "skill": "reading",
+    "prompt": "Lisez : « Notwithstanding the impressive surge in mobile money accounts, cash remains the predominant medium for small retail transactions in informal urban markets. » — Quelle nuance ce passage apporte-t-il ?",
+    "options": [
+      "Le paiement mobile a totalement remplacé les espèces sur les marchés",
+      "En dépit du fort essor du mobile money, les espèces restent majoritaires pour les petits achats sur les marchés informels",
+      "Les banques interdisent désormais les paiements mobiles",
+      "Les commerçants refusent l’argent liquide"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-80",
+    "level": "B2",
+    "skill": "reading",
+    "prompt": "Lisez : « To prevent a single point of failure in its data infrastructure, the clearinghouse mirrors all transaction logs in real time across three geographically dispersed servers. » — Pourquoi la chambre de compensation réplique-t-elle ses journaux sur trois serveurs distants ?",
+    "options": [
+      "Pour éviter qu’une panne unique ne paralyse toute son infrastructure de données",
+      "Pour ralentir le traitement des virements bancaires",
+      "Pour vendre les données à des agences publicitaires",
+      "Parce qu’un seul serveur coûte trop cher"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "pl-b2-81",
+    "level": "B2",
+    "skill": "reading",
+    "prompt": "Lisez : « The external auditors issued an unqualified opinion on the company’s financial statements, confirming that the accounts present a true and fair view of its fiscal position. » — Que signifie une « unqualified opinion » dans un rapport d’audit financier ?",
+    "options": [
+      "Les auditeurs n’avaient pas les diplômes requis",
+      "Une certification sans réserve confirmant la sincérité et la régularité des comptes",
+      "Le rejet total du bilan comptable pour fraude",
+      "L’obligation de refaire toute la comptabilité de l’année"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-82",
+    "level": "B2",
+    "skill": "reading",
+    "prompt": "Lisez : « Unless vocational curricula are aligned with the evolving needs of the renewable energy sector, graduates may struggle to secure technical roles despite a booming industry. » — Quel paradoxe le texte souligne-t-il ?",
+    "options": [
+      "Le secteur des énergies renouvelables est en déclin rapide",
+      "Sans adéquation des programmes de formation avec le secteur, les diplômés risquent de peiner à trouver un poste malgré un marché en plein essor",
+      "Il y a trop de techniciens qualifiés et pas assez d’entreprises",
+      "Les universités doivent fermer leurs filières techniques"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-83",
+    "level": "B2",
+    "skill": "reading",
+    "prompt": "Lisez : « By shifting from bulk raw cotton exports to local textile spinning and weaving, the industrial zone multiplied the domestic value added by four within five years. » — Comment la zone industrielle a-t-elle quadruplé la valeur ajoutée locale ?",
+    "options": [
+      "En doublant les importations de vêtements étrangers",
+      "En passant de l’exportation de coton brut à la filature et au tissage sur place",
+      "En abandonnant la culture du coton",
+      "En baissant le salaire des ouvriers textiles"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-84",
+    "level": "B2",
+    "skill": "reading",
+    "prompt": "Lisez : « Although the joint venture initially faced cultural friction between its Dakar and Lagos engineering teams, rotating staff across both offices fostered mutual trust and accelerated product delivery. » — Comment la coentreprise a-t-elle surmonté les frictions initiales ?",
+    "options": [
+      "En fermant le bureau de Lagos",
+      "En instaurant une rotation des ingénieurs entre les bureaux de Dakar et de Lagos",
+      "En remplaçant tous les ingénieurs par des sous-traitants",
+      "En arrêtant le développement du produit"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-85",
+    "level": "B2",
+    "skill": "reading",
+    "prompt": "Lisez : « The tribunal ruled that the force majeure clause could not be invoked merely because fuel prices had risen, as market fluctuations constitute a foreseeable business risk. » — Pourquoi le tribunal a-t-il rejeté l’invocation de la force majeure ?",
+    "options": [
+      "Parce que le contrat n’avait jamais été signé",
+      "Parce que la hausse du prix du carburant relève d’un risque commercial prévisible et non de la force majeure",
+      "Parce que le prix du carburant avait en réalité baissé",
+      "Parce que le tribunal n’était pas compétent en droit commercial"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-86",
+    "level": "B2",
+    "skill": "reading",
+    "prompt": "Lisez : « Far from cannibalizing print readership, the newspaper’s investigative podcast attracted a younger demographic that subsequently subscribed to its digital weekend edition. » — Quel a été l’effet du podcast d’investigation sur le journal ?",
+    "options": [
+      "Il a fait perdre la moitié des abonnés papier",
+      "Il a attiré un public plus jeune qui s’est ensuite abonné à l’édition numérique du week-end",
+      "Il a coûté trop cher et a été arrêté après deux mois",
+      "Il a remplacé tous les articles écrits"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-87",
+    "level": "B2",
+    "skill": "reading",
+    "prompt": "Lisez : « Given the high turbidity of the river during the monsoon months, the water treatment plant installed an additional pre-filtration stage to prevent membrane fouling. » — Pourquoi l’usine de traitement d’eau a-t-elle ajouté une étape de pré-filtration ?",
+    "options": [
+      "Pour augmenter la teneur en sel de l’eau potable",
+      "Pour éviter l’encrassement des membranes dû à la forte turbidité du fleuve pendant la mousson",
+      "Parce que le fleuve est complètement à sec pendant la mousson",
+      "Pour réduire la consommation électrique des pompes"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-88",
+    "level": "B2",
+    "skill": "listening",
+    "prompt": "Écoutez et identifiez la raison pour laquelle la fusion a été retardée :",
+    "audioText": "Had the antitrust regulator not requested additional market data, the merger would have been finalized in June.",
+    "options": [
+      "Les deux entreprises ont renoncé à fusionner",
+      "L’autorité de la concurrence a demandé des données de marché complémentaires",
+      "Les actionnaires ont voté contre le projet en juin",
+      "La banque d’affaires a fait faillite"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-89",
+    "level": "B2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez comment la compagnie maritime a compensé la hausse du prix du fioul :",
+    "audioText": "Rather than raising freight tariffs across the board, the shipping line optimized vessel speed to cut fuel consumption by fifteen percent.",
+    "options": [
+      "En augmentant tous ses tarifs de fret de 15 %",
+      "En optimisant la vitesse des navires pour réduire la consommation de carburant de 15 %",
+      "En supprimant la moitié de ses escales en Afrique de l’Ouest",
+      "En vendant ses porte-conteneurs les plus récents"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-90",
+    "level": "B2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez ce que révèle l’audit de cybersécurité :",
+    "audioText": "Scarcely had the external consultants begun the penetration test when they uncovered an unpatched vulnerability in the legacy server.",
+    "options": [
+      "Aucun défaut de sécurité n’a été détecté",
+      "Dès le début du test d’intrusion, une faille non corrigée a été découverte sur l’ancien serveur",
+      "Les consultants ont mis six mois à trouver une anomalie mineure",
+      "Le serveur principal a été détruit accidentellement"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-91",
+    "level": "B2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez la condition fixée pour le renouvellement de la concession portuaire :",
+    "audioText": "The renewal of the terminal concession is strictly contingent upon the operator investing forty million dollars in electric gantry cranes.",
+    "options": [
+      "Le versement d’une caution bancaire de cinq millions",
+      "L’investissement de 40 millions de dollars dans des portiques électriques par l’opérateur",
+      "La réduction de 40 % des effectifs de manutention",
+      "L’ouverture du terminal aux navires de croisière uniquement"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-92",
+    "level": "B2",
+    "skill": "listening",
+    "prompt": "Écoutez et choisissez le constat dressé par l’économiste :",
+    "audioText": "While headline inflation has eased over the past two quarters, core food prices remain stubbornly high for urban households.",
+    "options": [
+      "Tous les prix alimentaires ont chuté de moitié en ville",
+      "Bien que l’inflation globale ait ralenti sur deux trimestres, les prix des denrées de base restent élevés pour les ménages urbains",
+      "L’inflation globale a triplé depuis six mois",
+      "Les ménages ruraux sont les seuls touchés par la hausse des loyers"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-93",
+    "level": "B2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez ce qui a convaincu le comité d’éthique :",
+    "audioText": "Only after the research institute guaranteed full anonymization of patient records did the ethics committee approve the clinical study.",
+    "options": [
+      "Le versement d’une subvention exceptionnelle",
+      "La garantie d’une anonymisation complète des dossiers des patients",
+      "La réduction de la durée de l’étude à une semaine",
+      "Le remplacement du directeur de recherche"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-94",
+    "level": "B2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez la recommandation formulée par le cabinet d’ingénierie :",
+    "audioText": "To mitigate flood risks in low-lying neighborhoods, the engineering firm recommended restoring natural wetlands alongside building retention basins.",
+    "options": [
+      "Bétonner toutes les zones humides de la ville",
+      "Restaurer les zones humides naturelles en complément de la construction de bassins de rétention",
+      "Interdire toute construction à moins de cinquante kilomètres du fleuve",
+      "Pomper l’eau de pluie vers la mer sans bassin"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-95",
+    "level": "B2",
+    "skill": "listening",
+    "prompt": "Écoutez et identifiez l’impact du nouveau guichet unique électronique :",
+    "audioText": "By consolidating seven separate customs forms into a single digital portal, the ministry eliminated a major bureaucratic bottleneck.",
+    "options": [
+      "Il faut désormais remplir sept formulaires papier de plus",
+      "Le regroupement de sept formulaires en un seul portail numérique a éliminé un important goulet d’étranglement administratif",
+      "Les délais de dédouanement ont doublé",
+      "Le portail numérique est réservé aux compagnies aériennes"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-96",
+    "level": "B2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez pourquoi la coopérative a diversifié ses acheteurs :",
+    "audioText": "Lest a sudden drop in European demand jeopardize their annual revenue, the mango exporters signed supply contracts with regional supermarket chains.",
+    "options": [
+      "Parce que les récoltes de mangues ont été nulles cette année",
+      "Pour éviter qu’une baisse soudaine de la demande européenne ne compromette leurs revenus annuels, en signant avec des supermarchés régionaux",
+      "Parce que l’exportation par bateau est désormais interdite",
+      "Pour vendre exclusivement sur le marché américain"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-97",
+    "level": "B2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez l’erreur commise lors de l’estimation du chantier :",
+    "audioText": "The contractors underestimated the complexity of the subsoil in Saint-Louis, which necessitated deeper foundation pilings and delayed handover by three months.",
+    "options": [
+      "Ils ont commandé trop de peinture extérieure",
+      "Ils ont sous-estimé la complexité du sous-sol à Saint-Louis, exigeant des pieux plus profonds et retardant la livraison de trois mois",
+      "Ils ont terminé le chantier avec trois mois d’avance",
+      "Ils ont oublié de demander le permis de construire"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-98",
+    "level": "B2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez ce que prévoit l’accord de licence technologique :",
+    "audioText": "Under the terms of the licensing agreement, the local plant may manufacture the solar inverters royalty-free for the first three years.",
+    "options": [
+      "L’usine doit payer 50 % de redevances dès le premier jour",
+      "L’usine locale peut fabriquer les onduleurs solaires sans payer de redevances pendant les trois premières années",
+      "L’accord interdit toute fabrication locale",
+      "La licence expire au bout de trois mois"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-99",
+    "level": "B2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez le bilan tiré après un an de télétravail hybride :",
+    "audioText": "Contrary to initial skepticism among senior managers, the hybrid work arrangement neither eroded team cohesion nor slowed down software releases.",
+    "options": [
+      "La cohésion d’équipe s’est effondrée et les livraisons ont ralenti",
+      "Contrairement au scepticisme initial, le travail hybride n’a ni nui à la cohésion d’équipe ni ralenti les livraisons logicielles",
+      "Tous les employés ont demandé à revenir au bureau cinq jours sur cinq",
+      "Les cadres dirigeants ont supprimé les outils collaboratifs"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "pl-b2-100",
+    "level": "B2",
+    "skill": "listening",
+    "prompt": "Écoutez et indiquez pourquoi l’émission obligataire a connu un tel succès :",
+    "audioText": "Backed by a sovereign guarantee and dedicated to clean urban transport, the green bond issue was oversubscribed within four hours.",
+    "options": [
+      "Elle offrait un remboursement en vingt- quatre heures",
+      "Assortie d’une garantie souveraine et dédiée aux transports urbains propres, l’émission d’obligations vertes a été sursouscrite en quatre heures",
+      "Aucun investisseur n’a voulu souscrire à l’emprunt",
+      "Elle servait à financer des centrales à charbon"
     ],
     "answerIndex": 1
   }

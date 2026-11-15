@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { speakEnglish } from '../lib/audio';
 import { catalog } from '../lib/catalog';
 import {
+  abandonPlacementSession,
+  AdaptiveTestSession,
   ALL_SKILLS,
   CEFR_LEVELS,
   createAdaptiveSession,
+  DONT_KNOW_LABEL_FR,
+  DONT_KNOW_OPTION_INDEX,
+  drawNextPlacementQuestion,
   evaluatePlacementTest,
+  getPlacementLockStatus,
+  getQuestionTimeLimitSeconds,
+  MAX_LISTENING_PLAYS,
   recordAdaptiveAnswer,
-  selectNextAdaptiveQuestion,
   SKILL_LABELS_FR,
+  toPlacementSessionState,
 } from '../lib/placementTest';
 import {
   analyzeFeasibility,
@@ -22,7 +30,9 @@ import {
   CEFRLevel,
   LearningGoal,
   OnboardingStep,
+  PlacementQuestion,
   PlacementResult,
+  PlacementSessionState,
   StudyPlan,
   StudyPlanConfig,
   UserProfile,
@@ -35,6 +45,7 @@ import {
   IconCompass,
   IconGraduation,
   IconMessage,
+  IconSettings,
   IconUpload,
   IconVolume,
 } from './Icons';
@@ -43,10 +54,23 @@ interface OnboardingFlowProps {
   step: OnboardingStep;
   initialProfile: UserProfile | null;
   initialPlacement: PlacementResult | null;
+  seenQuestionIds?: string[];
+  placementSession?: PlacementSessionState | null;
+  hasExistingStudyPlan?: boolean;
   onCompleteProfile: (profile: UserProfile) => void;
-  onCompletePlacement: (result: PlacementResult) => void;
+  onCompletePlacement: (
+    result: PlacementResult,
+    sessionState?: PlacementSessionState,
+    seenQuestionIds?: string[]
+  ) => void;
+  onUpdatePlacementSession?: (
+    sessionState: PlacementSessionState,
+    seenQuestionIds: string[]
+  ) => void;
   onCompletePlan: (plan: StudyPlan) => void;
   onImportState: (state: AppState) => void;
+  onOpenSettings?: () => void;
+  onCancelLockedRetake?: () => void;
 }
 
 const GOAL_OPTIONS: Array<{
@@ -81,14 +105,34 @@ const GOAL_OPTIONS: Array<{
   },
 ];
 
+interface ActivePlacementState {
+  session: AdaptiveTestSession;
+  currentQuestion: PlacementQuestion | null;
+  seenIds: string[];
+}
+
+function createInitialPlacementState(initialSeenIds: string[]): ActivePlacementState {
+  const freshSession = createAdaptiveSession(catalog.placement.length, 20, 'A1');
+  const drawn = drawNextPlacementQuestion(catalog.placement, freshSession, initialSeenIds);
+  return {
+    session: drawn.session,
+    currentQuestion: drawn.question,
+    seenIds: drawn.seenQuestionIds,
+  };
+}
+
 export function OnboardingFlow({
   step,
   initialProfile,
   initialPlacement,
+  seenQuestionIds = [],
   onCompleteProfile,
   onCompletePlacement,
+  onUpdatePlacementSession,
   onCompletePlan,
   onImportState,
+  onOpenSettings,
+  onCancelLockedRetake,
 }: OnboardingFlowProps): React.ReactElement {
   // Step 1: Profile state
   const [firstName, setFirstName] = useState(initialProfile?.firstName ?? '');
@@ -98,15 +142,184 @@ export function OnboardingFlow({
   const [profileError, setProfileError] = useState('');
   const [importError, setImportError] = useState('');
 
-  // Step 2: Adaptive Placement Test state (~20 questions)
-  const [adaptiveSession, setAdaptiveSession] = useState(() =>
-    createAdaptiveSession(catalog.placement.length, 20, 'A1')
+  // Step 2: Adaptive Placement Test state (~20 questions + confirmation if inconsistent)
+  const lockStatus = getPlacementLockStatus(initialPlacement);
+
+  const [placementState, setPlacementState] = useState<ActivePlacementState>(() =>
+    createInitialPlacementState(seenQuestionIds)
   );
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
-  const [lastFeedback, setLastFeedback] = useState<{
-    isCorrect: boolean;
-    nextLevel: CEFRLevel;
-  } | null>(null);
+  const [audioPlayCount, setAudioPlayCount] = useState<number>(0);
+  const [timeLeftSeconds, setTimeLeftSeconds] = useState<number>(() =>
+    placementState.currentQuestion
+      ? getQuestionTimeLimitSeconds(placementState.currentQuestion.skill)
+      : 30
+  );
+
+  const latestPlacementRef = useRef<ActivePlacementState>(placementState);
+  latestPlacementRef.current = placementState;
+
+  const onUpdateSessionRef = useRef(onUpdatePlacementSession);
+  onUpdateSessionRef.current = onUpdatePlacementSession;
+
+  // Start a fresh non-repeating session whenever entering 'placement' (if unlocked)
+  useEffect(() => {
+    if (step !== 'placement' || lockStatus.isLocked) {
+      return;
+    }
+
+    const fresh = createInitialPlacementState(seenQuestionIds);
+    setPlacementState(fresh);
+    setSelectedOption(null);
+    setAudioPlayCount(0);
+    setTimeLeftSeconds(
+      fresh.currentQuestion
+        ? getQuestionTimeLimitSeconds(fresh.currentQuestion.skill)
+        : 30
+    );
+
+    onUpdateSessionRef.current?.(
+      toPlacementSessionState(fresh.session),
+      fresh.seenIds
+    );
+
+    const handleBeforeUnload = () => {
+      const current = latestPlacementRef.current;
+      if (current.session.status === 'in_progress') {
+        const abandoned = abandonPlacementSession(current.session, current.seenIds);
+        onUpdateSessionRef.current?.(
+          toPlacementSessionState(abandoned.session),
+          abandoned.seenQuestionIds
+        );
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      const current = latestPlacementRef.current;
+      if (current.session.status === 'in_progress') {
+        const abandoned = abandonPlacementSession(current.session, current.seenIds);
+        onUpdateSessionRef.current?.(
+          toPlacementSessionState(abandoned.session),
+          abandoned.seenQuestionIds
+        );
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [step, lockStatus.isLocked]);
+
+  const advancePlacementQuestion = useCallback(
+    (chosenOption: number | null, forceDontKnow = false) => {
+      const current = latestPlacementRef.current;
+      const activeQuestion = current.currentQuestion;
+      if (!activeQuestion) return;
+
+      const isDontKnow =
+        forceDontKnow ||
+        chosenOption === null ||
+        chosenOption === DONT_KNOW_OPTION_INDEX;
+
+      const recordedSession = recordAdaptiveAnswer(
+        current.session,
+        activeQuestion,
+        isDontKnow ? null : chosenOption,
+        { isDontKnow }
+      );
+
+      if (recordedSession.status === 'completed') {
+        const completedSessionState = toPlacementSessionState(recordedSession);
+        const finalState: ActivePlacementState = {
+          session: recordedSession,
+          currentQuestion: null,
+          seenIds: current.seenIds,
+        };
+        latestPlacementRef.current = finalState;
+        setPlacementState(finalState);
+        setSelectedOption(null);
+
+        const result = evaluatePlacementTest(recordedSession.answered);
+        onCompletePlacement(result, completedSessionState, current.seenIds);
+        return;
+      }
+
+      const nextDrawn = drawNextPlacementQuestion(
+        catalog.placement,
+        recordedSession,
+        current.seenIds
+      );
+
+      if (!nextDrawn.question) {
+        const completedSession: AdaptiveTestSession = {
+          ...recordedSession,
+          status: 'completed',
+        };
+        const completedSessionState = toPlacementSessionState(completedSession);
+        const finalState: ActivePlacementState = {
+          session: completedSession,
+          currentQuestion: null,
+          seenIds: nextDrawn.seenQuestionIds,
+        };
+        latestPlacementRef.current = finalState;
+        setPlacementState(finalState);
+        setSelectedOption(null);
+
+        const result = evaluatePlacementTest(completedSession.answered);
+        onCompletePlacement(result, completedSessionState, nextDrawn.seenQuestionIds);
+        return;
+      }
+
+      const nextState: ActivePlacementState = {
+        session: nextDrawn.session,
+        currentQuestion: nextDrawn.question,
+        seenIds: nextDrawn.seenQuestionIds,
+      };
+      latestPlacementRef.current = nextState;
+      setPlacementState(nextState);
+      setSelectedOption(null);
+      setAudioPlayCount(0);
+      setTimeLeftSeconds(getQuestionTimeLimitSeconds(nextDrawn.question.skill));
+
+      onUpdateSessionRef.current?.(
+        toPlacementSessionState(nextDrawn.session),
+        nextDrawn.seenQuestionIds
+      );
+    },
+    [onCompletePlacement]
+  );
+
+  // Per-question countdown timer (30s vocab/grammar, 45s reading/listening); timeout = "Je ne sais pas"
+  useEffect(() => {
+    if (
+      step !== 'placement' ||
+      lockStatus.isLocked ||
+      !placementState.currentQuestion ||
+      placementState.session.status !== 'in_progress'
+    ) {
+      return;
+    }
+
+    const timerId = window.setInterval(() => {
+      setTimeLeftSeconds((prev) => {
+        if (prev <= 1) {
+          window.clearInterval(timerId);
+          advancePlacementQuestion(DONT_KNOW_OPTION_INDEX, true);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => {
+      window.clearInterval(timerId);
+    };
+  }, [
+    step,
+    lockStatus.isLocked,
+    placementState.currentQuestion?.id,
+    placementState.session.status,
+    advancePlacementQuestion,
+  ]);
 
   // Step 3: Plan builder state
   const determinedLevel: CEFRLevel = initialPlacement?.determinedLevel ?? 'A1';
@@ -118,7 +331,7 @@ export function OnboardingFlow({
   const [minutesPerSession, setMinutesPerSession] = useState<number>(30);
 
   // Sync default target level when placement completes
-  React.useEffect(() => {
+  useEffect(() => {
     if (initialPlacement) {
       setTargetLevel(getDefaultTargetLevel(initialPlacement.determinedLevel));
     }
@@ -159,12 +372,12 @@ export function OnboardingFlow({
   if (step === 'profile') {
     return (
       <div className="max-w-2xl mx-auto px-4 py-8">
-        <div className="bg-white border border-[#E4DFD3] rounded-2xl p-6 sm:p-8 shadow-xs">
+        <div className="bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] rounded-2xl p-6 sm:p-8 shadow-xs">
           <div className="flex items-center justify-between gap-4 mb-6">
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-[#E6F0EC] text-[#0F4C3A]">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-[#E6F0EC] dark:bg-[#13362B] text-[#0F4C3A] dark:text-[#6EE7B7]">
               Étape 1 sur 3 · Profil
             </span>
-            <label className="inline-flex items-center gap-2 text-xs font-medium text-[#0F4C3A] hover:text-[#0A3628] cursor-pointer border border-[#E4DFD3] rounded-lg px-3 py-1.5 bg-[#FAF8F5]">
+            <label className="inline-flex items-center gap-2 text-xs font-medium text-[#0F4C3A] dark:text-[#6EE7B7] hover:text-[#0A3628] cursor-pointer border border-[#E4DFD3] dark:border-[#343F3B] rounded-lg px-3 py-1.5 bg-[#FAF8F5] dark:bg-[#252D2A]">
               <IconUpload className="w-4 h-4" />
               <span>Importer une sauvegarde JSON</span>
               <input
@@ -179,16 +392,16 @@ export function OnboardingFlow({
           {importError && (
             <div
               role="alert"
-              className="mb-6 p-3.5 rounded-xl bg-[#FDF1EC] border border-[#C85A32]/30 text-sm text-[#9A3412]"
+              className="mb-6 p-3.5 rounded-xl bg-[#FDF1EC] dark:bg-[#3A1D16] border border-[#C85A32]/30 text-sm text-[#9A3412] dark:text-[#FDBA74]"
             >
               {importError}
             </div>
           )}
 
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#111827] tracking-tight mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#111827] dark:text-[#F3F4F6] tracking-tight mb-2">
             Construisons votre parcours d’anglais
           </h1>
-          <p className="text-[#4B5563] text-sm sm:text-base mb-8 leading-relaxed">
+          <p className="text-[#4B5563] dark:text-[#D1D5DB] text-sm sm:text-base mb-8 leading-relaxed">
             Indiquez votre prénom et votre priorité actuelle. Nous évaluerons ensuite votre niveau
             CECRL (A1 à B2) pour calibrer chaque séance.
           </p>
@@ -197,7 +410,7 @@ export function OnboardingFlow({
             <div>
               <label
                 htmlFor="firstName-input"
-                className="block text-sm font-semibold text-[#111827] mb-2"
+                className="block text-sm font-semibold text-[#111827] dark:text-[#F3F4F6] mb-2"
               >
                 Votre prénom
               </label>
@@ -207,15 +420,17 @@ export function OnboardingFlow({
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 placeholder="Ex. Aminata, Moussa, Ibrahima..."
-                className="w-full px-4 py-3 rounded-xl border border-[#D5CFC2] bg-[#FAF8F5] text-[#111827] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F4C3A] focus:bg-white transition"
+                className="w-full px-4 py-3 rounded-xl border border-[#D5CFC2] dark:border-[#343F3B] bg-[#FAF8F5] dark:bg-[#252D2A] text-[#111827] dark:text-[#F3F4F6] placeholder-[#6B7280] dark:placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#0F4C3A] focus:bg-white dark:focus:bg-[#1E2422] transition"
               />
               {profileError && (
-                <p className="mt-2 text-xs font-medium text-[#C85A32]">{profileError}</p>
+                <p className="mt-2 text-xs font-medium text-[#C85A32] dark:text-[#FDBA74]">
+                  {profileError}
+                </p>
               )}
             </div>
 
             <div>
-              <span className="block text-sm font-semibold text-[#111827] mb-3">
+              <span className="block text-sm font-semibold text-[#111827] dark:text-[#F3F4F6] mb-3">
                 Quel est votre objectif principal ?
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -227,10 +442,10 @@ export function OnboardingFlow({
                       key={option.id}
                       type="button"
                       onClick={() => setSelectedGoal(option.id)}
-                      className={`text-left p-4 rounded-xl border transition flex flex-col justify-between gap-3 ${
+                      className={`text-left p-4 rounded-xl border transition flex flex-col justify-between gap-3 cursor-pointer ${
                         isSelected
-                          ? 'border-[#0F4C3A] bg-[#E6F0EC]/60 ring-1 ring-[#0F4C3A]'
-                          : 'border-[#E4DFD3] bg-[#FAF8F5]/60 hover:bg-white hover:border-[#C5BEB0]'
+                          ? 'border-[#0F4C3A] dark:border-[#34D399] bg-[#E6F0EC]/60 dark:bg-[#13362B] ring-1 ring-[#0F4C3A] dark:ring-[#34D399]'
+                          : 'border-[#E4DFD3] dark:border-[#343F3B] bg-[#FAF8F5]/60 dark:bg-[#252D2A] hover:bg-white dark:hover:bg-[#1E2422] hover:border-[#C5BEB0]'
                       }`}
                     >
                       <div className="flex items-center justify-between w-full">
@@ -238,22 +453,22 @@ export function OnboardingFlow({
                           className={`p-2 rounded-lg ${
                             isSelected
                               ? 'bg-[#0F4C3A] text-white'
-                              : 'bg-[#E4DFD3]/60 text-[#374151]'
+                              : 'bg-[#E4DFD3]/60 dark:bg-[#343F3B] text-[#374151] dark:text-[#D1D5DB]'
                           }`}
                         >
                           <Icon className="w-5 h-5" />
                         </span>
                         {isSelected && (
-                          <span className="text-xs font-semibold text-[#0F4C3A] px-2 py-0.5 rounded-full bg-white border border-[#0F4C3A]/20">
+                          <span className="text-xs font-semibold text-[#0F4C3A] dark:text-[#6EE7B7] px-2 py-0.5 rounded-full bg-white dark:bg-[#1E2422] border border-[#0F4C3A]/20">
                             Sélectionné
                           </span>
                         )}
                       </div>
                       <div>
-                        <div className="font-semibold text-[#111827] text-sm mb-1">
+                        <div className="font-semibold text-[#111827] dark:text-[#F3F4F6] text-sm mb-1">
                           {option.label}
                         </div>
-                        <div className="text-xs text-[#4B5563] leading-relaxed">
+                        <div className="text-xs text-[#4B5563] dark:text-[#D1D5DB] leading-relaxed">
                           {option.subtitle}
                         </div>
                       </div>
@@ -279,40 +494,96 @@ export function OnboardingFlow({
   }
 
   if (step === 'placement') {
-    const currentQuestion = selectNextAdaptiveQuestion(
-      catalog.placement,
-      adaptiveSession
-    );
+    if (lockStatus.isLocked && initialPlacement) {
+      return (
+        <div className="max-w-2xl mx-auto px-4 py-8">
+          <div className="bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] rounded-2xl p-6 sm:p-8 shadow-xs">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2.5 rounded-xl bg-[#FDF1EC] dark:bg-[#3A1D16] text-[#C85A32] dark:text-[#FDBA74]">
+                <IconAlert className="w-6 h-6" />
+              </div>
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#C85A32] dark:text-[#FDBA74] block">
+                  Résultat verrouillé 7 jours
+                </span>
+                <h1 className="text-xl sm:text-2xl font-bold text-[#111827] dark:text-[#F3F4F6]">
+                  Niveau {initialPlacement.determinedLevel} déjà validé
+                </h1>
+              </div>
+            </div>
+
+            <p className="text-sm text-[#374151] dark:text-[#D1D5DB] leading-relaxed mb-6">
+              {lockStatus.messageFr}
+            </p>
+
+            <div className="p-4 rounded-xl bg-[#FAF8F5] dark:bg-[#252D2A] border border-[#E4DFD3] dark:border-[#343F3B] text-xs text-[#4B5563] dark:text-[#D1D5DB] mb-6 space-y-1">
+              <div>
+                Niveau attribué :{' '}
+                <strong className="text-[#0F4C3A] dark:text-[#6EE7B7]">
+                  {initialPlacement.determinedLevel}
+                </strong>{' '}
+                ({initialPlacement.overallScore} % de réussite globale)
+              </div>
+              <div>
+                Délai avant nouvelle évaluation :{' '}
+                <strong className="text-[#111827] dark:text-[#F3F4F6]">
+                  {lockStatus.remainingDays}{' '}
+                  {lockStatus.remainingDays > 1 ? 'jours' : 'jour'}
+                </strong>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3">
+              {onOpenSettings && (
+                <button
+                  type="button"
+                  onClick={onOpenSettings}
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#C85A32] hover:bg-[#B04B25] text-white text-xs sm:text-sm font-semibold transition cursor-pointer"
+                >
+                  <IconSettings className="w-4 h-4" />
+                  <span>Paramètres &gt; Réinitialiser mes données</span>
+                </button>
+              )}
+
+              {onCancelLockedRetake && (
+                <button
+                  type="button"
+                  onClick={onCancelLockedRetake}
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-[#D5CFC2] dark:border-[#343F3B] bg-[#FAF8F5] dark:bg-[#252D2A] hover:bg-white dark:hover:bg-[#1E2422] text-[#111827] dark:text-[#F3F4F6] text-xs sm:text-sm font-semibold transition cursor-pointer"
+                >
+                  <span>Retourner à mon parcours</span>
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    const { session: adaptiveSession, currentQuestion } = placementState;
     const questionNumber = adaptiveSession.answered.length + 1;
     const totalQuestions = adaptiveSession.maxQuestions;
+    const isConfirmationPhase =
+      adaptiveSession.confirmationQuestionsAdded > 0 &&
+      adaptiveSession.answered.length >= adaptiveSession.baseMaxQuestions;
     const progressPercent = Math.round(
       (adaptiveSession.answered.length / totalQuestions) * 100
     );
 
-    const handleConfirmAnswer = () => {
-      if (!currentQuestion || selectedOption === null) return;
-      const isCorrect = selectedOption === currentQuestion.answerIndex;
-      const updatedSession = recordAdaptiveAnswer(
-        adaptiveSession,
-        currentQuestion,
-        selectedOption
-      );
-      setLastFeedback({
-        isCorrect,
-        nextLevel: updatedSession.currentLevel,
-      });
-      setAdaptiveSession(updatedSession);
-      setSelectedOption(null);
-
-      if (updatedSession.answered.length >= updatedSession.maxQuestions) {
-        const result = evaluatePlacementTest(updatedSession.answered);
-        onCompletePlacement(result);
+    const handlePlayListeningAudio = (rate: number) => {
+      if (!currentQuestion?.audioText || audioPlayCount >= MAX_LISTENING_PLAYS) {
+        return;
       }
+      setAudioPlayCount((prev) => prev + 1);
+      speakEnglish(currentQuestion.audioText, rate);
     };
 
-    const handleSkipTestToA1 = () => {
-      const fallbackResult = evaluatePlacementTest([]);
-      onCompletePlacement(fallbackResult);
+    const handleConfirmAnswer = () => {
+      if (!currentQuestion || selectedOption === null) return;
+      advancePlacementQuestion(
+        selectedOption,
+        selectedOption === DONT_KNOW_OPTION_INDEX
+      );
     };
 
     if (!currentQuestion) {
@@ -321,8 +592,14 @@ export function OnboardingFlow({
         <div className="max-w-xl mx-auto px-4 py-12 text-center">
           <button
             type="button"
-            onClick={() => onCompletePlacement(result)}
-            className="px-6 py-3 rounded-xl bg-[#0F4C3A] text-white font-semibold"
+            onClick={() =>
+              onCompletePlacement(
+                result,
+                toPlacementSessionState({ ...adaptiveSession, status: 'completed' }),
+                placementState.seenIds
+              )
+            }
+            className="px-6 py-3 rounded-xl bg-[#0F4C3A] text-white font-semibold cursor-pointer"
           >
             Voir mes résultats
           </button>
@@ -330,77 +607,84 @@ export function OnboardingFlow({
       );
     }
 
+    const maxTimeSeconds = getQuestionTimeLimitSeconds(currentQuestion.skill);
+    const isTimeLow = timeLeftSeconds <= 8;
+
     return (
       <div className="max-w-2xl mx-auto px-4 py-6 sm:py-8">
-        <div className="bg-white border border-[#E4DFD3] rounded-2xl p-6 sm:p-8 shadow-xs">
+        <div className="bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] rounded-2xl p-6 sm:p-8 shadow-xs">
           <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-[#E6F0EC] text-[#0F4C3A]">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-[#E6F0EC] dark:bg-[#13362B] text-[#0F4C3A] dark:text-[#6EE7B7]">
               Étape 2 sur 3 · Test adaptatif ({questionNumber} / {totalQuestions})
             </span>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-medium text-[#4B5563]">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-medium text-[#4B5563] dark:text-[#D1D5DB]">
                 Compétence :{' '}
-                <strong className="text-[#111827]">
+                <strong className="text-[#111827] dark:text-[#F3F4F6]">
                   {SKILL_LABELS_FR[currentQuestion.skill]}
                 </strong>
               </span>
-              <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-[#F3EFE6] text-[#0F4C3A] border border-[#E4DFD3]">
-                Calibrage {currentQuestion.level}
+              <span
+                data-testid="question-timer"
+                className={`px-2.5 py-0.5 rounded-md text-xs font-bold border ${
+                  isTimeLow
+                    ? 'bg-[#FDF1EC] dark:bg-[#3A1D16] text-[#C85A32] dark:text-[#FDBA74] border-[#C85A32]/40'
+                    : 'bg-[#F3EFE6] dark:bg-[#252D2A] text-[#0F4C3A] dark:text-[#6EE7B7] border-[#E4DFD3] dark:border-[#343F3B]'
+                }`}
+              >
+                {timeLeftSeconds} s / {maxTimeSeconds} s
               </span>
             </div>
           </div>
 
-          <div className="w-full h-2 bg-[#F3EFE6] rounded-full overflow-hidden mb-6">
+          {isConfirmationPhase && (
+            <div className="mb-4 px-3.5 py-2 rounded-xl bg-[#FAF8F5] dark:bg-[#252D2A] border border-[#E4DFD3] dark:border-[#343F3B] text-xs font-semibold text-[#0F4C3A] dark:text-[#6EE7B7]">
+              Question de confirmation supplémentaire pour vérifier la régularité de votre niveau.
+            </div>
+          )}
+
+          <div className="w-full h-2 bg-[#F3EFE6] dark:bg-[#252D2A] rounded-full overflow-hidden mb-6">
             <div
               className="h-full bg-[#0F4C3A] transition-all duration-300"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
 
-          {lastFeedback && (
-            <div
-              className={`mb-5 px-3.5 py-2.5 rounded-xl text-xs font-medium flex items-center justify-between ${
-                lastFeedback.isCorrect
-                  ? 'bg-[#E6F0EC] text-[#0F4C3A]'
-                  : 'bg-[#F3EFE6] text-[#4B5563]'
-              }`}
-            >
-              <span>
-                {lastFeedback.isCorrect
-                  ? 'Réponse exacte — la difficulté augmente.'
-                  : 'Réponse incorrecte — la difficulté s’ajuste.'}
-              </span>
-              <span className="font-semibold">
-                Niveau testé : {lastFeedback.nextLevel}
-              </span>
-            </div>
-          )}
-
-          <h2 className="text-lg sm:text-xl font-bold text-[#111827] mb-4 leading-snug">
+          <h2 className="text-lg sm:text-xl font-bold text-[#111827] dark:text-[#F3F4F6] mb-4 leading-snug">
             {currentQuestion.prompt}
           </h2>
 
           {currentQuestion.skill === 'listening' && currentQuestion.audioText && (
-            <div className="mb-6 p-4 rounded-xl bg-[#FAF8F5] border border-[#E4DFD3] flex flex-wrap items-center justify-between gap-3">
-              <div className="flex items-center gap-3">
+            <div className="mb-6 p-4 rounded-xl bg-[#FAF8F5] dark:bg-[#252D2A] border border-[#E4DFD3] dark:border-[#343F3B] flex flex-wrap items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <button
                   type="button"
-                  onClick={() => speakEnglish(currentQuestion.audioText ?? '', 0.95)}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0F4C3A] hover:bg-[#0A3628] text-white text-sm font-semibold transition cursor-pointer"
+                  disabled={audioPlayCount >= MAX_LISTENING_PLAYS}
+                  onClick={() => handlePlayListeningAudio(0.95)}
+                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition ${
+                    audioPlayCount < MAX_LISTENING_PLAYS
+                      ? 'bg-[#0F4C3A] hover:bg-[#0A3628] text-white cursor-pointer'
+                      : 'bg-[#E4DFD3] dark:bg-[#343F3B] text-[#6B7280] dark:text-[#9CA3AF] cursor-not-allowed'
+                  }`}
                 >
                   <IconVolume className="w-4 h-4" />
                   <span>Écouter l’extrait (en-US)</span>
                 </button>
                 <button
                   type="button"
-                  onClick={() => speakEnglish(currentQuestion.audioText ?? '', 0.72)}
-                  className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl border border-[#D5CFC2] bg-white hover:bg-[#F3EFE6] text-[#111827] text-xs font-semibold transition cursor-pointer"
+                  disabled={audioPlayCount >= MAX_LISTENING_PLAYS}
+                  onClick={() => handlePlayListeningAudio(0.72)}
+                  className={`inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl border text-xs font-semibold transition ${
+                    audioPlayCount < MAX_LISTENING_PLAYS
+                      ? 'border-[#D5CFC2] dark:border-[#343F3B] bg-white dark:bg-[#1E2422] hover:bg-[#F3EFE6] text-[#111827] dark:text-[#F3F4F6] cursor-pointer'
+                      : 'border-[#E4DFD3] dark:border-[#343F3B] bg-[#FAF8F5] dark:bg-[#252D2A] text-[#9CA3AF] cursor-not-allowed'
+                  }`}
                 >
                   <span>Écoute lente (0.75x)</span>
                 </button>
               </div>
-              <span className="text-xs text-[#6B7280]">
-                Cliquez pour écouter autant de fois que nécessaire
+              <span className="text-xs font-semibold text-[#4B5563] dark:text-[#D1D5DB]">
+                Écoutes : {audioPlayCount} / {MAX_LISTENING_PLAYS} maximum
               </span>
             </div>
           )}
@@ -410,13 +694,13 @@ export function OnboardingFlow({
               const isSelected = selectedOption === idx;
               return (
                 <button
-                  key={idx}
+                  key={`${currentQuestion.id}-opt-${idx}`}
                   type="button"
                   onClick={() => setSelectedOption(idx)}
                   className={`w-full text-left px-4 py-3.5 rounded-xl border text-sm font-medium transition flex items-center justify-between cursor-pointer ${
                     isSelected
-                      ? 'border-[#0F4C3A] bg-[#E6F0EC]/70 text-[#0F4C3A] font-semibold ring-1 ring-[#0F4C3A]'
-                      : 'border-[#E4DFD3] bg-[#FAF8F5]/50 hover:bg-white text-[#111827]'
+                      ? 'border-[#0F4C3A] dark:border-[#34D399] bg-[#E6F0EC]/70 dark:bg-[#13362B] text-[#0F4C3A] dark:text-[#6EE7B7] font-semibold ring-1 ring-[#0F4C3A] dark:ring-[#34D399]'
+                      : 'border-[#E4DFD3] dark:border-[#343F3B] bg-[#FAF8F5]/50 dark:bg-[#252D2A] hover:bg-white dark:hover:bg-[#1E2422] text-[#111827] dark:text-[#F3F4F6]'
                   }`}
                 >
                   <span>{option}</span>
@@ -424,7 +708,7 @@ export function OnboardingFlow({
                     className={`w-5 h-5 rounded-full border flex items-center justify-center text-xs ${
                       isSelected
                         ? 'border-[#0F4C3A] bg-[#0F4C3A] text-white'
-                        : 'border-[#C5BEB0]'
+                        : 'border-[#C5BEB0] dark:border-[#4B5563]'
                     }`}
                   >
                     {isSelected && <IconCheck className="w-3.5 h-3.5" />}
@@ -432,16 +716,28 @@ export function OnboardingFlow({
                 </button>
               );
             })}
-          </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[#E4DFD3]">
+            {/* Option neutre anti-triche : "Je ne sais pas" */}
             <button
               type="button"
-              onClick={handleSkipTestToA1}
-              className="text-xs font-medium text-[#6B7280] hover:text-[#111827] underline cursor-pointer"
+              onClick={() => setSelectedOption(DONT_KNOW_OPTION_INDEX)}
+              className={`w-full text-left px-4 py-3.5 rounded-xl border text-sm font-medium transition flex items-center justify-between cursor-pointer ${
+                selectedOption === DONT_KNOW_OPTION_INDEX
+                  ? 'border-[#0F4C3A] dark:border-[#34D399] bg-[#E6F0EC]/70 dark:bg-[#13362B] text-[#0F4C3A] dark:text-[#6EE7B7] font-semibold ring-1 ring-[#0F4C3A] dark:ring-[#34D399]'
+                  : 'border-dashed border-[#C5BEB0] dark:border-[#4B5563] bg-[#FAF8F5]/30 dark:bg-[#1E2422] hover:bg-[#FAF8F5] dark:hover:bg-[#252D2A] text-[#4B5563] dark:text-[#D1D5DB]'
+              }`}
             >
-              Je débute complètement (démarrer directement en A1)
+              <span>{DONT_KNOW_LABEL_FR}</span>
+              <span className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+                Neutre (sans pénalité)
+              </span>
             </button>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[#E4DFD3] dark:border-[#343F3B]">
+            <span className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+              Sans retour en arrière · Réponse vide au bout du temps = « {DONT_KNOW_LABEL_FR} »
+            </span>
             <button
               type="button"
               disabled={selectedOption === null}
@@ -449,7 +745,7 @@ export function OnboardingFlow({
               className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition ${
                 selectedOption !== null
                   ? 'bg-[#C85A32] hover:bg-[#B04B25] text-white cursor-pointer'
-                  : 'bg-[#E4DFD3] text-[#9CA3AF] cursor-not-allowed'
+                  : 'bg-[#E4DFD3] dark:bg-[#343F3B] text-[#9CA3AF] cursor-not-allowed'
               }`}
             >
               <span>
@@ -503,20 +799,21 @@ export function OnboardingFlow({
     <div className="max-w-3xl mx-auto px-4 py-6 sm:py-8 space-y-6">
       {/* Placement Test Summary */}
       {initialPlacement && (
-        <div className="bg-white border border-[#E4DFD3] rounded-2xl p-6 sm:p-8 shadow-xs">
+        <div className="bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] rounded-2xl p-6 sm:p-8 shadow-xs">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
             <div>
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-[#E6F0EC] text-[#0F4C3A] mb-2">
-                Bilan du test de niveau
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-[#E6F0EC] dark:bg-[#13362B] text-[#0F4C3A] dark:text-[#6EE7B7] mb-2">
+                Bilan du test de niveau (verrouillé 7 jours)
               </span>
-              <h1 className="text-2xl font-bold text-[#111827]">
+              <h1 className="text-2xl font-bold text-[#111827] dark:text-[#F3F4F6]">
                 {initialProfile?.firstName ? `${initialProfile.firstName}, votre` : 'Votre'} niveau
-                actuel est <span className="text-[#0F4C3A]">{determinedLevel}</span>
+                actuel est{' '}
+                <span className="text-[#0F4C3A] dark:text-[#6EE7B7]">{determinedLevel}</span>
               </h1>
             </div>
-            <div className="px-4 py-3 rounded-xl bg-[#FAF8F5] border border-[#E4DFD3] text-right">
-              <div className="text-xs text-[#4B5563]">Score global</div>
-              <div className="text-2xl font-bold text-[#0F4C3A]">
+            <div className="px-4 py-3 rounded-xl bg-[#FAF8F5] dark:bg-[#252D2A] border border-[#E4DFD3] dark:border-[#343F3B] text-right">
+              <div className="text-xs text-[#4B5563] dark:text-[#D1D5DB]">Score global</div>
+              <div className="text-2xl font-bold text-[#0F4C3A] dark:text-[#6EE7B7]">
                 {initialPlacement.overallScore} %
               </div>
             </div>
@@ -529,15 +826,23 @@ export function OnboardingFlow({
               return (
                 <div
                   key={skill}
-                  className="p-3.5 rounded-xl bg-[#FAF8F5] border border-[#E4DFD3]"
+                  className="p-3.5 rounded-xl bg-[#FAF8F5] dark:bg-[#252D2A] border border-[#E4DFD3] dark:border-[#343F3B]"
                 >
                   <div className="flex items-center justify-between text-xs font-semibold mb-1.5">
-                    <span className="text-[#111827]">{SKILL_LABELS_FR[skill]}</span>
-                    <span className={isWeak ? 'text-[#C85A32]' : 'text-[#0F4C3A]'}>
+                    <span className="text-[#111827] dark:text-[#F3F4F6]">
+                      {SKILL_LABELS_FR[skill]}
+                    </span>
+                    <span
+                      className={
+                        isWeak
+                          ? 'text-[#C85A32] dark:text-[#FDBA74]'
+                          : 'text-[#0F4C3A] dark:text-[#6EE7B7]'
+                      }
+                    >
                       {perf.percentage} % ({perf.correct}/{perf.total})
                     </span>
                   </div>
-                  <div className="w-full h-2 bg-[#E4DFD3] rounded-full overflow-hidden">
+                  <div className="w-full h-2 bg-[#E4DFD3] dark:bg-[#343F3B] rounded-full overflow-hidden">
                     <div
                       className={`h-full ${isWeak ? 'bg-[#C85A32]' : 'bg-[#0F4C3A]'}`}
                       style={{ width: `${perf.percentage}%` }}
@@ -549,19 +854,21 @@ export function OnboardingFlow({
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-            <div className="p-3.5 rounded-xl bg-[#E6F0EC]/60 border border-[#0F4C3A]/20">
-              <div className="font-bold text-[#0F4C3A] mb-1">Points forts acquis</div>
-              <p className="text-[#111827]">
+            <div className="p-3.5 rounded-xl bg-[#E6F0EC]/60 dark:bg-[#13362B] border border-[#0F4C3A]/20">
+              <div className="font-bold text-[#0F4C3A] dark:text-[#6EE7B7] mb-1">
+                Points forts acquis
+              </div>
+              <p className="text-[#111827] dark:text-[#F3F4F6]">
                 {initialPlacement.strengths.length > 0
                   ? initialPlacement.strengths.map((s) => SKILL_LABELS_FR[s]).join(', ')
                   : 'Bases en cours de construction'}
               </p>
             </div>
-            <div className="p-3.5 rounded-xl bg-[#FDF1EC] border border-[#C85A32]/30">
-              <div className="font-bold text-[#9A3412] mb-1">
+            <div className="p-3.5 rounded-xl bg-[#FDF1EC] dark:bg-[#3A1D16] border border-[#C85A32]/30">
+              <div className="font-bold text-[#9A3412] dark:text-[#FDBA74] mb-1">
                 Priorités renforcées dans votre futur programme
               </div>
-              <p className="text-[#111827]">
+              <p className="text-[#111827] dark:text-[#F3F4F6]">
                 {initialPlacement.weaknesses.map((w) => SKILL_LABELS_FR[w]).join(', ')} (+40 % de
                 temps dédié par séance)
               </p>
@@ -571,14 +878,14 @@ export function OnboardingFlow({
       )}
 
       {/* Plan Configuration & Feasibility */}
-      <div className="bg-white border border-[#E4DFD3] rounded-2xl p-6 sm:p-8 shadow-xs">
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-[#E6F0EC] text-[#0F4C3A] mb-3">
+      <div className="bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] rounded-2xl p-6 sm:p-8 shadow-xs">
+        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-[#E6F0EC] dark:bg-[#13362B] text-[#0F4C3A] dark:text-[#6EE7B7] mb-3">
           Étape 3 sur 3 · Choix du plan et faisabilité
         </span>
-        <h2 className="text-xl sm:text-2xl font-bold text-[#111827] mb-2">
+        <h2 className="text-xl sm:text-2xl font-bold text-[#111827] dark:text-[#F3F4F6] mb-2">
           Paramétrez votre rythme d’apprentissage
         </h2>
-        <p className="text-sm text-[#4B5563] mb-6">
+        <p className="text-sm text-[#4B5563] dark:text-[#D1D5DB] mb-6">
           Choisissez votre niveau cible, la durée souhaitée en semaines et votre disponibilité
           hebdomadaire.
         </p>
@@ -586,7 +893,7 @@ export function OnboardingFlow({
         <div className="space-y-6">
           {/* Target Level */}
           <div>
-            <label className="block text-sm font-semibold text-[#111827] mb-2">
+            <label className="block text-sm font-semibold text-[#111827] dark:text-[#F3F4F6] mb-2">
               Niveau cible CECRL (par défaut le niveau suivant)
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
@@ -601,13 +908,13 @@ export function OnboardingFlow({
                     className={`p-3 rounded-xl border text-left transition cursor-pointer ${
                       isSelected
                         ? 'border-[#0F4C3A] bg-[#0F4C3A] text-white'
-                        : 'border-[#E4DFD3] bg-[#FAF8F5] text-[#111827] hover:bg-white'
+                        : 'border-[#E4DFD3] dark:border-[#343F3B] bg-[#FAF8F5] dark:bg-[#252D2A] text-[#111827] dark:text-[#F3F4F6] hover:bg-white dark:hover:bg-[#1E2422]'
                     }`}
                   >
                     <div className="text-base font-bold">{lvl}</div>
                     <div
                       className={`text-xs ${
-                        isSelected ? 'text-[#E6F0EC]' : 'text-[#6B7280]'
+                        isSelected ? 'text-[#E6F0EC]' : 'text-[#6B7280] dark:text-[#9CA3AF]'
                       }`}
                     >
                       {isDefaultNext ? 'Recommandé' : 'Objectif avancé'}
@@ -623,9 +930,10 @@ export function OnboardingFlow({
             <div className="flex items-center justify-between mb-2">
               <label
                 htmlFor="duration-weeks-input"
-                className="text-sm font-semibold text-[#111827]"
+                className="text-sm font-semibold text-[#111827] dark:text-[#F3F4F6]"
               >
-                Durée du programme : <span className="text-[#0F4C3A]">{durationWeeks} semaines</span>
+                Durée du programme :{' '}
+                <span className="text-[#0F4C3A] dark:text-[#6EE7B7]">{durationWeeks} semaines</span>
               </label>
               <input
                 id="duration-weeks-input"
@@ -636,7 +944,7 @@ export function OnboardingFlow({
                 onChange={(e) =>
                   setDurationWeeks(Math.min(52, Math.max(2, Number(e.target.value) || 4)))
                 }
-                className="w-20 px-2.5 py-1 text-sm font-semibold text-center rounded-lg border border-[#D5CFC2] bg-[#FAF8F5]"
+                className="w-20 px-2.5 py-1 text-sm font-semibold text-center rounded-lg border border-[#D5CFC2] dark:border-[#343F3B] bg-[#FAF8F5] dark:bg-[#252D2A] text-[#111827] dark:text-[#F3F4F6]"
               />
             </div>
             <div className="flex flex-wrap gap-2">
@@ -648,7 +956,7 @@ export function OnboardingFlow({
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold border transition cursor-pointer ${
                     durationWeeks === w
                       ? 'bg-[#0F4C3A] text-white border-[#0F4C3A]'
-                      : 'bg-[#FAF8F5] text-[#374151] border-[#E4DFD3] hover:bg-white'
+                      : 'bg-[#FAF8F5] dark:bg-[#252D2A] text-[#374151] dark:text-[#D1D5DB] border-[#E4DFD3] dark:border-[#343F3B] hover:bg-white'
                   }`}
                 >
                   {w} sem.
@@ -660,9 +968,11 @@ export function OnboardingFlow({
           {/* Sessions per week & Minutes per session */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-semibold text-[#111827] mb-2">
+              <label className="block text-sm font-semibold text-[#111827] dark:text-[#F3F4F6] mb-2">
                 Séances par semaine :{' '}
-                <span className="text-[#0F4C3A]">{sessionsPerWeek} séances / sem.</span>
+                <span className="text-[#0F4C3A] dark:text-[#6EE7B7]">
+                  {sessionsPerWeek} séances / sem.
+                </span>
               </label>
               <div className="flex flex-wrap gap-2">
                 {[2, 3, 4, 5, 6, 7].map((n) => (
@@ -673,7 +983,7 @@ export function OnboardingFlow({
                     className={`px-3.5 py-2 rounded-lg text-xs font-semibold border transition cursor-pointer ${
                       sessionsPerWeek === n
                         ? 'bg-[#0F4C3A] text-white border-[#0F4C3A]'
-                        : 'bg-[#FAF8F5] text-[#374151] border-[#E4DFD3] hover:bg-white'
+                        : 'bg-[#FAF8F5] dark:bg-[#252D2A] text-[#374151] dark:text-[#D1D5DB] border-[#E4DFD3] dark:border-[#343F3B] hover:bg-white'
                     }`}
                   >
                     {n}x
@@ -683,9 +993,9 @@ export function OnboardingFlow({
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-[#111827] mb-2">
+              <label className="block text-sm font-semibold text-[#111827] dark:text-[#F3F4F6] mb-2">
                 Durée d’une séance :{' '}
-                <span className="text-[#0F4C3A]">{minutesPerSession} min</span>
+                <span className="text-[#0F4C3A] dark:text-[#6EE7B7]">{minutesPerSession} min</span>
               </label>
               <div className="flex flex-wrap gap-2">
                 {[15, 20, 30, 45, 60, 90].map((m) => (
@@ -696,7 +1006,7 @@ export function OnboardingFlow({
                     className={`px-3 py-2 rounded-lg text-xs font-semibold border transition cursor-pointer ${
                       minutesPerSession === m
                         ? 'bg-[#0F4C3A] text-white border-[#0F4C3A]'
-                        : 'bg-[#FAF8F5] text-[#374151] border-[#E4DFD3] hover:bg-white'
+                        : 'bg-[#FAF8F5] dark:bg-[#252D2A] text-[#374151] dark:text-[#D1D5DB] border-[#E4DFD3] dark:border-[#343F3B] hover:bg-white'
                     }`}
                   >
                     {m} min
@@ -710,8 +1020,8 @@ export function OnboardingFlow({
           <div
             className={`p-5 rounded-2xl border ${
               feasibility.isRealistic
-                ? 'bg-[#E6F0EC]/70 border-[#0F4C3A]/30'
-                : 'bg-[#FDF1EC] border-[#C85A32]/40'
+                ? 'bg-[#E6F0EC]/70 dark:bg-[#13362B] border-[#0F4C3A]/30'
+                : 'bg-[#FDF1EC] dark:bg-[#3A1D16] border-[#C85A32]/40'
             }`}
           >
             <div className="flex items-start gap-3">
@@ -730,15 +1040,15 @@ export function OnboardingFlow({
               </div>
               <div className="flex-1">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-                  <h3 className="text-sm font-bold text-[#111827]">
+                  <h3 className="text-sm font-bold text-[#111827] dark:text-[#F3F4F6]">
                     Calcul de faisabilité ({determinedLevel} → {targetLevel})
                   </h3>
-                  <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-white border border-[#E4DFD3]">
+                  <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B]">
                     {feasibility.plannedHours} h prévues / ~{feasibility.estimatedHoursNeeded} h
                     recommandées
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm text-[#374151] leading-relaxed mb-3">
+                <p className="text-xs sm:text-sm text-[#374151] dark:text-[#D1D5DB] leading-relaxed mb-3">
                   {feasibility.message}
                 </p>
 
@@ -747,14 +1057,14 @@ export function OnboardingFlow({
                     <button
                       type="button"
                       onClick={handleApplyRealisticDuration}
-                      className="px-3.5 py-2 rounded-xl bg-white hover:bg-[#FAF8F5] text-[#0F4C3A] border border-[#0F4C3A]/30 text-xs font-semibold transition cursor-pointer"
+                      className="px-3.5 py-2 rounded-xl bg-white dark:bg-[#1E2422] hover:bg-[#FAF8F5] text-[#0F4C3A] dark:text-[#6EE7B7] border border-[#0F4C3A]/30 text-xs font-semibold transition cursor-pointer"
                     >
                       Option 1 : Allonger à {feasibility.suggestedWeeks} semaines
                     </button>
                     <button
                       type="button"
                       onClick={handleApplyRealisticPace}
-                      className="px-3.5 py-2 rounded-xl bg-white hover:bg-[#FAF8F5] text-[#C85A32] border border-[#C85A32]/30 text-xs font-semibold transition cursor-pointer"
+                      className="px-3.5 py-2 rounded-xl bg-white dark:bg-[#1E2422] hover:bg-[#FAF8F5] text-[#C85A32] dark:text-[#FDBA74] border border-[#C85A32]/30 text-xs font-semibold transition cursor-pointer"
                     >
                       Option 2 : Passer à {feasibility.suggestedSessionsPerWeek} séances ×{' '}
                       {feasibility.suggestedMinutesPerSession} min/sem.

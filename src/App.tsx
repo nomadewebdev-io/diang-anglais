@@ -27,6 +27,7 @@ import {
 import {
   AppState,
   PlacementResult,
+  PlacementSessionState,
   SM2CardState,
   StudyPlan,
   ThemePreference,
@@ -97,11 +98,28 @@ export function App(): React.ReactElement {
     }));
   };
 
-  const handleCompletePlacement = (placementResult: PlacementResult) => {
+  const handleCompletePlacement = (
+    placementResult: PlacementResult,
+    sessionState?: PlacementSessionState,
+    seenQuestionIds?: string[]
+  ) => {
     setState((prev) => ({
       ...prev,
       placementResult,
+      placementSession: sessionState ?? prev.placementSession,
+      seenQuestionIds: seenQuestionIds ?? prev.seenQuestionIds,
       onboardingStep: 'plan',
+    }));
+  };
+
+  const handleUpdatePlacementSession = (
+    sessionState: PlacementSessionState,
+    seenQuestionIds: string[]
+  ) => {
+    setState((prev) => ({
+      ...prev,
+      placementSession: sessionState,
+      seenQuestionIds,
     }));
   };
 
@@ -366,10 +384,21 @@ export function App(): React.ReactElement {
             step={state.onboardingStep}
             initialProfile={state.profile}
             initialPlacement={state.placementResult}
+            seenQuestionIds={state.seenQuestionIds}
+            placementSession={state.placementSession}
+            hasExistingStudyPlan={Boolean(state.studyPlan)}
             onCompleteProfile={handleCompleteProfile}
             onCompletePlacement={handleCompletePlacement}
+            onUpdatePlacementSession={handleUpdatePlacementSession}
             onCompletePlan={handleCompletePlan}
             onImportState={(imported) => setState(imported)}
+            onOpenSettings={() => setIsSettingsOpen(true)}
+            onCancelLockedRetake={() =>
+              setState((prev) => ({
+                ...prev,
+                onboardingStep: prev.studyPlan ? 'ready' : 'plan',
+              }))
+            }
           />
         ) : (
           <>
@@ -415,6 +444,7 @@ export function App(): React.ReactElement {
                   }))
                 }
                 onResetAll={handleResetAll}
+                onOpenSettings={() => setIsSettingsOpen(true)}
               />
             )}
           </>

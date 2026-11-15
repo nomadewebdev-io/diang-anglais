@@ -1,7 +1,14 @@
 import { applyAutomaticCatchUp } from './planner';
 import { formatDateISO } from './sm2';
 import { isValidThemePreference } from './theme';
-import { AppState, OnboardingStep, StudyPlan } from './types';
+import {
+  AppState,
+  OnboardingStep,
+  PlacementSessionAnswer,
+  PlacementSessionState,
+  PlacementSessionStatus,
+  StudyPlan,
+} from './types';
 
 export const STORAGE_KEY = 'diang-anglais:v1';
 export const LEGACY_STORAGE_KEYS = [
@@ -18,6 +25,12 @@ const VALID_ONBOARDING_STEPS: OnboardingStep[] = [
   'ready',
 ];
 
+const VALID_SESSION_STATUSES: PlacementSessionStatus[] = [
+  'in_progress',
+  'abandoned',
+  'completed',
+];
+
 export function createInitialAppState(): AppState {
   return {
     version: CURRENT_SCHEMA_VERSION,
@@ -25,6 +38,8 @@ export function createInitialAppState(): AppState {
     onboardingStep: 'profile',
     profile: null,
     placementResult: null,
+    seenQuestionIds: [],
+    placementSession: null,
     studyPlan: null,
     sm2States: {},
     studyDates: [],
@@ -36,6 +51,48 @@ export function createInitialAppState(): AppState {
 
 function isPlainObject(val: unknown): val is Record<string, unknown> {
   return typeof val === 'object' && val !== null && !Array.isArray(val);
+}
+
+function normalizeStringArray(arr: unknown): string[] {
+  if (!Array.isArray(arr)) return [];
+  const result: string[] = [];
+  const seen = new Set<string>();
+  for (const item of arr) {
+    if (typeof item === 'string' && item.trim().length > 0 && !seen.has(item)) {
+      seen.add(item);
+      result.push(item);
+    }
+  }
+  return result;
+}
+
+function normalizePlacementSession(raw: unknown): PlacementSessionState | null {
+  if (!isPlainObject(raw) || typeof raw.id !== 'string' || raw.id.trim().length === 0) {
+    return null;
+  }
+  const status: PlacementSessionStatus = VALID_SESSION_STATUSES.includes(
+    raw.status as PlacementSessionStatus
+  )
+    ? (raw.status as PlacementSessionStatus)
+    : 'abandoned';
+  const questionIds = normalizeStringArray(raw.questionIds);
+  const answers: PlacementSessionAnswer[] = Array.isArray(raw.answers)
+    ? (raw.answers.filter(
+        (a) => isPlainObject(a) && typeof a.questionId === 'string'
+      ) as unknown as PlacementSessionAnswer[])
+    : [];
+  const startedAt =
+    typeof raw.startedAt === 'string' && raw.startedAt.trim().length > 0
+      ? raw.startedAt
+      : new Date().toISOString();
+
+  return {
+    id: raw.id,
+    questionIds,
+    answers,
+    startedAt,
+    status,
+  };
 }
 
 /**
@@ -54,6 +111,8 @@ export function migrateAndValidateState(
     'onboardingStep' in candidate ||
     'profile' in candidate ||
     'placementResult' in candidate ||
+    'seenQuestionIds' in candidate ||
+    'placementSession' in candidate ||
     'studyPlan' in candidate ||
     'sm2States' in candidate ||
     'studyDates' in candidate;
@@ -133,12 +192,20 @@ export function migrateAndValidateState(
 
   const theme = isValidThemePreference(candidate.theme) ? candidate.theme : 'system';
 
+  const placementSession = normalizePlacementSession(candidate.placementSession);
+  const rawSeenIds = normalizeStringArray(candidate.seenQuestionIds);
+  const seenQuestionIds = placementSession
+    ? normalizeStringArray([...rawSeenIds, ...placementSession.questionIds])
+    : rawSeenIds;
+
   return {
     version: CURRENT_SCHEMA_VERSION,
     theme,
     onboardingStep,
     profile,
     placementResult,
+    seenQuestionIds,
+    placementSession,
     studyPlan,
     sm2States,
     studyDates,
@@ -157,6 +224,24 @@ export function migrateAndValidateState(
       Number.isFinite(candidate.quizzesCompletedCount)
         ? Math.max(0, candidate.quizzesCompletedCount)
         : 0,
+  };
+}
+
+function markInProgressSessionAbandonedOnLoad(state: AppState): AppState {
+  if (!state.placementSession || state.placementSession.status !== 'in_progress') {
+    return state;
+  }
+  const mergedSeen = normalizeStringArray([
+    ...state.seenQuestionIds,
+    ...state.placementSession.questionIds,
+  ]);
+  return {
+    ...state,
+    seenQuestionIds: mergedSeen,
+    placementSession: {
+      ...state.placementSession,
+      status: 'abandoned',
+    },
   };
 }
 
@@ -219,8 +304,9 @@ export function loadAppState(todayStr: string = formatDateISO(new Date())): AppS
       const parsed: unknown = JSON.parse(primaryRaw);
       const migrated = migrateAndValidateState(parsed, todayStr);
       if (migrated) {
-        saveAppState(migrated);
-        return migrated;
+        const finalized = markInProgressSessionAbandonedOnLoad(migrated);
+        saveAppState(finalized);
+        return finalized;
       }
     } catch {
       // JSON corrompu sur la clé principale : on tente les clés legacy avant fallback
@@ -235,9 +321,10 @@ export function loadAppState(todayStr: string = formatDateISO(new Date())): AppS
       const parsed: unknown = JSON.parse(legacyRaw);
       const migrated = migrateAndValidateState(parsed, todayStr);
       if (migrated) {
-        saveAppState(migrated);
+        const finalized = markInProgressSessionAbandonedOnLoad(migrated);
+        saveAppState(finalized);
         safeRemoveItem(legacyKey);
-        return migrated;
+        return finalized;
       }
     } catch {
       // Ignorer la clé legacy corrompue

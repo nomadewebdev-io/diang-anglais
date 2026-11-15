@@ -8,10 +8,10 @@ import { evaluateDictation } from '../dictation';
 import { catalog } from '../catalog';
 
 describe('sm2 & dictation & data catalog', () => {
-  it('vérifie que les 4 fichiers JSON contiennent 800 cartes, 40 leçons, 200 questions et 300 phrases', () => {
+  it('vérifie que les 4 fichiers JSON contiennent 800 cartes, 40 leçons, 400 questions et 300 phrases', () => {
     expect(catalog.cards).toHaveLength(800);
     expect(catalog.lessons).toHaveLength(40);
-    expect(catalog.placement).toHaveLength(200);
+    expect(catalog.placement).toHaveLength(400);
     expect(catalog.sentences).toHaveLength(300);
   });
 

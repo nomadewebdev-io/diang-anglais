@@ -173,12 +173,13 @@ function validateLessons(lessons) {
 function validatePlacement(questions) {
   assert(Array.isArray(questions), 'placement.json doit être un tableau.');
   assert(
-    questions.length === 200,
-    `placement.json doit contenir exactement 200 questions (actuel : ${questions.length}).`
+    questions.length === 400,
+    `placement.json doit contenir exactement 400 questions (actuel : ${questions.length}).`
   );
 
   const ids = new Set();
   const seenPrompts = new Set();
+  const seenAudioTexts = new Set();
   const countsByLevel = { A1: 0, A2: 0, B1: 0, B2: 0 };
   const skillCountsByLevel = {
     A1: { vocab: 0, grammar: 0, reading: 0, listening: 0 },
@@ -206,6 +207,9 @@ function validatePlacement(questions) {
         typeof q.audioText === 'string' && q.audioText.trim().length > 5,
         `${label}: 'audioText' requis pour une question listening.`
       );
+      const normAudio = normalizeText(q.audioText);
+      assert(!seenAudioTexts.has(normAudio), `${label}: audioText en doublon "${q.audioText}".`);
+      seenAudioTexts.add(normAudio);
     }
 
     const signature = `${normalizeText(q.prompt)}||${normalizeText(q.audioText ?? '')}`;
@@ -217,13 +221,13 @@ function validatePlacement(questions) {
 
   for (const lvl of ['A1', 'A2', 'B1', 'B2']) {
     assert(
-      countsByLevel[lvl] === 50,
-      `placement.json ${lvl} attendu 50 questions, reçu ${countsByLevel[lvl]}.`
+      countsByLevel[lvl] === 100,
+      `placement.json ${lvl} attendu 100 questions, reçu ${countsByLevel[lvl]}.`
     );
     for (const sk of ['vocab', 'grammar', 'reading', 'listening']) {
       assert(
-        skillCountsByLevel[lvl][sk] >= 10,
-        `placement.json ${lvl}/${sk} trop faible (${skillCountsByLevel[lvl][sk]}), attendu au moins 10.`
+        skillCountsByLevel[lvl][sk] >= 20,
+        `placement.json ${lvl}/${sk} trop faible (${skillCountsByLevel[lvl][sk]}), attendu au moins 20.`
       );
     }
   }

@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { catalog } from '../lib/catalog';
-import { ALL_SKILLS, SKILL_LABELS_FR } from '../lib/placementTest';
+import {
+  ALL_SKILLS,
+  getPlacementLockStatus,
+  SKILL_LABELS_FR,
+} from '../lib/placementTest';
 import { calculateStreak } from '../lib/planner';
 import { formatDateISO } from '../lib/sm2';
 import {
@@ -9,11 +13,13 @@ import {
 } from '../lib/storage';
 import { AppState } from '../lib/types';
 import {
+  IconAlert,
   IconAward,
   IconCheck,
   IconDownload,
   IconFlame,
   IconRefresh,
+  IconSettings,
   IconUpload,
 } from './Icons';
 
@@ -22,6 +28,7 @@ interface ProgressViewProps {
   onImportState: (newState: AppState) => void;
   onRetakePlacementTest: () => void;
   onResetAll: () => void;
+  onOpenSettings?: () => void;
 }
 
 export function ProgressView({
@@ -29,12 +36,16 @@ export function ProgressView({
   onImportState,
   onRetakePlacementTest,
   onResetAll,
+  onOpenSettings,
 }: ProgressViewProps): React.ReactElement {
   const [importFeedback, setImportFeedback] = useState<{
     type: 'success' | 'error';
     message: string;
   } | null>(null);
   const [confirmReset, setConfirmReset] = useState(false);
+  const [showLockNotice, setShowLockNotice] = useState(false);
+
+  const lockStatus = getPlacementLockStatus(state.placementResult);
 
   const todayStr = formatDateISO(new Date());
   const streak = calculateStreak(state.studyDates, todayStr);
@@ -109,13 +120,41 @@ export function ProgressView({
 
           <button
             type="button"
-            onClick={onRetakePlacementTest}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#D5CFC2] bg-[#FAF8F5] hover:bg-white text-xs font-semibold text-[#111827] cursor-pointer"
+            onClick={() => {
+              if (lockStatus.isLocked) {
+                setShowLockNotice(true);
+              } else {
+                onRetakePlacementTest();
+              }
+            }}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#D5CFC2] dark:border-[#343F3B] bg-[#FAF8F5] dark:bg-[#252D2A] hover:bg-white dark:hover:bg-[#1E2422] text-xs font-semibold text-[#111827] dark:text-[#F3F4F6] cursor-pointer"
           >
             <IconRefresh className="w-4 h-4" />
             <span>Refaire le test de niveau adaptatif</span>
           </button>
         </div>
+
+        {showLockNotice && lockStatus.isLocked && (
+          <div
+            role="alert"
+            className="mb-6 p-4 rounded-xl bg-[#FDF1EC] dark:bg-[#3A1D16] border border-[#C85A32]/40 text-xs sm:text-sm text-[#9A3412] dark:text-[#FDBA74] flex flex-wrap items-center justify-between gap-3"
+          >
+            <div className="flex items-start gap-2.5 flex-1">
+              <IconAlert className="w-5 h-5 shrink-0 mt-0.5" />
+              <span>{lockStatus.messageFr}</span>
+            </div>
+            {onOpenSettings && (
+              <button
+                type="button"
+                onClick={onOpenSettings}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#C85A32] hover:bg-[#B04B25] text-white text-xs font-semibold cursor-pointer shrink-0"
+              >
+                <IconSettings className="w-4 h-4" />
+                <span>Paramètres &gt; Réinitialiser mes données</span>
+              </button>
+            )}
+          </div>
+        )}
 
         {/* Key Metrics Row */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

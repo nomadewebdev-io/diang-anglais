@@ -81,6 +81,25 @@ export interface PlacementResult {
   completedAt: string;
 }
 
+export type PlacementSessionStatus = 'in_progress' | 'abandoned' | 'completed';
+
+export interface PlacementSessionAnswer {
+  questionId: string;
+  level: CEFRLevel;
+  skill: SkillType;
+  selectedIndex: number | null;
+  isCorrect: boolean;
+  isDontKnow?: boolean;
+}
+
+export interface PlacementSessionState {
+  id: string;
+  questionIds: string[];
+  answers: PlacementSessionAnswer[];
+  startedAt: string;
+  status: PlacementSessionStatus;
+}
+
 export interface StudyPlanConfig {
   currentLevel: CEFRLevel;
   targetLevel: CEFRLevel;
@@ -168,6 +187,8 @@ export interface AppState {
   onboardingStep: OnboardingStep;
   profile: UserProfile | null;
   placementResult: PlacementResult | null;
+  seenQuestionIds: string[];
+  placementSession: PlacementSessionState | null;
   studyPlan: StudyPlan | null;
   sm2States: Record<string, SM2CardState>;
   studyDates: string[]; // Array of YYYY-MM-DD
