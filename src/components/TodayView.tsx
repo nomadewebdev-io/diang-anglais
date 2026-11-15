@@ -230,9 +230,13 @@ export function TodayView({
             title={`${activity.title} · Semaine ${session.weekNumber}`}
             onRateCard={onRateCard}
             onClose={() => setActiveActivity(null)}
-            onComplete={(reviewedCount) => {
+            onComplete={(reviewedCount, answeredRatio) => {
               const ratio =
-                cardsToUse.length > 0 ? reviewedCount / cardsToUse.length : 1;
+                typeof answeredRatio === 'number'
+                  ? answeredRatio
+                  : cardsToUse.length > 0
+                    ? reviewedCount / cardsToUse.length
+                    : 1;
               onCompleteActivity(
                 session.id,
                 activity.id,

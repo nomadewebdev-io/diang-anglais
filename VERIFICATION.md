@@ -1,18 +1,18 @@
-# Vérification Diang-Anglais — Plan par séances, récompenses & anti-abus
+# Vérification Diang-Anglais — Choix de significations & classement SM-2 automatique
 
 ## Critères vérifiés
-- [x] **Plan par séances (sans verrouillage par date)** : `getNextUncompletedSession` sélectionne la prochaine séance non terminée ; l'écran `Aujourd'hui` affiche `"Objectif du jour atteint"`, `"Disponible maintenant"`, la date secondaire en français naturel (`"prévue Demain"`) et le bouton `"Continuer"`.
-- [x] **Dates en français naturel & prévision de fin** : `formatFrenchDateNatural` remplace tout affichage ISO (`YYYY-MM-DD`) dans `TodayView` et `ProgramView` ; `getPlanScheduleStatus` calcule l'avance/retard (`"Avance : +N séances"` / `"Retard : N séances"`) et la date de fin estimée.
-- [x] **Récompenses XP & bonus dégressif** : `calculateActivityXP` et `getDailyBonusMultiplier` appliquent +25 % dégressif sur les séances bonus (100 % / 50 % / 25 % / 0 %), compteurs `"Séances bonus"` (jour/semaine), `"Jours actifs cette semaine (x/7)"` et badges sobres sans classement ni confettis (`prefers-reduced-motion` respecté).
-- [x] **Anti-abus & qualité d'apprentissage** :
-  - Seuil >= 60 % de réponses réelles (hors `"Je ne sais pas"` / passés) pour gagner des XP.
-  - 0 XP sur répétition d'une activité déjà terminée.
-  - Série stricte (`calculateStrictStreak`) : >= 1 séance terminée ou >= 10 min d'activités validées ; les séances bonus n'augmentent pas la série.
-  - SM-2 (`getDueAndNewCardsForToday`) : cartes dues uniquement par défaut, message `"Révisions à jour, reviens demain pour consolider"` et plafond quotidien de nouvelles cartes réglable dans `Paramètres` (10 / 20 / 30 / 50).
-  - Pause bienveillante après 4 séances bonus/jour et recommandation de consolidation 48 h si le plan est terminé en < 50 % de la durée prévue (sans blocage).
-- [x] **En-tête et barre de navigation opaques** : fond 100 % opaque en modes clair (`rgb(250, 248, 245)` / `rgb(255, 255, 255)`) et sombre, avec bordure fine et `env(safe-area-inset-top)` / `env(safe-area-inset-bottom)`.
+- [x] **Déroulé d'une carte (`FlashcardsPractice.tsx`)** : mot anglais seul au départ avec `"Écouter le mot"`, 3 choix mélangés (touches `1`, `2`, `3`) + bouton `"Je ne sais pas"`, aucun compte à rebours visible.
+- [x] **Retour après réponse** : indication juste/faux par couleur + icône + texte, bonne réponse affichée, phrase d'exemple + traduction + audio, étiquette automatique (`"Classée : Facile · prochaine révision dans X jours"` ou `"Classée : À revoir · revient dans cette séance et demain"`), bouton `"Suivant"`.
+- [x] **Classement automatique (`src/lib/srs.ts` + `src/lib/sm2.ts`)** :
+  - `"Je ne sais pas"` → qualité `0`, mauvaise réponse → qualité `1` (reprise dans la séance et le lendemain).
+  - Bonne réponse → `"Difficile"` (`3`), `"Bien"` (`4`), `"Facile"` (`5`) selon `SRS_TIMING_CONFIG` (seuils par niveau CECRL et longueur du mot).
+  - Garde-fou sur les cartes jamais réussies (`repetitions === 0`) : qualité max `4` (`"Bien"`).
+  - Chronomètre silencieux (`SilentResponseTimer`) mis en pause sur `visibilitychange` et plafonné à 20 s.
+  - Alternance au sens inverse (`FR → EN`) après 2 réussites consécutives (`shouldUseReverseDirection`).
+  - Suppression des boutons manuels et du libellé `(Planification SM-2)`, conservation discrète de `Répétitions` / `Facilité`.
+- [x] **Faux choix sur 800 cartes (`src/data/cards.json` + `scripts/validate-data.js`)** : `distractors` (français) et `distractorsEn` (anglais) ajoutés sur les 800 cartes, validés sans doublon ni égalité avec la bonne réponse, avec repli thématique dans `buildCardChoices`.
 
 ## Contrôles automatisés
-- `npm test` (`node scripts/validate-data.js && vitest run`) : **7 fichiers de test, 41 tests passés** (dont 7 tests unitaires dans `src/lib/__tests__/progression.test.ts`).
+- `npm test` (`node scripts/validate-data.js && vitest run`) : **8 fichiers de test, 47 tests passés** (dont 6 tests dédiés dans `src/lib/__tests__/srs.test.ts`).
 - `npm run build` (`tsc -b && vite build`) : **succès (0 erreur TypeScript, bundle PWA généré)**.
-- Rendu navigateur headless Chrome CDP sur `http://localhost:4173/` : **0 erreur console**, **0 débordement horizontal** (`scrollWidth === clientWidth === 1425`), captures `verification/mobile-390px.png` (390x844) et `verification/desktop-1440px.png` (1440x900) validées visuellement.
+- Rendu navigateur headless Chrome CDP sur `http://localhost:4173/` : **0 erreur console**, **0 débordement horizontal** (`scrollWidth === clientWidth === 1425`), captures `verification/mobile-390px.png` et `verification/desktop-1440px.png` validées visuellement.

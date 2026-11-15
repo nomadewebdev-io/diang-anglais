@@ -104,6 +104,51 @@ function validateCards(cards) {
     const normEx = normalizeText(c.example);
     assert(!seenExamples.has(normEx), `${label}: phrase d'exemple en doublon "${c.example}".`);
     seenExamples.add(normEx);
+
+    const normFr = normalizeText(c.fr);
+    assert(
+      Array.isArray(c.distractors) && c.distractors.length === 2,
+      `${label}: 'distractors' doit contenir exactement 2 faux choix français.`
+    );
+    const seenFrDist = new Set();
+    for (const d of c.distractors) {
+      assert(
+        typeof d === 'string' && d.trim().length > 0,
+        `${label}: distracteur français vide ou invalide.`
+      );
+      const nd = normalizeText(d);
+      assert(
+        nd !== normFr,
+        `${label}: distracteur français égal à la bonne réponse ("${d}").`
+      );
+      assert(
+        !seenFrDist.has(nd),
+        `${label}: distracteurs français en doublon ("${d}").`
+      );
+      seenFrDist.add(nd);
+    }
+
+    assert(
+      Array.isArray(c.distractorsEn) && c.distractorsEn.length === 2,
+      `${label}: 'distractorsEn' doit contenir exactement 2 faux choix anglais.`
+    );
+    const seenEnDist = new Set();
+    for (const d of c.distractorsEn) {
+      assert(
+        typeof d === 'string' && d.trim().length > 0,
+        `${label}: distracteur anglais vide ou invalide.`
+      );
+      const nd = normalizeText(d);
+      assert(
+        nd !== normEn,
+        `${label}: distracteur anglais égal à la bonne réponse ("${d}").`
+      );
+      assert(
+        !seenEnDist.has(nd),
+        `${label}: distracteurs anglais en doublon ("${d}").`
+      );
+      seenEnDist.add(nd);
+    }
   }
 
   assert(countsByLevel.A1 === 250, `cards.json A1 attendu 250, reçu ${countsByLevel.A1}`);

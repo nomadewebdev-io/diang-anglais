@@ -33,6 +33,8 @@ export interface FlashcardItem {
   exampleFr: string;
   level: CEFRLevel;
   theme: string;
+  distractors?: string[];
+  distractorsEn?: string[];
 }
 
 export interface LessonExample {

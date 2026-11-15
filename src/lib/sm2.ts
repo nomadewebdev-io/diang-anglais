@@ -68,9 +68,8 @@ export function calculateNextSM2State(
     }
   }
 
-  // If rated 'again', keep it due today/tomorrow; for others, schedule after `interval` days
-  const nextReviewDate =
-    rating === 'again' ? todayStr : addDaysISO(todayStr, interval);
+  // If rated 'again', schedule for tomorrow (card also repeats inside the current session)
+  const nextReviewDate = addDaysISO(todayStr, interval);
 
   return {
     cardId: previous.cardId,
