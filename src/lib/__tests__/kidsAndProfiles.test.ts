@@ -108,11 +108,11 @@ describe('Mode enfant & profils locaux', () => {
     const kids = getCatalogForMode('child');
     const adult = getCatalogForMode('adult');
 
-    expect(kids.cards).toHaveLength(40);
-    expect(kids.lessons).toHaveLength(4);
-    expect(kids.placement).toHaveLength(24);
-    expect(kids.sentences).toHaveLength(30);
-    expect(kids.constructions).toHaveLength(20);
+    expect(kids.cards).toHaveLength(320);
+    expect(kids.lessons).toHaveLength(18);
+    expect(kids.placement).toHaveLength(90);
+    expect(kids.sentences).toHaveLength(120);
+    expect(kids.constructions).toHaveLength(64);
     expect(kids.cards.every((c) => Boolean(c.emoji))).toBe(true);
     expect(kids.cards.every((c) => ['A0', 'A1', 'A2'].includes(c.level))).toBe(true);
 

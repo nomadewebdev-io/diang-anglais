@@ -1,44 +1,5762 @@
 [
-  { "id": "kcard-a0-01", "en": "cat", "fr": "chat", "emoji": "🐱", "example": "The cat sleeps on the mat.", "exampleFr": "Le chat dort sur le tapis.", "level": "A0", "theme": "animaux", "distractors": ["chien", "oiseau"], "distractorsEn": ["dog", "bird"] },
-  { "id": "kcard-a0-02", "en": "dog", "fr": "chien", "emoji": "🐶", "example": "My dog likes to run.", "exampleFr": "Mon chien aime courir.", "level": "A0", "theme": "animaux", "distractors": ["chat", "poisson"], "distractorsEn": ["cat", "fish"] },
-  { "id": "kcard-a0-03", "en": "bird", "fr": "oiseau", "emoji": "🐦", "example": "A blue bird sings in the tree.", "exampleFr": "Un oiseau bleu chante dans l'arbre.", "level": "A0", "theme": "animaux", "distractors": ["lapin", "lion"], "distractorsEn": ["rabbit", "lion"] },
-  { "id": "kcard-a0-04", "en": "red", "fr": "rouge", "emoji": "🔴", "example": "I have a red ball.", "exampleFr": "J'ai un ballon rouge.", "level": "A0", "theme": "couleurs", "distractors": ["bleu", "vert"], "distractorsEn": ["blue", "green"] },
-  { "id": "kcard-a0-05", "en": "blue", "fr": "bleu", "emoji": "🔵", "example": "The sky is blue today.", "exampleFr": "Le ciel est bleu aujourd'hui.", "level": "A0", "theme": "couleurs", "distractors": ["jaune", "rouge"], "distractorsEn": ["yellow", "red"] },
-  { "id": "kcard-a0-06", "en": "yellow", "fr": "jaune", "emoji": "🟡", "example": "The sun is bright yellow.", "exampleFr": "Le soleil est jaune vif.", "level": "A0", "theme": "couleurs", "distractors": ["noir", "vert"], "distractorsEn": ["black", "green"] },
-  { "id": "kcard-a0-07", "en": "one", "fr": "un", "emoji": "1️⃣", "example": "I see one mango.", "exampleFr": "Je vois une mangue.", "level": "A0", "theme": "nombres", "distractors": ["deux", "trois"], "distractorsEn": ["two", "three"] },
-  { "id": "kcard-a0-08", "en": "two", "fr": "deux", "emoji": "2️⃣", "example": "She has two brothers.", "exampleFr": "Elle a deux frères.", "level": "A0", "theme": "nombres", "distractors": ["cinq", "un"], "distractorsEn": ["five", "one"] },
-  { "id": "kcard-a0-09", "en": "three", "fr": "trois", "emoji": "3️⃣", "example": "There are three books on the desk.", "exampleFr": "Il y a trois livres sur le bureau.", "level": "A0", "theme": "nombres", "distractors": ["quatre", "dix"], "distractorsEn": ["four", "ten"] },
-  { "id": "kcard-a0-10", "en": "mother", "fr": "maman / mère", "emoji": "👩", "example": "My mother makes good juice.", "exampleFr": "Ma maman fait un bon jus.", "level": "A0", "theme": "famille", "distractors": ["papa", "frère"], "distractorsEn": ["father", "brother"] },
-  { "id": "kcard-a0-11", "en": "father", "fr": "papa / père", "emoji": "👨", "example": "My father reads a story.", "exampleFr": "Mon papa lit une histoire.", "level": "A0", "theme": "famille", "distractors": ["maman", "sœur"], "distractorsEn": ["mother", "sister"] },
-  { "id": "kcard-a0-12", "en": "hand", "fr": "main", "emoji": "✋", "example": "Wash your hands before eating.", "exampleFr": "Lave-toi les mains avant de manger.", "level": "A0", "theme": "corps", "distractors": ["pied", "tête"], "distractorsEn": ["foot", "head"] },
-  { "id": "kcard-a0-13", "en": "apple", "fr": "pomme", "emoji": "🍎", "example": "I eat a sweet apple.", "exampleFr": "Je mange une pomme sucrée.", "level": "A0", "theme": "nourriture", "distractors": ["banane", "pain"], "distractorsEn": ["banana", "bread"] },
-  { "id": "kcard-a0-14", "en": "sun", "fr": "soleil", "emoji": "☀️", "example": "The sun shines every morning.", "exampleFr": "Le soleil brille chaque matin.", "level": "A0", "theme": "météo", "distractors": ["pluie", "nuage"], "distractorsEn": ["rain", "cloud"] },
-  { "id": "kcard-a0-15", "en": "book", "fr": "livre", "emoji": "📘", "example": "Open your book to page five.", "exampleFr": "Ouvre ton livre à la page cinq.", "level": "A0", "theme": "école", "distractors": ["stylo", "cartable"], "distractorsEn": ["pen", "schoolbag"] },
-
-  { "id": "kcard-a1-01", "en": "elephant", "fr": "éléphant", "emoji": "🐘", "example": "The elephant is very big.", "exampleFr": "L'éléphant est très grand.", "level": "A1", "theme": "animaux", "distractors": ["girafe", "singe"], "distractorsEn": ["giraffe", "monkey"] },
-  { "id": "kcard-a1-02", "en": "monkey", "fr": "singe", "emoji": "🐒", "example": "The monkey climbs the tree.", "exampleFr": "Le singe grimpe à l'arbre.", "level": "A1", "theme": "animaux", "distractors": ["lion", "tortue"], "distractorsEn": ["lion", "turtle"] },
-  { "id": "kcard-a1-03", "en": "green", "fr": "vert", "emoji": "🟢", "example": "The leaves are green.", "exampleFr": "Les feuilles sont vertes.", "level": "A1", "theme": "couleurs", "distractors": ["orange", "violet"], "distractorsEn": ["orange", "purple"] },
-  { "id": "kcard-a1-04", "en": "ten", "fr": "dix", "emoji": "🔟", "example": "Count from one to ten.", "exampleFr": "Compte de un à dix.", "level": "A1", "theme": "nombres", "distractors": ["sept", "douze"], "distractorsEn": ["seven", "twelve"] },
-  { "id": "kcard-a1-05", "en": "sister", "fr": "sœur", "emoji": "👧", "example": "My sister plays football with me.", "exampleFr": "Ma sœur joue au foot avec moi.", "level": "A1", "theme": "famille", "distractors": ["frère", "cousine"], "distractorsEn": ["brother", "cousin"] },
-  { "id": "kcard-a1-06", "en": "eyes", "fr": "yeux", "emoji": "👀", "example": "Close your eyes and listen.", "exampleFr": "Ferme les yeux et écoute.", "level": "A1", "theme": "corps", "distractors": ["oreilles", "dents"], "distractorsEn": ["ears", "teeth"] },
-  { "id": "kcard-a1-07", "en": "pencil", "fr": "crayon", "emoji": "✏️", "example": "I draw with a yellow pencil.", "exampleFr": "Je dessine avec un crayon jaune.", "level": "A1", "theme": "école", "distractors": ["gomme", "règle"], "distractorsEn": ["eraser", "ruler"] },
-  { "id": "kcard-a1-08", "en": "teacher", "fr": "maître / maîtresse", "emoji": "👩‍🏫", "example": "Our teacher explains the game.", "exampleFr": "Notre maîtresse explique le jeu.", "level": "A1", "theme": "école", "distractors": ["élève", "directeur"], "distractorsEn": ["student", "principal"] },
-  { "id": "kcard-a1-09", "en": "banana", "fr": "banane", "emoji": "🍌", "example": "I put a banana in my bag.", "exampleFr": "Je mets une banane dans mon sac.", "level": "A1", "theme": "nourriture", "distractors": ["mangue", "orange"], "distractorsEn": ["mango", "orange"] },
-  { "id": "kcard-a1-10", "en": "bread", "fr": "pain", "emoji": "🥖", "example": "We eat fresh bread in the morning.", "exampleFr": "Nous mangeons du pain frais le matin.", "level": "A1", "theme": "nourriture", "distractors": ["fromage", "lait"], "distractorsEn": ["cheese", "milk"] },
-  { "id": "kcard-a1-11", "en": "shirt", "fr": "chemise / t-shirt", "emoji": "👕", "example": "He wears a clean white shirt.", "exampleFr": "Il porte une chemise blanche propre.", "level": "A1", "theme": "vêtements", "distractors": ["pantalon", "chapeau"], "distractorsEn": ["pants", "hat"] },
-  { "id": "kcard-a1-12", "en": "shoes", "fr": "chaussures", "emoji": "👟", "example": "Put on your shoes to go out.", "exampleFr": "Mets tes chaussures pour sortir.", "level": "A1", "theme": "vêtements", "distractors": ["chaussettes", "veste"], "distractorsEn": ["socks", "jacket"] },
-  { "id": "kcard-a1-13", "en": "rain", "fr": "pluie", "emoji": "🌧️", "example": "Take an umbrella in the rain.", "exampleFr": "Prends un parapluie sous la pluie.", "level": "A1", "theme": "météo", "distractors": ["vent", "neige"], "distractorsEn": ["wind", "snow"] },
-  { "id": "kcard-a1-14", "en": "bedroom", "fr": "chambre", "emoji": "🛏️", "example": "My bedroom is neat and quiet.", "exampleFr": "Ma chambre est rangée et calme.", "level": "A1", "theme": "maison", "distractors": ["cuisine", "jardin"], "distractorsEn": ["kitchen", "garden"] },
-  { "id": "kcard-a1-15", "en": "wake up", "fr": "se réveiller", "emoji": "⏰", "example": "I wake up at seven o'clock.", "exampleFr": "Je me réveille à sept heures.", "level": "A1", "theme": "routines", "distractors": ["dormir", "manger"], "distractorsEn": ["sleep", "eat"] },
-
-  { "id": "kcard-a2-01", "en": "butterfly", "fr": "papillon", "emoji": "🦋", "example": "A colorful butterfly lands on the flower.", "exampleFr": "Un papillon coloré se pose sur la fleur.", "level": "A2", "theme": "animaux", "distractors": ["abeille", "grenouille"], "distractorsEn": ["bee", "frog"] },
-  { "id": "kcard-a2-02", "en": "purple", "fr": "violet", "emoji": "🟣", "example": "She chose a purple backpack.", "exampleFr": "Elle a choisi un sac à dos violet.", "level": "A2", "theme": "couleurs", "distractors": ["marron", "gris"], "distractorsEn": ["brown", "gray"] },
-  { "id": "kcard-a2-03", "en": "twenty", "fr": "vingt", "emoji": "🔢", "example": "There are twenty pupils in our class.", "exampleFr": "Il y a vingt élèves dans notre classe.", "level": "A2", "theme": "nombres", "distractors": ["douze", "trente"], "distractorsEn": ["twelve", "thirty"] },
-  { "id": "kcard-a2-04", "en": "grandmother", "fr": "grand-mère", "emoji": "👵", "example": "My grandmother tells funny stories.", "exampleFr": "Ma grand-mère raconte des histoires drôles.", "level": "A2", "theme": "famille", "distractors": ["tante", "cousin"], "distractorsEn": ["aunt", "cousin"] },
-  { "id": "kcard-a2-05", "en": "shoulder", "fr": "épaule", "emoji": "💪", "example": "Carry your schoolbag on both shoulders.", "exampleFr": "Porte ton cartable sur les deux épaules.", "level": "A2", "theme": "corps", "distractors": ["genou", "coude"], "distractorsEn": ["knee", "elbow"] },
-  { "id": "kcard-a2-06", "en": "homework", "fr": "devoirs", "emoji": "📝", "example": "I finish my homework before dinner.", "exampleFr": "Je finis mes devoirs avant le dîner.", "level": "A2", "theme": "école", "distractors": ["récréation", "cahier"], "distractorsEn": ["recess", "notebook"] },
-  { "id": "kcard-a2-07", "en": "watermelon", "fr": "pastèque", "emoji": "🍉", "example": "Cold watermelon tastes great in summer.", "exampleFr": "La pastèque fraîche est délicieuse en été.", "level": "A2", "theme": "nourriture", "distractors": ["ananas", "citron"], "distractorsEn": ["pineapple", "lemon"] },
-  { "id": "kcard-a2-08", "en": "raincoat", "fr": "imperméable", "emoji": "🧥", "example": "Wear your raincoat when it pours.", "exampleFr": "Mets ton imperméable quand il pleut fort.", "level": "A2", "theme": "vêtements", "distractors": ["écharpe", "casquette"], "distractorsEn": ["scarf", "cap"] },
-  { "id": "kcard-a2-09", "en": "rainbow", "fr": "arc-en-ciel", "emoji": "🌈", "example": "Look at the rainbow after the rain!", "exampleFr": "Regarde l'arc-en-ciel après la pluie !", "level": "A2", "theme": "météo", "distractors": ["éclair", "brouillard"], "distractorsEn": ["lightning", "fog"] },
-  { "id": "kcard-a2-10", "en": "brush my teeth", "fr": "me brosser les dents", "emoji": "🪥", "example": "I brush my teeth every night.", "exampleFr": "Je me brosse les dents chaque soir.", "level": "A2", "theme": "routines", "distractors": ["prendre une douche", "faire mon lit"], "distractorsEn": ["take a shower", "make my bed"] }
+  {
+    "id": "kcard-a0-001",
+    "en": "cat",
+    "fr": "chat",
+    "emoji": "🐱",
+    "example": "The cat sleeps.",
+    "exampleFr": "Le chat dort.",
+    "level": "A0",
+    "theme": "animaux",
+    "distractors": [
+      "chien",
+      "oiseau"
+    ],
+    "distractorsEn": [
+      "dog",
+      "bird"
+    ]
+  },
+  {
+    "id": "kcard-a0-002",
+    "en": "dog",
+    "fr": "chien",
+    "emoji": "🐶",
+    "example": "My dog runs fast.",
+    "exampleFr": "Mon chien court vite.",
+    "level": "A0",
+    "theme": "animaux",
+    "distractors": [
+      "chat",
+      "poisson"
+    ],
+    "distractorsEn": [
+      "cat",
+      "fish"
+    ]
+  },
+  {
+    "id": "kcard-a0-003",
+    "en": "bird",
+    "fr": "oiseau",
+    "emoji": "🐦",
+    "example": "A small bird sings.",
+    "exampleFr": "Un petit oiseau chante.",
+    "level": "A0",
+    "theme": "animaux",
+    "distractors": [
+      "lapin",
+      "lion"
+    ],
+    "distractorsEn": [
+      "rabbit",
+      "lion"
+    ]
+  },
+  {
+    "id": "kcard-a0-004",
+    "en": "fish",
+    "fr": "poisson",
+    "emoji": "🐟",
+    "example": "The fish swims well.",
+    "exampleFr": "Le poisson nage bien.",
+    "level": "A0",
+    "theme": "animaux",
+    "distractors": [
+      "grenouille",
+      "canard"
+    ],
+    "distractorsEn": [
+      "frog",
+      "duck"
+    ]
+  },
+  {
+    "id": "kcard-a0-005",
+    "en": "duck",
+    "fr": "canard",
+    "emoji": "🦆",
+    "example": "The duck is yellow.",
+    "exampleFr": "Le canard est jaune.",
+    "level": "A0",
+    "theme": "animaux",
+    "distractors": [
+      "poule",
+      "oie"
+    ],
+    "distractorsEn": [
+      "hen",
+      "goose"
+    ]
+  },
+  {
+    "id": "kcard-a0-006",
+    "en": "cow",
+    "fr": "vache",
+    "emoji": "🐄",
+    "example": "The cow eats grass.",
+    "exampleFr": "La vache mange de l'herbe.",
+    "level": "A0",
+    "theme": "animaux",
+    "distractors": [
+      "chèvre",
+      "cheval"
+    ],
+    "distractorsEn": [
+      "goat",
+      "horse"
+    ]
+  },
+  {
+    "id": "kcard-a0-007",
+    "en": "goat",
+    "fr": "chèvre",
+    "emoji": "🐐",
+    "example": "The goat jumps high.",
+    "exampleFr": "La chèvre saute haut.",
+    "level": "A0",
+    "theme": "animaux",
+    "distractors": [
+      "mouton",
+      "vache"
+    ],
+    "distractorsEn": [
+      "sheep",
+      "cow"
+    ]
+  },
+  {
+    "id": "kcard-a0-008",
+    "en": "sheep",
+    "fr": "mouton",
+    "emoji": "🐑",
+    "example": "The white sheep walks.",
+    "exampleFr": "Le mouton blanc marche.",
+    "level": "A0",
+    "theme": "animaux",
+    "distractors": [
+      "chèvre",
+      "cheval"
+    ],
+    "distractorsEn": [
+      "goat",
+      "horse"
+    ]
+  },
+  {
+    "id": "kcard-a0-009",
+    "en": "horse",
+    "fr": "cheval",
+    "emoji": "🐴",
+    "example": "The brown horse runs.",
+    "exampleFr": "Le cheval marron court.",
+    "level": "A0",
+    "theme": "animaux",
+    "distractors": [
+      "âne",
+      "lion"
+    ],
+    "distractorsEn": [
+      "donkey",
+      "lion"
+    ]
+  },
+  {
+    "id": "kcard-a0-010",
+    "en": "rabbit",
+    "fr": "lapin",
+    "emoji": "🐰",
+    "example": "The rabbit likes carrots.",
+    "exampleFr": "Le lapin aime les carottes.",
+    "level": "A0",
+    "theme": "animaux",
+    "distractors": [
+      "souris",
+      "chat"
+    ],
+    "distractorsEn": [
+      "mouse",
+      "cat"
+    ]
+  },
+  {
+    "id": "kcard-a0-011",
+    "en": "mouse",
+    "fr": "souris",
+    "emoji": "🐭",
+    "example": "A tiny mouse hides.",
+    "exampleFr": "Une petite souris se cache.",
+    "level": "A0",
+    "theme": "animaux",
+    "distractors": [
+      "lapin",
+      "oiseau"
+    ],
+    "distractorsEn": [
+      "rabbit",
+      "bird"
+    ]
+  },
+  {
+    "id": "kcard-a0-012",
+    "en": "frog",
+    "fr": "grenouille",
+    "emoji": "🐸",
+    "example": "The green frog hops.",
+    "exampleFr": "La grenouille verte saute.",
+    "level": "A0",
+    "theme": "animaux",
+    "distractors": [
+      "poisson",
+      "tortue"
+    ],
+    "distractorsEn": [
+      "fish",
+      "turtle"
+    ]
+  },
+  {
+    "id": "kcard-a0-013",
+    "en": "lion",
+    "fr": "lion",
+    "emoji": "🦁",
+    "example": "The lion rests today.",
+    "exampleFr": "Le lion se repose aujourd'hui.",
+    "level": "A0",
+    "theme": "animaux",
+    "distractors": [
+      "tigre",
+      "ours"
+    ],
+    "distractorsEn": [
+      "tiger",
+      "bear"
+    ]
+  },
+  {
+    "id": "kcard-a0-014",
+    "en": "hen",
+    "fr": "poule",
+    "emoji": "🐔",
+    "example": "The hen lays eggs.",
+    "exampleFr": "La poule pond des œufs.",
+    "level": "A0",
+    "theme": "animaux",
+    "distractors": [
+      "canard",
+      "oiseau"
+    ],
+    "distractorsEn": [
+      "duck",
+      "bird"
+    ]
+  },
+  {
+    "id": "kcard-a0-015",
+    "en": "bee",
+    "fr": "abeille",
+    "emoji": "🐝",
+    "example": "The bee makes honey.",
+    "exampleFr": "L'abeille fait du miel.",
+    "level": "A0",
+    "theme": "animaux",
+    "distractors": [
+      "fourmi",
+      "papillon"
+    ],
+    "distractorsEn": [
+      "ant",
+      "butterfly"
+    ]
+  },
+  {
+    "id": "kcard-a0-016",
+    "en": "red",
+    "fr": "rouge",
+    "emoji": "🔴",
+    "example": "I have a red ball.",
+    "exampleFr": "J'ai un ballon rouge.",
+    "level": "A0",
+    "theme": "couleurs",
+    "distractors": [
+      "bleu",
+      "vert"
+    ],
+    "distractorsEn": [
+      "blue",
+      "green"
+    ]
+  },
+  {
+    "id": "kcard-a0-017",
+    "en": "blue",
+    "fr": "bleu",
+    "emoji": "🔵",
+    "example": "The sky is blue.",
+    "exampleFr": "Le ciel est bleu.",
+    "level": "A0",
+    "theme": "couleurs",
+    "distractors": [
+      "jaune",
+      "rouge"
+    ],
+    "distractorsEn": [
+      "yellow",
+      "red"
+    ]
+  },
+  {
+    "id": "kcard-a0-018",
+    "en": "yellow",
+    "fr": "jaune",
+    "emoji": "🟡",
+    "example": "The sun is yellow.",
+    "exampleFr": "Le soleil est jaune.",
+    "level": "A0",
+    "theme": "couleurs",
+    "distractors": [
+      "vert",
+      "noir"
+    ],
+    "distractorsEn": [
+      "green",
+      "black"
+    ]
+  },
+  {
+    "id": "kcard-a0-019",
+    "en": "green",
+    "fr": "vert",
+    "emoji": "🟢",
+    "example": "The leaf is green.",
+    "exampleFr": "La feuille est verte.",
+    "level": "A0",
+    "theme": "couleurs",
+    "distractors": [
+      "rouge",
+      "blanc"
+    ],
+    "distractorsEn": [
+      "red",
+      "white"
+    ]
+  },
+  {
+    "id": "kcard-a0-020",
+    "en": "white",
+    "fr": "blanc",
+    "emoji": "⚪",
+    "example": "The cloud is white.",
+    "exampleFr": "Le nuage est blanc.",
+    "level": "A0",
+    "theme": "couleurs",
+    "distractors": [
+      "noir",
+      "gris"
+    ],
+    "distractorsEn": [
+      "black",
+      "gray"
+    ]
+  },
+  {
+    "id": "kcard-a0-021",
+    "en": "black",
+    "fr": "noir",
+    "emoji": "⚫",
+    "example": "My shoes are black.",
+    "exampleFr": "Mes chaussures sont noires.",
+    "level": "A0",
+    "theme": "couleurs",
+    "distractors": [
+      "blanc",
+      "bleu"
+    ],
+    "distractorsEn": [
+      "white",
+      "blue"
+    ]
+  },
+  {
+    "id": "kcard-a0-022",
+    "en": "orange",
+    "fr": "orange",
+    "emoji": "🟠",
+    "example": "I like orange juice.",
+    "exampleFr": "J'aime le jus d'orange.",
+    "level": "A0",
+    "theme": "couleurs",
+    "distractors": [
+      "rose",
+      "violet"
+    ],
+    "distractorsEn": [
+      "pink",
+      "purple"
+    ]
+  },
+  {
+    "id": "kcard-a0-023",
+    "en": "pink",
+    "fr": "rose",
+    "emoji": "🩷",
+    "example": "Her bag is pink.",
+    "exampleFr": "Son sac est rose.",
+    "level": "A0",
+    "theme": "couleurs",
+    "distractors": [
+      "gris",
+      "marron"
+    ],
+    "distractorsEn": [
+      "gray",
+      "brown"
+    ]
+  },
+  {
+    "id": "kcard-a0-024",
+    "en": "brown",
+    "fr": "marron",
+    "emoji": "🟤",
+    "example": "The table is brown.",
+    "exampleFr": "La table est marron.",
+    "level": "A0",
+    "theme": "couleurs",
+    "distractors": [
+      "jaune",
+      "rose"
+    ],
+    "distractorsEn": [
+      "yellow",
+      "pink"
+    ]
+  },
+  {
+    "id": "kcard-a0-025",
+    "en": "gray",
+    "fr": "gris",
+    "emoji": "🩶",
+    "example": "The cat is gray.",
+    "exampleFr": "Le chat est gris.",
+    "level": "A0",
+    "theme": "couleurs",
+    "distractors": [
+      "rouge",
+      "vert"
+    ],
+    "distractorsEn": [
+      "red",
+      "green"
+    ]
+  },
+  {
+    "id": "kcard-a0-026",
+    "en": "one",
+    "fr": "un",
+    "emoji": "1️⃣",
+    "example": "I see one bird.",
+    "exampleFr": "Je vois un oiseau.",
+    "level": "A0",
+    "theme": "nombres",
+    "distractors": [
+      "deux",
+      "trois"
+    ],
+    "distractorsEn": [
+      "two",
+      "three"
+    ]
+  },
+  {
+    "id": "kcard-a0-027",
+    "en": "two",
+    "fr": "deux",
+    "emoji": "2️⃣",
+    "example": "I have two hands.",
+    "exampleFr": "J'ai deux mains.",
+    "level": "A0",
+    "theme": "nombres",
+    "distractors": [
+      "un",
+      "quatre"
+    ],
+    "distractorsEn": [
+      "one",
+      "four"
+    ]
+  },
+  {
+    "id": "kcard-a0-028",
+    "en": "three",
+    "fr": "trois",
+    "emoji": "3️⃣",
+    "example": "Count three red balls.",
+    "exampleFr": "Compte trois ballons rouges.",
+    "level": "A0",
+    "theme": "nombres",
+    "distractors": [
+      "cinq",
+      "six"
+    ],
+    "distractorsEn": [
+      "five",
+      "six"
+    ]
+  },
+  {
+    "id": "kcard-a0-029",
+    "en": "four",
+    "fr": "quatre",
+    "emoji": "4️⃣",
+    "example": "Four chairs are here.",
+    "exampleFr": "Quatre chaises sont ici.",
+    "level": "A0",
+    "theme": "nombres",
+    "distractors": [
+      "sept",
+      "deux"
+    ],
+    "distractorsEn": [
+      "seven",
+      "two"
+    ]
+  },
+  {
+    "id": "kcard-a0-030",
+    "en": "five",
+    "fr": "cinq",
+    "emoji": "5️⃣",
+    "example": "I have five pens.",
+    "exampleFr": "J'ai cinq stylos.",
+    "level": "A0",
+    "theme": "nombres",
+    "distractors": [
+      "huit",
+      "trois"
+    ],
+    "distractorsEn": [
+      "eight",
+      "three"
+    ]
+  },
+  {
+    "id": "kcard-a0-031",
+    "en": "six",
+    "fr": "six",
+    "emoji": "6️⃣",
+    "example": "Six ducks swim together.",
+    "exampleFr": "Six canards nagent ensemble.",
+    "level": "A0",
+    "theme": "nombres",
+    "distractors": [
+      "neuf",
+      "quatre"
+    ],
+    "distractorsEn": [
+      "nine",
+      "four"
+    ]
+  },
+  {
+    "id": "kcard-a0-032",
+    "en": "seven",
+    "fr": "sept",
+    "emoji": "7️⃣",
+    "example": "I wake at seven.",
+    "exampleFr": "Je me réveille à sept heures.",
+    "level": "A0",
+    "theme": "nombres",
+    "distractors": [
+      "dix",
+      "cinq"
+    ],
+    "distractorsEn": [
+      "ten",
+      "five"
+    ]
+  },
+  {
+    "id": "kcard-a0-033",
+    "en": "eight",
+    "fr": "huit",
+    "emoji": "8️⃣",
+    "example": "He is eight today.",
+    "exampleFr": "Il a huit ans aujourd'hui.",
+    "level": "A0",
+    "theme": "nombres",
+    "distractors": [
+      "six",
+      "neuf"
+    ],
+    "distractorsEn": [
+      "six",
+      "nine"
+    ]
+  },
+  {
+    "id": "kcard-a0-034",
+    "en": "nine",
+    "fr": "neuf",
+    "emoji": "9️⃣",
+    "example": "Nine stars shine bright.",
+    "exampleFr": "Neuf étoiles brillent fort.",
+    "level": "A0",
+    "theme": "nombres",
+    "distractors": [
+      "sept",
+      "dix"
+    ],
+    "distractorsEn": [
+      "seven",
+      "ten"
+    ]
+  },
+  {
+    "id": "kcard-a0-035",
+    "en": "ten",
+    "fr": "dix",
+    "emoji": "🔟",
+    "example": "Count from one to ten.",
+    "exampleFr": "Compte de un à dix.",
+    "level": "A0",
+    "theme": "nombres",
+    "distractors": [
+      "un",
+      "huit"
+    ],
+    "distractorsEn": [
+      "one",
+      "eight"
+    ]
+  },
+  {
+    "id": "kcard-a0-036",
+    "en": "mother",
+    "fr": "maman / mère",
+    "emoji": "👩",
+    "example": "My mother smiles warmly.",
+    "exampleFr": "Ma maman sourit chaleureusement.",
+    "level": "A0",
+    "theme": "famille",
+    "distractors": [
+      "papa",
+      "frère"
+    ],
+    "distractorsEn": [
+      "father",
+      "brother"
+    ]
+  },
+  {
+    "id": "kcard-a0-037",
+    "en": "father",
+    "fr": "papa / père",
+    "emoji": "👨",
+    "example": "My father reads books.",
+    "exampleFr": "Mon papa lit des livres.",
+    "level": "A0",
+    "theme": "famille",
+    "distractors": [
+      "maman",
+      "sœur"
+    ],
+    "distractorsEn": [
+      "mother",
+      "sister"
+    ]
+  },
+  {
+    "id": "kcard-a0-038",
+    "en": "sister",
+    "fr": "sœur",
+    "emoji": "👧",
+    "example": "My sister plays outside.",
+    "exampleFr": "Ma sœur joue dehors.",
+    "level": "A0",
+    "theme": "famille",
+    "distractors": [
+      "frère",
+      "oncle"
+    ],
+    "distractorsEn": [
+      "brother",
+      "uncle"
+    ]
+  },
+  {
+    "id": "kcard-a0-039",
+    "en": "brother",
+    "fr": "frère",
+    "emoji": "👦",
+    "example": "My brother is nine.",
+    "exampleFr": "Mon frère a neuf ans.",
+    "level": "A0",
+    "theme": "famille",
+    "distractors": [
+      "sœur",
+      "tante"
+    ],
+    "distractorsEn": [
+      "sister",
+      "aunt"
+    ]
+  },
+  {
+    "id": "kcard-a0-040",
+    "en": "baby",
+    "fr": "bébé",
+    "emoji": "👶",
+    "example": "The baby laughs happily.",
+    "exampleFr": "Le bébé rit joyeusement.",
+    "level": "A0",
+    "theme": "famille",
+    "distractors": [
+      "grand-père",
+      "cousin"
+    ],
+    "distractorsEn": [
+      "grandfather",
+      "cousin"
+    ]
+  },
+  {
+    "id": "kcard-a0-041",
+    "en": "family",
+    "fr": "famille",
+    "emoji": "👨‍👩‍👧‍👦",
+    "example": "I love my family.",
+    "exampleFr": "J'aime ma famille.",
+    "level": "A0",
+    "theme": "famille",
+    "distractors": [
+      "école",
+      "classe"
+    ],
+    "distractorsEn": [
+      "school",
+      "class"
+    ]
+  },
+  {
+    "id": "kcard-a0-042",
+    "en": "friend",
+    "fr": "ami / amie",
+    "emoji": "🤝",
+    "example": "Awa is my friend.",
+    "exampleFr": "Awa est mon amie.",
+    "level": "A0",
+    "theme": "famille",
+    "distractors": [
+      "voisin",
+      "maître"
+    ],
+    "distractorsEn": [
+      "neighbor",
+      "teacher"
+    ]
+  },
+  {
+    "id": "kcard-a0-043",
+    "en": "boy",
+    "fr": "garçon",
+    "emoji": "🧒",
+    "example": "The boy kicks the ball.",
+    "exampleFr": "Le garçon tape dans le ballon.",
+    "level": "A0",
+    "theme": "famille",
+    "distractors": [
+      "fille",
+      "bébé"
+    ],
+    "distractorsEn": [
+      "girl",
+      "baby"
+    ]
+  },
+  {
+    "id": "kcard-a0-044",
+    "en": "girl",
+    "fr": "fille",
+    "emoji": "👧🏻",
+    "example": "The girl draws flowers.",
+    "exampleFr": "La fille dessine des fleurs.",
+    "level": "A0",
+    "theme": "famille",
+    "distractors": [
+      "garçon",
+      "papa"
+    ],
+    "distractorsEn": [
+      "boy",
+      "father"
+    ]
+  },
+  {
+    "id": "kcard-a0-045",
+    "en": "grandpa",
+    "fr": "papi / grand-père",
+    "emoji": "👴",
+    "example": "Grandpa tells nice stories.",
+    "exampleFr": "Papi raconte de belles histoires.",
+    "level": "A0",
+    "theme": "famille",
+    "distractors": [
+      "mamie",
+      "frère"
+    ],
+    "distractorsEn": [
+      "grandma",
+      "brother"
+    ]
+  },
+  {
+    "id": "kcard-a0-046",
+    "en": "head",
+    "fr": "tête",
+    "emoji": "🙂",
+    "example": "Touch your head gently.",
+    "exampleFr": "Touche ta tête doucement.",
+    "level": "A0",
+    "theme": "corps",
+    "distractors": [
+      "pied",
+      "main"
+    ],
+    "distractorsEn": [
+      "foot",
+      "hand"
+    ]
+  },
+  {
+    "id": "kcard-a0-047",
+    "en": "hand",
+    "fr": "main",
+    "emoji": "✋",
+    "example": "Raise your right hand.",
+    "exampleFr": "Lève ta main droite.",
+    "level": "A0",
+    "theme": "corps",
+    "distractors": [
+      "jambe",
+      "tête"
+    ],
+    "distractorsEn": [
+      "leg",
+      "head"
+    ]
+  },
+  {
+    "id": "kcard-a0-048",
+    "en": "foot",
+    "fr": "pied",
+    "emoji": "🦶",
+    "example": "My left foot hurts.",
+    "exampleFr": "Mon pied gauche fait mal.",
+    "level": "A0",
+    "theme": "corps",
+    "distractors": [
+      "bras",
+      "nez"
+    ],
+    "distractorsEn": [
+      "arm",
+      "nose"
+    ]
+  },
+  {
+    "id": "kcard-a0-049",
+    "en": "eye",
+    "fr": "œil",
+    "emoji": "👁️",
+    "example": "Close one eye now.",
+    "exampleFr": "Ferme un œil maintenant.",
+    "level": "A0",
+    "theme": "corps",
+    "distractors": [
+      "oreille",
+      "bouche"
+    ],
+    "distractorsEn": [
+      "ear",
+      "mouth"
+    ]
+  },
+  {
+    "id": "kcard-a0-050",
+    "en": "ear",
+    "fr": "oreille",
+    "emoji": "👂",
+    "example": "Listen with your ears.",
+    "exampleFr": "Écoute avec tes oreilles.",
+    "level": "A0",
+    "theme": "corps",
+    "distractors": [
+      "œil",
+      "doigt"
+    ],
+    "distractorsEn": [
+      "eye",
+      "finger"
+    ]
+  },
+  {
+    "id": "kcard-a0-051",
+    "en": "nose",
+    "fr": "nez",
+    "emoji": "👃",
+    "example": "The dog's nose is wet.",
+    "exampleFr": "Le nez du chien est humide.",
+    "level": "A0",
+    "theme": "corps",
+    "distractors": [
+      "bouche",
+      "main"
+    ],
+    "distractorsEn": [
+      "mouth",
+      "hand"
+    ]
+  },
+  {
+    "id": "kcard-a0-052",
+    "en": "mouth",
+    "fr": "bouche",
+    "emoji": "👄",
+    "example": "Open your mouth wide.",
+    "exampleFr": "Ouvre grand la bouche.",
+    "level": "A0",
+    "theme": "corps",
+    "distractors": [
+      "nez",
+      "genou"
+    ],
+    "distractorsEn": [
+      "nose",
+      "knee"
+    ]
+  },
+  {
+    "id": "kcard-a0-053",
+    "en": "arm",
+    "fr": "bras",
+    "emoji": "💪",
+    "example": "Stretch both arms up.",
+    "exampleFr": "Étire les deux bras en haut.",
+    "level": "A0",
+    "theme": "corps",
+    "distractors": [
+      "jambe",
+      "pied"
+    ],
+    "distractorsEn": [
+      "leg",
+      "foot"
+    ]
+  },
+  {
+    "id": "kcard-a0-054",
+    "en": "leg",
+    "fr": "jambe",
+    "emoji": "🦵",
+    "example": "Jump on one leg.",
+    "exampleFr": "Saute sur une jambe.",
+    "level": "A0",
+    "theme": "corps",
+    "distractors": [
+      "bras",
+      "oreille"
+    ],
+    "distractorsEn": [
+      "arm",
+      "ear"
+    ]
+  },
+  {
+    "id": "kcard-a0-055",
+    "en": "hair",
+    "fr": "cheveux",
+    "emoji": "💇",
+    "example": "Comb your hair nicely.",
+    "exampleFr": "Coiffe bien tes cheveux.",
+    "level": "A0",
+    "theme": "corps",
+    "distractors": [
+      "dents",
+      "ongles"
+    ],
+    "distractorsEn": [
+      "teeth",
+      "nails"
+    ]
+  },
+  {
+    "id": "kcard-a0-056",
+    "en": "book",
+    "fr": "livre",
+    "emoji": "📘",
+    "example": "Open your book now.",
+    "exampleFr": "Ouvre ton livre maintenant.",
+    "level": "A0",
+    "theme": "école",
+    "distractors": [
+      "stylo",
+      "gomme"
+    ],
+    "distractorsEn": [
+      "pen",
+      "eraser"
+    ]
+  },
+  {
+    "id": "kcard-a0-057",
+    "en": "pen",
+    "fr": "stylo",
+    "emoji": "🖊️",
+    "example": "Write with a blue pen.",
+    "exampleFr": "Écris avec un stylo bleu.",
+    "level": "A0",
+    "theme": "école",
+    "distractors": [
+      "cahier",
+      "règle"
+    ],
+    "distractorsEn": [
+      "notebook",
+      "ruler"
+    ]
+  },
+  {
+    "id": "kcard-a0-058",
+    "en": "pencil",
+    "fr": "crayon",
+    "emoji": "✏️",
+    "example": "Draw with a pencil.",
+    "exampleFr": "Dessine avec un crayon.",
+    "level": "A0",
+    "theme": "école",
+    "distractors": [
+      "livre",
+      "tableau"
+    ],
+    "distractorsEn": [
+      "book",
+      "board"
+    ]
+  },
+  {
+    "id": "kcard-a0-059",
+    "en": "bag",
+    "fr": "sac",
+    "emoji": "🎒",
+    "example": "Pack your school bag.",
+    "exampleFr": "Prépare ton sac d'école.",
+    "level": "A0",
+    "theme": "école",
+    "distractors": [
+      "chaise",
+      "bureau"
+    ],
+    "distractorsEn": [
+      "chair",
+      "desk"
+    ]
+  },
+  {
+    "id": "kcard-a0-060",
+    "en": "desk",
+    "fr": "bureau",
+    "emoji": "🪑",
+    "example": "Sit at your desk.",
+    "exampleFr": "Assieds-toi à ton bureau.",
+    "level": "A0",
+    "theme": "école",
+    "distractors": [
+      "sac",
+      "crayon"
+    ],
+    "distractorsEn": [
+      "bag",
+      "pencil"
+    ]
+  },
+  {
+    "id": "kcard-a0-061",
+    "en": "school",
+    "fr": "école",
+    "emoji": "🏫",
+    "example": "We walk to school.",
+    "exampleFr": "Nous marchons jusqu'à l'école.",
+    "level": "A0",
+    "theme": "école",
+    "distractors": [
+      "maison",
+      "parc"
+    ],
+    "distractorsEn": [
+      "house",
+      "park"
+    ]
+  },
+  {
+    "id": "kcard-a0-062",
+    "en": "class",
+    "fr": "classe",
+    "emoji": "👩‍🏫",
+    "example": "Our class is quiet.",
+    "exampleFr": "Notre classe est calme.",
+    "level": "A0",
+    "theme": "école",
+    "distractors": [
+      "jardin",
+      "cuisine"
+    ],
+    "distractorsEn": [
+      "garden",
+      "kitchen"
+    ]
+  },
+  {
+    "id": "kcard-a0-063",
+    "en": "paper",
+    "fr": "feuille / papier",
+    "emoji": "📄",
+    "example": "Take a clean paper.",
+    "exampleFr": "Prends une feuille propre.",
+    "level": "A0",
+    "theme": "école",
+    "distractors": [
+      "ciseaux",
+      "colle"
+    ],
+    "distractorsEn": [
+      "scissors",
+      "glue"
+    ]
+  },
+  {
+    "id": "kcard-a0-064",
+    "en": "ruler",
+    "fr": "règle",
+    "emoji": "📏",
+    "example": "Use a long ruler.",
+    "exampleFr": "Utilise une longue règle.",
+    "level": "A0",
+    "theme": "école",
+    "distractors": [
+      "gomme",
+      "stylo"
+    ],
+    "distractorsEn": [
+      "eraser",
+      "pen"
+    ]
+  },
+  {
+    "id": "kcard-a0-065",
+    "en": "eraser",
+    "fr": "gomme",
+    "emoji": "🩹",
+    "example": "Lend me your eraser.",
+    "exampleFr": "Prête-moi ta gomme.",
+    "level": "A0",
+    "theme": "école",
+    "distractors": [
+      "crayon",
+      "livre"
+    ],
+    "distractorsEn": [
+      "pencil",
+      "book"
+    ]
+  },
+  {
+    "id": "kcard-a0-066",
+    "en": "apple",
+    "fr": "pomme",
+    "emoji": "🍎",
+    "example": "I eat an apple.",
+    "exampleFr": "Je mange une pomme.",
+    "level": "A0",
+    "theme": "nourriture",
+    "distractors": [
+      "banane",
+      "pain"
+    ],
+    "distractorsEn": [
+      "banana",
+      "bread"
+    ]
+  },
+  {
+    "id": "kcard-a0-067",
+    "en": "banana",
+    "fr": "banane",
+    "emoji": "🍌",
+    "example": "Peel the yellow banana.",
+    "exampleFr": "Épluche la banane jaune.",
+    "level": "A0",
+    "theme": "nourriture",
+    "distractors": [
+      "pomme",
+      "riz"
+    ],
+    "distractorsEn": [
+      "apple",
+      "rice"
+    ]
+  },
+  {
+    "id": "kcard-a0-068",
+    "en": "mango",
+    "fr": "mangue",
+    "emoji": "🥭",
+    "example": "This mango is sweet.",
+    "exampleFr": "Cette mangue est sucrée.",
+    "level": "A0",
+    "theme": "nourriture",
+    "distractors": [
+      "citron",
+      "lait"
+    ],
+    "distractorsEn": [
+      "lemon",
+      "milk"
+    ]
+  },
+  {
+    "id": "kcard-a0-069",
+    "en": "bread",
+    "fr": "pain",
+    "emoji": "🥖",
+    "example": "We eat fresh bread.",
+    "exampleFr": "Nous mangeons du pain frais.",
+    "level": "A0",
+    "theme": "nourriture",
+    "distractors": [
+      "fromage",
+      "eau"
+    ],
+    "distractorsEn": [
+      "cheese",
+      "water"
+    ]
+  },
+  {
+    "id": "kcard-a0-070",
+    "en": "water",
+    "fr": "eau",
+    "emoji": "💧",
+    "example": "Drink clean cold water.",
+    "exampleFr": "Bois de l'eau fraîche propre.",
+    "level": "A0",
+    "theme": "nourriture",
+    "distractors": [
+      "lait",
+      "jus"
+    ],
+    "distractorsEn": [
+      "milk",
+      "juice"
+    ]
+  },
+  {
+    "id": "kcard-a0-071",
+    "en": "milk",
+    "fr": "lait",
+    "emoji": "🥛",
+    "example": "I drink warm milk.",
+    "exampleFr": "Je bois du lait chaud.",
+    "level": "A0",
+    "theme": "nourriture",
+    "distractors": [
+      "eau",
+      "thé"
+    ],
+    "distractorsEn": [
+      "water",
+      "tea"
+    ]
+  },
+  {
+    "id": "kcard-a0-072",
+    "en": "rice",
+    "fr": "riz",
+    "emoji": "🍚",
+    "example": "We cook white rice.",
+    "exampleFr": "Nous cuisinons du riz blanc.",
+    "level": "A0",
+    "theme": "nourriture",
+    "distractors": [
+      "pain",
+      "œuf"
+    ],
+    "distractorsEn": [
+      "bread",
+      "egg"
+    ]
+  },
+  {
+    "id": "kcard-a0-073",
+    "en": "egg",
+    "fr": "œuf",
+    "emoji": "🥚",
+    "example": "Boil one fresh egg.",
+    "exampleFr": "Fais bouillir un œuf frais.",
+    "level": "A0",
+    "theme": "nourriture",
+    "distractors": [
+      "gâteau",
+      "soupe"
+    ],
+    "distractorsEn": [
+      "cake",
+      "soup"
+    ]
+  },
+  {
+    "id": "kcard-a0-074",
+    "en": "cake",
+    "fr": "gâteau",
+    "emoji": "🍰",
+    "example": "Share the birthday cake.",
+    "exampleFr": "Partage le gâteau d'anniversaire.",
+    "level": "A0",
+    "theme": "nourriture",
+    "distractors": [
+      "pomme",
+      "riz"
+    ],
+    "distractorsEn": [
+      "apple",
+      "rice"
+    ]
+  },
+  {
+    "id": "kcard-a0-075",
+    "en": "juice",
+    "fr": "jus",
+    "emoji": "🧃",
+    "example": "I want mango juice.",
+    "exampleFr": "Je veux du jus de mangue.",
+    "level": "A0",
+    "theme": "nourriture",
+    "distractors": [
+      "lait",
+      "eau"
+    ],
+    "distractorsEn": [
+      "milk",
+      "water"
+    ]
+  },
+  {
+    "id": "kcard-a0-076",
+    "en": "hat",
+    "fr": "chapeau",
+    "emoji": "👒",
+    "example": "Wear your sun hat.",
+    "exampleFr": "Mets ton chapeau de soleil.",
+    "level": "A0",
+    "theme": "vêtements",
+    "distractors": [
+      "chemise",
+      "chaussure"
+    ],
+    "distractorsEn": [
+      "shirt",
+      "shoe"
+    ]
+  },
+  {
+    "id": "kcard-a0-077",
+    "en": "shirt",
+    "fr": "chemise / t-shirt",
+    "emoji": "👕",
+    "example": "Put on your shirt.",
+    "exampleFr": "Mets ta chemise.",
+    "level": "A0",
+    "theme": "vêtements",
+    "distractors": [
+      "pantalon",
+      "chaussette"
+    ],
+    "distractorsEn": [
+      "pants",
+      "sock"
+    ]
+  },
+  {
+    "id": "kcard-a0-078",
+    "en": "pants",
+    "fr": "pantalon",
+    "emoji": "👖",
+    "example": "My pants are blue.",
+    "exampleFr": "Mon pantalon est bleu.",
+    "level": "A0",
+    "theme": "vêtements",
+    "distractors": [
+      "robe",
+      "veste"
+    ],
+    "distractorsEn": [
+      "dress",
+      "jacket"
+    ]
+  },
+  {
+    "id": "kcard-a0-079",
+    "en": "dress",
+    "fr": "robe",
+    "emoji": "👗",
+    "example": "She wears a yellow dress.",
+    "exampleFr": "Elle porte une robe jaune.",
+    "level": "A0",
+    "theme": "vêtements",
+    "distractors": [
+      "pantalon",
+      "chapeau"
+    ],
+    "distractorsEn": [
+      "pants",
+      "hat"
+    ]
+  },
+  {
+    "id": "kcard-a0-080",
+    "en": "shoes",
+    "fr": "chaussures",
+    "emoji": "👟",
+    "example": "Tie your white shoes.",
+    "exampleFr": "Attache tes chaussures blanches.",
+    "level": "A0",
+    "theme": "vêtements",
+    "distractors": [
+      "chaussettes",
+      "gants"
+    ],
+    "distractorsEn": [
+      "socks",
+      "gloves"
+    ]
+  },
+  {
+    "id": "kcard-a0-081",
+    "en": "socks",
+    "fr": "chaussettes",
+    "emoji": "🧦",
+    "example": "Find two clean socks.",
+    "exampleFr": "Trouve deux chaussettes propres.",
+    "level": "A0",
+    "theme": "vêtements",
+    "distractors": [
+      "chaussures",
+      "jupe"
+    ],
+    "distractorsEn": [
+      "shoes",
+      "skirt"
+    ]
+  },
+  {
+    "id": "kcard-a0-082",
+    "en": "coat",
+    "fr": "manteau",
+    "emoji": "🧥",
+    "example": "Take your warm coat.",
+    "exampleFr": "Prends ton manteau chaud.",
+    "level": "A0",
+    "theme": "vêtements",
+    "distractors": [
+      "t-shirt",
+      "sandales"
+    ],
+    "distractorsEn": [
+      "t-shirt",
+      "sandals"
+    ]
+  },
+  {
+    "id": "kcard-a0-083",
+    "en": "cap",
+    "fr": "casquette",
+    "emoji": "🧢",
+    "example": "He wears a red cap.",
+    "exampleFr": "Il porte une casquette rouge.",
+    "level": "A0",
+    "theme": "vêtements",
+    "distractors": [
+      "robe",
+      "ceinture"
+    ],
+    "distractorsEn": [
+      "dress",
+      "belt"
+    ]
+  },
+  {
+    "id": "kcard-a0-084",
+    "en": "skirt",
+    "fr": "jupe",
+    "emoji": "🩳",
+    "example": "The green skirt fits.",
+    "exampleFr": "La jupe verte va bien.",
+    "level": "A0",
+    "theme": "vêtements",
+    "distractors": [
+      "chemise",
+      "casquette"
+    ],
+    "distractorsEn": [
+      "shirt",
+      "cap"
+    ]
+  },
+  {
+    "id": "kcard-a0-085",
+    "en": "glasses",
+    "fr": "lunettes",
+    "emoji": "👓",
+    "example": "Put on your glasses.",
+    "exampleFr": "Mets tes lunettes.",
+    "level": "A0",
+    "theme": "vêtements",
+    "distractors": [
+      "chaussettes",
+      "manteau"
+    ],
+    "distractorsEn": [
+      "socks",
+      "coat"
+    ]
+  },
+  {
+    "id": "kcard-a0-086",
+    "en": "sun",
+    "fr": "soleil",
+    "emoji": "☀️",
+    "example": "The sun shines bright.",
+    "exampleFr": "Le soleil brille fort.",
+    "level": "A0",
+    "theme": "météo",
+    "distractors": [
+      "pluie",
+      "lune"
+    ],
+    "distractorsEn": [
+      "rain",
+      "moon"
+    ]
+  },
+  {
+    "id": "kcard-a0-087",
+    "en": "rain",
+    "fr": "pluie",
+    "emoji": "🌧️",
+    "example": "I hear the rain.",
+    "exampleFr": "J'entends la pluie.",
+    "level": "A0",
+    "theme": "météo",
+    "distractors": [
+      "soleil",
+      "vent"
+    ],
+    "distractorsEn": [
+      "sun",
+      "wind"
+    ]
+  },
+  {
+    "id": "kcard-a0-088",
+    "en": "cloud",
+    "fr": "nuage",
+    "emoji": "☁️",
+    "example": "Look at that cloud.",
+    "exampleFr": "Regarde ce nuage.",
+    "level": "A0",
+    "theme": "météo",
+    "distractors": [
+      "étoile",
+      "pluie"
+    ],
+    "distractorsEn": [
+      "star",
+      "rain"
+    ]
+  },
+  {
+    "id": "kcard-a0-089",
+    "en": "wind",
+    "fr": "vent",
+    "emoji": "💨",
+    "example": "The wind blows softly.",
+    "exampleFr": "Le vent souffle doucement.",
+    "level": "A0",
+    "theme": "météo",
+    "distractors": [
+      "neige",
+      "soleil"
+    ],
+    "distractorsEn": [
+      "snow",
+      "sun"
+    ]
+  },
+  {
+    "id": "kcard-a0-090",
+    "en": "moon",
+    "fr": "lune",
+    "emoji": "🌙",
+    "example": "The moon is round.",
+    "exampleFr": "La lune est ronde.",
+    "level": "A0",
+    "theme": "météo",
+    "distractors": [
+      "soleil",
+      "nuage"
+    ],
+    "distractorsEn": [
+      "sun",
+      "cloud"
+    ]
+  },
+  {
+    "id": "kcard-a0-091",
+    "en": "star",
+    "fr": "étoile",
+    "emoji": "⭐",
+    "example": "See the bright star.",
+    "exampleFr": "Vois l'étoile brillante.",
+    "level": "A0",
+    "theme": "météo",
+    "distractors": [
+      "nuage",
+      "pluie"
+    ],
+    "distractorsEn": [
+      "cloud",
+      "rain"
+    ]
+  },
+  {
+    "id": "kcard-a0-092",
+    "en": "sky",
+    "fr": "ciel",
+    "emoji": "🌤️",
+    "example": "Birds fly in the sky.",
+    "exampleFr": "Les oiseaux volent dans le ciel.",
+    "level": "A0",
+    "theme": "météo",
+    "distractors": [
+      "mer",
+      "terre"
+    ],
+    "distractorsEn": [
+      "sea",
+      "ground"
+    ]
+  },
+  {
+    "id": "kcard-a0-093",
+    "en": "hot",
+    "fr": "chaud",
+    "emoji": "🔥",
+    "example": "Today is very hot.",
+    "exampleFr": "Aujourd'hui il fait très chaud.",
+    "level": "A0",
+    "theme": "météo",
+    "distractors": [
+      "froid",
+      "humide"
+    ],
+    "distractorsEn": [
+      "cold",
+      "wet"
+    ]
+  },
+  {
+    "id": "kcard-a0-094",
+    "en": "cold",
+    "fr": "froid",
+    "emoji": "❄️",
+    "example": "The water is cold.",
+    "exampleFr": "L'eau est froide.",
+    "level": "A0",
+    "theme": "météo",
+    "distractors": [
+      "chaud",
+      "sec"
+    ],
+    "distractorsEn": [
+      "hot",
+      "dry"
+    ]
+  },
+  {
+    "id": "kcard-a0-095",
+    "en": "tree",
+    "fr": "arbre",
+    "emoji": "🌳",
+    "example": "Sit under the tree.",
+    "exampleFr": "Assieds-toi sous l'arbre.",
+    "level": "A0",
+    "theme": "météo",
+    "distractors": [
+      "fleur",
+      "nuage"
+    ],
+    "distractorsEn": [
+      "flower",
+      "cloud"
+    ]
+  },
+  {
+    "id": "kcard-a0-096",
+    "en": "house",
+    "fr": "maison",
+    "emoji": "🏠",
+    "example": "Our house is clean.",
+    "exampleFr": "Notre maison est propre.",
+    "level": "A0",
+    "theme": "maison",
+    "distractors": [
+      "école",
+      "rue"
+    ],
+    "distractorsEn": [
+      "school",
+      "street"
+    ]
+  },
+  {
+    "id": "kcard-a0-097",
+    "en": "door",
+    "fr": "porte",
+    "emoji": "🚪",
+    "example": "Close the front door.",
+    "exampleFr": "Ferme la porte d'entrée.",
+    "level": "A0",
+    "theme": "maison",
+    "distractors": [
+      "fenêtre",
+      "mur"
+    ],
+    "distractorsEn": [
+      "window",
+      "wall"
+    ]
+  },
+  {
+    "id": "kcard-a0-098",
+    "en": "window",
+    "fr": "fenêtre",
+    "emoji": "🪟",
+    "example": "Open the big window.",
+    "exampleFr": "Ouvre la grande fenêtre.",
+    "level": "A0",
+    "theme": "maison",
+    "distractors": [
+      "porte",
+      "toit"
+    ],
+    "distractorsEn": [
+      "door",
+      "roof"
+    ]
+  },
+  {
+    "id": "kcard-a0-099",
+    "en": "bed",
+    "fr": "lit",
+    "emoji": "🛏️",
+    "example": "Make your bed now.",
+    "exampleFr": "Fais ton lit maintenant.",
+    "level": "A0",
+    "theme": "maison",
+    "distractors": [
+      "table",
+      "chaise"
+    ],
+    "distractorsEn": [
+      "table",
+      "chair"
+    ]
+  },
+  {
+    "id": "kcard-a0-100",
+    "en": "chair",
+    "fr": "chaise",
+    "emoji": "🪑",
+    "example": "Pull up a chair.",
+    "exampleFr": "Approche une chaise.",
+    "level": "A0",
+    "theme": "maison",
+    "distractors": [
+      "lit",
+      "porte"
+    ],
+    "distractorsEn": [
+      "bed",
+      "door"
+    ]
+  },
+  {
+    "id": "kcard-a0-101",
+    "en": "table",
+    "fr": "table",
+    "emoji": "🍽️",
+    "example": "Put plates on the table.",
+    "exampleFr": "Mets les assiettes sur la table.",
+    "level": "A0",
+    "theme": "maison",
+    "distractors": [
+      "canapé",
+      "lit"
+    ],
+    "distractorsEn": [
+      "sofa",
+      "bed"
+    ]
+  },
+  {
+    "id": "kcard-a0-102",
+    "en": "room",
+    "fr": "pièce / chambre",
+    "emoji": "🛋️",
+    "example": "Keep your room tidy.",
+    "exampleFr": "Garde ta chambre rangée.",
+    "level": "A0",
+    "theme": "maison",
+    "distractors": [
+      "jardin",
+      "porte"
+    ],
+    "distractorsEn": [
+      "garden",
+      "door"
+    ]
+  },
+  {
+    "id": "kcard-a0-103",
+    "en": "key",
+    "fr": "clé",
+    "emoji": "🔑",
+    "example": "Here is the key.",
+    "exampleFr": "Voici la clé.",
+    "level": "A0",
+    "theme": "maison",
+    "distractors": [
+      "lampe",
+      "tapis"
+    ],
+    "distractorsEn": [
+      "lamp",
+      "rug"
+    ]
+  },
+  {
+    "id": "kcard-a0-104",
+    "en": "lamp",
+    "fr": "lampe",
+    "emoji": "💡",
+    "example": "Turn on the lamp.",
+    "exampleFr": "Allume la lampe.",
+    "level": "A0",
+    "theme": "maison",
+    "distractors": [
+      "clé",
+      "fenêtre"
+    ],
+    "distractorsEn": [
+      "key",
+      "window"
+    ]
+  },
+  {
+    "id": "kcard-a0-105",
+    "en": "cup",
+    "fr": "tasse",
+    "emoji": "☕",
+    "example": "Fill the blue cup.",
+    "exampleFr": "Remplis la tasse bleue.",
+    "level": "A0",
+    "theme": "maison",
+    "distractors": [
+      "assiette",
+      "cuillère"
+    ],
+    "distractorsEn": [
+      "plate",
+      "spoon"
+    ]
+  },
+  {
+    "id": "kcard-a0-106",
+    "en": "hello",
+    "fr": "bonjour",
+    "emoji": "👋",
+    "example": "Hello, how are you?",
+    "exampleFr": "Bonjour, comment vas-tu ?",
+    "level": "A0",
+    "theme": "routines",
+    "distractors": [
+      "au revoir",
+      "merci"
+    ],
+    "distractorsEn": [
+      "goodbye",
+      "thank you"
+    ]
+  },
+  {
+    "id": "kcard-a0-107",
+    "en": "goodbye",
+    "fr": "au revoir",
+    "emoji": "🙋",
+    "example": "Say goodbye to friends.",
+    "exampleFr": "Dis au revoir aux amis.",
+    "level": "A0",
+    "theme": "routines",
+    "distractors": [
+      "bonjour",
+      "pardon"
+    ],
+    "distractorsEn": [
+      "hello",
+      "sorry"
+    ]
+  },
+  {
+    "id": "kcard-a0-108",
+    "en": "please",
+    "fr": "s'il te plaît",
+    "emoji": "🙏",
+    "example": "Pass the bread, please.",
+    "exampleFr": "Passe le pain, s'il te plaît.",
+    "level": "A0",
+    "theme": "routines",
+    "distractors": [
+      "merci",
+      "bonjour"
+    ],
+    "distractorsEn": [
+      "thanks",
+      "hello"
+    ]
+  },
+  {
+    "id": "kcard-a0-109",
+    "en": "thank you",
+    "fr": "merci",
+    "emoji": "💛",
+    "example": "Thank you very much!",
+    "exampleFr": "Merci beaucoup !",
+    "level": "A0",
+    "theme": "routines",
+    "distractors": [
+      "au revoir",
+      "oui"
+    ],
+    "distractorsEn": [
+      "goodbye",
+      "yes"
+    ]
+  },
+  {
+    "id": "kcard-a0-110",
+    "en": "yes",
+    "fr": "oui",
+    "emoji": "✅",
+    "example": "Yes, I am ready.",
+    "exampleFr": "Oui, je suis prêt.",
+    "level": "A0",
+    "theme": "routines",
+    "distractors": [
+      "non",
+      "merci"
+    ],
+    "distractorsEn": [
+      "no",
+      "thanks"
+    ]
+  },
+  {
+    "id": "kcard-a0-111",
+    "en": "no",
+    "fr": "non",
+    "emoji": "❌",
+    "example": "No, not right now.",
+    "exampleFr": "Non, pas maintenant.",
+    "level": "A0",
+    "theme": "routines",
+    "distractors": [
+      "oui",
+      "bonjour"
+    ],
+    "distractorsEn": [
+      "yes",
+      "hello"
+    ]
+  },
+  {
+    "id": "kcard-a0-112",
+    "en": "eat",
+    "fr": "manger",
+    "emoji": "🍴",
+    "example": "We eat lunch together.",
+    "exampleFr": "Nous déjeunons ensemble.",
+    "level": "A0",
+    "theme": "routines",
+    "distractors": [
+      "dormir",
+      "courir"
+    ],
+    "distractorsEn": [
+      "sleep",
+      "run"
+    ]
+  },
+  {
+    "id": "kcard-a0-113",
+    "en": "drink",
+    "fr": "boire",
+    "emoji": "🥤",
+    "example": "Drink water after play.",
+    "exampleFr": "Bois de l'eau après le jeu.",
+    "level": "A0",
+    "theme": "routines",
+    "distractors": [
+      "sauter",
+      "lire"
+    ],
+    "distractorsEn": [
+      "jump",
+      "read"
+    ]
+  },
+  {
+    "id": "kcard-a0-114",
+    "en": "sleep",
+    "fr": "dormir",
+    "emoji": "😴",
+    "example": "I sleep at nine.",
+    "exampleFr": "Je dors à neuf heures.",
+    "level": "A0",
+    "theme": "routines",
+    "distractors": [
+      "courir",
+      "chanter"
+    ],
+    "distractorsEn": [
+      "run",
+      "sing"
+    ]
+  },
+  {
+    "id": "kcard-a0-115",
+    "en": "play",
+    "fr": "jouer",
+    "emoji": "⚽",
+    "example": "Let's play outside today!",
+    "exampleFr": "Jouons dehors aujourd'hui !",
+    "level": "A0",
+    "theme": "routines",
+    "distractors": [
+      "dormir",
+      "écrire"
+    ],
+    "distractorsEn": [
+      "sleep",
+      "write"
+    ]
+  },
+  {
+    "id": "kcard-a0-116",
+    "en": "run",
+    "fr": "courir",
+    "emoji": "🏃",
+    "example": "Run to the tree!",
+    "exampleFr": "Cours jusqu'à l'arbre !",
+    "level": "A0",
+    "theme": "routines",
+    "distractors": [
+      "s'asseoir",
+      "dormir"
+    ],
+    "distractorsEn": [
+      "sit",
+      "sleep"
+    ]
+  },
+  {
+    "id": "kcard-a0-117",
+    "en": "walk",
+    "fr": "marcher",
+    "emoji": "🚶",
+    "example": "Walk slowly on stairs.",
+    "exampleFr": "Marche doucement dans les escaliers.",
+    "level": "A0",
+    "theme": "routines",
+    "distractors": [
+      "nager",
+      "voler"
+    ],
+    "distractorsEn": [
+      "swim",
+      "fly"
+    ]
+  },
+  {
+    "id": "kcard-a0-118",
+    "en": "read",
+    "fr": "lire",
+    "emoji": "📖",
+    "example": "I read every evening.",
+    "exampleFr": "Je lis chaque soir.",
+    "level": "A0",
+    "theme": "routines",
+    "distractors": [
+      "manger",
+      "sauter"
+    ],
+    "distractorsEn": [
+      "eat",
+      "jump"
+    ]
+  },
+  {
+    "id": "kcard-a0-119",
+    "en": "write",
+    "fr": "écrire",
+    "emoji": "✍️",
+    "example": "Write your name clearly.",
+    "exampleFr": "Écris ton prénom clairement.",
+    "level": "A0",
+    "theme": "routines",
+    "distractors": [
+      "boire",
+      "courir"
+    ],
+    "distractorsEn": [
+      "drink",
+      "run"
+    ]
+  },
+  {
+    "id": "kcard-a0-120",
+    "en": "sing",
+    "fr": "chanter",
+    "emoji": "🎵",
+    "example": "We sing happy songs.",
+    "exampleFr": "Nous chantons des chansons joyeuses.",
+    "level": "A0",
+    "theme": "routines",
+    "distractors": [
+      "dormir",
+      "cacher"
+    ],
+    "distractorsEn": [
+      "sleep",
+      "hide"
+    ]
+  },
+  {
+    "id": "kcard-a1-001",
+    "en": "elephant",
+    "fr": "éléphant",
+    "emoji": "🐘",
+    "example": "The elephant is huge.",
+    "exampleFr": "L'éléphant est énorme.",
+    "level": "A1",
+    "theme": "animaux",
+    "distractors": [
+      "girafe",
+      "singe"
+    ],
+    "distractorsEn": [
+      "giraffe",
+      "monkey"
+    ]
+  },
+  {
+    "id": "kcard-a1-002",
+    "en": "giraffe",
+    "fr": "girafe",
+    "emoji": "🦒",
+    "example": "The giraffe is tall.",
+    "exampleFr": "La girafe est grande.",
+    "level": "A1",
+    "theme": "animaux",
+    "distractors": [
+      "zèbre",
+      "tigre"
+    ],
+    "distractorsEn": [
+      "zebra",
+      "tiger"
+    ]
+  },
+  {
+    "id": "kcard-a1-003",
+    "en": "monkey",
+    "fr": "singe",
+    "emoji": "🐒",
+    "example": "The monkey climbs trees.",
+    "exampleFr": "Le singe grimpe aux arbres.",
+    "level": "A1",
+    "theme": "animaux",
+    "distractors": [
+      "ours",
+      "lapin"
+    ],
+    "distractorsEn": [
+      "bear",
+      "rabbit"
+    ]
+  },
+  {
+    "id": "kcard-a1-004",
+    "en": "zebra",
+    "fr": "zèbre",
+    "emoji": "🦓",
+    "example": "The zebra has stripes.",
+    "exampleFr": "Le zèbre a des rayures.",
+    "level": "A1",
+    "theme": "animaux",
+    "distractors": [
+      "chameau",
+      "cheval"
+    ],
+    "distractorsEn": [
+      "camel",
+      "horse"
+    ]
+  },
+  {
+    "id": "kcard-a1-005",
+    "en": "turtle",
+    "fr": "tortue",
+    "emoji": "🐢",
+    "example": "The turtle walks slowly.",
+    "exampleFr": "La tortue marche lentement.",
+    "level": "A1",
+    "theme": "animaux",
+    "distractors": [
+      "grenouille",
+      "crabe"
+    ],
+    "distractorsEn": [
+      "frog",
+      "crab"
+    ]
+  },
+  {
+    "id": "kcard-a1-006",
+    "en": "tiger",
+    "fr": "tigre",
+    "emoji": "🐯",
+    "example": "The tiger runs quickly.",
+    "exampleFr": "Le tigre court vite.",
+    "level": "A1",
+    "theme": "animaux",
+    "distractors": [
+      "lion",
+      "renard"
+    ],
+    "distractorsEn": [
+      "lion",
+      "fox"
+    ]
+  },
+  {
+    "id": "kcard-a1-007",
+    "en": "bear",
+    "fr": "ours",
+    "emoji": "🐻",
+    "example": "The bear likes honey.",
+    "exampleFr": "L'ours aime le miel.",
+    "level": "A1",
+    "theme": "animaux",
+    "distractors": [
+      "loup",
+      "cerf"
+    ],
+    "distractorsEn": [
+      "wolf",
+      "deer"
+    ]
+  },
+  {
+    "id": "kcard-a1-008",
+    "en": "camel",
+    "fr": "chameau / dromadaire",
+    "emoji": "🐪",
+    "example": "The camel crosses sand.",
+    "exampleFr": "Le chameau traverse le sable.",
+    "level": "A1",
+    "theme": "animaux",
+    "distractors": [
+      "âne",
+      "chèvre"
+    ],
+    "distractorsEn": [
+      "donkey",
+      "goat"
+    ]
+  },
+  {
+    "id": "kcard-a1-009",
+    "en": "donkey",
+    "fr": "âne",
+    "emoji": "🫏",
+    "example": "The donkey carries baskets.",
+    "exampleFr": "L'âne porte des paniers.",
+    "level": "A1",
+    "theme": "animaux",
+    "distractors": [
+      "cheval",
+      "vache"
+    ],
+    "distractorsEn": [
+      "horse",
+      "cow"
+    ]
+  },
+  {
+    "id": "kcard-a1-010",
+    "en": "dolphin",
+    "fr": "dauphin",
+    "emoji": "🐬",
+    "example": "The dolphin jumps high.",
+    "exampleFr": "Le dauphin saute haut.",
+    "level": "A1",
+    "theme": "animaux",
+    "distractors": [
+      "baleine",
+      "crabe"
+    ],
+    "distractorsEn": [
+      "whale",
+      "crab"
+    ]
+  },
+  {
+    "id": "kcard-a1-011",
+    "en": "crab",
+    "fr": "crabe",
+    "emoji": "🦀",
+    "example": "A red crab walks.",
+    "exampleFr": "Un crabe rouge marche.",
+    "level": "A1",
+    "theme": "animaux",
+    "distractors": [
+      "poisson",
+      "tortue"
+    ],
+    "distractorsEn": [
+      "fish",
+      "turtle"
+    ]
+  },
+  {
+    "id": "kcard-a1-012",
+    "en": "ant",
+    "fr": "fourmi",
+    "emoji": "🐜",
+    "example": "The little ant works.",
+    "exampleFr": "La petite fourmi travaille.",
+    "level": "A1",
+    "theme": "animaux",
+    "distractors": [
+      "abeille",
+      "mouche"
+    ],
+    "distractorsEn": [
+      "bee",
+      "fly"
+    ]
+  },
+  {
+    "id": "kcard-a1-013",
+    "en": "purple",
+    "fr": "violet",
+    "emoji": "🟣",
+    "example": "My bag is purple.",
+    "exampleFr": "Mon sac est violet.",
+    "level": "A1",
+    "theme": "couleurs",
+    "distractors": [
+      "doré",
+      "argenté"
+    ],
+    "distractorsEn": [
+      "gold",
+      "silver"
+    ]
+  },
+  {
+    "id": "kcard-a1-014",
+    "en": "gold",
+    "fr": "doré",
+    "emoji": "🥇",
+    "example": "She won gold medals.",
+    "exampleFr": "Elle a gagné des médailles d'or.",
+    "level": "A1",
+    "theme": "couleurs",
+    "distractors": [
+      "argenté",
+      "violet"
+    ],
+    "distractorsEn": [
+      "silver",
+      "purple"
+    ]
+  },
+  {
+    "id": "kcard-a1-015",
+    "en": "silver",
+    "fr": "argenté",
+    "emoji": "🥈",
+    "example": "The spoon is silver.",
+    "exampleFr": "La cuillère est argentée.",
+    "level": "A1",
+    "theme": "couleurs",
+    "distractors": [
+      "doré",
+      "marron"
+    ],
+    "distractorsEn": [
+      "gold",
+      "brown"
+    ]
+  },
+  {
+    "id": "kcard-a1-016",
+    "en": "bright",
+    "fr": "clair / lumineux",
+    "emoji": "🌟",
+    "example": "It is bright outside.",
+    "exampleFr": "Il fait clair dehors.",
+    "level": "A1",
+    "theme": "couleurs",
+    "distractors": [
+      "sombre",
+      "pâle"
+    ],
+    "distractorsEn": [
+      "dark",
+      "pale"
+    ]
+  },
+  {
+    "id": "kcard-a1-017",
+    "en": "dark",
+    "fr": "foncé / sombre",
+    "emoji": "🌑",
+    "example": "I wear dark blue.",
+    "exampleFr": "Je porte du bleu foncé.",
+    "level": "A1",
+    "theme": "couleurs",
+    "distractors": [
+      "clair",
+      "vif"
+    ],
+    "distractorsEn": [
+      "light",
+      "vivid"
+    ]
+  },
+  {
+    "id": "kcard-a1-018",
+    "en": "light",
+    "fr": "clair / léger",
+    "emoji": "🩵",
+    "example": "He likes light green.",
+    "exampleFr": "Il aime le vert clair.",
+    "level": "A1",
+    "theme": "couleurs",
+    "distractors": [
+      "foncé",
+      "lourd"
+    ],
+    "distractorsEn": [
+      "dark",
+      "heavy"
+    ]
+  },
+  {
+    "id": "kcard-a1-019",
+    "en": "colorful",
+    "fr": "coloré",
+    "emoji": "🎨",
+    "example": "Her drawing is colorful.",
+    "exampleFr": "Son dessin est coloré.",
+    "level": "A1",
+    "theme": "couleurs",
+    "distractors": [
+      "terne",
+      "gris"
+    ],
+    "distractorsEn": [
+      "plain",
+      "gray"
+    ]
+  },
+  {
+    "id": "kcard-a1-020",
+    "en": "striped",
+    "fr": "rayé",
+    "emoji": "🦓",
+    "example": "I have striped socks.",
+    "exampleFr": "J'ai des chaussettes rayées.",
+    "level": "A1",
+    "theme": "couleurs",
+    "distractors": [
+      "uni",
+      "pointillé"
+    ],
+    "distractorsEn": [
+      "solid",
+      "dotted"
+    ]
+  },
+  {
+    "id": "kcard-a1-021",
+    "en": "eleven",
+    "fr": "onze",
+    "emoji": "1️⃣1️⃣",
+    "example": "Eleven players play football.",
+    "exampleFr": "Onze joueurs jouent au football.",
+    "level": "A1",
+    "theme": "nombres",
+    "distractors": [
+      "douze",
+      "quinze"
+    ],
+    "distractorsEn": [
+      "twelve",
+      "fifteen"
+    ]
+  },
+  {
+    "id": "kcard-a1-022",
+    "en": "twelve",
+    "fr": "douze",
+    "emoji": "🕛",
+    "example": "Twelve months make one year.",
+    "exampleFr": "Douze mois font une année.",
+    "level": "A1",
+    "theme": "nombres",
+    "distractors": [
+      "onze",
+      "vingt"
+    ],
+    "distractorsEn": [
+      "eleven",
+      "twenty"
+    ]
+  },
+  {
+    "id": "kcard-a1-023",
+    "en": "thirteen",
+    "fr": "treize",
+    "emoji": "🔢",
+    "example": "She has thirteen stickers.",
+    "exampleFr": "Elle a treize autocollants.",
+    "level": "A1",
+    "theme": "nombres",
+    "distractors": [
+      "quatorze",
+      "trente"
+    ],
+    "distractorsEn": [
+      "fourteen",
+      "thirty"
+    ]
+  },
+  {
+    "id": "kcard-a1-024",
+    "en": "fourteen",
+    "fr": "quatorze",
+    "emoji": "📅",
+    "example": "Fourteen days make two weeks.",
+    "exampleFr": "Quatorze jours font deux semaines.",
+    "level": "A1",
+    "theme": "nombres",
+    "distractors": [
+      "quinze",
+      "douze"
+    ],
+    "distractorsEn": [
+      "fifteen",
+      "twelve"
+    ]
+  },
+  {
+    "id": "kcard-a1-025",
+    "en": "fifteen",
+    "fr": "quinze",
+    "emoji": "⏱️",
+    "example": "Wait fifteen short minutes.",
+    "exampleFr": "Attends quinze petites minutes.",
+    "level": "A1",
+    "theme": "nombres",
+    "distractors": [
+      "seize",
+      "cinq"
+    ],
+    "distractorsEn": [
+      "sixteen",
+      "five"
+    ]
+  },
+  {
+    "id": "kcard-a1-026",
+    "en": "sixteen",
+    "fr": "seize",
+    "emoji": "1️⃣6️⃣",
+    "example": "I see sixteen birds.",
+    "exampleFr": "Je vois seize oiseaux.",
+    "level": "A1",
+    "theme": "nombres",
+    "distractors": [
+      "dix-sept",
+      "six"
+    ],
+    "distractorsEn": [
+      "seventeen",
+      "six"
+    ]
+  },
+  {
+    "id": "kcard-a1-027",
+    "en": "seventeen",
+    "fr": "dix-sept",
+    "emoji": "1️⃣7️⃣",
+    "example": "Seventeen kids sing together.",
+    "exampleFr": "Dix-sept enfants chantent ensemble.",
+    "level": "A1",
+    "theme": "nombres",
+    "distractors": [
+      "dix-huit",
+      "sept"
+    ],
+    "distractorsEn": [
+      "eighteen",
+      "seven"
+    ]
+  },
+  {
+    "id": "kcard-a1-028",
+    "en": "eighteen",
+    "fr": "dix-huit",
+    "emoji": "1️⃣8️⃣",
+    "example": "Count to eighteen slowly.",
+    "exampleFr": "Compte jusqu'à dix-huit doucement.",
+    "level": "A1",
+    "theme": "nombres",
+    "distractors": [
+      "dix-neuf",
+      "huit"
+    ],
+    "distractorsEn": [
+      "nineteen",
+      "eight"
+    ]
+  },
+  {
+    "id": "kcard-a1-029",
+    "en": "nineteen",
+    "fr": "dix-neuf",
+    "emoji": "1️⃣9️⃣",
+    "example": "Nineteen pencils are ready.",
+    "exampleFr": "Dix-neuf crayons sont prêts.",
+    "level": "A1",
+    "theme": "nombres",
+    "distractors": [
+      "vingt",
+      "neuf"
+    ],
+    "distractorsEn": [
+      "twenty",
+      "nine"
+    ]
+  },
+  {
+    "id": "kcard-a1-030",
+    "en": "twenty",
+    "fr": "vingt",
+    "emoji": "2️⃣0️⃣",
+    "example": "Twenty pupils sit here.",
+    "exampleFr": "Vingt élèves s'assoient ici.",
+    "level": "A1",
+    "theme": "nombres",
+    "distractors": [
+      "douze",
+      "dix"
+    ],
+    "distractorsEn": [
+      "twelve",
+      "ten"
+    ]
+  },
+  {
+    "id": "kcard-a1-031",
+    "en": "grandma",
+    "fr": "mamie / grand-mère",
+    "emoji": "👵",
+    "example": "Grandma bakes sweet bread.",
+    "exampleFr": "Mamie prépare du pain sucré.",
+    "level": "A1",
+    "theme": "famille",
+    "distractors": [
+      "tante",
+      "cousine"
+    ],
+    "distractorsEn": [
+      "aunt",
+      "cousin"
+    ]
+  },
+  {
+    "id": "kcard-a1-032",
+    "en": "aunt",
+    "fr": "tante",
+    "emoji": "👩🏽",
+    "example": "My aunt visits today.",
+    "exampleFr": "Ma tante rend visite aujourd'hui.",
+    "level": "A1",
+    "theme": "famille",
+    "distractors": [
+      "oncle",
+      "mamie"
+    ],
+    "distractorsEn": [
+      "uncle",
+      "grandma"
+    ]
+  },
+  {
+    "id": "kcard-a1-033",
+    "en": "uncle",
+    "fr": "oncle",
+    "emoji": "👨🏽",
+    "example": "My uncle drives carefully.",
+    "exampleFr": "Mon oncle conduit prudemment.",
+    "level": "A1",
+    "theme": "famille",
+    "distractors": [
+      "tante",
+      "cousin"
+    ],
+    "distractorsEn": [
+      "aunt",
+      "cousin"
+    ]
+  },
+  {
+    "id": "kcard-a1-034",
+    "en": "cousin",
+    "fr": "cousin / cousine",
+    "emoji": "🧑",
+    "example": "My cousin lives nearby.",
+    "exampleFr": "Mon cousin habite tout près.",
+    "level": "A1",
+    "theme": "famille",
+    "distractors": [
+      "voisin",
+      "frère"
+    ],
+    "distractorsEn": [
+      "neighbor",
+      "brother"
+    ]
+  },
+  {
+    "id": "kcard-a1-035",
+    "en": "parents",
+    "fr": "parents",
+    "emoji": "👫",
+    "example": "My parents help me.",
+    "exampleFr": "Mes parents m'aident.",
+    "level": "A1",
+    "theme": "famille",
+    "distractors": [
+      "enfants",
+      "amis"
+    ],
+    "distractorsEn": [
+      "children",
+      "friends"
+    ]
+  },
+  {
+    "id": "kcard-a1-036",
+    "en": "child",
+    "fr": "enfant",
+    "emoji": "🧒🏽",
+    "example": "Every child can learn.",
+    "exampleFr": "Chaque enfant peut apprendre.",
+    "level": "A1",
+    "theme": "famille",
+    "distractors": [
+      "adulte",
+      "parent"
+    ],
+    "distractorsEn": [
+      "adult",
+      "parent"
+    ]
+  },
+  {
+    "id": "kcard-a1-037",
+    "en": "neighbor",
+    "fr": "voisin / voisine",
+    "emoji": "🏡",
+    "example": "Our neighbor waves hello.",
+    "exampleFr": "Notre voisin fait coucou.",
+    "level": "A1",
+    "theme": "famille",
+    "distractors": [
+      "oncle",
+      "cousin"
+    ],
+    "distractorsEn": [
+      "uncle",
+      "cousin"
+    ]
+  },
+  {
+    "id": "kcard-a1-038",
+    "en": "twins",
+    "fr": "jumeaux / jumelles",
+    "emoji": "👯",
+    "example": "The twins share toys.",
+    "exampleFr": "Les jumeaux partagent les jouets.",
+    "level": "A1",
+    "theme": "famille",
+    "distractors": [
+      "parents",
+      "voisins"
+    ],
+    "distractorsEn": [
+      "parents",
+      "neighbors"
+    ]
+  },
+  {
+    "id": "kcard-a1-039",
+    "en": "name",
+    "fr": "prénom / nom",
+    "emoji": "🏷️",
+    "example": "What is your name?",
+    "exampleFr": "Quel est ton prénom ?",
+    "level": "A1",
+    "theme": "famille",
+    "distractors": [
+      "âge",
+      "ville"
+    ],
+    "distractorsEn": [
+      "age",
+      "city"
+    ]
+  },
+  {
+    "id": "kcard-a1-040",
+    "en": "birthday",
+    "fr": "anniversaire",
+    "emoji": "🎂",
+    "example": "Happy birthday to you!",
+    "exampleFr": "Joyeux anniversaire à toi !",
+    "level": "A1",
+    "theme": "famille",
+    "distractors": [
+      "cadeau",
+      "vacances"
+    ],
+    "distractorsEn": [
+      "gift",
+      "holiday"
+    ]
+  },
+  {
+    "id": "kcard-a1-041",
+    "en": "eyes",
+    "fr": "yeux",
+    "emoji": "👀",
+    "example": "My eyes are brown.",
+    "exampleFr": "Mes yeux sont marron.",
+    "level": "A1",
+    "theme": "corps",
+    "distractors": [
+      "oreilles",
+      "dents"
+    ],
+    "distractorsEn": [
+      "ears",
+      "teeth"
+    ]
+  },
+  {
+    "id": "kcard-a1-042",
+    "en": "teeth",
+    "fr": "dents",
+    "emoji": "🦷",
+    "example": "Brush your clean teeth.",
+    "exampleFr": "Brosse tes dents propres.",
+    "level": "A1",
+    "theme": "corps",
+    "distractors": [
+      "doigts",
+      "genoux"
+    ],
+    "distractorsEn": [
+      "fingers",
+      "knees"
+    ]
+  },
+  {
+    "id": "kcard-a1-043",
+    "en": "finger",
+    "fr": "doigt",
+    "emoji": "☝️",
+    "example": "Point with one finger.",
+    "exampleFr": "Montre avec un doigt.",
+    "level": "A1",
+    "theme": "corps",
+    "distractors": [
+      "orteil",
+      "coude"
+    ],
+    "distractorsEn": [
+      "toe",
+      "elbow"
+    ]
+  },
+  {
+    "id": "kcard-a1-044",
+    "en": "knee",
+    "fr": "genou",
+    "emoji": "🦵",
+    "example": "Bend both knees slowly.",
+    "exampleFr": "Plie les deux genoux doucement.",
+    "level": "A1",
+    "theme": "corps",
+    "distractors": [
+      "épaule",
+      "cou"
+    ],
+    "distractorsEn": [
+      "shoulder",
+      "neck"
+    ]
+  },
+  {
+    "id": "kcard-a1-045",
+    "en": "face",
+    "fr": "visage",
+    "emoji": "😊",
+    "example": "Wash your face daily.",
+    "exampleFr": "Lave ton visage chaque jour.",
+    "level": "A1",
+    "theme": "corps",
+    "distractors": [
+      "dos",
+      "pied"
+    ],
+    "distractorsEn": [
+      "back",
+      "foot"
+    ]
+  },
+  {
+    "id": "kcard-a1-046",
+    "en": "back",
+    "fr": "dos",
+    "emoji": "🎒",
+    "example": "Carry bags on back.",
+    "exampleFr": "Porte les sacs sur le dos.",
+    "level": "A1",
+    "theme": "corps",
+    "distractors": [
+      "ventre",
+      "front"
+    ],
+    "distractorsEn": [
+      "belly",
+      "forehead"
+    ]
+  },
+  {
+    "id": "kcard-a1-047",
+    "en": "neck",
+    "fr": "cou",
+    "emoji": "🦒",
+    "example": "Giraffes have long necks.",
+    "exampleFr": "Les girafes ont un long cou.",
+    "level": "A1",
+    "theme": "corps",
+    "distractors": [
+      "genou",
+      "doigt"
+    ],
+    "distractorsEn": [
+      "knee",
+      "finger"
+    ]
+  },
+  {
+    "id": "kcard-a1-048",
+    "en": "tongue",
+    "fr": "langue",
+    "emoji": "👅",
+    "example": "Taste fruit with tongue.",
+    "exampleFr": "Goûte le fruit avec ta langue.",
+    "level": "A1",
+    "theme": "corps",
+    "distractors": [
+      "dent",
+      "oreille"
+    ],
+    "distractorsEn": [
+      "tooth",
+      "ear"
+    ]
+  },
+  {
+    "id": "kcard-a1-049",
+    "en": "smile",
+    "fr": "sourire",
+    "emoji": "😄",
+    "example": "Give a big smile.",
+    "exampleFr": "Fais un grand sourire.",
+    "level": "A1",
+    "theme": "corps",
+    "distractors": [
+      "larme",
+      "sommeil"
+    ],
+    "distractorsEn": [
+      "tear",
+      "sleep"
+    ]
+  },
+  {
+    "id": "kcard-a1-050",
+    "en": "strong",
+    "fr": "fort",
+    "emoji": "💪",
+    "example": "Healthy food makes strong.",
+    "exampleFr": "Bien manger rend fort.",
+    "level": "A1",
+    "theme": "corps",
+    "distractors": [
+      "fatigué",
+      "petit"
+    ],
+    "distractorsEn": [
+      "tired",
+      "small"
+    ]
+  },
+  {
+    "id": "kcard-a1-051",
+    "en": "teacher",
+    "fr": "maître / maîtresse",
+    "emoji": "👩‍🏫",
+    "example": "Our teacher explains clearly.",
+    "exampleFr": "Notre maîtresse explique clairement.",
+    "level": "A1",
+    "theme": "école",
+    "distractors": [
+      "élève",
+      "gardien"
+    ],
+    "distractorsEn": [
+      "student",
+      "guard"
+    ]
+  },
+  {
+    "id": "kcard-a1-052",
+    "en": "student",
+    "fr": "élève",
+    "emoji": "🧑‍🎓",
+    "example": "The student answers nicely.",
+    "exampleFr": "L'élève répond gentiment.",
+    "level": "A1",
+    "theme": "école",
+    "distractors": [
+      "maître",
+      "directeur"
+    ],
+    "distractorsEn": [
+      "teacher",
+      "principal"
+    ]
+  },
+  {
+    "id": "kcard-a1-053",
+    "en": "notebook",
+    "fr": "cahier",
+    "emoji": "📓",
+    "example": "Write in your notebook.",
+    "exampleFr": "Écris dans ton cahier.",
+    "level": "A1",
+    "theme": "école",
+    "distractors": [
+      "gomme",
+      "règle"
+    ],
+    "distractorsEn": [
+      "eraser",
+      "ruler"
+    ]
+  },
+  {
+    "id": "kcard-a1-054",
+    "en": "board",
+    "fr": "tableau",
+    "emoji": "🟩",
+    "example": "Look at the board.",
+    "exampleFr": "Regarde le tableau.",
+    "level": "A1",
+    "theme": "école",
+    "distractors": [
+      "cartable",
+      "stylo"
+    ],
+    "distractorsEn": [
+      "schoolbag",
+      "pen"
+    ]
+  },
+  {
+    "id": "kcard-a1-055",
+    "en": "scissors",
+    "fr": "ciseaux",
+    "emoji": "✂️",
+    "example": "Cut paper with scissors.",
+    "exampleFr": "Coupe le papier aux ciseaux.",
+    "level": "A1",
+    "theme": "école",
+    "distractors": [
+      "colle",
+      "règle"
+    ],
+    "distractorsEn": [
+      "glue",
+      "ruler"
+    ]
+  },
+  {
+    "id": "kcard-a1-056",
+    "en": "glue",
+    "fr": "colle",
+    "emoji": "🧴",
+    "example": "Use glue for crafts.",
+    "exampleFr": "Utilise la colle pour bricoler.",
+    "level": "A1",
+    "theme": "école",
+    "distractors": [
+      "ciseaux",
+      "craie"
+    ],
+    "distractorsEn": [
+      "scissors",
+      "chalk"
+    ]
+  },
+  {
+    "id": "kcard-a1-057",
+    "en": "lesson",
+    "fr": "leçon",
+    "emoji": "📚",
+    "example": "Today's lesson is fun.",
+    "exampleFr": "La leçon d'aujourd'hui est amusante.",
+    "level": "A1",
+    "theme": "école",
+    "distractors": [
+      "récréation",
+      "devoir"
+    ],
+    "distractorsEn": [
+      "recess",
+      "homework"
+    ]
+  },
+  {
+    "id": "kcard-a1-058",
+    "en": "recess",
+    "fr": "récréation",
+    "emoji": "🛝",
+    "example": "We play during recess.",
+    "exampleFr": "Nous jouons pendant la récréation.",
+    "level": "A1",
+    "theme": "école",
+    "distractors": [
+      "examen",
+      "leçon"
+    ],
+    "distractorsEn": [
+      "exam",
+      "lesson"
+    ]
+  },
+  {
+    "id": "kcard-a1-059",
+    "en": "question",
+    "fr": "question",
+    "emoji": "❓",
+    "example": "Ask a good question.",
+    "exampleFr": "Pose une bonne question.",
+    "level": "A1",
+    "theme": "école",
+    "distractors": [
+      "réponse",
+      "page"
+    ],
+    "distractorsEn": [
+      "answer",
+      "page"
+    ]
+  },
+  {
+    "id": "kcard-a1-060",
+    "en": "answer",
+    "fr": "réponse",
+    "emoji": "💬",
+    "example": "Say the right answer.",
+    "exampleFr": "Dis la bonne réponse.",
+    "level": "A1",
+    "theme": "école",
+    "distractors": [
+      "question",
+      "titre"
+    ],
+    "distractorsEn": [
+      "question",
+      "title"
+    ]
+  },
+  {
+    "id": "kcard-a1-061",
+    "en": "orange fruit",
+    "fr": "orange (fruit)",
+    "emoji": "🍊",
+    "example": "Peel this sweet orange.",
+    "exampleFr": "Épluche cette orange sucrée.",
+    "level": "A1",
+    "theme": "nourriture",
+    "distractors": [
+      "citron",
+      "fraise"
+    ],
+    "distractorsEn": [
+      "lemon",
+      "strawberry"
+    ]
+  },
+  {
+    "id": "kcard-a1-062",
+    "en": "lemon",
+    "fr": "citron",
+    "emoji": "🍋",
+    "example": "Squeeze one yellow lemon.",
+    "exampleFr": "Presse un citron jaune.",
+    "level": "A1",
+    "theme": "nourriture",
+    "distractors": [
+      "mangue",
+      "banane"
+    ],
+    "distractorsEn": [
+      "mango",
+      "banana"
+    ]
+  },
+  {
+    "id": "kcard-a1-063",
+    "en": "strawberry",
+    "fr": "fraise",
+    "emoji": "🍓",
+    "example": "The red strawberry shines.",
+    "exampleFr": "La fraise rouge brille.",
+    "level": "A1",
+    "theme": "nourriture",
+    "distractors": [
+      "raisin",
+      "poire"
+    ],
+    "distractorsEn": [
+      "grape",
+      "pear"
+    ]
+  },
+  {
+    "id": "kcard-a1-064",
+    "en": "carrot",
+    "fr": "carotte",
+    "emoji": "🥕",
+    "example": "Crunchy carrots taste good.",
+    "exampleFr": "Les carottes croquantes sont bonnes.",
+    "level": "A1",
+    "theme": "nourriture",
+    "distractors": [
+      "tomate",
+      "oignon"
+    ],
+    "distractorsEn": [
+      "tomato",
+      "onion"
+    ]
+  },
+  {
+    "id": "kcard-a1-065",
+    "en": "tomato",
+    "fr": "tomate",
+    "emoji": "🍅",
+    "example": "Slice two red tomatoes.",
+    "exampleFr": "Coupe deux tomates rouges.",
+    "level": "A1",
+    "theme": "nourriture",
+    "distractors": [
+      "pomme de terre",
+      "carotte"
+    ],
+    "distractorsEn": [
+      "potato",
+      "carrot"
+    ]
+  },
+  {
+    "id": "kcard-a1-066",
+    "en": "potato",
+    "fr": "pomme de terre",
+    "emoji": "🥔",
+    "example": "Bake the potatoes nicely.",
+    "exampleFr": "Cuis bien les pommes de terre.",
+    "level": "A1",
+    "theme": "nourriture",
+    "distractors": [
+      "haricot",
+      "tomate"
+    ],
+    "distractorsEn": [
+      "bean",
+      "tomato"
+    ]
+  },
+  {
+    "id": "kcard-a1-067",
+    "en": "cheese",
+    "fr": "fromage",
+    "emoji": "🧀",
+    "example": "Mice love yellow cheese.",
+    "exampleFr": "Les souris adorent le fromage.",
+    "level": "A1",
+    "theme": "nourriture",
+    "distractors": [
+      "beurre",
+      "sucre"
+    ],
+    "distractorsEn": [
+      "butter",
+      "sugar"
+    ]
+  },
+  {
+    "id": "kcard-a1-068",
+    "en": "butter",
+    "fr": "beurre",
+    "emoji": "🧈",
+    "example": "Spread butter on bread.",
+    "exampleFr": "Étale du beurre sur le pain.",
+    "level": "A1",
+    "theme": "nourriture",
+    "distractors": [
+      "miel",
+      "sel"
+    ],
+    "distractorsEn": [
+      "honey",
+      "salt"
+    ]
+  },
+  {
+    "id": "kcard-a1-069",
+    "en": "honey",
+    "fr": "miel",
+    "emoji": "🍯",
+    "example": "Sweet honey tastes great.",
+    "exampleFr": "Le miel sucré est délicieux.",
+    "level": "A1",
+    "theme": "nourriture",
+    "distractors": [
+      "sel",
+      "poivre"
+    ],
+    "distractorsEn": [
+      "salt",
+      "pepper"
+    ]
+  },
+  {
+    "id": "kcard-a1-070",
+    "en": "soup",
+    "fr": "soupe",
+    "emoji": "🍲",
+    "example": "Eat hot vegetable soup.",
+    "exampleFr": "Mange de la soupe chaude.",
+    "level": "A1",
+    "theme": "nourriture",
+    "distractors": [
+      "glace",
+      "salade"
+    ],
+    "distractorsEn": [
+      "ice cream",
+      "salad"
+    ]
+  },
+  {
+    "id": "kcard-a1-071",
+    "en": "ice cream",
+    "fr": "glace",
+    "emoji": "🍦",
+    "example": "Vanilla ice cream melts.",
+    "exampleFr": "La glace à la vanille fond.",
+    "level": "A1",
+    "theme": "nourriture",
+    "distractors": [
+      "soupe",
+      "riz"
+    ],
+    "distractorsEn": [
+      "soup",
+      "rice"
+    ]
+  },
+  {
+    "id": "kcard-a1-072",
+    "en": "cookie",
+    "fr": "biscuit",
+    "emoji": "🍪",
+    "example": "Have one chocolate cookie.",
+    "exampleFr": "Prends un biscuit au chocolat.",
+    "level": "A1",
+    "theme": "nourriture",
+    "distractors": [
+      "yaourt",
+      "soupe"
+    ],
+    "distractorsEn": [
+      "yogurt",
+      "soup"
+    ]
+  },
+  {
+    "id": "kcard-a1-073",
+    "en": "jacket",
+    "fr": "veste",
+    "emoji": "🧥",
+    "example": "Zip up your jacket.",
+    "exampleFr": "Ferme ta veste.",
+    "level": "A1",
+    "theme": "vêtements",
+    "distractors": [
+      "écharpe",
+      "short"
+    ],
+    "distractorsEn": [
+      "scarf",
+      "shorts"
+    ]
+  },
+  {
+    "id": "kcard-a1-074",
+    "en": "sweater",
+    "fr": "pull",
+    "emoji": "🧶",
+    "example": "Wear a cozy sweater.",
+    "exampleFr": "Porte un pull douillet.",
+    "level": "A1",
+    "theme": "vêtements",
+    "distractors": [
+      "maillot",
+      "sandales"
+    ],
+    "distractorsEn": [
+      "swimsuit",
+      "sandals"
+    ]
+  },
+  {
+    "id": "kcard-a1-075",
+    "en": "shorts",
+    "fr": "short",
+    "emoji": "🩳",
+    "example": "Wear shorts in summer.",
+    "exampleFr": "Mets un short en été.",
+    "level": "A1",
+    "theme": "vêtements",
+    "distractors": [
+      "manteau",
+      "bottes"
+    ],
+    "distractorsEn": [
+      "coat",
+      "boots"
+    ]
+  },
+  {
+    "id": "kcard-a1-076",
+    "en": "boots",
+    "fr": "bottes",
+    "emoji": "🥾",
+    "example": "Rain boots stay dry.",
+    "exampleFr": "Les bottes restent sèches.",
+    "level": "A1",
+    "theme": "vêtements",
+    "distractors": [
+      "sandales",
+      "chapeau"
+    ],
+    "distractorsEn": [
+      "sandals",
+      "hat"
+    ]
+  },
+  {
+    "id": "kcard-a1-077",
+    "en": "sandals",
+    "fr": "sandales",
+    "emoji": "🩴",
+    "example": "Wear sandals at beach.",
+    "exampleFr": "Mets des sandales à la plage.",
+    "level": "A1",
+    "theme": "vêtements",
+    "distractors": [
+      "gants",
+      "bottes"
+    ],
+    "distractorsEn": [
+      "gloves",
+      "boots"
+    ]
+  },
+  {
+    "id": "kcard-a1-078",
+    "en": "scarf",
+    "fr": "écharpe",
+    "emoji": "🧣",
+    "example": "Wrap a warm scarf.",
+    "exampleFr": "Enroule une écharpe chaude.",
+    "level": "A1",
+    "theme": "vêtements",
+    "distractors": [
+      "ceinture",
+      "short"
+    ],
+    "distractorsEn": [
+      "belt",
+      "shorts"
+    ]
+  },
+  {
+    "id": "kcard-a1-079",
+    "en": "gloves",
+    "fr": "gants",
+    "emoji": "🧤",
+    "example": "Warm gloves protect hands.",
+    "exampleFr": "Les gants protègent les mains.",
+    "level": "A1",
+    "theme": "vêtements",
+    "distractors": [
+      "lunettes",
+      "casquette"
+    ],
+    "distractorsEn": [
+      "glasses",
+      "cap"
+    ]
+  },
+  {
+    "id": "kcard-a1-080",
+    "en": "belt",
+    "fr": "ceinture",
+    "emoji": "🪢",
+    "example": "Fasten your brown belt.",
+    "exampleFr": "Attache ta ceinture marron.",
+    "level": "A1",
+    "theme": "vêtements",
+    "distractors": [
+      "poche",
+      "bouton"
+    ],
+    "distractorsEn": [
+      "pocket",
+      "button"
+    ]
+  },
+  {
+    "id": "kcard-a1-081",
+    "en": "pajamas",
+    "fr": "pyjama",
+    "emoji": "🛌",
+    "example": "Put on clean pajamas.",
+    "exampleFr": "Mets un pyjama propre.",
+    "level": "A1",
+    "theme": "vêtements",
+    "distractors": [
+      "uniforme",
+      "manteau"
+    ],
+    "distractorsEn": [
+      "uniform",
+      "coat"
+    ]
+  },
+  {
+    "id": "kcard-a1-082",
+    "en": "pocket",
+    "fr": "poche",
+    "emoji": "👖",
+    "example": "Keys are in pocket.",
+    "exampleFr": "Les clés sont en poche.",
+    "level": "A1",
+    "theme": "vêtements",
+    "distractors": [
+      "manche",
+      "col"
+    ],
+    "distractorsEn": [
+      "sleeve",
+      "collar"
+    ]
+  },
+  {
+    "id": "kcard-a1-083",
+    "en": "sunny",
+    "fr": "ensoleillé",
+    "emoji": "🌞",
+    "example": "Today is warm and sunny.",
+    "exampleFr": "Aujourd'hui il fait chaud et beau.",
+    "level": "A1",
+    "theme": "météo",
+    "distractors": [
+      "pluvieux",
+      "orageux"
+    ],
+    "distractorsEn": [
+      "rainy",
+      "stormy"
+    ]
+  },
+  {
+    "id": "kcard-a1-084",
+    "en": "rainy",
+    "fr": "pluvieux",
+    "emoji": "☔",
+    "example": "Stay inside on rainy days.",
+    "exampleFr": "Reste dedans les jours pluvieux.",
+    "level": "A1",
+    "theme": "météo",
+    "distractors": [
+      "ensoleillé",
+      "sec"
+    ],
+    "distractorsEn": [
+      "sunny",
+      "dry"
+    ]
+  },
+  {
+    "id": "kcard-a1-085",
+    "en": "cloudy",
+    "fr": "nuageux",
+    "emoji": "⛅",
+    "example": "The morning looks cloudy.",
+    "exampleFr": "Le matin semble nuageux.",
+    "level": "A1",
+    "theme": "météo",
+    "distractors": [
+      "ensoleillé",
+      "glacial"
+    ],
+    "distractorsEn": [
+      "sunny",
+      "freezing"
+    ]
+  },
+  {
+    "id": "kcard-a1-086",
+    "en": "windy",
+    "fr": "venteux",
+    "emoji": "🌬️",
+    "example": "Fly kites on windy days.",
+    "exampleFr": "Fais voler un cerf-volant au vent.",
+    "level": "A1",
+    "theme": "météo",
+    "distractors": [
+      "calme",
+      "neigeux"
+    ],
+    "distractorsEn": [
+      "calm",
+      "snowy"
+    ]
+  },
+  {
+    "id": "kcard-a1-087",
+    "en": "snow",
+    "fr": "neige",
+    "emoji": "🌨️",
+    "example": "White snow falls softly.",
+    "exampleFr": "La neige blanche tombe doucement.",
+    "level": "A1",
+    "theme": "météo",
+    "distractors": [
+      "soleil",
+      "chaleur"
+    ],
+    "distractorsEn": [
+      "sun",
+      "heat"
+    ]
+  },
+  {
+    "id": "kcard-a1-088",
+    "en": "flower",
+    "fr": "fleur",
+    "emoji": "🌸",
+    "example": "Water the pink flower.",
+    "exampleFr": "Arrose la fleur rose.",
+    "level": "A1",
+    "theme": "météo",
+    "distractors": [
+      "pierre",
+      "nuage"
+    ],
+    "distractorsEn": [
+      "stone",
+      "cloud"
+    ]
+  },
+  {
+    "id": "kcard-a1-089",
+    "en": "grass",
+    "fr": "herbe",
+    "emoji": "🌿",
+    "example": "Green grass grows fast.",
+    "exampleFr": "L'herbe verte pousse vite.",
+    "level": "A1",
+    "theme": "météo",
+    "distractors": [
+      "sable",
+      "neige"
+    ],
+    "distractorsEn": [
+      "sand",
+      "snow"
+    ]
+  },
+  {
+    "id": "kcard-a1-090",
+    "en": "beach",
+    "fr": "plage",
+    "emoji": "🏖️",
+    "example": "We walk on beach.",
+    "exampleFr": "Nous marchons sur la plage.",
+    "level": "A1",
+    "theme": "météo",
+    "distractors": [
+      "forêt",
+      "montagne"
+    ],
+    "distractorsEn": [
+      "forest",
+      "mountain"
+    ]
+  },
+  {
+    "id": "kcard-a1-091",
+    "en": "kitchen",
+    "fr": "cuisine",
+    "emoji": "🍳",
+    "example": "Mom cooks in kitchen.",
+    "exampleFr": "Maman cuisine dans la cuisine.",
+    "level": "A1",
+    "theme": "maison",
+    "distractors": [
+      "salon",
+      "jardin"
+    ],
+    "distractorsEn": [
+      "living room",
+      "garden"
+    ]
+  },
+  {
+    "id": "kcard-a1-092",
+    "en": "bedroom",
+    "fr": "chambre",
+    "emoji": "🛏️",
+    "example": "My bedroom is neat.",
+    "exampleFr": "Ma chambre est bien rangée.",
+    "level": "A1",
+    "theme": "maison",
+    "distractors": [
+      "garage",
+      "couloir"
+    ],
+    "distractorsEn": [
+      "garage",
+      "hallway"
+    ]
+  },
+  {
+    "id": "kcard-a1-093",
+    "en": "bathroom",
+    "fr": "salle de bain",
+    "emoji": "🛁",
+    "example": "Towels are in bathroom.",
+    "exampleFr": "Les serviettes sont dans la salle.",
+    "level": "A1",
+    "theme": "maison",
+    "distractors": [
+      "grenier",
+      "balcon"
+    ],
+    "distractorsEn": [
+      "attic",
+      "balcony"
+    ]
+  },
+  {
+    "id": "kcard-a1-094",
+    "en": "garden",
+    "fr": "jardin",
+    "emoji": "🌻",
+    "example": "Plants grow in garden.",
+    "exampleFr": "Les plantes poussent au jardin.",
+    "level": "A1",
+    "theme": "maison",
+    "distractors": [
+      "cave",
+      "cuisine"
+    ],
+    "distractorsEn": [
+      "basement",
+      "kitchen"
+    ]
+  },
+  {
+    "id": "kcard-a1-095",
+    "en": "sofa",
+    "fr": "canapé",
+    "emoji": "🛋️",
+    "example": "Sit on the soft sofa.",
+    "exampleFr": "Assieds-toi sur le canapé.",
+    "level": "A1",
+    "theme": "maison",
+    "distractors": [
+      "armoire",
+      "baignoire"
+    ],
+    "distractorsEn": [
+      "wardrobe",
+      "bathtub"
+    ]
+  },
+  {
+    "id": "kcard-a1-096",
+    "en": "clock",
+    "fr": "horloge",
+    "emoji": "🕰️",
+    "example": "Check the wall clock.",
+    "exampleFr": "Regarde l'horloge au mur.",
+    "level": "A1",
+    "theme": "maison",
+    "distractors": [
+      "miroir",
+      "tapis"
+    ],
+    "distractorsEn": [
+      "mirror",
+      "rug"
+    ]
+  },
+  {
+    "id": "kcard-a1-097",
+    "en": "mirror",
+    "fr": "miroir",
+    "emoji": "🪞",
+    "example": "Look in the mirror.",
+    "exampleFr": "Regarde dans le miroir.",
+    "level": "A1",
+    "theme": "maison",
+    "distractors": [
+      "rideau",
+      "horloge"
+    ],
+    "distractorsEn": [
+      "curtain",
+      "clock"
+    ]
+  },
+  {
+    "id": "kcard-a1-098",
+    "en": "pillow",
+    "fr": "oreiller",
+    "emoji": "🛌",
+    "example": "This pillow is soft.",
+    "exampleFr": "Cet oreiller est doux.",
+    "level": "A1",
+    "theme": "maison",
+    "distractors": [
+      "tapis",
+      "clé"
+    ],
+    "distractorsEn": [
+      "rug",
+      "key"
+    ]
+  },
+  {
+    "id": "kcard-a1-099",
+    "en": "spoon",
+    "fr": "cuillère",
+    "emoji": "🥄",
+    "example": "Stir soup with spoon.",
+    "exampleFr": "Mélange avec la cuillère.",
+    "level": "A1",
+    "theme": "maison",
+    "distractors": [
+      "fourchette",
+      "couteau"
+    ],
+    "distractorsEn": [
+      "fork",
+      "knife"
+    ]
+  },
+  {
+    "id": "kcard-a1-100",
+    "en": "plate",
+    "fr": "assiette",
+    "emoji": "🍽️",
+    "example": "Put food on plate.",
+    "exampleFr": "Mets le repas dans l'assiette.",
+    "level": "A1",
+    "theme": "maison",
+    "distractors": [
+      "verre",
+      "bol"
+    ],
+    "distractorsEn": [
+      "glass",
+      "bowl"
+    ]
+  },
+  {
+    "id": "kcard-a1-101",
+    "en": "wake up",
+    "fr": "se réveiller",
+    "emoji": "⏰",
+    "example": "I wake up early.",
+    "exampleFr": "Je me réveille tôt.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "se coucher",
+      "courir"
+    ],
+    "distractorsEn": [
+      "go to bed",
+      "run"
+    ]
+  },
+  {
+    "id": "kcard-a1-102",
+    "en": "wash",
+    "fr": "laver",
+    "emoji": "🧼",
+    "example": "Wash hands with soap.",
+    "exampleFr": "Lave tes mains au savon.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "salir",
+      "jeter"
+    ],
+    "distractorsEn": [
+      "dirty",
+      "throw"
+    ]
+  },
+  {
+    "id": "kcard-a1-103",
+    "en": "breakfast",
+    "fr": "petit-déjeuner",
+    "emoji": "🥐",
+    "example": "Eat a good breakfast.",
+    "exampleFr": "Prends un bon petit-déjeuner.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "dîner",
+      "goûter"
+    ],
+    "distractorsEn": [
+      "dinner",
+      "snack"
+    ]
+  },
+  {
+    "id": "kcard-a1-104",
+    "en": "lunch",
+    "fr": "déjeuner",
+    "emoji": "🍱",
+    "example": "Lunch is at noon.",
+    "exampleFr": "Le déjeuner est à midi.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "petit-déjeuner",
+      "nuit"
+    ],
+    "distractorsEn": [
+      "breakfast",
+      "night"
+    ]
+  },
+  {
+    "id": "kcard-a1-105",
+    "en": "dinner",
+    "fr": "dîner",
+    "emoji": "🍲",
+    "example": "Family eats dinner together.",
+    "exampleFr": "La famille dîne ensemble.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "matin",
+      "goûter"
+    ],
+    "distractorsEn": [
+      "morning",
+      "snack"
+    ]
+  },
+  {
+    "id": "kcard-a1-106",
+    "en": "listen",
+    "fr": "écouter",
+    "emoji": "🎧",
+    "example": "Listen to the story.",
+    "exampleFr": "Écoute bien l'histoire.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "parler",
+      "dormir"
+    ],
+    "distractorsEn": [
+      "speak",
+      "sleep"
+    ]
+  },
+  {
+    "id": "kcard-a1-107",
+    "en": "speak",
+    "fr": "parler",
+    "emoji": "🗣️",
+    "example": "Speak clearly and kindly.",
+    "exampleFr": "Parle clairement et gentiment.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "écouter",
+      "dessiner"
+    ],
+    "distractorsEn": [
+      "listen",
+      "draw"
+    ]
+  },
+  {
+    "id": "kcard-a1-108",
+    "en": "draw",
+    "fr": "dessiner",
+    "emoji": "🖍️",
+    "example": "Draw a happy cat.",
+    "exampleFr": "Dessine un chat joyeux.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "compter",
+      "dormir"
+    ],
+    "distractorsEn": [
+      "count",
+      "sleep"
+    ]
+  },
+  {
+    "id": "kcard-a1-109",
+    "en": "count",
+    "fr": "compter",
+    "emoji": "🔢",
+    "example": "Count all the stars.",
+    "exampleFr": "Compte toutes les étoiles.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "chanter",
+      "sauter"
+    ],
+    "distractorsEn": [
+      "sing",
+      "jump"
+    ]
+  },
+  {
+    "id": "kcard-a1-110",
+    "en": "jump",
+    "fr": "sauter",
+    "emoji": "🤸",
+    "example": "Jump over the rope.",
+    "exampleFr": "Saute par-dessus la corde.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "nager",
+      "lire"
+    ],
+    "distractorsEn": [
+      "swim",
+      "read"
+    ]
+  },
+  {
+    "id": "kcard-a1-111",
+    "en": "swim",
+    "fr": "nager",
+    "emoji": "🏊",
+    "example": "Ducks swim in ponds.",
+    "exampleFr": "Les canards nagent dans l'étang.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "courir",
+      "écrire"
+    ],
+    "distractorsEn": [
+      "run",
+      "write"
+    ]
+  },
+  {
+    "id": "kcard-a1-112",
+    "en": "dance",
+    "fr": "danser",
+    "emoji": "💃",
+    "example": "We dance to music.",
+    "exampleFr": "Nous dansons sur la musique.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "pleurer",
+      "dormir"
+    ],
+    "distractorsEn": [
+      "cry",
+      "sleep"
+    ]
+  },
+  {
+    "id": "kcard-a1-113",
+    "en": "help",
+    "fr": "aider",
+    "emoji": "🤝",
+    "example": "I help my parents.",
+    "exampleFr": "J'aide mes parents.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "oublier",
+      "casser"
+    ],
+    "distractorsEn": [
+      "forget",
+      "break"
+    ]
+  },
+  {
+    "id": "kcard-a1-114",
+    "en": "share",
+    "fr": "partager",
+    "emoji": "🫶",
+    "example": "Share snacks with friends.",
+    "exampleFr": "Partage le goûter avec tes amis.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "cacher",
+      "garder"
+    ],
+    "distractorsEn": [
+      "hide",
+      "keep"
+    ]
+  },
+  {
+    "id": "kcard-a1-115",
+    "en": "clean",
+    "fr": "nettoyer",
+    "emoji": "🧹",
+    "example": "Clean your desk today.",
+    "exampleFr": "Nettoie ton bureau aujourd'hui.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "salir",
+      "casser"
+    ],
+    "distractorsEn": [
+      "mess up",
+      "break"
+    ]
+  },
+  {
+    "id": "kcard-a1-116",
+    "en": "open",
+    "fr": "ouvrir",
+    "emoji": "🔓",
+    "example": "Open the gift box.",
+    "exampleFr": "Ouvre la boîte cadeau.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "fermer",
+      "cacher"
+    ],
+    "distractorsEn": [
+      "close",
+      "hide"
+    ]
+  },
+  {
+    "id": "kcard-a1-117",
+    "en": "close",
+    "fr": "fermer",
+    "emoji": "🔒",
+    "example": "Close your eyes tightly.",
+    "exampleFr": "Ferme bien les yeux.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "ouvrir",
+      "lancer"
+    ],
+    "distractorsEn": [
+      "open",
+      "throw"
+    ]
+  },
+  {
+    "id": "kcard-a1-118",
+    "en": "laugh",
+    "fr": "rire",
+    "emoji": "😂",
+    "example": "Funny jokes make laugh.",
+    "exampleFr": "Les blagues drôles font rire.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "pleurer",
+      "dormir"
+    ],
+    "distractorsEn": [
+      "cry",
+      "sleep"
+    ]
+  },
+  {
+    "id": "kcard-a1-119",
+    "en": "morning",
+    "fr": "matin",
+    "emoji": "🌅",
+    "example": "Good morning, dear friend!",
+    "exampleFr": "Bonjour, cher ami !",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "soir",
+      "minuit"
+    ],
+    "distractorsEn": [
+      "evening",
+      "midnight"
+    ]
+  },
+  {
+    "id": "kcard-a1-120",
+    "en": "evening",
+    "fr": "soir",
+    "emoji": "🌆",
+    "example": "Read books in evening.",
+    "exampleFr": "Lis des livres le soir.",
+    "level": "A1",
+    "theme": "routines",
+    "distractors": [
+      "midi",
+      "matin"
+    ],
+    "distractorsEn": [
+      "noon",
+      "morning"
+    ]
+  },
+  {
+    "id": "kcard-a2-001",
+    "en": "butterfly",
+    "fr": "papillon",
+    "emoji": "🦋",
+    "example": "The butterfly loves flowers.",
+    "exampleFr": "Le papillon aime les fleurs.",
+    "level": "A2",
+    "theme": "animaux",
+    "distractors": [
+      "abeille",
+      "scarabée"
+    ],
+    "distractorsEn": [
+      "bee",
+      "beetle"
+    ]
+  },
+  {
+    "id": "kcard-a2-002",
+    "en": "whale",
+    "fr": "baleine",
+    "emoji": "🐋",
+    "example": "Whales live in oceans.",
+    "exampleFr": "Les baleines vivent dans l'océan.",
+    "level": "A2",
+    "theme": "animaux",
+    "distractors": [
+      "dauphin",
+      "phoque"
+    ],
+    "distractorsEn": [
+      "dolphin",
+      "seal"
+    ]
+  },
+  {
+    "id": "kcard-a2-003",
+    "en": "penguin",
+    "fr": "manchot / pingouin",
+    "emoji": "🐧",
+    "example": "Penguins love icy water.",
+    "exampleFr": "Les manchots aiment l'eau glacée.",
+    "level": "A2",
+    "theme": "animaux",
+    "distractors": [
+      "canard",
+      "aigle"
+    ],
+    "distractorsEn": [
+      "duck",
+      "eagle"
+    ]
+  },
+  {
+    "id": "kcard-a2-004",
+    "en": "parrot",
+    "fr": "perroquet",
+    "emoji": "🦜",
+    "example": "The green parrot talks.",
+    "exampleFr": "Le perroquet vert parle.",
+    "level": "A2",
+    "theme": "animaux",
+    "distractors": [
+      "hibou",
+      "moineau"
+    ],
+    "distractorsEn": [
+      "owl",
+      "sparrow"
+    ]
+  },
+  {
+    "id": "kcard-a2-005",
+    "en": "owl",
+    "fr": "hibou",
+    "emoji": "🦉",
+    "example": "The owl wakes at night.",
+    "exampleFr": "Le hibou s'éveille la nuit.",
+    "level": "A2",
+    "theme": "animaux",
+    "distractors": [
+      "perroquet",
+      "poule"
+    ],
+    "distractorsEn": [
+      "parrot",
+      "hen"
+    ]
+  },
+  {
+    "id": "kcard-a2-006",
+    "en": "squirrel",
+    "fr": "écureuil",
+    "emoji": "🐿️",
+    "example": "The squirrel collects nuts.",
+    "exampleFr": "L'écureuil ramasse des noisettes.",
+    "level": "A2",
+    "theme": "animaux",
+    "distractors": [
+      "hérisson",
+      "lapin"
+    ],
+    "distractorsEn": [
+      "hedgehog",
+      "rabbit"
+    ]
+  },
+  {
+    "id": "kcard-a2-007",
+    "en": "hedgehog",
+    "fr": "hérisson",
+    "emoji": "🦔",
+    "example": "A small hedgehog hides.",
+    "exampleFr": "Un petit hérisson se cache.",
+    "level": "A2",
+    "theme": "animaux",
+    "distractors": [
+      "écureuil",
+      "souris"
+    ],
+    "distractorsEn": [
+      "squirrel",
+      "mouse"
+    ]
+  },
+  {
+    "id": "kcard-a2-008",
+    "en": "flamingo",
+    "fr": "flamant rose",
+    "emoji": "🦩",
+    "example": "Flamingos stand on one leg.",
+    "exampleFr": "Les flamants tiennent sur une patte.",
+    "level": "A2",
+    "theme": "animaux",
+    "distractors": [
+      "cigogne",
+      "canard"
+    ],
+    "distractorsEn": [
+      "stork",
+      "duck"
+    ]
+  },
+  {
+    "id": "kcard-a2-009",
+    "en": "turquoise",
+    "fr": "turquoise",
+    "emoji": "🩵",
+    "example": "The lagoon looks turquoise.",
+    "exampleFr": "Le lagon paraît turquoise.",
+    "level": "A2",
+    "theme": "couleurs",
+    "distractors": [
+      "beige",
+      "bordeaux"
+    ],
+    "distractorsEn": [
+      "beige",
+      "maroon"
+    ]
+  },
+  {
+    "id": "kcard-a2-010",
+    "en": "beige",
+    "fr": "beige",
+    "emoji": "🏜️",
+    "example": "Desert sand is beige.",
+    "exampleFr": "Le sable du désert est beige.",
+    "level": "A2",
+    "theme": "couleurs",
+    "distractors": [
+      "violet",
+      "turquoise"
+    ],
+    "distractorsEn": [
+      "purple",
+      "turquoise"
+    ]
+  },
+  {
+    "id": "kcard-a2-011",
+    "en": "rainbow",
+    "fr": "arc-en-ciel",
+    "emoji": "🌈",
+    "example": "Look at the rainbow!",
+    "exampleFr": "Regarde l'arc-en-ciel !",
+    "level": "A2",
+    "theme": "couleurs",
+    "distractors": [
+      "brouillard",
+      "ombre"
+    ],
+    "distractorsEn": [
+      "fog",
+      "shadow"
+    ]
+  },
+  {
+    "id": "kcard-a2-012",
+    "en": "spotted",
+    "fr": "à pois / tacheté",
+    "emoji": "🐆",
+    "example": "She painted spotted eggs.",
+    "exampleFr": "Elle a peint des œufs tachetés.",
+    "level": "A2",
+    "theme": "couleurs",
+    "distractors": [
+      "rayé",
+      "uni"
+    ],
+    "distractorsEn": [
+      "striped",
+      "plain"
+    ]
+  },
+  {
+    "id": "kcard-a2-013",
+    "en": "thirty",
+    "fr": "trente",
+    "emoji": "3️⃣0️⃣",
+    "example": "April has thirty days.",
+    "exampleFr": "Avril compte trente jours.",
+    "level": "A2",
+    "theme": "nombres",
+    "distractors": [
+      "quarante",
+      "vingt"
+    ],
+    "distractorsEn": [
+      "forty",
+      "twenty"
+    ]
+  },
+  {
+    "id": "kcard-a2-014",
+    "en": "forty",
+    "fr": "quarante",
+    "emoji": "4️⃣0️⃣",
+    "example": "Forty kids joined games.",
+    "exampleFr": "Quarante enfants ont joué.",
+    "level": "A2",
+    "theme": "nombres",
+    "distractors": [
+      "cinquante",
+      "trente"
+    ],
+    "distractorsEn": [
+      "fifty",
+      "thirty"
+    ]
+  },
+  {
+    "id": "kcard-a2-015",
+    "en": "fifty",
+    "fr": "cinquante",
+    "emoji": "5️⃣0️⃣",
+    "example": "Fifty stars shine tonight.",
+    "exampleFr": "Cinquante étoiles brillent ce soir.",
+    "level": "A2",
+    "theme": "nombres",
+    "distractors": [
+      "soixante",
+      "quarante"
+    ],
+    "distractorsEn": [
+      "sixty",
+      "forty"
+    ]
+  },
+  {
+    "id": "kcard-a2-016",
+    "en": "hundred",
+    "fr": "cent",
+    "emoji": "💯",
+    "example": "I scored one hundred.",
+    "exampleFr": "J'ai obtenu cent points.",
+    "level": "A2",
+    "theme": "nombres",
+    "distractors": [
+      "mille",
+      "cinquante"
+    ],
+    "distractorsEn": [
+      "thousand",
+      "fifty"
+    ]
+  },
+  {
+    "id": "kcard-a2-017",
+    "en": "first",
+    "fr": "premier",
+    "emoji": "🥇",
+    "example": "First, wash your hands.",
+    "exampleFr": "D'abord, lave tes mains.",
+    "level": "A2",
+    "theme": "nombres",
+    "distractors": [
+      "dernier",
+      "troisième"
+    ],
+    "distractorsEn": [
+      "last",
+      "third"
+    ]
+  },
+  {
+    "id": "kcard-a2-018",
+    "en": "second",
+    "fr": "deuxième",
+    "emoji": "🥈",
+    "example": "Turn at second corner.",
+    "exampleFr": "Tourne au deuxième coin.",
+    "level": "A2",
+    "theme": "nombres",
+    "distractors": [
+      "premier",
+      "cinquième"
+    ],
+    "distractorsEn": [
+      "first",
+      "fifth"
+    ]
+  },
+  {
+    "id": "kcard-a2-019",
+    "en": "grandparents",
+    "fr": "grands-parents",
+    "emoji": "👴👵",
+    "example": "We visit our grandparents.",
+    "exampleFr": "Nous visitons nos grands-parents.",
+    "level": "A2",
+    "theme": "famille",
+    "distractors": [
+      "cousins",
+      "voisins"
+    ],
+    "distractorsEn": [
+      "cousins",
+      "neighbors"
+    ]
+  },
+  {
+    "id": "kcard-a2-020",
+    "en": "daughter",
+    "fr": "fille (enfant)",
+    "emoji": "👧🏽",
+    "example": "Their daughter loves reading.",
+    "exampleFr": "Leur fille adore lire.",
+    "level": "A2",
+    "theme": "famille",
+    "distractors": [
+      "fils",
+      "nièce"
+    ],
+    "distractorsEn": [
+      "son",
+      "niece"
+    ]
+  },
+  {
+    "id": "kcard-a2-021",
+    "en": "son",
+    "fr": "fils",
+    "emoji": "👦🏽",
+    "example": "Their son plays drums.",
+    "exampleFr": "Leur fils joue du tambour.",
+    "level": "A2",
+    "theme": "famille",
+    "distractors": [
+      "fille",
+      "neveu"
+    ],
+    "distractorsEn": [
+      "daughter",
+      "nephew"
+    ]
+  },
+  {
+    "id": "kcard-a2-022",
+    "en": "classmate",
+    "fr": "camarade de classe",
+    "emoji": "🧑‍🤝‍🧑",
+    "example": "My classmate helped me.",
+    "exampleFr": "Mon camarade m'a aidé.",
+    "level": "A2",
+    "theme": "famille",
+    "distractors": [
+      "professeur",
+      "cousin"
+    ],
+    "distractorsEn": [
+      "teacher",
+      "cousin"
+    ]
+  },
+  {
+    "id": "kcard-a2-023",
+    "en": "team",
+    "fr": "équipe",
+    "emoji": "⚽",
+    "example": "Our team won today.",
+    "exampleFr": "Notre équipe a gagné aujourd'hui.",
+    "level": "A2",
+    "theme": "famille",
+    "distractors": [
+      "classe",
+      "famille"
+    ],
+    "distractorsEn": [
+      "class",
+      "family"
+    ]
+  },
+  {
+    "id": "kcard-a2-024",
+    "en": "relative",
+    "fr": "membre de la famille",
+    "emoji": "👪",
+    "example": "Many relatives came home.",
+    "exampleFr": "Plusieurs proches sont venus.",
+    "level": "A2",
+    "theme": "famille",
+    "distractors": [
+      "inconnu",
+      "camarade"
+    ],
+    "distractorsEn": [
+      "stranger",
+      "classmate"
+    ]
+  },
+  {
+    "id": "kcard-a2-025",
+    "en": "shoulder",
+    "fr": "épaule",
+    "emoji": "💪",
+    "example": "Carry bag on shoulder.",
+    "exampleFr": "Porte le sac sur l'épaule.",
+    "level": "A2",
+    "theme": "corps",
+    "distractors": [
+      "coude",
+      "cheville"
+    ],
+    "distractorsEn": [
+      "elbow",
+      "ankle"
+    ]
+  },
+  {
+    "id": "kcard-a2-026",
+    "en": "elbow",
+    "fr": "coude",
+    "emoji": "🦾",
+    "example": "Bend your right elbow.",
+    "exampleFr": "Plie ton coude droit.",
+    "level": "A2",
+    "theme": "corps",
+    "distractors": [
+      "poignet",
+      "genou"
+    ],
+    "distractorsEn": [
+      "wrist",
+      "knee"
+    ]
+  },
+  {
+    "id": "kcard-a2-027",
+    "en": "ankle",
+    "fr": "cheville",
+    "emoji": "🦶",
+    "example": "Rest your sore ankle.",
+    "exampleFr": "Repose ta cheville sensible.",
+    "level": "A2",
+    "theme": "corps",
+    "distractors": [
+      "épaule",
+      "poignet"
+    ],
+    "distractorsEn": [
+      "shoulder",
+      "wrist"
+    ]
+  },
+  {
+    "id": "kcard-a2-028",
+    "en": "forehead",
+    "fr": "front",
+    "emoji": "😌",
+    "example": "Feel my cool forehead.",
+    "exampleFr": "Touche mon front frais.",
+    "level": "A2",
+    "theme": "corps",
+    "distractors": [
+      "menton",
+      "nuque"
+    ],
+    "distractorsEn": [
+      "chin",
+      "neck"
+    ]
+  },
+  {
+    "id": "kcard-a2-029",
+    "en": "heartbeat",
+    "fr": "battement de cœur",
+    "emoji": "💓",
+    "example": "Feel your fast heartbeat.",
+    "exampleFr": "Sens battre ton cœur.",
+    "level": "A2",
+    "theme": "corps",
+    "distractors": [
+      "souffle",
+      "voix"
+    ],
+    "distractorsEn": [
+      "breath",
+      "voice"
+    ]
+  },
+  {
+    "id": "kcard-a2-030",
+    "en": "healthy",
+    "fr": "en bonne santé",
+    "emoji": "🥗",
+    "example": "Fruit keeps us healthy.",
+    "exampleFr": "Les fruits gardent en forme.",
+    "level": "A2",
+    "theme": "corps",
+    "distractors": [
+      "fatigué",
+      "malade"
+    ],
+    "distractorsEn": [
+      "tired",
+      "sick"
+    ]
+  },
+  {
+    "id": "kcard-a2-031",
+    "en": "homework",
+    "fr": "devoirs",
+    "emoji": "📝",
+    "example": "Finish homework before dinner.",
+    "exampleFr": "Finis tes devoirs avant dîner.",
+    "level": "A2",
+    "theme": "école",
+    "distractors": [
+      "récréation",
+      "vacances"
+    ],
+    "distractorsEn": [
+      "recess",
+      "holidays"
+    ]
+  },
+  {
+    "id": "kcard-a2-032",
+    "en": "dictionary",
+    "fr": "dictionnaire",
+    "emoji": "📖",
+    "example": "Check words in dictionary.",
+    "exampleFr": "Vérifie les mots au dictionnaire.",
+    "level": "A2",
+    "theme": "école",
+    "distractors": [
+      "cahier",
+      "journal"
+    ],
+    "distractorsEn": [
+      "notebook",
+      "newspaper"
+    ]
+  },
+  {
+    "id": "kcard-a2-033",
+    "en": "library",
+    "fr": "bibliothèque",
+    "emoji": "🏛️",
+    "example": "Borrow books from library.",
+    "exampleFr": "Emprunte des livres à la bibliothèque.",
+    "level": "A2",
+    "theme": "école",
+    "distractors": [
+      "cantine",
+      "cour"
+    ],
+    "distractorsEn": [
+      "cafeteria",
+      "yard"
+    ]
+  },
+  {
+    "id": "kcard-a2-034",
+    "en": "backpack",
+    "fr": "sac à dos",
+    "emoji": "🎒",
+    "example": "Zip your heavy backpack.",
+    "exampleFr": "Ferme ton sac à dos.",
+    "level": "A2",
+    "theme": "école",
+    "distractors": [
+      "trousse",
+      "classeur"
+    ],
+    "distractorsEn": [
+      "pencil case",
+      "binder"
+    ]
+  },
+  {
+    "id": "kcard-a2-035",
+    "en": "science",
+    "fr": "sciences",
+    "emoji": "🔬",
+    "example": "We love science experiments.",
+    "exampleFr": "Nous adorons les expériences scientifiques.",
+    "level": "A2",
+    "theme": "école",
+    "distractors": [
+      "musique",
+      "dessin"
+    ],
+    "distractorsEn": [
+      "music",
+      "art"
+    ]
+  },
+  {
+    "id": "kcard-a2-036",
+    "en": "geography",
+    "fr": "géographie",
+    "emoji": "🌍",
+    "example": "Study maps in geography.",
+    "exampleFr": "Étudie les cartes en géographie.",
+    "level": "A2",
+    "theme": "école",
+    "distractors": [
+      "calcul",
+      "sport"
+    ],
+    "distractorsEn": [
+      "math",
+      "sports"
+    ]
+  },
+  {
+    "id": "kcard-a2-037",
+    "en": "calendar",
+    "fr": "calendrier",
+    "emoji": "🗓️",
+    "example": "Mark holidays on calendar.",
+    "exampleFr": "Note les vacances sur le calendrier.",
+    "level": "A2",
+    "theme": "école",
+    "distractors": [
+      "dictionnaire",
+      "crayon"
+    ],
+    "distractorsEn": [
+      "dictionary",
+      "pencil"
+    ]
+  },
+  {
+    "id": "kcard-a2-038",
+    "en": "story",
+    "fr": "histoire / conte",
+    "emoji": "📚",
+    "example": "Write a short story.",
+    "exampleFr": "Écris une courte histoire.",
+    "level": "A2",
+    "theme": "école",
+    "distractors": [
+      "calcul",
+      "dictée"
+    ],
+    "distractorsEn": [
+      "math",
+      "dictation"
+    ]
+  },
+  {
+    "id": "kcard-a2-039",
+    "en": "watermelon",
+    "fr": "pastèque",
+    "emoji": "🍉",
+    "example": "Cold watermelon tastes great.",
+    "exampleFr": "La pastèque fraîche est délicieuse.",
+    "level": "A2",
+    "theme": "nourriture",
+    "distractors": [
+      "ananas",
+      "raisin"
+    ],
+    "distractorsEn": [
+      "pineapple",
+      "grapes"
+    ]
+  },
+  {
+    "id": "kcard-a2-040",
+    "en": "pineapple",
+    "fr": "ananas",
+    "emoji": "🍍",
+    "example": "Slice the sweet pineapple.",
+    "exampleFr": "Coupe l'ananas sucré.",
+    "level": "A2",
+    "theme": "nourriture",
+    "distractors": [
+      "pastèque",
+      "poire"
+    ],
+    "distractorsEn": [
+      "watermelon",
+      "pear"
+    ]
+  },
+  {
+    "id": "kcard-a2-041",
+    "en": "grapes",
+    "fr": "raisins",
+    "emoji": "🍇",
+    "example": "Wash green grapes first.",
+    "exampleFr": "Lave d'abord les raisins verts.",
+    "level": "A2",
+    "theme": "nourriture",
+    "distractors": [
+      "fraises",
+      "cerises"
+    ],
+    "distractorsEn": [
+      "strawberries",
+      "cherries"
+    ]
+  },
+  {
+    "id": "kcard-a2-042",
+    "en": "onion",
+    "fr": "oignon",
+    "emoji": "🧅",
+    "example": "Chop one small onion.",
+    "exampleFr": "Coupe un petit oignon.",
+    "level": "A2",
+    "theme": "nourriture",
+    "distractors": [
+      "ail",
+      "carotte"
+    ],
+    "distractorsEn": [
+      "garlic",
+      "carrot"
+    ]
+  },
+  {
+    "id": "kcard-a2-043",
+    "en": "peanut",
+    "fr": "cacahuète / arachide",
+    "emoji": "🥜",
+    "example": "Roasted peanuts smell good.",
+    "exampleFr": "Les arachides grillées sentent bon.",
+    "level": "A2",
+    "theme": "nourriture",
+    "distractors": [
+      "noix de coco",
+      "amande"
+    ],
+    "distractorsEn": [
+      "coconut",
+      "almond"
+    ]
+  },
+  {
+    "id": "kcard-a2-044",
+    "en": "yogurt",
+    "fr": "yaourt",
+    "emoji": "🥛",
+    "example": "Eat yogurt with fruit.",
+    "exampleFr": "Mange du yaourt aux fruits.",
+    "level": "A2",
+    "theme": "nourriture",
+    "distractors": [
+      "fromage",
+      "confiture"
+    ],
+    "distractorsEn": [
+      "cheese",
+      "jam"
+    ]
+  },
+  {
+    "id": "kcard-a2-045",
+    "en": "jam",
+    "fr": "confiture",
+    "emoji": "🍓",
+    "example": "Spread jam on toast.",
+    "exampleFr": "Étale la confiture sur le pain.",
+    "level": "A2",
+    "theme": "nourriture",
+    "distractors": [
+      "soupe",
+      "riz"
+    ],
+    "distractorsEn": [
+      "soup",
+      "rice"
+    ]
+  },
+  {
+    "id": "kcard-a2-046",
+    "en": "salad",
+    "fr": "salade",
+    "emoji": "🥗",
+    "example": "Mix a fresh salad.",
+    "exampleFr": "Prépare une salade fraîche.",
+    "level": "A2",
+    "theme": "nourriture",
+    "distractors": [
+      "gâteau",
+      "glace"
+    ],
+    "distractorsEn": [
+      "cake",
+      "ice cream"
+    ]
+  },
+  {
+    "id": "kcard-a2-047",
+    "en": "pancake",
+    "fr": "crêpe",
+    "emoji": "🥞",
+    "example": "Warm pancakes taste sweet.",
+    "exampleFr": "Les crêpes chaudes sont sucrées.",
+    "level": "A2",
+    "theme": "nourriture",
+    "distractors": [
+      "soupe",
+      "fromage"
+    ],
+    "distractorsEn": [
+      "soup",
+      "cheese"
+    ]
+  },
+  {
+    "id": "kcard-a2-048",
+    "en": "snack",
+    "fr": "goûter / collation",
+    "emoji": "🥨",
+    "example": "Pack a fruit snack.",
+    "exampleFr": "Emporte un goûter aux fruits.",
+    "level": "A2",
+    "theme": "nourriture",
+    "distractors": [
+      "dîner",
+      "petit-déjeuner"
+    ],
+    "distractorsEn": [
+      "dinner",
+      "breakfast"
+    ]
+  },
+  {
+    "id": "kcard-a2-049",
+    "en": "raincoat",
+    "fr": "imperméable",
+    "emoji": "🧥",
+    "example": "Wear raincoat in rain.",
+    "exampleFr": "Mets ton imperméable sous la pluie.",
+    "level": "A2",
+    "theme": "vêtements",
+    "distractors": [
+      "maillot",
+      "pyjama"
+    ],
+    "distractorsEn": [
+      "swimsuit",
+      "pajamas"
+    ]
+  },
+  {
+    "id": "kcard-a2-050",
+    "en": "swimsuit",
+    "fr": "maillot de bain",
+    "emoji": "🩱",
+    "example": "Pack your blue swimsuit.",
+    "exampleFr": "Prends ton maillot bleu.",
+    "level": "A2",
+    "theme": "vêtements",
+    "distractors": [
+      "manteau",
+      "bottes"
+    ],
+    "distractorsEn": [
+      "coat",
+      "boots"
+    ]
+  },
+  {
+    "id": "kcard-a2-051",
+    "en": "sneakers",
+    "fr": "baskets",
+    "emoji": "👟",
+    "example": "Run in clean sneakers.",
+    "exampleFr": "Cours avec tes baskets propres.",
+    "level": "A2",
+    "theme": "vêtements",
+    "distractors": [
+      "sandales",
+      "bottes"
+    ],
+    "distractorsEn": [
+      "sandals",
+      "boots"
+    ]
+  },
+  {
+    "id": "kcard-a2-052",
+    "en": "uniform",
+    "fr": "uniforme",
+    "emoji": "👕",
+    "example": "Iron your school uniform.",
+    "exampleFr": "Repasse ton uniforme scolaire.",
+    "level": "A2",
+    "theme": "vêtements",
+    "distractors": [
+      "pyjama",
+      "maillot"
+    ],
+    "distractorsEn": [
+      "pajamas",
+      "swimsuit"
+    ]
+  },
+  {
+    "id": "kcard-a2-053",
+    "en": "bracelet",
+    "fr": "bracelet",
+    "emoji": "📿",
+    "example": "She made a bracelet.",
+    "exampleFr": "Elle a fabriqué un bracelet.",
+    "level": "A2",
+    "theme": "vêtements",
+    "distractors": [
+      "ceinture",
+      "chapeau"
+    ],
+    "distractorsEn": [
+      "belt",
+      "hat"
+    ]
+  },
+  {
+    "id": "kcard-a2-054",
+    "en": "umbrella",
+    "fr": "parapluie",
+    "emoji": "☂️",
+    "example": "Open your big umbrella.",
+    "exampleFr": "Ouvre ton grand parapluie.",
+    "level": "A2",
+    "theme": "vêtements",
+    "distractors": [
+      "lunettes",
+      "casquette"
+    ],
+    "distractorsEn": [
+      "glasses",
+      "cap"
+    ]
+  },
+  {
+    "id": "kcard-a2-055",
+    "en": "breeze",
+    "fr": "brise",
+    "emoji": "🍃",
+    "example": "A cool breeze blows.",
+    "exampleFr": "Une brise fraîche souffle.",
+    "level": "A2",
+    "theme": "météo",
+    "distractors": [
+      "orage",
+      "neige"
+    ],
+    "distractorsEn": [
+      "storm",
+      "snow"
+    ]
+  },
+  {
+    "id": "kcard-a2-056",
+    "en": "puddle",
+    "fr": "flaque d'eau",
+    "emoji": "💧",
+    "example": "Jump over the puddle.",
+    "exampleFr": "Saute par-dessus la flaque.",
+    "level": "A2",
+    "theme": "météo",
+    "distractors": [
+      "nuage",
+      "étoile"
+    ],
+    "distractorsEn": [
+      "cloud",
+      "star"
+    ]
+  },
+  {
+    "id": "kcard-a2-057",
+    "en": "season",
+    "fr": "saison",
+    "emoji": "🍂",
+    "example": "Rainy season starts soon.",
+    "exampleFr": "La saison des pluies arrive.",
+    "level": "A2",
+    "theme": "météo",
+    "distractors": [
+      "heure",
+      "minute"
+    ],
+    "distractorsEn": [
+      "hour",
+      "minute"
+    ]
+  },
+  {
+    "id": "kcard-a2-058",
+    "en": "shade",
+    "fr": "ombre",
+    "emoji": "🌴",
+    "example": "Rest in tree shade.",
+    "exampleFr": "Repose-toi à l'ombre.",
+    "level": "A2",
+    "theme": "météo",
+    "distractors": [
+      "lumière",
+      "vent"
+    ],
+    "distractorsEn": [
+      "sunlight",
+      "wind"
+    ]
+  },
+  {
+    "id": "kcard-a2-059",
+    "en": "sunrise",
+    "fr": "lever du soleil",
+    "emoji": "🌅",
+    "example": "Watch the golden sunrise.",
+    "exampleFr": "Regarde le lever du soleil.",
+    "level": "A2",
+    "theme": "météo",
+    "distractors": [
+      "coucher du soleil",
+      "minuit"
+    ],
+    "distractorsEn": [
+      "sunset",
+      "midnight"
+    ]
+  },
+  {
+    "id": "kcard-a2-060",
+    "en": "sunset",
+    "fr": "coucher du soleil",
+    "emoji": "🌇",
+    "example": "The sunset looks orange.",
+    "exampleFr": "Le coucher du soleil est orange.",
+    "level": "A2",
+    "theme": "météo",
+    "distractors": [
+      "lever du soleil",
+      "midi"
+    ],
+    "distractorsEn": [
+      "sunrise",
+      "noon"
+    ]
+  },
+  {
+    "id": "kcard-a2-061",
+    "en": "balcony",
+    "fr": "balcon",
+    "emoji": "🪴",
+    "example": "Water plants on balcony.",
+    "exampleFr": "Arrose les plantes du balcon.",
+    "level": "A2",
+    "theme": "maison",
+    "distractors": [
+      "garage",
+      "cuisine"
+    ],
+    "distractorsEn": [
+      "garage",
+      "kitchen"
+    ]
+  },
+  {
+    "id": "kcard-a2-062",
+    "en": "stairs",
+    "fr": "escaliers",
+    "emoji": "🪜",
+    "example": "Walk up the stairs.",
+    "exampleFr": "Monte les escaliers.",
+    "level": "A2",
+    "theme": "maison",
+    "distractors": [
+      "ascenseur",
+      "toit"
+    ],
+    "distractorsEn": [
+      "elevator",
+      "roof"
+    ]
+  },
+  {
+    "id": "kcard-a2-063",
+    "en": "blanket",
+    "fr": "couverture",
+    "emoji": "🛏️",
+    "example": "Fold your warm blanket.",
+    "exampleFr": "Plie ta couverture chaude.",
+    "level": "A2",
+    "theme": "maison",
+    "distractors": [
+      "rideau",
+      "tapis"
+    ],
+    "distractorsEn": [
+      "curtain",
+      "rug"
+    ]
+  },
+  {
+    "id": "kcard-a2-064",
+    "en": "curtain",
+    "fr": "rideau",
+    "emoji": "🪟",
+    "example": "Pull back the curtain.",
+    "exampleFr": "Ouvre le rideau.",
+    "level": "A2",
+    "theme": "maison",
+    "distractors": [
+      "tapis",
+      "oreiller"
+    ],
+    "distractorsEn": [
+      "carpet",
+      "pillow"
+    ]
+  },
+  {
+    "id": "kcard-a2-065",
+    "en": "carpet",
+    "fr": "tapis",
+    "emoji": "🧶",
+    "example": "Sit on the carpet.",
+    "exampleFr": "Assieds-toi sur le tapis.",
+    "level": "A2",
+    "theme": "maison",
+    "distractors": [
+      "plafond",
+      "mur"
+    ],
+    "distractorsEn": [
+      "ceiling",
+      "wall"
+    ]
+  },
+  {
+    "id": "kcard-a2-066",
+    "en": "fridge",
+    "fr": "réfrigérateur",
+    "emoji": "🧊",
+    "example": "Keep milk in fridge.",
+    "exampleFr": "Garde le lait au frais.",
+    "level": "A2",
+    "theme": "maison",
+    "distractors": [
+      "four",
+      "évier"
+    ],
+    "distractorsEn": [
+      "oven",
+      "sink"
+    ]
+  },
+  {
+    "id": "kcard-a2-067",
+    "en": "broom",
+    "fr": "balai",
+    "emoji": "🧹",
+    "example": "Sweep floor with broom.",
+    "exampleFr": "Balaie le sol avec le balai.",
+    "level": "A2",
+    "theme": "maison",
+    "distractors": [
+      "seau",
+      "éponge"
+    ],
+    "distractorsEn": [
+      "bucket",
+      "sponge"
+    ]
+  },
+  {
+    "id": "kcard-a2-068",
+    "en": "bookshelf",
+    "fr": "étagère à livres",
+    "emoji": "📚",
+    "example": "Sort books on bookshelf.",
+    "exampleFr": "Range les livres sur l'étagère.",
+    "level": "A2",
+    "theme": "maison",
+    "distractors": [
+      "tiroir",
+      "porte"
+    ],
+    "distractorsEn": [
+      "drawer",
+      "door"
+    ]
+  },
+  {
+    "id": "kcard-a2-069",
+    "en": "brush my teeth",
+    "fr": "me brosser les dents",
+    "emoji": "🪥",
+    "example": "I brush my teeth.",
+    "exampleFr": "Je me brosse les dents.",
+    "level": "A2",
+    "theme": "routines",
+    "distractors": [
+      "faire mon lit",
+      "prendre le bus"
+    ],
+    "distractorsEn": [
+      "make my bed",
+      "take the bus"
+    ]
+  },
+  {
+    "id": "kcard-a2-070",
+    "en": "get dressed",
+    "fr": "m'habiller",
+    "emoji": "👕",
+    "example": "Get dressed after shower.",
+    "exampleFr": "Habille-toi après la douche.",
+    "level": "A2",
+    "theme": "routines",
+    "distractors": [
+      "me réveiller",
+      "dormir"
+    ],
+    "distractorsEn": [
+      "wake up",
+      "sleep"
+    ]
+  },
+  {
+    "id": "kcard-a2-071",
+    "en": "take a shower",
+    "fr": "prendre une douche",
+    "emoji": "🚿",
+    "example": "Take a quick shower.",
+    "exampleFr": "Prends une douche rapide.",
+    "level": "A2",
+    "theme": "routines",
+    "distractors": [
+      "manger",
+      "lire"
+    ],
+    "distractorsEn": [
+      "eat",
+      "read"
+    ]
+  },
+  {
+    "id": "kcard-a2-072",
+    "en": "ride a bike",
+    "fr": "faire du vélo",
+    "emoji": "🚲",
+    "example": "We ride bikes safely.",
+    "exampleFr": "Nous faisons du vélo prudemment.",
+    "level": "A2",
+    "theme": "routines",
+    "distractors": [
+      "nager",
+      "dessiner"
+    ],
+    "distractorsEn": [
+      "swim",
+      "draw"
+    ]
+  },
+  {
+    "id": "kcard-a2-073",
+    "en": "tidy up",
+    "fr": "ranger",
+    "emoji": "🧺",
+    "example": "Tidy up your toys.",
+    "exampleFr": "Range tes jouets.",
+    "level": "A2",
+    "theme": "routines",
+    "distractors": [
+      "salir",
+      "courir"
+    ],
+    "distractorsEn": [
+      "mess up",
+      "run"
+    ]
+  },
+  {
+    "id": "kcard-a2-074",
+    "en": "always",
+    "fr": "toujours",
+    "emoji": "🔁",
+    "example": "Always say thank you.",
+    "exampleFr": "Dis toujours merci.",
+    "level": "A2",
+    "theme": "routines",
+    "distractors": [
+      "jamais",
+      "parfois"
+    ],
+    "distractorsEn": [
+      "never",
+      "sometimes"
+    ]
+  },
+  {
+    "id": "kcard-a2-075",
+    "en": "sometimes",
+    "fr": "parfois",
+    "emoji": "🌤️",
+    "example": "Sometimes we play chess.",
+    "exampleFr": "Parfois nous jouons aux échecs.",
+    "level": "A2",
+    "theme": "routines",
+    "distractors": [
+      "toujours",
+      "jamais"
+    ],
+    "distractorsEn": [
+      "always",
+      "never"
+    ]
+  },
+  {
+    "id": "kcard-a2-076",
+    "en": "never",
+    "fr": "jamais",
+    "emoji": "🚫",
+    "example": "Never forget your smile.",
+    "exampleFr": "N'oublie jamais ton sourire.",
+    "level": "A2",
+    "theme": "routines",
+    "distractors": [
+      "toujours",
+      "souvent"
+    ],
+    "distractorsEn": [
+      "always",
+      "often"
+    ]
+  },
+  {
+    "id": "kcard-a2-077",
+    "en": "early",
+    "fr": "tôt",
+    "emoji": "🐓",
+    "example": "Arrive early for class.",
+    "exampleFr": "Arrive tôt en classe.",
+    "level": "A2",
+    "theme": "routines",
+    "distractors": [
+      "tard",
+      "lentement"
+    ],
+    "distractorsEn": [
+      "late",
+      "slowly"
+    ]
+  },
+  {
+    "id": "kcard-a2-078",
+    "en": "tomorrow",
+    "fr": "demain",
+    "emoji": "📆",
+    "example": "See you tomorrow morning!",
+    "exampleFr": "À demain matin !",
+    "level": "A2",
+    "theme": "routines",
+    "distractors": [
+      "hier",
+      "aujourd'hui"
+    ],
+    "distractorsEn": [
+      "yesterday",
+      "today"
+    ]
+  },
+  {
+    "id": "kcard-a2-079",
+    "en": "yesterday",
+    "fr": "hier",
+    "emoji": "⏪",
+    "example": "Yesterday was very sunny.",
+    "exampleFr": "Hier il faisait très beau.",
+    "level": "A2",
+    "theme": "routines",
+    "distractors": [
+      "demain",
+      "bientôt"
+    ],
+    "distractorsEn": [
+      "tomorrow",
+      "soon"
+    ]
+  },
+  {
+    "id": "kcard-a2-080",
+    "en": "weekend",
+    "fr": "week-end",
+    "emoji": "🎉",
+    "example": "Enjoy a fun weekend!",
+    "exampleFr": "Passe un bon week-end !",
+    "level": "A2",
+    "theme": "routines",
+    "distractors": [
+      "lundi",
+      "matin"
+    ],
+    "distractorsEn": [
+      "monday",
+      "morning"
+    ]
+  }
 ]

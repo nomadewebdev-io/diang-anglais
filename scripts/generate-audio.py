@@ -178,6 +178,28 @@ def collect_all_texts() -> dict[str, str]:
             if isinstance(answers, list) and len(answers) > 0 and answers[0]:
                 texts_list.append(str(answers[0]).strip())
 
+    kids_dir = DATA_DIR / "kids"
+    if kids_dir.exists():
+        for card in json.loads((kids_dir / "cards.json").read_text(encoding="utf-8")):
+            if card.get("en"):
+                texts_list.append(str(card["en"]).strip())
+            if card.get("example"):
+                texts_list.append(str(card["example"]).strip())
+        for sent in json.loads((kids_dir / "sentences.json").read_text(encoding="utf-8")):
+            if sent.get("en"):
+                texts_list.append(str(sent["en"]).strip())
+        for item in json.loads((kids_dir / "placement.json").read_text(encoding="utf-8")):
+            if item.get("audioText"):
+                texts_list.append(str(item["audioText"]).strip())
+        for lesson in json.loads((kids_dir / "lessons.json").read_text(encoding="utf-8")):
+            for ex in lesson.get("examples", []):
+                if ex.get("en"):
+                    texts_list.append(str(ex["en"]).strip())
+        for item in json.loads((kids_dir / "constructions.json").read_text(encoding="utf-8")):
+            answers = item.get("answers", [])
+            if isinstance(answers, list) and len(answers) > 0 and answers[0]:
+                texts_list.append(str(answers[0]).strip())
+
     text_to_hash: dict[str, str] = {}
     hash_to_text: dict[str, str] = {}
 

@@ -513,21 +513,33 @@ function validateKidsData() {
   const kidsConstructions = readJson('kids/constructions.json');
 
   assert(
-    Array.isArray(kidsCards) && kidsCards.length === 40,
-    `kids/cards.json doit contenir exactement 40 cartes (actuel : ${kidsCards?.length}).`
+    Array.isArray(kidsCards) && kidsCards.length === 320,
+    `kids/cards.json doit contenir exactement 320 cartes (actuel : ${kidsCards?.length}).`
   );
   const kCardIds = new Set();
+  const kCardEn = new Set();
+  const kCardExamples = new Set();
+  const kCardLevels = { A0: 0, A1: 0, A2: 0 };
   for (let i = 0; i < kidsCards.length; i++) {
     const c = kidsCards[i];
     const label = `kids/cards.json[${i}] (${c?.id ?? 'sans-id'})`;
     assert(c && typeof c.id === 'string' && !kCardIds.has(c.id), `${label}: id invalide ou en doublon.`);
     kCardIds.add(c.id);
     assert(VALID_KIDS_LEVELS.has(c.level), `${label}: niveau enfant invalide "${c.level}".`);
+    kCardLevels[c.level] += 1;
     assert(VALID_KIDS_THEMES.has(c.theme), `${label}: thème enfant invalide "${c.theme}".`);
     assert(typeof c.emoji === 'string' && c.emoji.trim().length > 0, `${label}: champ 'emoji' requis.`);
     for (const field of ['en', 'fr', 'example', 'exampleFr']) {
       assert(typeof c[field] === 'string' && c[field].trim().length > 0, `${label}: '${field}' requis.`);
     }
+    const nEn = normalizeText(c.en);
+    assert(!kCardEn.has(nEn), `${label}: mot anglais en doublon "${c.en}".`);
+    kCardEn.add(nEn);
+    const nEx = normalizeText(c.example);
+    assert(!kCardExamples.has(nEx), `${label}: exemple en doublon "${c.example}".`);
+    kCardExamples.add(nEx);
+    const wordCount = c.example.trim().split(/\s+/).length;
+    assert(wordCount <= 6, `${label}: phrase d'exemple > 6 mots (${wordCount} mots : "${c.example}").`);
     assert(Array.isArray(c.distractors) && c.distractors.length === 2, `${label}: 2 distracteurs FR requis.`);
     assert(Array.isArray(c.distractorsEn) && c.distractorsEn.length === 2, `${label}: 2 distracteurs EN requis.`);
     assert(
@@ -535,53 +547,99 @@ function validateKidsData() {
       `${label}: distracteur FR égal à la bonne réponse.`
     );
     assert(
+      normalizeText(c.distractors[0]) !== normalizeText(c.distractors[1]),
+      `${label}: distracteurs FR en doublon.`
+    );
+    assert(
       !c.distractorsEn.some((d) => normalizeText(d) === normalizeText(c.en)),
       `${label}: distracteur EN égal à la bonne réponse.`
     );
+    assert(
+      normalizeText(c.distractorsEn[0]) !== normalizeText(c.distractorsEn[1]),
+      `${label}: distracteurs EN en doublon.`
+    );
   }
+  assert(kCardLevels.A0 === 120, `kids/cards.json A0 attendu 120, reçu ${kCardLevels.A0}`);
+  assert(kCardLevels.A1 === 120, `kids/cards.json A1 attendu 120, reçu ${kCardLevels.A1}`);
+  assert(kCardLevels.A2 === 80, `kids/cards.json A2 attendu 80, reçu ${kCardLevels.A2}`);
 
   assert(
-    Array.isArray(kidsLessons) && kidsLessons.length === 4,
-    `kids/lessons.json doit contenir exactement 4 leçons (actuel : ${kidsLessons?.length}).`
+    Array.isArray(kidsLessons) && kidsLessons.length === 18,
+    `kids/lessons.json doit contenir exactement 18 leçons (actuel : ${kidsLessons?.length}).`
   );
+  const kLessonIds = new Set();
+  const kLessonLevels = { A0: 0, A1: 0, A2: 0 };
   for (let i = 0; i < kidsLessons.length; i++) {
     const l = kidsLessons[i];
+    assert(typeof l.id === 'string' && !kLessonIds.has(l.id), `kids/lessons.json[${i}]: id invalide ou en doublon.`);
+    kLessonIds.add(l.id);
     assert(VALID_KIDS_LEVELS.has(l.level), `kids/lessons.json[${i}]: niveau invalide "${l.level}".`);
-    assert(Array.isArray(l.examples) && l.examples.length === 3, `kids/lessons.json[${i}]: 3 exemples requis.`);
-    assert(Array.isArray(l.exercises) && l.exercises.length === 5, `kids/lessons.json[${i}]: 5 exercices requis.`);
+    kLessonLevels[l.level] += 1;
+    assert(Array.isArray(l.examples) && l.examples.length === 2, `kids/lessons.json[${i}]: 2 exemples requis.`);
+    assert(Array.isArray(l.exercises) && l.exercises.length === 4, `kids/lessons.json[${i}]: 4 exercices requis.`);
     for (const ex of l.exercises) {
       validateQuizOptions(ex.options, ex.answerIndex, `kids/lessons.json[${i}]`);
     }
   }
+  assert(kLessonLevels.A0 === 6, `kids/lessons.json A0 attendu 6, reçu ${kLessonLevels.A0}`);
+  assert(kLessonLevels.A1 === 6, `kids/lessons.json A1 attendu 6, reçu ${kLessonLevels.A1}`);
+  assert(kLessonLevels.A2 === 6, `kids/lessons.json A2 attendu 6, reçu ${kLessonLevels.A2}`);
 
   assert(
-    Array.isArray(kidsPlacement) && kidsPlacement.length === 24,
-    `kids/placement.json doit contenir exactement 24 questions (actuel : ${kidsPlacement?.length}).`
+    Array.isArray(kidsPlacement) && kidsPlacement.length === 90,
+    `kids/placement.json doit contenir exactement 90 questions (actuel : ${kidsPlacement?.length}).`
   );
+  const kPlaceIds = new Set();
+  const kPlacePrompts = new Set();
+  const kPlaceLevels = { A0: 0, A1: 0, A2: 0 };
   for (let i = 0; i < kidsPlacement.length; i++) {
     const q = kidsPlacement[i];
+    assert(typeof q.id === 'string' && !kPlaceIds.has(q.id), `kids/placement.json[${i}]: id invalide ou en doublon.`);
+    kPlaceIds.add(q.id);
+    const nPrompt = normalizeText(q.prompt);
+    assert(!kPlacePrompts.has(nPrompt), `kids/placement.json[${i}]: question en doublon "${q.prompt}".`);
+    kPlacePrompts.add(nPrompt);
     assert(VALID_KIDS_LEVELS.has(q.level), `kids/placement.json[${i}]: niveau invalide "${q.level}".`);
+    kPlaceLevels[q.level] += 1;
     assert(VALID_SKILLS.has(q.skill), `kids/placement.json[${i}]: compétence invalide "${q.skill}".`);
     validateQuizOptions(q.options, q.answerIndex, `kids/placement.json[${i}]`);
   }
+  assert(kPlaceLevels.A0 === 30, `kids/placement.json A0 attendu 30, reçu ${kPlaceLevels.A0}`);
+  assert(kPlaceLevels.A1 === 30, `kids/placement.json A1 attendu 30, reçu ${kPlaceLevels.A1}`);
+  assert(kPlaceLevels.A2 === 30, `kids/placement.json A2 attendu 30, reçu ${kPlaceLevels.A2}`);
 
   assert(
-    Array.isArray(kidsSentences) && kidsSentences.length === 30,
-    `kids/sentences.json doit contenir exactement 30 phrases (actuel : ${kidsSentences?.length}).`
+    Array.isArray(kidsSentences) && kidsSentences.length === 120,
+    `kids/sentences.json doit contenir exactement 120 phrases (actuel : ${kidsSentences?.length}).`
   );
+  const kSentIds = new Set();
+  const kSentEn = new Set();
   for (let i = 0; i < kidsSentences.length; i++) {
-    assert(VALID_KIDS_LEVELS.has(kidsSentences[i].level), `kids/sentences.json[${i}]: niveau invalide.`);
+    const s = kidsSentences[i];
+    assert(typeof s.id === 'string' && !kSentIds.has(s.id), `kids/sentences.json[${i}]: id invalide ou en doublon.`);
+    kSentIds.add(s.id);
+    assert(VALID_KIDS_LEVELS.has(s.level), `kids/sentences.json[${i}]: niveau invalide.`);
+    const nSent = normalizeText(s.en);
+    assert(!kSentEn.has(nSent), `kids/sentences.json[${i}]: phrase en doublon "${s.en}".`);
+    kSentEn.add(nSent);
   }
 
   assert(
-    Array.isArray(kidsConstructions) && kidsConstructions.length === 20,
-    `kids/constructions.json doit contenir exactement 20 constructions (actuel : ${kidsConstructions?.length}).`
+    Array.isArray(kidsConstructions) && kidsConstructions.length === 64,
+    `kids/constructions.json doit contenir exactement 64 constructions (actuel : ${kidsConstructions?.length}).`
   );
+  const kConIds = new Set();
+  const kConUnits = new Set();
   for (let i = 0; i < kidsConstructions.length; i++) {
     const item = kidsConstructions[i];
+    assert(typeof item.id === 'string' && !kConIds.has(item.id), `kids/constructions.json[${i}]: id invalide ou en doublon.`);
+    kConIds.add(item.id);
     assert(VALID_KIDS_LEVELS.has(item.level), `kids/constructions.json[${i}]: niveau invalide.`);
+    kConUnits.add(`${item.level}-u${item.unit}`);
     assert(Array.isArray(item.answers) && item.answers.length >= 1, `kids/constructions.json[${i}]: réponse requise.`);
+    assert(Array.isArray(item.tiles) && item.tiles.length >= 1, `kids/constructions.json[${i}]: tuiles requises.`);
   }
+  assert(kConUnits.size === 8, `kids/constructions.json doit contenir 8 unités (actuel : ${kConUnits.size}).`);
 
   return {
     cards: kidsCards.length,
