@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { catalog } from '../lib/catalog';
-import { CEFR_LEVELS, SKILL_LABELS_FR } from '../lib/placementTest';
+import { getCatalogForMode } from '../lib/catalog';
+import { getLevelsForMode, SKILL_LABELS_FR } from '../lib/placementTest';
 import {
   analyzeFeasibility,
   generateStudyPlan,
@@ -41,6 +41,8 @@ export function ProgramView({
   onCompleteMilestoneTest,
   onCompleteFinalTest,
 }: ProgramViewProps): React.ReactElement {
+  const catalog = getCatalogForMode(state.mode);
+  const availableLevels = getLevelsForMode(state.mode);
   const plan = state.studyPlan;
 
   const [isEditingPlan, setIsEditingPlan] = useState(false);
@@ -215,7 +217,7 @@ export function ProgramView({
                   onChange={(e) => setTargetLevel(e.target.value as CEFRLevel)}
                   className="w-full px-3 py-2 rounded-xl border border-[#D5CFC2] bg-[#FAF8F5] text-sm font-semibold"
                 >
-                  {CEFR_LEVELS.map((lvl) => (
+                  {availableLevels.map((lvl) => (
                     <option key={lvl} value={lvl}>
                       Niveau {lvl}
                     </option>

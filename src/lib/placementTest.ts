@@ -5,12 +5,19 @@ import {
   PlacementSessionAnswer,
   PlacementSessionState,
   PlacementSessionStatus,
+  ProfileMode,
   SkillPerformance,
   SkillType,
 } from './types';
 
 export const CEFR_LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2'];
+export const KIDS_CEFR_LEVELS: CEFRLevel[] = ['A0', 'A1', 'A2'];
+export const KIDS_PLACEMENT_QUESTION_COUNT = 12;
 export const ALL_SKILLS: SkillType[] = ['vocab', 'grammar', 'reading', 'listening'];
+
+export function getLevelsForMode(mode: ProfileMode = 'adult'): CEFRLevel[] {
+  return mode === 'child' ? KIDS_CEFR_LEVELS : CEFR_LEVELS;
+}
 
 export const SKILL_LABELS_FR: Record<SkillType, string> = {
   vocab: 'Vocabulaire',
@@ -39,6 +46,7 @@ export interface AdaptiveTestSession {
   startedAt: string;
   status: PlacementSessionStatus;
   currentLevel: CEFRLevel;
+  allowedLevels?: CEFRLevel[];
   questionIds: string[];
   answered: AnsweredPlacementItem[];
   maxQuestions: number;
@@ -68,20 +76,26 @@ export function getQuestionTimeLimitSeconds(skill: SkillType): number {
   return 30;
 }
 
-export function getNextHigherLevel(level: CEFRLevel): CEFRLevel {
-  const idx = CEFR_LEVELS.indexOf(level);
-  if (idx < 0 || idx >= CEFR_LEVELS.length - 1) {
-    return 'B2';
+export function getNextHigherLevel(
+  level: CEFRLevel,
+  allowedLevels: CEFRLevel[] = CEFR_LEVELS
+): CEFRLevel {
+  const idx = allowedLevels.indexOf(level);
+  if (idx < 0 || idx >= allowedLevels.length - 1) {
+    return allowedLevels[allowedLevels.length - 1];
   }
-  return CEFR_LEVELS[idx + 1];
+  return allowedLevels[idx + 1];
 }
 
-export function getNextLowerLevel(level: CEFRLevel): CEFRLevel {
-  const idx = CEFR_LEVELS.indexOf(level);
+export function getNextLowerLevel(
+  level: CEFRLevel,
+  allowedLevels: CEFRLevel[] = CEFR_LEVELS
+): CEFRLevel {
+  const idx = allowedLevels.indexOf(level);
   if (idx <= 0) {
-    return 'A1';
+    return allowedLevels[0];
   }
-  return CEFR_LEVELS[idx - 1];
+  return allowedLevels[idx - 1];
 }
 
 /**
@@ -93,12 +107,15 @@ export function getNextLowerLevel(level: CEFRLevel): CEFRLevel {
 export function adjustAdaptiveLevel(
   currentLevel: CEFRLevel,
   isCorrect: boolean,
-  isDontKnow = false
+  isDontKnow = false,
+  allowedLevels: CEFRLevel[] = CEFR_LEVELS
 ): CEFRLevel {
   if (isDontKnow) {
     return currentLevel;
   }
-  return isCorrect ? getNextHigherLevel(currentLevel) : getNextLowerLevel(currentLevel);
+  return isCorrect
+    ? getNextHigherLevel(currentLevel, allowedLevels)
+    : getNextLowerLevel(currentLevel, allowedLevels);
 }
 
 /**
@@ -178,7 +195,8 @@ export function createAdaptiveSession(
   questionBankSize: number,
   targetQuestionCount = 20,
   initialLevel: CEFRLevel = 'A1',
-  startedAt: string = new Date().toISOString()
+  startedAt: string = new Date().toISOString(),
+  allowedLevels: CEFRLevel[] = CEFR_LEVELS
 ): AdaptiveTestSession {
   const maxQuestions = Math.min(Math.max(1, targetQuestionCount), Math.max(1, questionBankSize));
   return {
@@ -186,6 +204,7 @@ export function createAdaptiveSession(
     startedAt,
     status: 'in_progress',
     currentLevel: initialLevel,
+    allowedLevels,
     questionIds: [],
     answered: [],
     maxQuestions,
@@ -318,7 +337,9 @@ export function selectNextAdaptiveQuestion(
     reading: 0,
     listening: 0,
   };
+  const activeLevels = session.allowedLevels ?? CEFR_LEVELS;
   const levelCounts: Record<CEFRLevel, number> = {
+    A0: 0,
     A1: 0,
     A2: 0,
     B1: 0,
@@ -345,9 +366,9 @@ export function selectNextAdaptiveQuestion(
     targetLevel =
       session.confirmationTargetLevels[confIdx] ??
       session.confirmationTargetLevels[session.confirmationTargetLevels.length - 1];
-  } else if (session.answered.length >= Math.max(6, baseMax - 9)) {
+  } else if (session.answered.length >= Math.max(4, baseMax - 9)) {
     // S'assurer que tout niveau déjà entamé atteint le minimum de 3 questions
-    const underSampledLevel = CEFR_LEVELS.find(
+    const underSampledLevel = activeLevels.find(
       (lvl) =>
         levelCounts[lvl] > 0 &&
         levelCounts[lvl] < MIN_QUESTIONS_PER_TESTED_LEVEL &&
@@ -404,11 +425,11 @@ export function selectNextAdaptiveQuestion(
   }
 
   // 2. Niveau le plus proche disponible
-  const targetIdx = CEFR_LEVELS.indexOf(targetLevel);
-  const levelsByDistance = [...CEFR_LEVELS].sort(
+  const targetIdx = activeLevels.indexOf(targetLevel);
+  const levelsByDistance = [...activeLevels].sort(
     (a, b) =>
-      Math.abs(CEFR_LEVELS.indexOf(a) - targetIdx) -
-      Math.abs(CEFR_LEVELS.indexOf(b) - targetIdx)
+      Math.abs(activeLevels.indexOf(a) - targetIdx) -
+      Math.abs(activeLevels.indexOf(b) - targetIdx)
   );
 
   for (const nearLevel of levelsByDistance) {
@@ -428,9 +449,11 @@ export function selectNextAdaptiveQuestion(
  * 2 à 4 questions de confirmation supplémentaires avant de conclure.
  */
 export function detectLevelInconsistency(
-  answered: AnsweredPlacementItem[]
+  answered: AnsweredPlacementItem[],
+  allowedLevels: CEFRLevel[] = CEFR_LEVELS
 ): LevelInconsistencyReport {
   const stats: Record<CEFRLevel, { correct: number; total: number; ratio: number }> = {
+    A0: { correct: 0, total: 0, ratio: 0 },
     A1: { correct: 0, total: 0, ratio: 0 },
     A2: { correct: 0, total: 0, ratio: 0 },
     B1: { correct: 0, total: 0, ratio: 0 },
@@ -445,7 +468,7 @@ export function detectLevelInconsistency(
     }
   }
 
-  for (const lvl of CEFR_LEVELS) {
+  for (const lvl of allowedLevels) {
     stats[lvl].ratio = stats[lvl].total > 0 ? stats[lvl].correct / stats[lvl].total : 0;
   }
 
@@ -608,11 +631,16 @@ export function evaluatePlacementTest(
   }
 
   const levelStats: Record<CEFRLevel, { correct: number; total: number; ratio: number }> = {
+    A0: { correct: 0, total: 0, ratio: 0 },
     A1: { correct: 0, total: 0, ratio: 0 },
     A2: { correct: 0, total: 0, ratio: 0 },
     B1: { correct: 0, total: 0, ratio: 0 },
     B2: { correct: 0, total: 0, ratio: 0 },
   };
+
+  const hasA0 = answered.some((a) => a.question.level === 'A0');
+  const activeLevels = hasA0 ? KIDS_CEFR_LEVELS : CEFR_LEVELS;
+  const baseLevel = activeLevels[0];
 
   for (const item of answered) {
     const lvl = item.question.level;
@@ -622,7 +650,7 @@ export function evaluatePlacementTest(
     }
   }
 
-  for (const lvl of CEFR_LEVELS) {
+  for (const lvl of activeLevels) {
     levelStats[lvl].ratio =
       levelStats[lvl].total > 0 ? levelStats[lvl].correct / levelStats[lvl].total : 0;
   }
@@ -634,21 +662,21 @@ export function evaluatePlacementTest(
     );
   };
 
-  let determinedLevel: CEFRLevel = 'A1';
+  let determinedLevel: CEFRLevel = baseLevel;
 
-  // Pour valider un niveau L (A2, B1, B2) :
+  // Pour valider un niveau L au-dessus du niveau de base :
   // 1. L doit être validé (>= 3 questions et >= 70% de bonnes réponses).
-  // 2. Aucun niveau inférieur M < L ayant été testé ne doit être en échec (< 70% ou < 3 questions pour A2/B1).
-  for (const lvl of ['A2', 'B1', 'B2'] as CEFRLevel[]) {
-    const lvlIdx = CEFR_LEVELS.indexOf(lvl);
-    const lowerLevels = CEFR_LEVELS.slice(0, lvlIdx);
+  // 2. Aucun niveau inférieur M < L ayant été testé ne doit être en échec.
+  for (const lvl of activeLevels.slice(1)) {
+    const lvlIdx = activeLevels.indexOf(lvl);
+    const lowerLevels = activeLevels.slice(0, lvlIdx);
 
     const anyLowerLevelFailed = lowerLevels.some((lower) => {
       if (levelStats[lower].total === 0) {
         return false;
       }
-      if (lower === 'A1') {
-        return levelStats.A1.ratio < LEVEL_VALIDATION_THRESHOLD;
+      if (lower === baseLevel) {
+        return levelStats[baseLevel].ratio < LEVEL_VALIDATION_THRESHOLD;
       }
       return !isLevelValidated(lower);
     });

@@ -8,6 +8,12 @@ import {
   IconSettings,
 } from './components/Icons';
 import { OnboardingFlow } from './components/OnboardingFlow';
+import { ParentGateModal } from './components/ParentGateModal';
+import {
+  getInitials,
+  ProfileCreationForm,
+  ProfileSwitcherModal,
+} from './components/ProfileGateView';
 import { ProgramView } from './components/ProgramView';
 import { ProgressView } from './components/ProgressView';
 import { ReviewView } from './components/ReviewView';
@@ -26,9 +32,15 @@ import {
 } from './lib/progression';
 import { addDaysISO, formatDateISO } from './lib/sm2';
 import {
-  clearAppState,
-  loadAppState,
-  saveAppState,
+  addProfileToStore,
+  createInitialAppState,
+  createLocalProfile,
+  deleteProfileFromStore,
+  getActiveProfile,
+  loadMultiProfileStore,
+  resetActiveProfileInStore,
+  switchActiveProfile,
+  updateActiveProfileState,
 } from './lib/storage';
 import {
   applyThemeToDocument,
@@ -37,6 +49,7 @@ import {
 import {
   AppState,
   CEFRLevel,
+  MultiProfileStore,
   PlacementResult,
   PlacementSessionState,
   PlaybackSpeed,
@@ -61,17 +74,44 @@ const NAV_TABS: Array<{
 ];
 
 export function App(): React.ReactElement {
-  const [state, setState] = useState<AppState>(() => loadAppState());
+  const [store, setStore] = useState<MultiProfileStore>(() =>
+    loadMultiProfileStore()
+  );
+  const activeProfile = getActiveProfile(store);
+  const state = activeProfile?.state ?? createInitialAppState('adult');
+
+  const setState = (updater: AppState | ((prev: AppState) => AppState)) => {
+    setStore((prevStore) =>
+      updateActiveProfileState(prevStore, (prevState) =>
+        typeof updater === 'function' ? updater(prevState) : updater
+      )
+    );
+  };
+
   const [activeTab, setActiveTab] = useState<MainTab>('today');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isProfileSwitcherOpen, setIsProfileSwitcherOpen] = useState(false);
+  const [pendingGateAction, setPendingGateAction] = useState<
+    'settings' | 'profiles' | null
+  >(null);
+
+  const openProtectedArea = (area: 'settings' | 'profiles') => {
+    if (area === 'settings' && isSettingsOpen) {
+      setIsSettingsOpen(false);
+      return;
+    }
+    if (activeProfile?.mode === 'child') {
+      setPendingGateAction(area);
+    } else if (area === 'settings') {
+      setIsSettingsOpen(true);
+    } else {
+      setIsProfileSwitcherOpen(true);
+    }
+  };
 
   useEffect(() => {
     document.title = 'Diang-Anglais';
   }, []);
-
-  useEffect(() => {
-    saveAppState(state);
-  }, [state]);
 
   useEffect(() => {
     applyThemeToDocument(state.theme);
@@ -124,8 +164,7 @@ export function App(): React.ReactElement {
   };
 
   const handleResetAll = () => {
-    const fresh = clearAppState();
-    setState(fresh);
+    setStore((prev) => resetActiveProfileInStore(prev));
     setActiveTab('today');
   };
 
@@ -487,7 +526,11 @@ export function App(): React.ReactElement {
   };
 
   return (
-    <div className="min-h-dvh flex flex-col bg-[#FAF8F5] dark:bg-[#141817] text-[#111827] dark:text-[#F3F4F6] pb-20">
+    <div
+      className={`min-h-dvh flex flex-col bg-[#FAF8F5] dark:bg-[#141817] text-[#111827] dark:text-[#F3F4F6] pb-20 ${
+        state.mode === 'child' ? 'child-mode' : ''
+      }`}
+    >
       {/* Top Header */}
       <header className="sticky top-0 z-20 bg-[#FAF8F5] dark:bg-[#141817] border-b border-[#E4DFD3] dark:border-[#343F3B] px-4 pt-[calc(0.875rem+env(safe-area-inset-top))] pb-3.5">
         <div className="max-w-4xl mx-auto flex items-center justify-between gap-3">
@@ -500,28 +543,46 @@ export function App(): React.ReactElement {
                 Diang-Anglais
               </span>
               <span className="text-[11px] text-[#6B7280] dark:text-[#9CA3AF] font-medium">
-                Parcours CECRL A1 → B2
+                {state.mode === 'child'
+                  ? 'Mode Enfant · A0 → A2'
+                  : 'Parcours CECRL A1 → B2'}
               </span>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            {state.onboardingStep === 'ready' && state.studyPlan && (
+            {activeProfile && state.onboardingStep === 'ready' && state.studyPlan && (
               <>
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] text-xs font-bold text-[#111827] dark:text-[#F3F4F6]">
                   <IconFlame className="w-3.5 h-3.5 text-[#C85A32]" />
                   <span>{streak} j</span>
                 </div>
-                <div className="px-2.5 py-1 rounded-full bg-[#E6F0EC] dark:bg-[#13362B] text-[#0F4C3A] dark:text-[#6EE7B7] text-xs font-bold">
+                <div className="hidden sm:block px-2.5 py-1 rounded-full bg-[#E6F0EC] dark:bg-[#13362B] text-[#0F4C3A] dark:text-[#6EE7B7] text-xs font-bold">
                   {state.studyPlan.config.currentLevel} →{' '}
                   {state.studyPlan.config.targetLevel}
                 </div>
               </>
             )}
 
+            {activeProfile && (
+              <button
+                type="button"
+                onClick={() => openProtectedArea('profiles')}
+                aria-label={`Changer de profil (${activeProfile.name})`}
+                className="inline-flex items-center gap-1.5 pl-1.5 pr-2.5 py-1 rounded-full bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] hover:bg-[#F3EFE6] dark:hover:bg-[#252D2A] transition cursor-pointer"
+              >
+                <span className="w-6 h-6 rounded-full bg-[#0F4C3A] text-white text-[11px] font-bold flex items-center justify-center">
+                  {getInitials(activeProfile.name)}
+                </span>
+                <span className="text-xs font-semibold text-[#111827] dark:text-[#F3F4F6] max-w-[80px] truncate">
+                  {activeProfile.name}
+                </span>
+              </button>
+            )}
+
             <button
               type="button"
-              onClick={() => setIsSettingsOpen((prev) => !prev)}
+              onClick={() => openProtectedArea('settings')}
               aria-label="Ouvrir les paramètres"
               aria-expanded={isSettingsOpen}
               className={`p-2 rounded-xl border transition cursor-pointer ${
@@ -538,7 +599,15 @@ export function App(): React.ReactElement {
 
       {/* Main Content */}
       <main className="flex-1 w-full max-w-4xl mx-auto px-4 py-5">
-        {isSettingsOpen ? (
+        {!activeProfile ? (
+          <ProfileCreationForm
+            onCreate={(name, mode) => {
+              const created = createLocalProfile(name, mode);
+              setStore((prev) => addProfileToStore(prev, created));
+              setActiveTab('today');
+            }}
+          />
+        ) : isSettingsOpen ? (
           <SettingsView
             state={state}
             onChangeTheme={handleChangeTheme}
@@ -554,7 +623,9 @@ export function App(): React.ReactElement {
           />
         ) : state.onboardingStep !== 'ready' || !state.studyPlan ? (
           <OnboardingFlow
+            key={activeProfile.id}
             step={state.onboardingStep}
+            mode={state.mode}
             initialProfile={state.profile}
             initialPlacement={state.placementResult}
             seenQuestionIds={state.seenQuestionIds}
@@ -630,7 +701,7 @@ export function App(): React.ReactElement {
       </main>
 
       {/* Bottom Navigation Bar */}
-      {state.onboardingStep === 'ready' && state.studyPlan && (
+      {activeProfile && state.onboardingStep === 'ready' && state.studyPlan && (
         <nav
           aria-label="Navigation principale"
           className="fixed bottom-0 inset-x-0 z-30 bg-white dark:bg-[#1E2422] border-t border-[#E4DFD3] dark:border-[#343F3B] px-2 pt-1.5 pb-[calc(0.375rem+env(safe-area-inset-bottom))]"
@@ -660,6 +731,40 @@ export function App(): React.ReactElement {
             })}
           </div>
         </nav>
+      )}
+
+      {pendingGateAction && (
+        <ParentGateModal
+          onSuccess={() => {
+            const action = pendingGateAction;
+            setPendingGateAction(null);
+            if (action === 'settings') setIsSettingsOpen(true);
+            if (action === 'profiles') setIsProfileSwitcherOpen(true);
+          }}
+          onCancel={() => setPendingGateAction(null)}
+        />
+      )}
+
+      {isProfileSwitcherOpen && activeProfile && (
+        <ProfileSwitcherModal
+          profiles={store.profiles}
+          activeProfileId={activeProfile.id}
+          onSelectProfile={(id) => {
+            setStore((prev) => switchActiveProfile(prev, id));
+            setIsSettingsOpen(false);
+            setActiveTab('today');
+          }}
+          onCreateProfile={(name, mode) => {
+            const created = createLocalProfile(name, mode);
+            setStore((prev) => addProfileToStore(prev, created));
+            setIsSettingsOpen(false);
+            setActiveTab('today');
+          }}
+          onDeleteProfile={(id) => {
+            setStore((prev) => deleteProfileFromStore(prev, id));
+          }}
+          onClose={() => setIsProfileSwitcherOpen(false)}
+        />
       )}
     </div>
   );

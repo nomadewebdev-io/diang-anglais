@@ -1,0 +1,74 @@
+[
+  {
+    "id": "klesson-a0-01",
+    "level": "A0",
+    "title": "Dire bonjour et se présenter",
+    "explanationFr": "Utilise « Hello! » pour dire bonjour et « My name is... » pour donner ton prénom.",
+    "examples": [
+      { "en": "Hello! My name is Awa.", "fr": "Bonjour ! Je m'appelle Awa." },
+      { "en": "I am nine years old.", "fr": "J'ai neuf ans." },
+      { "en": "Nice to meet you!", "fr": "Ravi de te rencontrer !" }
+    ],
+    "exercises": [
+      { "prompt": "Comment dis-tu « Bonjour ! » en anglais ?", "options": ["Hello!", "Goodbye!", "Thank you!"], "answerIndex": 0 },
+      { "prompt": "Complète : « My ___ is Omar. »", "options": ["book", "name", "cat"], "answerIndex": 1 },
+      { "prompt": "Comment dis-tu « J'ai dix ans » ?", "options": ["I am ten years old.", "I have ten books.", "I am red."], "answerIndex": 0 },
+      { "prompt": "Que réponds-tu à « Nice to meet you! » ?", "options": ["Nice to meet you too!", "Good night!", "One, two, three!"], "answerIndex": 0 },
+      { "prompt": "Quel mot veut dire « Au revoir » ?", "options": ["Please", "Goodbye", "Hello"], "answerIndex": 1 }
+    ]
+  },
+  {
+    "id": "klesson-a0-02",
+    "level": "A0",
+    "title": "Un ou plusieurs : le pluriel avec -s",
+    "explanationFr": "Pour parler de plusieurs objets ou animaux, ajoute souvent un -s à la fin du mot.",
+    "examples": [
+      { "en": "one cat -> two cats", "fr": "un chat -> deux chats" },
+      { "en": "one book -> three books", "fr": "un livre -> trois livres" },
+      { "en": "one apple -> four apples", "fr": "une pomme -> quatre pommes" }
+    ],
+    "exercises": [
+      { "prompt": "Comment écris-tu « deux chiens » ?", "options": ["two dog", "two dogs", "two doges"], "answerIndex": 1 },
+      { "prompt": "Complète : « I have three ___. »", "options": ["apple", "apples", "an apple"], "answerIndex": 1 },
+      { "prompt": "Quel mot est au singulier (un seul) ?", "options": ["birds", "books", "cat"], "answerIndex": 2 },
+      { "prompt": "Choisis la bonne phrase :", "options": ["One cats sleeps.", "Two cats sleep.", "Two cat sleep."], "answerIndex": 1 },
+      { "prompt": "Complète : « Look at the five ___! »", "options": ["flower", "flowers", "a flower"], "answerIndex": 1 }
+    ]
+  },
+  {
+    "id": "klesson-a1-01",
+    "level": "A1",
+    "title": "Dire ce que tu aimes : I like...",
+    "explanationFr": "Dis « I like... » pour ce que tu aimes, et « I don't like... » pour le contraire.",
+    "examples": [
+      { "en": "I like mangoes.", "fr": "J'aime les mangues." },
+      { "en": "I don't like rain.", "fr": "Je n'aime pas la pluie." },
+      { "en": "Do you like music?", "fr": "Est-ce que tu aimes la musique ?" }
+    ],
+    "exercises": [
+      { "prompt": "Comment dis-tu « J'aime les bananes » ?", "options": ["I like bananas.", "I am bananas.", "I have bananas."], "answerIndex": 0 },
+      { "prompt": "Complète : « I ___ like cold water. » (négatif)", "options": ["am not", "don't", "isn't"], "answerIndex": 1 },
+      { "prompt": "Comment poses-tu la question « Tu aimes les chats ? » ?", "options": ["Like you cats?", "Do you like cats?", "Are you like cats?"], "answerIndex": 1 },
+      { "prompt": "Choisis la réponse correcte à « Do you like football? » :", "options": ["Yes, I do!", "Yes, I am!", "Yes, I have!"], "answerIndex": 0 },
+      { "prompt": "Complète : « My sister ___ green apples. »", "options": ["like", "likes", "liking"], "answerIndex": 1 }
+    ]
+  },
+  {
+    "id": "klesson-a2-01",
+    "level": "A2",
+    "title": "Parler de tes habitudes au présent",
+    "explanationFr": "Pour tes routines de chaque jour, utilise « always » (toujours) ou « every day » (tous les jours).",
+    "examples": [
+      { "en": "I wake up at seven every day.", "fr": "Je me réveille à sept heures tous les jours." },
+      { "en": "I always brush my teeth at night.", "fr": "Je me brosse toujours les dents le soir." },
+      { "en": "She reads a book after school.", "fr": "Elle lit un livre après l'école." }
+    ],
+    "exercises": [
+      { "prompt": "Complète : « I ___ my homework after school. »", "options": ["do", "does", "doing"], "answerIndex": 0 },
+      { "prompt": "Complète : « He always ___ his teeth in the morning. »", "options": ["brush", "brushes", "brushing"], "answerIndex": 1 },
+      { "prompt": "Que veut dire « every day » ?", "options": ["jamais", "tous les jours", "hier"], "answerIndex": 1 },
+      { "prompt": "Choisis la phrase correcte :", "options": ["She wake up early.", "She wakes up early.", "She waking up early."], "answerIndex": 1 },
+      { "prompt": "Complète : « We play outside ___ Saturday. »", "options": ["every", "always", "never"], "answerIndex": 0 }
+    ]
+  }
+]

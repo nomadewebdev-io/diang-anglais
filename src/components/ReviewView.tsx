@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { catalog } from '../lib/catalog';
+import { getCatalogForMode } from '../lib/catalog';
 import {
   getConstructionUnits,
   getNextConstructionUnitForLevel,
@@ -7,7 +7,7 @@ import {
   UNIT_UNLOCK_THRESHOLD,
 } from '../lib/construction';
 import { getDueAndNewCardsForToday } from '../lib/progression';
-import { CEFR_LEVELS, SKILL_LABELS_FR } from '../lib/placementTest';
+import { getLevelsForMode, SKILL_LABELS_FR } from '../lib/placementTest';
 import { formatDateISO } from '../lib/sm2';
 import { AppState, CEFRLevel, SkillType, SM2CardState } from '../lib/types';
 import { ConstructionPractice } from './ConstructionPractice';
@@ -62,8 +62,10 @@ export function ReviewView({
   const [levelFilter, setLevelFilter] = useState<CEFRLevel | 'ALL'>('ALL');
   const [selectedLessonId, setSelectedLessonId] = useState<string | null>(null);
   const [quizSkillFilter, setQuizSkillFilter] = useState<SkillType | 'ALL'>('ALL');
+  const catalog = getCatalogForMode(state.mode);
+  const availableLevels = getLevelsForMode(state.mode);
   const [constructionLevel, setConstructionLevel] = useState<CEFRLevel>(
-    state.studyPlan?.config.currentLevel ?? 'A1'
+    state.studyPlan?.config.currentLevel ?? availableLevels[0]
   );
   const [activeConstructionUnit, setActiveConstructionUnit] = useState<number | null>(
     null
@@ -169,7 +171,7 @@ export function ReviewView({
           </div>
 
           <div className="flex items-center gap-1.5 bg-[#FAF8F5] dark:bg-[#252D2A] p-1.5 rounded-xl border border-[#E4DFD3] dark:border-[#343F3B]">
-            {CEFR_LEVELS.map((lvl) => (
+            {availableLevels.map((lvl) => (
               <button
                 key={lvl}
                 type="button"
@@ -348,10 +350,12 @@ export function ReviewView({
         <FlashcardsPractice
           cards={cardsToPractice}
           sm2States={state.sm2States}
+          fallbackPool={catalog.cards}
+          mode={state.mode}
           title={
             levelFilter === 'ALL'
-              ? 'Révision SM-2 · Tous niveaux'
-              : `Révision SM-2 · Niveau ${levelFilter}`
+              ? 'Vocabulaire · Tous niveaux'
+              : `Vocabulaire · Niveau ${levelFilter}`
           }
           onRateCard={onRateCard}
           onClose={() => {
@@ -464,7 +468,7 @@ export function ReviewView({
           >
             Tous
           </button>
-          {CEFR_LEVELS.map((lvl) => (
+          {availableLevels.map((lvl) => (
             <button
               key={lvl}
               type="button"

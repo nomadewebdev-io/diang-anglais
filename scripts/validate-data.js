@@ -9,6 +9,20 @@ const dataDir = path.resolve(__dirname, '../src/data');
 const audioDir = path.resolve(__dirname, '../public/audio');
 
 const VALID_LEVELS = new Set(['A1', 'A2', 'B1', 'B2']);
+const VALID_KIDS_LEVELS = new Set(['A0', 'A1', 'A2']);
+const VALID_KIDS_THEMES = new Set([
+  'animaux',
+  'couleurs',
+  'nombres',
+  'famille',
+  'corps',
+  'école',
+  'nourriture',
+  'vêtements',
+  'météo',
+  'maison',
+  'routines',
+]);
 const VALID_SKILLS = new Set(['vocab', 'grammar', 'reading', 'listening']);
 const EXPECTED_VOICE_IDS = ['aminata', 'fatou', 'khady', 'moussa', 'cheikh', 'ibrahima'];
 const SAMPLE_PREVIEW_TEXT = "Good morning! Let's practice English together today.";
@@ -491,6 +505,93 @@ function validateAudioClips(cards, lessons, placement, sentences, constructions)
   return { uniqueTexts: requiredTexts.size, totalClips: verifiedCount };
 }
 
+function validateKidsData() {
+  const kidsCards = readJson('kids/cards.json');
+  const kidsLessons = readJson('kids/lessons.json');
+  const kidsPlacement = readJson('kids/placement.json');
+  const kidsSentences = readJson('kids/sentences.json');
+  const kidsConstructions = readJson('kids/constructions.json');
+
+  assert(
+    Array.isArray(kidsCards) && kidsCards.length === 40,
+    `kids/cards.json doit contenir exactement 40 cartes (actuel : ${kidsCards?.length}).`
+  );
+  const kCardIds = new Set();
+  for (let i = 0; i < kidsCards.length; i++) {
+    const c = kidsCards[i];
+    const label = `kids/cards.json[${i}] (${c?.id ?? 'sans-id'})`;
+    assert(c && typeof c.id === 'string' && !kCardIds.has(c.id), `${label}: id invalide ou en doublon.`);
+    kCardIds.add(c.id);
+    assert(VALID_KIDS_LEVELS.has(c.level), `${label}: niveau enfant invalide "${c.level}".`);
+    assert(VALID_KIDS_THEMES.has(c.theme), `${label}: thème enfant invalide "${c.theme}".`);
+    assert(typeof c.emoji === 'string' && c.emoji.trim().length > 0, `${label}: champ 'emoji' requis.`);
+    for (const field of ['en', 'fr', 'example', 'exampleFr']) {
+      assert(typeof c[field] === 'string' && c[field].trim().length > 0, `${label}: '${field}' requis.`);
+    }
+    assert(Array.isArray(c.distractors) && c.distractors.length === 2, `${label}: 2 distracteurs FR requis.`);
+    assert(Array.isArray(c.distractorsEn) && c.distractorsEn.length === 2, `${label}: 2 distracteurs EN requis.`);
+    assert(
+      !c.distractors.some((d) => normalizeText(d) === normalizeText(c.fr)),
+      `${label}: distracteur FR égal à la bonne réponse.`
+    );
+    assert(
+      !c.distractorsEn.some((d) => normalizeText(d) === normalizeText(c.en)),
+      `${label}: distracteur EN égal à la bonne réponse.`
+    );
+  }
+
+  assert(
+    Array.isArray(kidsLessons) && kidsLessons.length === 4,
+    `kids/lessons.json doit contenir exactement 4 leçons (actuel : ${kidsLessons?.length}).`
+  );
+  for (let i = 0; i < kidsLessons.length; i++) {
+    const l = kidsLessons[i];
+    assert(VALID_KIDS_LEVELS.has(l.level), `kids/lessons.json[${i}]: niveau invalide "${l.level}".`);
+    assert(Array.isArray(l.examples) && l.examples.length === 3, `kids/lessons.json[${i}]: 3 exemples requis.`);
+    assert(Array.isArray(l.exercises) && l.exercises.length === 5, `kids/lessons.json[${i}]: 5 exercices requis.`);
+    for (const ex of l.exercises) {
+      validateQuizOptions(ex.options, ex.answerIndex, `kids/lessons.json[${i}]`);
+    }
+  }
+
+  assert(
+    Array.isArray(kidsPlacement) && kidsPlacement.length === 24,
+    `kids/placement.json doit contenir exactement 24 questions (actuel : ${kidsPlacement?.length}).`
+  );
+  for (let i = 0; i < kidsPlacement.length; i++) {
+    const q = kidsPlacement[i];
+    assert(VALID_KIDS_LEVELS.has(q.level), `kids/placement.json[${i}]: niveau invalide "${q.level}".`);
+    assert(VALID_SKILLS.has(q.skill), `kids/placement.json[${i}]: compétence invalide "${q.skill}".`);
+    validateQuizOptions(q.options, q.answerIndex, `kids/placement.json[${i}]`);
+  }
+
+  assert(
+    Array.isArray(kidsSentences) && kidsSentences.length === 30,
+    `kids/sentences.json doit contenir exactement 30 phrases (actuel : ${kidsSentences?.length}).`
+  );
+  for (let i = 0; i < kidsSentences.length; i++) {
+    assert(VALID_KIDS_LEVELS.has(kidsSentences[i].level), `kids/sentences.json[${i}]: niveau invalide.`);
+  }
+
+  assert(
+    Array.isArray(kidsConstructions) && kidsConstructions.length === 20,
+    `kids/constructions.json doit contenir exactement 20 constructions (actuel : ${kidsConstructions?.length}).`
+  );
+  for (let i = 0; i < kidsConstructions.length; i++) {
+    const item = kidsConstructions[i];
+    assert(VALID_KIDS_LEVELS.has(item.level), `kids/constructions.json[${i}]: niveau invalide.`);
+    assert(Array.isArray(item.answers) && item.answers.length >= 1, `kids/constructions.json[${i}]: réponse requise.`);
+  }
+
+  return {
+    cards: kidsCards.length,
+    lessons: kidsLessons.length,
+    placement: kidsPlacement.length,
+    sentences: kidsSentences.length,
+    constructions: kidsConstructions.length,
+  };
+}
+
 function main() {
   const cards = readJson('cards.json');
   const lessons = readJson('lessons.json');
@@ -510,9 +611,10 @@ function main() {
     sentences,
     constructions
   );
+  const kidsStats = validateKidsData();
 
   console.log(
-    `[validate-data] OK — cards: ${cards.length}, lessons: ${lessons.length}, placement: ${placement.length}, sentences: ${sentences.length}, constructions: ${constructions.length}, audioTexts: ${audioStats.uniqueTexts}, audioClips: ${audioStats.totalClips}`
+    `[validate-data] OK — cards: ${cards.length}, lessons: ${lessons.length}, placement: ${placement.length}, sentences: ${sentences.length}, constructions: ${constructions.length}, audioTexts: ${audioStats.uniqueTexts}, audioClips: ${audioStats.totalClips} | kids(cards: ${kidsStats.cards}, lessons: ${kidsStats.lessons}, placement: ${kidsStats.placement}, sentences: ${kidsStats.sentences}, constructions: ${kidsStats.constructions})`
   );
 }
 

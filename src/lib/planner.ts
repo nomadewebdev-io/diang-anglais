@@ -1,5 +1,8 @@
 import { addDaysISO, formatDateISO } from './sm2';
-import { CEFR_LEVELS, getNextHigherLevel } from './placementTest';
+import {
+  getLevelsForMode,
+  getNextHigherLevel,
+} from './placementTest';
 import {
   CEFRLevel,
   ConstructionItem,
@@ -9,6 +12,7 @@ import {
   LessonItem,
   PlacementQuestion,
   PlacementResult,
+  ProfileMode,
   SentenceItem,
   SessionActivity,
   SessionActivityType,
@@ -19,23 +23,54 @@ import {
 } from './types';
 import { getConstructionUnits } from './construction';
 
-export function getDefaultTargetLevel(currentLevel: CEFRLevel): CEFRLevel {
-  return getNextHigherLevel(currentLevel);
+export function getDefaultTargetLevel(
+  currentLevel: CEFRLevel,
+  mode: ProfileMode = 'adult'
+): CEFRLevel {
+  return getNextHigherLevel(currentLevel, getLevelsForMode(mode));
+}
+
+export function getDefaultPlanPreferences(mode: ProfileMode = 'adult'): {
+  durationWeeks: number;
+  sessionsPerWeek: number;
+  minutesPerSession: number;
+} {
+  if (mode === 'child') {
+    return {
+      durationWeeks: 8,
+      sessionsPerWeek: 5,
+      minutesPerSession: 6,
+    };
+  }
+  return {
+    durationWeeks: 12,
+    sessionsPerWeek: 3,
+    minutesPerSession: 30,
+  };
 }
 
 export function estimateHoursForTarget(
   currentLevel: CEFRLevel,
-  targetLevel: CEFRLevel
+  targetLevel: CEFRLevel,
+  mode: ProfileMode = 'adult'
 ): number {
-  const startIdx = CEFR_LEVELS.indexOf(currentLevel);
-  const endIdx = CEFR_LEVELS.indexOf(targetLevel);
+  const levels = getLevelsForMode(mode);
+  const startIdx = levels.indexOf(currentLevel);
+  const endIdx = levels.indexOf(targetLevel);
   const diff = Math.max(0, endIdx - startIdx);
+
+  if (mode === 'child') {
+    if (diff === 0) return 15;
+    if (diff === 1) return 25;
+    return 45;
+  }
 
   if (diff === 0) {
     // Consolidation at the same level (e.g. B2 mastery)
     return 100;
   }
   if (diff === 1) {
+    if (currentLevel === 'A0') return 80;
     if (currentLevel === 'A1') return 100;
     if (currentLevel === 'A2') return 130;
     return 160; // B1 -> B2
@@ -115,10 +150,12 @@ export interface ContentCatalog {
   constructions?: ConstructionItem[];
 }
 
+const ALL_CEFR_SCALE: CEFRLevel[] = ['A0', 'A1', 'A2', 'B1', 'B2'];
+
 function getRelevantLevels(current: CEFRLevel, target: CEFRLevel): CEFRLevel[] {
-  const startIdx = CEFR_LEVELS.indexOf(current);
-  const endIdx = Math.max(startIdx, CEFR_LEVELS.indexOf(target));
-  return CEFR_LEVELS.slice(startIdx, endIdx + 1);
+  const startIdx = Math.max(0, ALL_CEFR_SCALE.indexOf(current));
+  const endIdx = Math.max(startIdx, ALL_CEFR_SCALE.indexOf(target));
+  return ALL_CEFR_SCALE.slice(startIdx, endIdx + 1);
 }
 
 function pickCyclingIds<T extends { id: string }>(

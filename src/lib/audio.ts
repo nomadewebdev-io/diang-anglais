@@ -2,6 +2,7 @@ import { PlaybackSpeed, VoiceId, VoiceProfile } from './types';
 
 export const DEFAULT_VOICE_ID: VoiceId = 'aminata';
 export const DEFAULT_PLAYBACK_RATE: PlaybackSpeed = 1;
+export const CHILD_DEFAULT_PLAYBACK_RATE: PlaybackSpeed = 0.85;
 export const VOICE_SAMPLE_TEXT = "Good morning! Let's practice English together today.";
 
 export const VOICES: VoiceProfile[] = [
@@ -85,12 +86,13 @@ export const PLAYBACK_SPEED_OPTIONS: Array<{
   shortLabel: string;
 }> = [
   { rate: 0.8, label: 'Lente (0,8x)', shortLabel: '0,8x' },
+  { rate: 0.85, label: 'Douce (0,85x)', shortLabel: '0,85x' },
   { rate: 1, label: 'Normale (1,0x)', shortLabel: '1,0x' },
   { rate: 1.2, label: 'Rapide (1,2x)', shortLabel: '1,2x' },
 ];
 
 const VALID_VOICE_IDS = new Set<VoiceId>(VOICES.map((v) => v.id));
-const VALID_PLAYBACK_RATES = new Set<number>([0.8, 1, 1.2]);
+const VALID_PLAYBACK_RATES = new Set<number>([0.8, 0.85, 1, 1.2]);
 const STORAGE_KEY = 'diang-anglais:v1';
 
 let activeVoiceId: VoiceId = DEFAULT_VOICE_ID;

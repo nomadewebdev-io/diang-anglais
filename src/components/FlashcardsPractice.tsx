@@ -10,7 +10,7 @@ import {
   getCardDirection,
   SilentResponseTimer,
 } from '../lib/srs';
-import { FlashcardItem, SM2CardState } from '../lib/types';
+import { FlashcardItem, ProfileMode, SM2CardState } from '../lib/types';
 import {
   IconAlert,
   IconArrowLeft,
@@ -23,6 +23,7 @@ interface FlashcardsPracticeProps {
   cards: FlashcardItem[];
   sm2States: Record<string, SM2CardState>;
   fallbackPool?: FlashcardItem[];
+  mode?: ProfileMode;
   title?: string;
   onRateCard: (cardId: string, updatedState: SM2CardState) => void;
   onComplete: (reviewedCount: number, answeredRatio?: number) => void;
@@ -40,11 +41,13 @@ export function FlashcardsPractice({
   cards,
   sm2States,
   fallbackPool = catalog.cards,
+  mode = 'adult',
   title = 'Vocabulaire',
   onRateCard,
   onComplete,
   onClose,
 }: FlashcardsPracticeProps): React.ReactElement {
+  const isChild = mode === 'child';
   const [queue, setQueue] = useState<FlashcardItem[]>(() => [...cards]);
   const [index, setIndex] = useState(0);
   const [reviewedCount, setReviewedCount] = useState(0);
@@ -116,6 +119,7 @@ export function FlashcardsPractice({
         responseTimeMs: elapsedMs,
         card: activeStep.card,
         direction: activeStep.direction,
+        mode,
         previousState: activeStep.prevState,
         todayStr,
       });
@@ -273,10 +277,19 @@ export function FlashcardsPractice({
         </div>
 
         <div className="text-center py-2">
+          {card.emoji && (
+            <div className="text-4xl sm:text-5xl mb-2" aria-hidden="true">
+              {card.emoji}
+            </div>
+          )}
           <span className="text-xs font-medium text-[#6B7280] dark:text-[#9CA3AF] block mb-1.5">
             {isReverse
-              ? 'Choisissez le mot anglais correspondant'
-              : 'Choisissez la bonne signification'}
+              ? isChild
+                ? 'Choisis le bon mot anglais'
+                : 'Choisissez le mot anglais correspondant'
+              : isChild
+                ? 'Choisis le bon sens'
+                : 'Choisissez la bonne signification'}
           </span>
           <div className="text-2xl sm:text-3xl font-bold text-[#111827] dark:text-[#F3F4F6] tracking-tight">
             {choices.prompt}

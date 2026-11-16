@@ -1,18 +1,19 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { preloadAudioClip, speakEnglish } from '../lib/audio';
-import { catalog } from '../lib/catalog';
+import { getCatalogForMode } from '../lib/catalog';
 import {
   abandonPlacementSession,
   AdaptiveTestSession,
   ALL_SKILLS,
-  CEFR_LEVELS,
   createAdaptiveSession,
   DONT_KNOW_LABEL_FR,
   DONT_KNOW_OPTION_INDEX,
   drawNextPlacementQuestion,
   evaluatePlacementTest,
+  getLevelsForMode,
   getPlacementLockStatus,
   getQuestionTimeLimitSeconds,
+  KIDS_PLACEMENT_QUESTION_COUNT,
   MAX_LISTENING_PLAYS,
   recordAdaptiveAnswer,
   SKILL_LABELS_FR,
@@ -21,6 +22,7 @@ import {
 import {
   analyzeFeasibility,
   generateStudyPlan,
+  getDefaultPlanPreferences,
   getDefaultTargetLevel,
 } from '../lib/planner';
 import { formatDateISO } from '../lib/sm2';
@@ -33,6 +35,7 @@ import {
   PlacementQuestion,
   PlacementResult,
   PlacementSessionState,
+  ProfileMode,
   StudyPlan,
   StudyPlanConfig,
   UserProfile,
@@ -52,6 +55,7 @@ import {
 
 interface OnboardingFlowProps {
   step: OnboardingStep;
+  mode?: ProfileMode;
   initialProfile: UserProfile | null;
   initialPlacement: PlacementResult | null;
   seenQuestionIds?: string[];
@@ -111,9 +115,26 @@ interface ActivePlacementState {
   seenIds: string[];
 }
 
-function createInitialPlacementState(initialSeenIds: string[]): ActivePlacementState {
-  const freshSession = createAdaptiveSession(catalog.placement.length, 20, 'A1');
-  const drawn = drawNextPlacementQuestion(catalog.placement, freshSession, initialSeenIds);
+function createInitialPlacementState(
+  initialSeenIds: string[],
+  mode: ProfileMode = 'adult'
+): ActivePlacementState {
+  const activeCatalog = getCatalogForMode(mode);
+  const allowedLevels = getLevelsForMode(mode);
+  const targetCount = mode === 'child' ? KIDS_PLACEMENT_QUESTION_COUNT : 20;
+  const initialLevel: CEFRLevel = mode === 'child' ? 'A0' : 'A1';
+  const freshSession = createAdaptiveSession(
+    activeCatalog.placement.length,
+    targetCount,
+    initialLevel,
+    new Date().toISOString(),
+    allowedLevels
+  );
+  const drawn = drawNextPlacementQuestion(
+    activeCatalog.placement,
+    freshSession,
+    initialSeenIds
+  );
   return {
     session: drawn.session,
     currentQuestion: drawn.question,
@@ -123,6 +144,7 @@ function createInitialPlacementState(initialSeenIds: string[]): ActivePlacementS
 
 export function OnboardingFlow({
   step,
+  mode = 'adult',
   initialProfile,
   initialPlacement,
   seenQuestionIds = [],
@@ -134,6 +156,8 @@ export function OnboardingFlow({
   onOpenSettings,
   onCancelLockedRetake,
 }: OnboardingFlowProps): React.ReactElement {
+  const isChild = mode === 'child';
+  const activeCatalog = getCatalogForMode(mode);
   // Step 1: Profile state
   const [firstName, setFirstName] = useState(initialProfile?.firstName ?? '');
   const [selectedGoal, setSelectedGoal] = useState<LearningGoal>(
@@ -146,7 +170,7 @@ export function OnboardingFlow({
   const lockStatus = getPlacementLockStatus(initialPlacement);
 
   const [placementState, setPlacementState] = useState<ActivePlacementState>(() =>
-    createInitialPlacementState(seenQuestionIds)
+    createInitialPlacementState(seenQuestionIds, mode)
   );
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [audioPlayCount, setAudioPlayCount] = useState<number>(0);
@@ -244,7 +268,7 @@ export function OnboardingFlow({
       }
 
       const nextDrawn = drawNextPlacementQuestion(
-        catalog.placement,
+        activeCatalog.placement,
         recordedSession,
         current.seenIds
       );
@@ -288,7 +312,7 @@ export function OnboardingFlow({
     [onCompletePlacement]
   );
 
-  // Per-question countdown timer (30s vocab/grammar, 45s reading/listening); timeout = "Je ne sais pas"
+  // Per-question countdown timer (adult only); child mode has no visible countdown
   useEffect(() => {
     if (
       step !== 'placement' ||
@@ -301,6 +325,10 @@ export function OnboardingFlow({
 
     if (placementState.currentQuestion.audioText) {
       preloadAudioClip(placementState.currentQuestion.audioText);
+    }
+
+    if (isChild) {
+      return;
     }
 
     const timerId = window.setInterval(() => {
@@ -326,20 +354,28 @@ export function OnboardingFlow({
   ]);
 
   // Step 3: Plan builder state
-  const determinedLevel: CEFRLevel = initialPlacement?.determinedLevel ?? 'A1';
+  const defaultPrefs = getDefaultPlanPreferences(mode);
+  const determinedLevel: CEFRLevel =
+    initialPlacement?.determinedLevel ?? (isChild ? 'A0' : 'A1');
   const [targetLevel, setTargetLevel] = useState<CEFRLevel>(() =>
-    getDefaultTargetLevel(determinedLevel)
+    getDefaultTargetLevel(determinedLevel, mode)
   );
-  const [durationWeeks, setDurationWeeks] = useState<number>(16);
-  const [sessionsPerWeek, setSessionsPerWeek] = useState<number>(4);
-  const [minutesPerSession, setMinutesPerSession] = useState<number>(30);
+  const [durationWeeks, setDurationWeeks] = useState<number>(
+    defaultPrefs.durationWeeks
+  );
+  const [sessionsPerWeek, setSessionsPerWeek] = useState<number>(
+    defaultPrefs.sessionsPerWeek
+  );
+  const [minutesPerSession, setMinutesPerSession] = useState<number>(
+    defaultPrefs.minutesPerSession
+  );
 
   // Sync default target level when placement completes
   useEffect(() => {
     if (initialPlacement) {
-      setTargetLevel(getDefaultTargetLevel(initialPlacement.determinedLevel));
+      setTargetLevel(getDefaultTargetLevel(initialPlacement.determinedLevel, mode));
     }
-  }, [initialPlacement]);
+  }, [initialPlacement, mode]);
 
   const handleProfileSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -628,16 +664,18 @@ export function OnboardingFlow({
                   {SKILL_LABELS_FR[currentQuestion.skill]}
                 </strong>
               </span>
-              <span
-                data-testid="question-timer"
-                className={`px-2.5 py-0.5 rounded-md text-xs font-bold border ${
-                  isTimeLow
-                    ? 'bg-[#FDF1EC] dark:bg-[#3A1D16] text-[#C85A32] dark:text-[#FDBA74] border-[#C85A32]/40'
-                    : 'bg-[#F3EFE6] dark:bg-[#252D2A] text-[#0F4C3A] dark:text-[#6EE7B7] border-[#E4DFD3] dark:border-[#343F3B]'
-                }`}
-              >
-                {timeLeftSeconds} s / {maxTimeSeconds} s
-              </span>
+              {!isChild && (
+                <span
+                  data-testid="question-timer"
+                  className={`px-2.5 py-0.5 rounded-md text-xs font-bold border ${
+                    isTimeLow
+                      ? 'bg-[#FDF1EC] dark:bg-[#3A1D16] text-[#C85A32] dark:text-[#FDBA74] border-[#C85A32]/40'
+                      : 'bg-[#F3EFE6] dark:bg-[#252D2A] text-[#0F4C3A] dark:text-[#6EE7B7] border-[#E4DFD3] dark:border-[#343F3B]'
+                  }`}
+                >
+                  {timeLeftSeconds} s / {maxTimeSeconds} s
+                </span>
+              )}
             </div>
           </div>
 
@@ -653,6 +691,12 @@ export function OnboardingFlow({
               style={{ width: `${progressPercent}%` }}
             />
           </div>
+
+          {currentQuestion.emoji && (
+            <div className="text-4xl sm:text-5xl mb-3" aria-hidden="true">
+              {currentQuestion.emoji}
+            </div>
+          )}
 
           <h2 className="text-lg sm:text-xl font-bold text-[#111827] dark:text-[#F3F4F6] mb-4 leading-snug">
             {currentQuestion.prompt}
@@ -731,9 +775,11 @@ export function OnboardingFlow({
                   : 'border-dashed border-[#C5BEB0] dark:border-[#4B5563] bg-[#FAF8F5]/30 dark:bg-[#1E2422] hover:bg-[#FAF8F5] dark:hover:bg-[#252D2A] text-[#4B5563] dark:text-[#D1D5DB]'
               }`}
             >
-              <span>{DONT_KNOW_LABEL_FR}</span>
+              <span>
+                {isChild ? 'Je ne sais pas encore' : DONT_KNOW_LABEL_FR}
+              </span>
               <span className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
-                Neutre (sans pénalité)
+                {isChild ? 'Tu peux passer sans souci' : 'Neutre (sans pénalité)'}
               </span>
             </button>
           </div>
@@ -766,8 +812,9 @@ export function OnboardingFlow({
   }
 
   // Step 3: Results & Study Plan configuration + Feasibility calculation
-  const startIdx = CEFR_LEVELS.indexOf(determinedLevel);
-  const availableTargets = CEFR_LEVELS.filter((_, idx) => idx >= startIdx);
+  const allowedTargetLevels = getLevelsForMode(mode);
+  const startIdx = Math.max(0, allowedTargetLevels.indexOf(determinedLevel));
+  const availableTargets = allowedTargetLevels.filter((_, idx) => idx >= startIdx);
 
   const planConfig: StudyPlanConfig = {
     currentLevel: determinedLevel,
@@ -793,7 +840,7 @@ export function OnboardingFlow({
     const generated = generateStudyPlan(
       planConfig,
       initialPlacement,
-      catalog,
+      activeCatalog,
       initialProfile?.goal
     );
     onCompletePlan(generated);
@@ -1002,7 +1049,7 @@ export function OnboardingFlow({
                 <span className="text-[#0F4C3A] dark:text-[#6EE7B7]">{minutesPerSession} min</span>
               </label>
               <div className="flex flex-wrap gap-2">
-                {[15, 20, 30, 45, 60, 90].map((m) => (
+                {(isChild ? [5, 6, 7, 8] : [15, 20, 30, 45, 60, 90]).map((m) => (
                   <button
                     key={m}
                     type="button"

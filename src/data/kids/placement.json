@@ -1,0 +1,28 @@
+[
+  { "id": "kplace-a0-01", "level": "A0", "skill": "vocab", "emoji": "🐱", "prompt": "Quel mot anglais veut dire « chat » ?", "options": ["cat", "dog", "bird"], "answerIndex": 0 },
+  { "id": "kplace-a0-02", "level": "A0", "skill": "vocab", "emoji": "🔴", "prompt": "Quelle couleur est « red » ?", "options": ["bleu", "rouge", "jaune"], "answerIndex": 1 },
+  { "id": "kplace-a0-03", "level": "A0", "skill": "grammar", "prompt": "Complète : « Hello! My ___ is Samba. »", "options": ["name", "apple", "sun"], "answerIndex": 0 },
+  { "id": "kplace-a0-04", "level": "A0", "skill": "grammar", "prompt": "Choisis le pluriel correct : « deux livres ».", "options": ["two book", "two books", "two a book"], "answerIndex": 1 },
+  { "id": "kplace-a0-05", "level": "A0", "skill": "reading", "emoji": "🍎", "prompt": "Lis : « I eat one red apple. » Que mange-t-il ?", "options": ["une pomme rouge", "une banane jaune", "un oiseau bleu"], "answerIndex": 0 },
+  { "id": "kplace-a0-06", "level": "A0", "skill": "reading", "emoji": "☀️", "prompt": "Lis : « The sun is yellow. » De quelle couleur est le soleil ?", "options": ["bleu", "jaune", "rouge"], "answerIndex": 1 },
+  { "id": "kplace-a0-07", "level": "A0", "skill": "listening", "emoji": "🐶", "prompt": "Écoute la phrase et choisis le bon animal.", "audioText": "I see a little dog.", "options": ["un chien", "un chat", "un oiseau"], "answerIndex": 0 },
+  { "id": "kplace-a0-08", "level": "A0", "skill": "listening", "emoji": "📘", "prompt": "Écoute et choisis l'objet demandé.", "audioText": "Open your book, please.", "options": ["le stylo", "le livre", "la main"], "answerIndex": 1 },
+
+  { "id": "kplace-a1-01", "level": "A1", "skill": "vocab", "emoji": "🐘", "prompt": "Que veut dire « elephant » ?", "options": ["singe", "éléphant", "girafe"], "answerIndex": 1 },
+  { "id": "kplace-a1-02", "level": "A1", "skill": "vocab", "emoji": "🌧️", "prompt": "Quel mot veut dire « la pluie » ?", "options": ["rain", "sun", "shirt"], "answerIndex": 0 },
+  { "id": "kplace-a1-03", "level": "A1", "skill": "grammar", "prompt": "Complète : « I ___ bananas! » (J'aime)", "options": ["am", "like", "have"], "answerIndex": 1 },
+  { "id": "kplace-a1-04", "level": "A1", "skill": "grammar", "prompt": "Complète la question : « ___ you like green apples? »", "options": ["Do", "Is", "Are"], "answerIndex": 0 },
+  { "id": "kplace-a1-05", "level": "A1", "skill": "reading", "emoji": "🛏️", "prompt": "Lis : « My bedroom is neat and quiet. » Comment est la chambre ?", "options": ["bruyante et grande", "rangée et calme", "petite et froide"], "answerIndex": 1 },
+  { "id": "kplace-a1-06", "level": "A1", "skill": "reading", "emoji": "👩‍🏫", "prompt": "Lis : « Our teacher explains the game. » Que fait la maîtresse ?", "options": ["elle explique le jeu", "elle mange du pain", "elle dort"], "answerIndex": 0 },
+  { "id": "kplace-a1-07", "level": "A1", "skill": "listening", "emoji": "⏰", "prompt": "Écoute et choisis l'heure du réveil.", "audioText": "I wake up at seven o'clock.", "options": ["à six heures", "à sept heures", "à neuf heures"], "answerIndex": 1 },
+  { "id": "kplace-a1-08", "level": "A1", "skill": "listening", "emoji": "👟", "prompt": "Écoute la consigne.", "audioText": "Put on your shoes to go out.", "options": ["Mets tes chaussures", "Enlève ta chemise", "Ferme les yeux"], "answerIndex": 0 },
+
+  { "id": "kplace-a2-01", "level": "A2", "skill": "vocab", "emoji": "🌈", "prompt": "Que veut dire « rainbow » ?", "options": ["imperméable", "arc-en-ciel", "papillon"], "answerIndex": 1 },
+  { "id": "kplace-a2-02", "level": "A2", "skill": "vocab", "emoji": "📝", "prompt": "Quel mot correspond aux « devoirs » ?", "options": ["homework", "shoulder", "watermelon"], "answerIndex": 0 },
+  { "id": "kplace-a2-03", "level": "A2", "skill": "grammar", "prompt": "Complète : « He always ___ his teeth at night. »", "options": ["brush", "brushes", "brushing"], "answerIndex": 1 },
+  { "id": "kplace-a2-04", "level": "A2", "skill": "grammar", "prompt": "Choisis la phrase correcte :", "options": ["She finish her homework.", "She finishes her homework.", "She finishing her homework."], "answerIndex": 1 },
+  { "id": "kplace-a2-05", "level": "A2", "skill": "reading", "emoji": "🦋", "prompt": "Lis : « A colorful butterfly lands on the flower. » Où se pose le papillon ?", "options": ["sur le cartable", "sur la fleur", "sur le lit"], "answerIndex": 1 },
+  { "id": "kplace-a2-06", "level": "A2", "skill": "reading", "emoji": "👵", "prompt": "Lis : « My grandmother tells funny stories after dinner. » Quand raconte-t-elle des histoires ?", "options": ["avant l'école", "après le dîner", "le matin"], "answerIndex": 1 },
+  { "id": "kplace-a2-07", "level": "A2", "skill": "listening", "emoji": "🧥", "prompt": "Écoute et choisis le bon vêtement.", "audioText": "Wear your raincoat when it pours.", "options": ["un t-shirt blanc", "un imperméable", "des chaussures"], "answerIndex": 1 },
+  { "id": "kplace-a2-08", "level": "A2", "skill": "listening", "emoji": "🍉", "prompt": "Écoute la phrase et choisis le fruit.", "audioText": "Cold watermelon tastes great in summer.", "options": ["la pastèque", "la banane", "la pomme"], "answerIndex": 0 }
+]

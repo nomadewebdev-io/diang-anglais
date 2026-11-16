@@ -372,7 +372,7 @@ export function getConstructionUnits(
     map.get(key)!.items.push(item);
   }
 
-  const levelOrder: Record<CEFRLevel, number> = { A1: 0, A2: 1, B1: 2, B2: 3 };
+  const levelOrder: Record<CEFRLevel, number> = { A0: 0, A1: 1, A2: 2, B1: 3, B2: 4 };
   return Array.from(map.values())
     .map((u) => ({
       ...u,

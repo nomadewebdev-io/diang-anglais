@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { catalog } from '../lib/catalog';
+import { getCatalogForMode } from '../lib/catalog';
 import {
   ALL_SKILLS,
   getPlacementLockStatus,
@@ -20,8 +20,10 @@ import {
   IconFlame,
   IconRefresh,
   IconSettings,
+  IconShield,
   IconUpload,
 } from './Icons';
+import { ParentGateModal } from './ParentGateModal';
 
 interface ProgressViewProps {
   state: AppState;
@@ -44,6 +46,11 @@ export function ProgressView({
   } | null>(null);
   const [confirmReset, setConfirmReset] = useState(false);
   const [showLockNotice, setShowLockNotice] = useState(false);
+  const [isParentGateOpen, setIsParentGateOpen] = useState(false);
+  const [isParentUnlocked, setIsParentUnlocked] = useState(false);
+
+  const catalog = getCatalogForMode(state.mode);
+  const isChild = state.mode === 'child';
 
   const lockStatus = getPlacementLockStatus(state.placementResult);
 
@@ -275,83 +282,111 @@ export function ProgressView({
       </div>
 
       {/* Export / Import JSON Section */}
-      <div className="bg-white border border-[#E4DFD3] rounded-2xl p-6">
-        <h2 className="text-base font-bold text-[#111827] mb-1">
+      <div className="bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] rounded-2xl p-6">
+        <h2 className="text-base font-bold text-[#111827] dark:text-[#F3F4F6] mb-1">
           Sauvegarde et portabilité (Export / Import JSON)
         </h2>
-        <p className="text-xs sm:text-sm text-[#4B5563] mb-4">
-          Vos données sont enregistrées hors-ligne sur cet appareil (localStorage). Exportez un
-          fichier JSON pour conserver une copie ou transférer votre progression.
-        </p>
-
-        {importFeedback && (
-          <div
-            className={`mb-4 p-3.5 rounded-xl text-xs font-semibold flex items-center gap-2 ${
-              importFeedback.type === 'success'
-                ? 'bg-[#E6F0EC] text-[#0F4C3A]'
-                : 'bg-[#FDF1EC] text-[#9A3412]'
-            }`}
-          >
-            <IconCheck className="w-4 h-4 shrink-0" />
-            <span>{importFeedback.message}</span>
-          </div>
-        )}
-
-        <div className="flex flex-wrap items-center gap-3">
-          <button
-            type="button"
-            onClick={handleExportJSON}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0F4C3A] hover:bg-[#0A3628] text-white text-xs font-semibold transition cursor-pointer"
-          >
-            <IconDownload className="w-4 h-4" />
-            <span>Exporter ma progression (.json)</span>
-          </button>
-
-          <label className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#D5CFC2] bg-[#FAF8F5] hover:bg-white text-[#111827] text-xs font-semibold transition cursor-pointer">
-            <IconUpload className="w-4 h-4" />
-            <span>Importer un fichier JSON</span>
-            <input
-              type="file"
-              accept=".json,application/json"
-              onChange={handleImportJSON}
-              className="sr-only"
-            />
-          </label>
-
-          {!confirmReset ? (
+        {isChild && !isParentUnlocked ? (
+          <div className="space-y-3 mt-2">
+            <p className="text-xs sm:text-sm text-[#4B5563] dark:text-[#D1D5DB]">
+              L’export, l’import et la réinitialisation sont protégés par l’espace parent.
+            </p>
             <button
               type="button"
-              onClick={() => setConfirmReset(true)}
-              className="ml-auto text-xs font-medium text-[#6B7280] hover:text-[#9A3412] underline cursor-pointer"
+              onClick={() => setIsParentGateOpen(true)}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0F4C3A] hover:bg-[#0A3628] text-white text-xs font-semibold cursor-pointer"
             >
-              Réinitialiser toutes les données
+              <IconShield className="w-4 h-4" />
+              <span>Accéder à l’espace parent</span>
             </button>
-          ) : (
-            <div className="ml-auto flex items-center gap-2">
-              <span className="text-xs text-[#9A3412] font-semibold">
-                Confirmer la remise à zéro ?
-              </span>
+          </div>
+        ) : (
+          <>
+            <p className="text-xs sm:text-sm text-[#4B5563] dark:text-[#D1D5DB] mb-4">
+              Vos données sont enregistrées hors-ligne sur cet appareil (localStorage). Exportez un
+              fichier JSON pour conserver une copie ou transférer votre progression.
+            </p>
+
+            {importFeedback && (
+              <div
+                className={`mb-4 p-3.5 rounded-xl text-xs font-semibold flex items-center gap-2 ${
+                  importFeedback.type === 'success'
+                    ? 'bg-[#E6F0EC] text-[#0F4C3A]'
+                    : 'bg-[#FDF1EC] text-[#9A3412]'
+                }`}
+              >
+                <IconCheck className="w-4 h-4 shrink-0" />
+                <span>{importFeedback.message}</span>
+              </div>
+            )}
+
+            <div className="flex flex-wrap items-center gap-3">
               <button
                 type="button"
-                onClick={() => {
-                  onResetAll();
-                  setConfirmReset(false);
-                }}
-                className="px-3 py-1.5 rounded-lg bg-[#C85A32] text-white text-xs font-semibold cursor-pointer"
+                onClick={handleExportJSON}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0F4C3A] hover:bg-[#0A3628] text-white text-xs font-semibold transition cursor-pointer"
               >
-                Oui, effacer
+                <IconDownload className="w-4 h-4" />
+                <span>Exporter ma progression (.json)</span>
               </button>
-              <button
-                type="button"
-                onClick={() => setConfirmReset(false)}
-                className="px-3 py-1.5 rounded-lg border border-[#D5CFC2] text-xs font-semibold cursor-pointer"
-              >
-                Annuler
-              </button>
+
+              <label className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#D5CFC2] bg-[#FAF8F5] hover:bg-white text-[#111827] text-xs font-semibold transition cursor-pointer">
+                <IconUpload className="w-4 h-4" />
+                <span>Importer un fichier JSON</span>
+                <input
+                  type="file"
+                  accept=".json,application/json"
+                  onChange={handleImportJSON}
+                  className="sr-only"
+                />
+              </label>
+
+              {!confirmReset ? (
+                <button
+                  type="button"
+                  onClick={() => setConfirmReset(true)}
+                  className="ml-auto text-xs font-medium text-[#6B7280] hover:text-[#9A3412] underline cursor-pointer"
+                >
+                  Réinitialiser toutes les données
+                </button>
+              ) : (
+                <div className="ml-auto flex items-center gap-2">
+                  <span className="text-xs text-[#9A3412] font-semibold">
+                    Confirmer la remise à zéro ?
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onResetAll();
+                      setConfirmReset(false);
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-[#C85A32] text-white text-xs font-semibold cursor-pointer"
+                  >
+                    Oui, effacer
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setConfirmReset(false)}
+                    className="px-3 py-1.5 rounded-lg border border-[#D5CFC2] text-xs font-semibold cursor-pointer"
+                  >
+                    Annuler
+                  </button>
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </>
+        )}
       </div>
+
+      {isParentGateOpen && (
+        <ParentGateModal
+          onSuccess={() => {
+            setIsParentUnlocked(true);
+            setIsParentGateOpen(false);
+          }}
+          onCancel={() => setIsParentGateOpen(false)}
+        />
+      )}
     </div>
   );
 }

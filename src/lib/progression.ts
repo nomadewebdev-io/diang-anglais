@@ -3,6 +3,7 @@ import {
   AppState,
   DailyActivityLog,
   FlashcardItem,
+  ProfileMode,
   SM2CardState,
   StudyPlan,
   StudySession,
@@ -11,6 +12,11 @@ import {
 export const MIN_ANSWERED_RATIO_FOR_XP = 0.6;
 export const DEFAULT_DAILY_NEW_CARDS_LIMIT = 20;
 export const BONUS_PAUSE_THRESHOLD = 4;
+export const BONUS_PAUSE_THRESHOLD_CHILD = 2;
+
+export function getBonusPauseThreshold(mode: ProfileMode = 'adult'): number {
+  return mode === 'child' ? BONUS_PAUSE_THRESHOLD_CHILD : BONUS_PAUSE_THRESHOLD;
+}
 
 /**
  * Formate une date ISO (YYYY-MM-DD) en français naturel :

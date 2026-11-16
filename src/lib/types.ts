@@ -1,4 +1,6 @@
-export type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2';
+export type CEFRLevel = 'A0' | 'A1' | 'A2' | 'B1' | 'B2';
+
+export type ProfileMode = 'adult' | 'child';
 
 export type LearningGoal = 'voyage' | 'travail' | 'études' | 'conversation';
 
@@ -10,7 +12,7 @@ export type ThemePreference = 'light' | 'dark' | 'system';
 
 export type VoiceId = 'aminata' | 'fatou' | 'khady' | 'moussa' | 'cheikh' | 'ibrahima';
 
-export type PlaybackSpeed = 0.8 | 1 | 1.2;
+export type PlaybackSpeed = 0.8 | 0.85 | 1 | 1.2;
 
 export interface VoiceProfile {
   id: VoiceId;
@@ -33,6 +35,7 @@ export interface FlashcardItem {
   exampleFr: string;
   level: CEFRLevel;
   theme: string;
+  emoji?: string;
   distractors?: string[];
   distractorsEn?: string[];
 }
@@ -65,6 +68,7 @@ export interface PlacementQuestion {
   options: string[];
   answerIndex: number;
   audioText?: string;
+  emoji?: string;
 }
 
 export interface SentenceItem {
@@ -222,6 +226,7 @@ export interface StudyPlan {
 export interface UserProfile {
   firstName: string;
   goal: LearningGoal;
+  mode?: ProfileMode;
   createdAt: string;
 }
 
@@ -237,6 +242,7 @@ export interface DailyActivityLog {
 
 export interface AppState {
   version: number;
+  mode: ProfileMode;
   theme: ThemePreference;
   voiceId: VoiceId;
   playbackRate: PlaybackSpeed;
@@ -256,4 +262,18 @@ export interface AppState {
   totalMinutesStudied: number;
   dictationCompletedCount: number;
   quizzesCompletedCount: number;
+}
+
+export interface LocalProfileRecord {
+  id: string;
+  name: string;
+  mode: ProfileMode;
+  createdAt: string;
+  state: AppState;
+}
+
+export interface MultiProfileStore {
+  version: number;
+  activeProfileId: string;
+  profiles: LocalProfileRecord[];
 }

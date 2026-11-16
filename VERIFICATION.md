@@ -1,18 +1,13 @@
-# Vérification Diang-Anglais — Choix de significations & classement SM-2 automatique
+# Vérification Diang-Anglais — Mode Enfant (8-12 ans) & Profils Locaux
 
 ## Critères vérifiés
-- [x] **Déroulé d'une carte (`FlashcardsPractice.tsx`)** : mot anglais seul au départ avec `"Écouter le mot"`, 3 choix mélangés (touches `1`, `2`, `3`) + bouton `"Je ne sais pas"`, aucun compte à rebours visible.
-- [x] **Retour après réponse** : indication juste/faux par couleur + icône + texte, bonne réponse affichée, phrase d'exemple + traduction + audio, étiquette automatique (`"Classée : Facile · prochaine révision dans X jours"` ou `"Classée : À revoir · revient dans cette séance et demain"`), bouton `"Suivant"`.
-- [x] **Classement automatique (`src/lib/srs.ts` + `src/lib/sm2.ts`)** :
-  - `"Je ne sais pas"` → qualité `0`, mauvaise réponse → qualité `1` (reprise dans la séance et le lendemain).
-  - Bonne réponse → `"Difficile"` (`3`), `"Bien"` (`4`), `"Facile"` (`5`) selon `SRS_TIMING_CONFIG` (seuils par niveau CECRL et longueur du mot).
-  - Garde-fou sur les cartes jamais réussies (`repetitions === 0`) : qualité max `4` (`"Bien"`).
-  - Chronomètre silencieux (`SilentResponseTimer`) mis en pause sur `visibilitychange` et plafonné à 20 s.
-  - Alternance au sens inverse (`FR → EN`) après 2 réussites consécutives (`shouldUseReverseDirection`).
-  - Suppression des boutons manuels et du libellé `(Planification SM-2)`, conservation discrète de `Répétitions` / `Facilité`.
-- [x] **Faux choix sur 800 cartes (`src/data/cards.json` + `scripts/validate-data.js`)** : `distractors` (français) et `distractorsEn` (anglais) ajoutés sur les 800 cartes, validés sans doublon ni égalité avec la bonne réponse, avec repli thématique dans `buildCardChoices`.
+- [x] **Profils locaux (`src/lib/storage.ts`, `src/components/ProfileGateView.tsx`)** : jusqu'à 4 profils séparés sous `diang-anglais:v2` (progression, plan, XP, série, voix, thème, cartes vues), écran `"Qui apprend ?"` au premier lancement (`Enfant (8-12 ans)` / `Ado / Adulte`, prénom/pseudo uniquement), sélecteur à initiales dans l'en-tête, migration automatique sans perte depuis `diang-anglais:v1` vers un premier profil `"Adulte"`.
+- [x] **Espace parent (`src/lib/parentGate.ts`, `src/components/ParentGateModal.tsx`)** : calcul de contrôle aléatoire (ex. `7 × 8`) sur les profils enfant pour accéder aux Paramètres, au changement de profil, à l'export/import JSON et à la réinitialisation.
+- [x] **Interface & rythme enfant** : classe `.child-mode` (police >= 18 px, cibles tactiles >= 56 px), tutoiement, phrases courtes et bienveillantes, vitesse vocale par défaut `0,85x`, seuils de classement SM-2 ×2 (`src/lib/srs.ts`), séances courtes (5 à 8 min), pause conseillée après 2 séances bonus, emoji visible avant réponse sur les cartes enfant.
+- [x] **Contenu enfant séparé (`src/data/kids/*`, `src/lib/catalog.ts`)** : 40 cartes, 4 leçons, 24 questions de test (adaptatif sur `A0/A1/A2`, 12 questions, sans minuteur visible), 30 phrases et 20 constructions validées par `scripts/validate-data.js`, sans jamais mélanger les contenus adulte et enfant.
+- [x] **Vie privée (`PRIVACY.md`)** : stockage 100 % local, aucun compte, aucune requête réseau externe, aucune publicité ni outil d'analyse.
 
 ## Contrôles automatisés
-- `npm test` (`node scripts/validate-data.js && vitest run`) : **8 fichiers de test, 47 tests passés** (dont 6 tests dédiés dans `src/lib/__tests__/srs.test.ts`).
+- `npm test` (`node scripts/validate-data.js && vitest run`) : **9 fichiers de test, 53 tests passés** (dont 6 tests dédiés dans `src/lib/__tests__/kidsAndProfiles.test.ts`).
 - `npm run build` (`tsc -b && vite build`) : **succès (0 erreur TypeScript, bundle PWA généré)**.
 - Rendu navigateur headless Chrome CDP sur `http://localhost:4173/` : **0 erreur console**, **0 débordement horizontal** (`scrollWidth === clientWidth === 1425`), captures `verification/mobile-390px.png` et `verification/desktop-1440px.png` validées visuellement.

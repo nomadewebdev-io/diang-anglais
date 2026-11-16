@@ -2,6 +2,7 @@ import { calculateNextSM2State, formatDateISO } from './sm2';
 import {
   CEFRLevel,
   FlashcardItem,
+  ProfileMode,
   SM2CardState,
   SM2Rating,
 } from './types';
@@ -34,6 +35,7 @@ export const SRS_TIMING_CONFIG: SRSTimingConfig = {
   normalPerExtraCharMs: 280,
   maxExtraCharBonus: 18,
   levels: {
+    A0: { fastMaxMs: 4600, normalMaxMs: 10500 },
     A1: { fastMaxMs: 4200, normalMaxMs: 9500 },
     A2: { fastMaxMs: 3800, normalMaxMs: 8500 },
     B1: { fastMaxMs: 3300, normalMaxMs: 7500 },
@@ -51,16 +53,19 @@ const RATING_LABELS_FR: Record<SM2Rating, string> = {
 export function getResponseThresholds(
   level: CEFRLevel,
   wordLength: number,
-  config: SRSTimingConfig = SRS_TIMING_CONFIG
+  config: SRSTimingConfig = SRS_TIMING_CONFIG,
+  mode: ProfileMode = 'adult'
 ): LevelTimingThreshold {
-  const base = config.levels[level];
+  const base = config.levels[level] ?? config.levels.A1;
   const extraChars = Math.min(
     config.maxExtraCharBonus,
     Math.max(0, wordLength - config.baseWordLength)
   );
+  const multiplier = mode === 'child' ? 2 : 1;
   return {
-    fastMaxMs: base.fastMaxMs + extraChars * config.fastPerExtraCharMs,
-    normalMaxMs: base.normalMaxMs + extraChars * config.normalPerExtraCharMs,
+    fastMaxMs: (base.fastMaxMs + extraChars * config.fastPerExtraCharMs) * multiplier,
+    normalMaxMs:
+      (base.normalMaxMs + extraChars * config.normalPerExtraCharMs) * multiplier,
   };
 }
 
@@ -70,6 +75,7 @@ export interface ClassifyResponseInput {
   responseTimeMs: number;
   card: Pick<FlashcardItem, 'level' | 'en' | 'fr'>;
   direction?: CardDirection;
+  mode?: ProfileMode;
   previousState: SM2CardState;
   todayStr?: string;
   config?: SRSTimingConfig;
@@ -97,13 +103,16 @@ export function classifyResponseToSM2({
   responseTimeMs,
   card,
   direction = 'en-to-fr',
+  mode = 'adult',
   previousState,
   todayStr = formatDateISO(new Date()),
   config = SRS_TIMING_CONFIG,
 }: ClassifyResponseInput): ClassifyResponseResult {
+  const effectiveMaxMs =
+    mode === 'child' ? config.maxResponseTimeMs * 2 : config.maxResponseTimeMs;
   const clampedResponseTimeMs = Math.max(
     0,
-    Math.min(config.maxResponseTimeMs, Math.round(responseTimeMs))
+    Math.min(effectiveMaxMs, Math.round(responseTimeMs))
   );
 
   let quality: SM2Quality;
@@ -119,7 +128,12 @@ export function classifyResponseToSM2({
   } else {
     const promptLength =
       direction === 'fr-to-en' ? card.fr.trim().length : card.en.trim().length;
-    const thresholds = getResponseThresholds(card.level, promptLength, config);
+    const thresholds = getResponseThresholds(
+      card.level,
+      promptLength,
+      config,
+      mode
+    );
 
     if (clampedResponseTimeMs <= thresholds.fastMaxMs) {
       if (previousState.repetitions === 0) {

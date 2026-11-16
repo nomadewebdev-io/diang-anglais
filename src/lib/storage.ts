@@ -1,4 +1,5 @@
 import {
+  CHILD_DEFAULT_PLAYBACK_RATE,
   DEFAULT_PLAYBACK_RATE,
   DEFAULT_VOICE_ID,
   isValidPlaybackSpeed,
@@ -10,20 +11,26 @@ import { formatDateISO } from './sm2';
 import { isValidThemePreference } from './theme';
 import {
   AppState,
+  LocalProfileRecord,
+  MultiProfileStore,
   OnboardingStep,
   PlacementSessionAnswer,
   PlacementSessionState,
   PlacementSessionStatus,
+  ProfileMode,
   StudyPlan,
 } from './types';
 
 export const STORAGE_KEY = 'diang-anglais:v1';
+export const MULTI_PROFILE_STORAGE_KEY = 'diang-anglais:v2';
+export const MAX_LOCAL_PROFILES = 4;
 export const LEGACY_STORAGE_KEYS = [
   'diang-anglais-state-v1',
   'diang-anglais:v0',
   'diang-anglais',
 ];
 export const CURRENT_SCHEMA_VERSION = 1;
+export const CURRENT_MULTI_PROFILE_VERSION = 2;
 
 const VALID_ONBOARDING_STEPS: OnboardingStep[] = [
   'profile',
@@ -38,14 +45,17 @@ const VALID_SESSION_STATUSES: PlacementSessionStatus[] = [
   'completed',
 ];
 
-export function createInitialAppState(): AppState {
-  syncAudioPreferences(DEFAULT_VOICE_ID, DEFAULT_PLAYBACK_RATE);
+export function createInitialAppState(mode: ProfileMode = 'adult'): AppState {
+  const defaultRate =
+    mode === 'child' ? CHILD_DEFAULT_PLAYBACK_RATE : DEFAULT_PLAYBACK_RATE;
+  syncAudioPreferences(DEFAULT_VOICE_ID, defaultRate);
   return {
     version: CURRENT_SCHEMA_VERSION,
+    mode,
     theme: 'system',
     voiceId: DEFAULT_VOICE_ID,
-    playbackRate: DEFAULT_PLAYBACK_RATE,
-    dailyNewCardsLimit: 20,
+    playbackRate: defaultRate,
+    dailyNewCardsLimit: mode === 'child' ? 10 : 20,
     xp: 0,
     dailyLogs: {},
     earnedBadges: [],
@@ -244,8 +254,11 @@ export function migrateAndValidateState(
 
   const earnedBadges = normalizeStringArray(candidate.earnedBadges);
 
+  const mode: ProfileMode = candidate.mode === 'child' ? 'child' : 'adult';
+
   return {
     version: CURRENT_SCHEMA_VERSION,
+    mode,
     theme,
     voiceId,
     playbackRate,
@@ -413,4 +426,234 @@ export function parseImportedProgressJSON(
       error: 'Impossible de lire ce fichier : le contenu JSON est invalide ou corrompu.',
     };
   }
+}
+
+// --- Multi-profils locaux (max 4 profils sur l'appareil, clé diang-anglais:v2) ---
+
+export function getActiveProfile(
+  store: MultiProfileStore
+): LocalProfileRecord | null {
+  if (store.profiles.length === 0) return null;
+  return (
+    store.profiles.find((p) => p.id === store.activeProfileId) ??
+    store.profiles[0]
+  );
+}
+
+export function saveMultiProfileStore(store: MultiProfileStore): boolean {
+  const active = getActiveProfile(store);
+  if (active) {
+    syncAudioPreferences(active.state.voiceId, active.state.playbackRate);
+  }
+  return safeSetItem(MULTI_PROFILE_STORAGE_KEY, JSON.stringify(store));
+}
+
+export function createLocalProfile(
+  name: string,
+  mode: ProfileMode,
+  goal?: NonNullable<AppState['profile']>['goal']
+): LocalProfileRecord {
+  const cleanName = name.trim().slice(0, 32) || (mode === 'child' ? 'Enfant' : 'Adulte');
+  const nowIso = new Date().toISOString();
+  const state = createInitialAppState(mode);
+  const resolvedGoal = goal ?? (mode === 'child' ? 'études' : 'conversation');
+  state.profile = {
+    firstName: cleanName,
+    goal: resolvedGoal,
+    mode,
+    createdAt: nowIso,
+  };
+  state.onboardingStep = 'placement';
+
+  return {
+    id: `prof-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+    name: cleanName,
+    mode,
+    createdAt: nowIso,
+    state,
+  };
+}
+
+export function addProfileToStore(
+  store: MultiProfileStore,
+  profile: LocalProfileRecord
+): MultiProfileStore {
+  if (store.profiles.length >= MAX_LOCAL_PROFILES) {
+    return store;
+  }
+  const next: MultiProfileStore = {
+    version: CURRENT_MULTI_PROFILE_VERSION,
+    activeProfileId: profile.id,
+    profiles: [...store.profiles, profile],
+  };
+  saveMultiProfileStore(next);
+  return next;
+}
+
+export function switchActiveProfile(
+  store: MultiProfileStore,
+  profileId: string
+): MultiProfileStore {
+  const found = store.profiles.find((p) => p.id === profileId);
+  if (!found) return store;
+  const next: MultiProfileStore = {
+    ...store,
+    activeProfileId: found.id,
+  };
+  saveMultiProfileStore(next);
+  return next;
+}
+
+export function updateActiveProfileState(
+  store: MultiProfileStore,
+  updater: (prev: AppState) => AppState
+): MultiProfileStore {
+  const active = getActiveProfile(store);
+  if (!active) return store;
+  const updatedState = updater(active.state);
+  const nextProfiles = store.profiles.map((p) =>
+    p.id === active.id
+      ? {
+          ...p,
+          name: updatedState.profile?.firstName || p.name,
+          state: updatedState,
+        }
+      : p
+  );
+  const next: MultiProfileStore = {
+    ...store,
+    profiles: nextProfiles,
+  };
+  saveMultiProfileStore(next);
+  return next;
+}
+
+export function resetActiveProfileInStore(
+  store: MultiProfileStore
+): MultiProfileStore {
+  const active = getActiveProfile(store);
+  if (!active) return store;
+  const freshState = createInitialAppState(active.mode);
+  freshState.profile = {
+    firstName: active.name,
+    goal: active.mode === 'child' ? 'études' : 'conversation',
+    mode: active.mode,
+    createdAt: active.createdAt,
+  };
+  freshState.onboardingStep = 'placement';
+
+  const next: MultiProfileStore = {
+    ...store,
+    profiles: store.profiles.map((p) =>
+      p.id === active.id ? { ...p, state: freshState } : p
+    ),
+  };
+  saveMultiProfileStore(next);
+  return next;
+}
+
+export function deleteProfileFromStore(
+  store: MultiProfileStore,
+  profileId: string
+): MultiProfileStore {
+  const remaining = store.profiles.filter((p) => p.id !== profileId);
+  const nextActiveId =
+    store.activeProfileId === profileId
+      ? remaining[0]?.id ?? ''
+      : store.activeProfileId;
+  const next: MultiProfileStore = {
+    version: CURRENT_MULTI_PROFILE_VERSION,
+    activeProfileId: nextActiveId,
+    profiles: remaining,
+  };
+  saveMultiProfileStore(next);
+  return next;
+}
+
+export function loadMultiProfileStore(
+  todayStr: string = formatDateISO(new Date())
+): MultiProfileStore {
+  const rawV2 = safeGetItem(MULTI_PROFILE_STORAGE_KEY);
+  if (rawV2) {
+    try {
+      const parsed: unknown = JSON.parse(rawV2);
+      if (isPlainObject(parsed) && Array.isArray(parsed.profiles)) {
+        const validProfiles: LocalProfileRecord[] = [];
+        for (const item of parsed.profiles) {
+          if (!isPlainObject(item) || typeof item.id !== 'string') continue;
+          const migrated = migrateAndValidateState(item.state, todayStr);
+          if (!migrated) continue;
+          const finalized = markInProgressSessionAbandonedOnLoad(migrated);
+          const mode: ProfileMode = item.mode === 'child' ? 'child' : finalized.mode;
+          finalized.mode = mode;
+          validProfiles.push({
+            id: item.id,
+            name:
+              typeof item.name === 'string' && item.name.trim()
+                ? item.name.trim()
+                : finalized.profile?.firstName || (mode === 'child' ? 'Enfant' : 'Adulte'),
+            mode,
+            createdAt:
+              typeof item.createdAt === 'string'
+                ? item.createdAt
+                : finalized.profile?.createdAt || new Date().toISOString(),
+            state: finalized,
+          });
+        }
+        if (validProfiles.length > 0) {
+          const activeId = validProfiles.some((p) => p.id === parsed.activeProfileId)
+            ? String(parsed.activeProfileId)
+            : validProfiles[0].id;
+          const store: MultiProfileStore = {
+            version: CURRENT_MULTI_PROFILE_VERSION,
+            activeProfileId: activeId,
+            profiles: validProfiles.slice(0, MAX_LOCAL_PROFILES),
+          };
+          saveMultiProfileStore(store);
+          return store;
+        }
+      }
+    } catch {
+      // Fallback to v1 migration
+    }
+  }
+
+  // Migration automatique depuis v1 ou clés legacy vers un premier profil "Adulte"
+  const keysToCheck = [STORAGE_KEY, ...LEGACY_STORAGE_KEYS];
+  for (const key of keysToCheck) {
+    const raw = safeGetItem(key);
+    if (!raw) continue;
+    try {
+      const parsed: unknown = JSON.parse(raw);
+      const migrated = migrateAndValidateState(parsed, todayStr);
+      if (migrated) {
+        const finalized = markInProgressSessionAbandonedOnLoad(migrated);
+        finalized.mode = 'adult';
+        const profileName = finalized.profile?.firstName || 'Adulte';
+        const store: MultiProfileStore = {
+          version: CURRENT_MULTI_PROFILE_VERSION,
+          activeProfileId: 'profile-adult-1',
+          profiles: [
+            {
+              id: 'profile-adult-1',
+              name: profileName,
+              mode: 'adult',
+              createdAt: finalized.profile?.createdAt || new Date().toISOString(),
+              state: finalized,
+            },
+          ],
+        };
+        saveMultiProfileStore(store);
+        return store;
+      }
+    } catch {
+      // Ignore corrupted key
+    }
+  }
+
+  return {
+    version: CURRENT_MULTI_PROFILE_VERSION,
+    activeProfileId: '',
+    profiles: [],
+  };
 }

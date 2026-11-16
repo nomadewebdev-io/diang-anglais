@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { catalog } from '../lib/catalog';
+import { getCatalogForMode } from '../lib/catalog';
 import { SKILL_LABELS_FR } from '../lib/placementTest';
 import {
   getMilestoneWeeks,
 } from '../lib/planner';
 import {
-  BONUS_PAUSE_THRESHOLD,
   calculateStrictStreak,
   computeBadges,
   formatFrenchDateNatural,
+  getBonusPauseThreshold,
   getBonusSessionsStats,
   getDueAndNewCardsForToday,
   getNextUncompletedSession,
@@ -96,6 +96,10 @@ export function TodayView({
       </div>
     );
   }
+
+  const catalog = getCatalogForMode(state.mode);
+  const isChild = state.mode === 'child';
+  const pauseThreshold = getBonusPauseThreshold(state.mode);
 
   const todayStr = formatDateISO(new Date());
   const todaySession = getNextUncompletedSession(plan);
@@ -227,6 +231,8 @@ export function TodayView({
           <FlashcardsPractice
             cards={cardsToUse}
             sm2States={state.sm2States}
+            fallbackPool={catalog.cards}
+            mode={state.mode}
             title={`${activity.title} · Semaine ${session.weekNumber}`}
             onRateCard={onRateCard}
             onClose={() => setActiveActivity(null)}
@@ -400,21 +406,28 @@ export function TodayView({
               </span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-1">
-              Bonjour {state.profile?.firstName ?? ''}
+              {isChild ? 'Salut' : 'Bonjour'} {state.profile?.firstName ?? ''}
             </h1>
             <p className="text-sm text-[#E6F0EC]/90">
               {todaySession
-                ? `Votre séance du jour dure ${todaySession.totalMinutes} minutes et renforce vos priorités (${todaySession.focusSkills
-                    .map((s) => SKILL_LABELS_FR[s])
-                    .join(', ')}).`
-                : 'Vous avez complété toutes les séances de votre programme.'}
+                ? isChild
+                  ? `Ta séance dure ${todaySession.totalMinutes} minutes. C'est parti !`
+                  : `Votre séance du jour dure ${todaySession.totalMinutes} minutes et renforce vos priorités (${todaySession.focusSkills
+                      .map((s) => SKILL_LABELS_FR[s])
+                      .join(', ')}).`
+                : isChild
+                  ? 'Bravo, tu as terminé toutes les séances !'
+                  : 'Vous avez complété toutes les séances de votre programme.'}
             </p>
           </div>
 
           <div className="mt-6 pt-4 border-t border-white/15 flex flex-wrap items-center justify-between gap-4 text-xs">
             <div>
               <span className="text-[#E6F0EC]/80 block">
-                Progression · {scheduleStatus.statusLabel}
+                Progression ·{' '}
+                {isChild && scheduleStatus.deltaSessions < 0
+                  ? 'À ton rythme'
+                  : scheduleStatus.statusLabel}
               </span>
               <span className="text-base font-bold">
                 {completedSessionsCount} / {totalSessionsCount} séances ({planProgressPercent} %)
@@ -487,9 +500,13 @@ export function TodayView({
               Objectif du jour atteint
             </div>
             <p className="text-xs text-[#374151] dark:text-[#D1D5DB]">
-              {bonusStats.today >= BONUS_PAUSE_THRESHOLD
-                ? 'Bravo pour votre régularité aujourd’hui ! Une pause est conseillée pour mieux retenir, mais vous pouvez continuer librement.'
-                : 'Vous pouvez vous arrêter ici ou continuer sur la séance suivante avec un bonus dégressif (+25 % sur la 1re séance bonus).'}
+              {bonusStats.today >= pauseThreshold
+                ? isChild
+                  ? 'Bravo pour tes séances ! Repose-toi un peu pour bien mémoriser.'
+                  : 'Bravo pour votre régularité aujourd’hui ! Une pause est conseillée pour mieux retenir, mais vous pouvez continuer librement.'
+                : isChild
+                  ? 'Tu peux t’arrêter ici ou continuer avec un bonus.'
+                  : 'Vous pouvez vous arrêter ici ou continuer sur la séance suivante avec un bonus dégressif (+25 % sur la 1re séance bonus).'}
             </p>
           </div>
           {todaySession && (
