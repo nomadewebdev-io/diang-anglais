@@ -48,7 +48,7 @@ export default defineConfig(({ mode }) => ({
         globIgnores: ['**/audio/**'],
         runtimeCaching: [
           {
-            urlPattern: /\/audio\/(aminata|fatou|khady|moussa|cheikh|ibrahima)\/[a-z0-9-]+\.bin$/i,
+            urlPattern: /\/audio\/(ragui|fatou-sarre|omare|boubacar)\/[a-z0-9-]+\.bin$/i,
             handler: 'CacheFirst',
             options: {
               cacheName: 'diang-anglais-audio-packs-v2',
@@ -62,7 +62,7 @@ export default defineConfig(({ mode }) => ({
             },
           },
           {
-            urlPattern: /\/audio\/(aminata|fatou|khady|moussa|cheikh|ibrahima)\/manifest\.json$/i,
+            urlPattern: /\/audio\/(ragui|fatou-sarre|omare|boubacar)\/manifest\.json$/i,
             handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'diang-anglais-audio-manifest-v2',

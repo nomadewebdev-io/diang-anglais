@@ -10,7 +10,7 @@ export type SM2Rating = 'again' | 'hard' | 'good' | 'easy';
 
 export type ThemePreference = 'light' | 'dark' | 'system';
 
-export type VoiceId = 'aminata' | 'fatou' | 'khady' | 'moussa' | 'cheikh' | 'ibrahima';
+export type VoiceId = 'ragui' | 'fatou-sarre' | 'omare' | 'boubacar';
 
 export type PlaybackSpeed = 0.8 | 0.85 | 1 | 1.2;
 

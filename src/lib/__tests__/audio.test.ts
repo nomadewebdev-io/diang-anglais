@@ -1,4 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import raguiManifest from '../../../public/audio/ragui/manifest.json';
+import fatouSarreManifest from '../../../public/audio/fatou-sarre/manifest.json';
+import omareManifest from '../../../public/audio/omare/manifest.json';
+import boubacarManifest from '../../../public/audio/boubacar/manifest.json';
 import {
   computeTextHash,
   DEFAULT_PLAYBACK_RATE,
@@ -7,6 +11,8 @@ import {
   getAudioClipUrl,
   getSelectedPlaybackRate,
   getSelectedVoiceId,
+  loadVoiceManifest,
+  migrateVoiceId,
   playAudio,
   preloadAudioClip,
   resetAudioCachesForTest,
@@ -19,6 +25,8 @@ import {
 import {
   createInitialAppState,
   loadAppState,
+  loadMultiProfileStore,
+  MULTI_PROFILE_STORAGE_KEY,
   saveAppState,
 } from '../storage';
 
@@ -60,14 +68,15 @@ describe('audio — voix neuronales pré-générées, persistance et repli Web S
     setSelectedPlaybackRate(DEFAULT_PLAYBACK_RATE);
   });
 
-  it('expose les 6 voix sénégalaises (3 femmes, 3 hommes, accents US/GB) avec Aminata par défaut', () => {
-    expect(DEFAULT_VOICE_ID).toBe('aminata');
-    expect(VOICES).toHaveLength(6);
+  it('expose les 4 voix en parité (2 femmes, 2 hommes, accents US/GB) avec Ragui par défaut', () => {
+    expect(DEFAULT_VOICE_ID).toBe('ragui');
+    expect(VOICES).toHaveLength(4);
 
     const femaleVoices = VOICES.filter((v) => v.gender === 'female');
     const maleVoices = VOICES.filter((v) => v.gender === 'male');
-    expect(femaleVoices.map((v) => v.prenom)).toEqual(['Aminata', 'Fatou', 'Khady']);
-    expect(maleVoices.map((v) => v.prenom)).toEqual(['Moussa', 'Cheikh', 'Ibrahima']);
+    expect(femaleVoices.map((v) => v.prenom)).toEqual(['Ragui', 'Fatou Sarre']);
+    expect(maleVoices.map((v) => v.prenom)).toEqual(['Omare', 'Boubacar']);
+    expect(VOICES.map((v) => v.id)).toEqual(['ragui', 'fatou-sarre', 'omare', 'boubacar']);
 
     const accents = new Set(VOICES.map((v) => v.accent));
     expect(accents.has('US')).toBe(true);
@@ -79,29 +88,29 @@ describe('audio — voix neuronales pré-générées, persistance et repli Web S
 
     expect(computeTextHash(VOICE_SAMPLE_TEXT)).toBe(expectedHash);
     expect(computeTextHash(`  ${VOICE_SAMPLE_TEXT}  `)).toBe(expectedHash);
-    expect(getAudioClipUrl(VOICE_SAMPLE_TEXT, 'fatou')).toBe(`/audio/fatou/${expectedHash}.mp3`);
+    expect(getAudioClipUrl(VOICE_SAMPLE_TEXT, 'fatou-sarre')).toBe(`/audio/fatou-sarre/${expectedHash}.mp3`);
   });
 
   it('mémorise et relit le choix de la voix et la vitesse de lecture dans le storage', () => {
-    expect(getSelectedVoiceId()).toBe('aminata');
+    expect(getSelectedVoiceId()).toBe('ragui');
     expect(getSelectedPlaybackRate()).toBe(1);
 
-    setSelectedVoiceId('cheikh');
+    setSelectedVoiceId('omare');
     setSelectedPlaybackRate(1.2);
 
-    expect(getSelectedVoiceId()).toBe('cheikh');
+    expect(getSelectedVoiceId()).toBe('omare');
     expect(getSelectedPlaybackRate()).toBe(1.2);
 
     // Persistance via AppState complet (loadAppState / saveAppState)
     const state = createInitialAppState();
-    state.voiceId = 'khady';
+    state.voiceId = 'boubacar';
     state.playbackRate = 0.8;
     saveAppState(state);
 
     const reloaded = loadAppState();
-    expect(reloaded.voiceId).toBe('khady');
+    expect(reloaded.voiceId).toBe('boubacar');
     expect(reloaded.playbackRate).toBe(0.8);
-    expect(getSelectedVoiceId()).toBe('khady');
+    expect(getSelectedVoiceId()).toBe('boubacar');
     expect(getSelectedPlaybackRate()).toBe(0.8);
   });
 
@@ -149,12 +158,12 @@ describe('audio — voix neuronales pré-générées, persistance et repli Web S
     Object.defineProperty(globalThis, 'fetch', {
       value: vi.fn(async (url: string) => {
         fetchedUrls.push(url);
-        if (url.endsWith('/moussa/manifest.json')) {
+        if (url.endsWith('/omare/manifest.json')) {
           return {
             ok: true,
             json: async () => ({
               version: 2,
-              voiceId: 'moussa',
+              voiceId: 'omare',
               packs: { 'adult-a1': { size: 20, count: 2 } },
               clips: {
                 [hash1]: ['adult-a1', 0, 10],
@@ -163,7 +172,7 @@ describe('audio — voix neuronales pré-générées, persistance et repli Web S
             }),
           };
         }
-        if (url.endsWith('/moussa/adult-a1.bin')) {
+        if (url.endsWith('/omare/adult-a1.bin')) {
           return { ok: true, blob: async () => fakePackBlob };
         }
         return { ok: false };
@@ -174,14 +183,14 @@ describe('audio — voix neuronales pré-générées, persistance et repli Web S
 
     Object.defineProperty(globalThis, 'URL', {
       value: {
-        createObjectURL: vi.fn(() => 'blob:moussa-1'),
+        createObjectURL: vi.fn(() => 'blob:omare-1'),
         revokeObjectURL: vi.fn(),
       },
       writable: true,
       configurable: true,
     });
 
-    setSelectedVoiceId('moussa');
+    setSelectedVoiceId('omare');
     setSelectedPlaybackRate(1.2);
 
     const res = await playAudio('Good morning!', {
@@ -189,13 +198,13 @@ describe('audio — voix neuronales pré-générées, persistance et repli Web S
     });
 
     expect(res.mode).toBe('neural');
-    expect(res.voiceId).toBe('moussa');
+    expect(res.voiceId).toBe('omare');
     expect(res.playbackRate).toBe(1.2);
-    expect(res.url).toBe(`/audio/moussa/${hash1}.mp3`);
-    expect(createdAudioInstances[0].src).toBe('blob:moussa-1');
-    expect(fetchedUrls).toContain('/audio/moussa/manifest.json');
-    expect(fetchedUrls).toContain('/audio/moussa/adult-a1.bin');
-    expect(preloadAudioClip('Thank you very much.', 'ibrahima')).toBeNull();
+    expect(res.url).toBe(`/audio/omare/${hash1}.mp3`);
+    expect(createdAudioInstances[0].src).toBe('blob:omare-1');
+    expect(fetchedUrls).toContain('/audio/omare/manifest.json');
+    expect(fetchedUrls).toContain('/audio/omare/adult-a1.bin');
+    expect(preloadAudioClip('Thank you very much.', 'boubacar')).toBeNull();
   });
 
   it('bascule automatiquement sur la Web Speech API si le clip MP3 est absent ou ne charge pas', async () => {
@@ -255,13 +264,13 @@ describe('audio — voix neuronales pré-générées, persistance et repli Web S
       configurable: true,
     });
 
-    setSelectedVoiceId('fatou'); // Voix britannique (en-GB)
+    setSelectedVoiceId('fatou-sarre'); // Voix britannique (en-GB)
     setSelectedPlaybackRate(0.8);
 
     const fallbackResult = await playAudio('Where is the train station?');
 
     expect(fallbackResult.mode).toBe('webspeech');
-    expect(fallbackResult.voiceId).toBe('fatou');
+    expect(fallbackResult.voiceId).toBe('fatou-sarre');
     expect(fallbackResult.playbackRate).toBe(0.8);
     expect(speakSpy).toHaveBeenCalledTimes(1);
     expect(spokenUtterances[0]).toEqual({
@@ -279,18 +288,18 @@ describe('audio — voix neuronales pré-générées, persistance et repli Web S
     const fakePackBlob = new Blob([fakePackBytes], { type: 'application/octet-stream' });
 
     const fetchMock = vi.fn(async (url: string) => {
-      if (url.endsWith('/aminata/manifest.json')) {
+      if (url.endsWith('/ragui/manifest.json')) {
         return {
           ok: true,
           json: async () => ({
             version: 2,
-            voiceId: 'aminata',
+            voiceId: 'ragui',
             packs: { 'adult-a1': { size: 10, count: 1 } },
             clips: { [hash]: ['adult-a1', 3, 5] },
           }),
         };
       }
-      if (url.endsWith('/aminata/adult-a1.bin')) {
+      if (url.endsWith('/ragui/adult-a1.bin')) {
         return {
           ok: true,
           blob: async () => fakePackBlob,
@@ -305,7 +314,7 @@ describe('audio — voix neuronales pré-générées, persistance et repli Web S
       configurable: true,
     });
 
-    const extracted = await extractClipBlob(text, 'aminata');
+    const extracted = await extractClipBlob(text, 'ragui');
     expect(extracted).not.toBeNull();
     expect(extracted!.size).toBe(5);
     expect(extracted!.type).toBe('audio/mpeg');
@@ -347,7 +356,7 @@ describe('audio — voix neuronales pré-générées, persistance et repli Web S
       configurable: true,
     });
 
-    const playRes = await playAudio(text, { voiceId: 'aminata' });
+    const playRes = await playAudio(text, { voiceId: 'ragui' });
     expect(playRes.mode).toBe('neural');
     expect(createObjectURLSpy).toHaveBeenCalledTimes(1);
     expect(endedHandler).not.toBeNull();
@@ -400,9 +409,84 @@ describe('audio — voix neuronales pré-générées, persistance et repli Web S
       configurable: true,
     });
 
-    const res = await playAudio('Missing manifest clip', { voiceId: 'khady' });
+    const res = await playAudio('Missing manifest clip', { voiceId: 'fatou-sarre' });
     expect(res.mode).toBe('webspeech');
     expect(speakSpy).toHaveBeenCalledTimes(1);
     stopSpeaking();
+  });
+
+  it('migre proprement les anciens identifiants de voix (adulte et enfant) vers les 4 voix actuelles', () => {
+    expect(migrateVoiceId('aminata')).toBe('ragui');
+    expect(migrateVoiceId('fatou')).toBe('fatou-sarre');
+    expect(migrateVoiceId('khady')).toBe('fatou-sarre');
+    expect(migrateVoiceId('moussa')).toBe('omare');
+    expect(migrateVoiceId('ibrahima')).toBe('omare');
+    expect(migrateVoiceId('cheikh')).toBe('boubacar');
+    expect(migrateVoiceId('inconnue')).toBe('ragui');
+    expect(migrateVoiceId(undefined)).toBe('ragui');
+
+    const adultState = createInitialAppState();
+    const childState = createInitialAppState();
+    const legacyStore = {
+      version: 2,
+      activeProfileId: 'child-1',
+      profiles: [
+        {
+          id: 'adult-1',
+          name: 'Awa',
+          mode: 'adult',
+          createdAt: '2026-01-01T00:00:00Z',
+          state: { ...adultState, voiceId: 'ibrahima' },
+        },
+        {
+          id: 'child-1',
+          name: 'Moussa',
+          mode: 'child',
+          createdAt: '2026-01-01T00:00:00Z',
+          state: { ...childState, voiceId: 'khady' },
+        },
+      ],
+    };
+    window.localStorage.setItem(MULTI_PROFILE_STORAGE_KEY, JSON.stringify(legacyStore));
+
+    const migratedStore = loadMultiProfileStore();
+    expect(migratedStore.profiles.find((p) => p.id === 'adult-1')?.state.voiceId).toBe('omare');
+    expect(migratedStore.profiles.find((p) => p.id === 'child-1')?.state.voiceId).toBe('fatou-sarre');
+
+    window.localStorage.setItem(
+      'diang-anglais:v1',
+      JSON.stringify({ ...adultState, voiceId: 'khady' })
+    );
+    expect(loadAppState().voiceId).toBe('fatou-sarre');
+  });
+
+  it('charge le manifest réel de chacune des 4 voix générées', async () => {
+    resetAudioCachesForTest();
+    const manifestsByVoice: Record<string, unknown> = {
+      ragui: raguiManifest,
+      'fatou-sarre': fatouSarreManifest,
+      omare: omareManifest,
+      boubacar: boubacarManifest,
+    };
+    Object.defineProperty(globalThis, 'fetch', {
+      value: vi.fn(async (url: string) => {
+        const match = url.match(/^\/audio\/([^/]+)\/manifest\.json$/);
+        if (!match || !manifestsByVoice[match[1]]) return { ok: false, status: 404 };
+        return {
+          ok: true,
+          json: async () => manifestsByVoice[match[1]],
+        };
+      }),
+      writable: true,
+      configurable: true,
+    });
+
+    for (const voice of VOICES) {
+      const manifest = await loadVoiceManifest(voice.id);
+      expect(manifest).not.toBeNull();
+      expect(manifest!.voiceId).toBe(voice.id);
+      expect(Object.keys(manifest!.packs).length).toBeGreaterThan(0);
+      expect(Object.keys(manifest!.clips).length).toBeGreaterThan(0);
+    }
   });
 });

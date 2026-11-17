@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   clearAudioStorageCache,
+  DEFAULT_VOICE_ID,
   estimateAudioStorageBytes,
   PLAYBACK_SPEED_OPTIONS,
   playAudio,
@@ -91,7 +92,7 @@ export function SettingsView({
   }, []);
 
   const todayStr = formatDateISO(new Date());
-  const selectedVoiceId: VoiceId = state.voiceId ?? 'aminata';
+  const selectedVoiceId: VoiceId = state.voiceId ?? DEFAULT_VOICE_ID;
   const selectedPlaybackRate: PlaybackSpeed = state.playbackRate ?? 1;
 
   const handlePreviewVoice = async (voiceId: VoiceId) => {
@@ -230,7 +231,7 @@ export function SettingsView({
                       <span className="text-base font-bold text-[#111827] dark:text-[#F3F4F6]">
                         {voice.prenom}
                       </span>
-                      {voice.id === 'aminata' && (
+                      {voice.id === DEFAULT_VOICE_ID && (
                         <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-white/80 dark:bg-[#1E2422] text-[#4B5563] dark:text-[#D1D5DB] border border-[#E4DFD3] dark:border-[#343F3B]">
                           Par défaut
                         </span>

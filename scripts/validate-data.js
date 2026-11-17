@@ -24,7 +24,15 @@ const VALID_KIDS_THEMES = new Set([
   'routines',
 ]);
 const VALID_SKILLS = new Set(['vocab', 'grammar', 'reading', 'listening']);
-const EXPECTED_VOICE_IDS = ['aminata', 'fatou', 'khady', 'moussa', 'cheikh', 'ibrahima'];
+const EXPECTED_VOICE_IDS = ['ragui', 'fatou-sarre', 'omare', 'boubacar'];
+const LEGACY_REMOVED_VOICE_IDS = new Set([
+  'aminata',
+  'fatou',
+  'khady',
+  'moussa',
+  'cheikh',
+  'ibrahima',
+]);
 const SAMPLE_PREVIEW_TEXT = "Good morning! Let's practice English together today.";
 
 function computeTextHash(text) {
@@ -445,8 +453,12 @@ function validateAudioClips(allDatasets) {
 
   const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
   assert(
-    Array.isArray(manifest.voices) && manifest.voices.length === 6,
-    `manifest.json doit contenir exactement 6 voix (actuel : ${manifest.voices?.length}).`
+    manifest.defaultVoiceId === 'ragui',
+    `manifest.json : defaultVoiceId attendu "ragui", reçu "${manifest.defaultVoiceId}".`
+  );
+  assert(
+    Array.isArray(manifest.voices) && manifest.voices.length === 4,
+    `manifest.json doit contenir exactement 4 voix (actuel : ${manifest.voices?.length}).`
   );
 
   const manifestVoiceIds = manifest.voices.map((v) => v.id);
@@ -455,6 +467,21 @@ function validateAudioClips(allDatasets) {
       manifestVoiceIds.includes(vid),
       `manifest.json : voix attendue "${vid}" absente.`
     );
+  }
+  for (const vid of manifestVoiceIds) {
+    assert(
+      !LEGACY_REMOVED_VOICE_IDS.has(vid),
+      `manifest.json : ancienne voix "${vid}" toujours référencée.`
+    );
+  }
+
+  for (const entry of fs.readdirSync(audioDir, { withFileTypes: true })) {
+    if (entry.isDirectory()) {
+      assert(
+        EXPECTED_VOICE_IDS.includes(entry.name),
+        `Dossier audio inattendu ou obsolète dans public/audio/ : "${entry.name}".`
+      );
+    }
   }
 
   const requiredTexts = new Set([SAMPLE_PREVIEW_TEXT]);

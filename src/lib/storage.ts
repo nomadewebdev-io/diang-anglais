@@ -3,7 +3,7 @@ import {
   DEFAULT_PLAYBACK_RATE,
   DEFAULT_VOICE_ID,
   isValidPlaybackSpeed,
-  isValidVoiceId,
+  migrateVoiceId,
   syncAudioPreferences,
 } from './audio';
 import { applyAutomaticCatchUp } from './planner';
@@ -222,7 +222,7 @@ export function migrateAndValidateState(
     : [];
 
   const theme = isValidThemePreference(candidate.theme) ? candidate.theme : 'system';
-  const voiceId = isValidVoiceId(candidate.voiceId) ? candidate.voiceId : DEFAULT_VOICE_ID;
+  const voiceId = migrateVoiceId(candidate.voiceId);
   const playbackRate = isValidPlaybackSpeed(candidate.playbackRate)
     ? candidate.playbackRate
     : DEFAULT_PLAYBACK_RATE;

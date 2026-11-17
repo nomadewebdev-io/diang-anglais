@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 """
-Génération incrémentale des clips audio MP3 pour Diang-Anglais via Piper TTS.
-- 6 voix (3 femmes : Aminata, Fatou, Khady ; 3 hommes : Moussa, Cheikh, Ibrahima)
+Génération incrémentale des paquets audio MP3 pour Diang-Anglais via Piper TTS.
+- 4 voix en parité (2 femmes : Ragui US, Fatou Sarre GB ; 2 hommes : Omare US, Boubacar GB)
 - Mélange d'accents US et GB, qualité medium (22 050 Hz), licences commerciales ouvertes
-- Sortie : public/audio/<voiceId>/<hash>.mp3 (SHA-1 12 caractères, MP3 mono 32 kbps, 22,05 kHz)
+- Sortie : public/audio/<voiceId>/<packId>.bin + manifest.json (MP3 mono 24 kbps, 22,05 kHz)
 - Silence début/fin rogné + volume normalisé
-- Génère public/audio/manifest.json
 """
 
 from __future__ import annotations
@@ -42,9 +41,9 @@ MAX_TOTAL_SIZE_BYTES = 148 * 1024 * 1024  # 148 Mo max (< 150 Mo)
 
 VOICES_CONFIG: list[dict[str, Any]] = [
     {
-        "id": "aminata",
-        "name": "Aminata",
-        "prenom": "Aminata",
+        "id": "ragui",
+        "name": "Ragui",
+        "prenom": "Ragui",
         "gender": "female",
         "genre": "femme",
         "accent": "US",
@@ -56,9 +55,9 @@ VOICES_CONFIG: list[dict[str, Any]] = [
         "license": "Public Domain (LibriVox / Bryce Beattie)",
     },
     {
-        "id": "fatou",
-        "name": "Fatou",
-        "prenom": "Fatou",
+        "id": "fatou-sarre",
+        "name": "Fatou Sarre",
+        "prenom": "Fatou Sarre",
         "gender": "female",
         "genre": "femme",
         "accent": "GB",
@@ -70,23 +69,9 @@ VOICES_CONFIG: list[dict[str, Any]] = [
         "license": "CC BY 4.0 (Hi-Fi TTS / Cori Samuel)",
     },
     {
-        "id": "khady",
-        "name": "Khady",
-        "prenom": "Khady",
-        "gender": "female",
-        "genre": "femme",
-        "accent": "GB",
-        "locale": "en-GB",
-        "accentLabel": "Anglais britannique (GB)",
-        "quality": "medium",
-        "model": "en_GB-alba-medium",
-        "repoPath": "en/en_GB/alba/medium/en_GB-alba-medium",
-        "license": "CC BY 4.0 (University of Edinburgh DataShare)",
-    },
-    {
-        "id": "moussa",
-        "name": "Moussa",
-        "prenom": "Moussa",
+        "id": "omare",
+        "name": "Omare",
+        "prenom": "Omare",
         "gender": "male",
         "genre": "homme",
         "accent": "US",
@@ -98,9 +83,9 @@ VOICES_CONFIG: list[dict[str, Any]] = [
         "license": "CC0 1.0 Universal (OHF-Voice)",
     },
     {
-        "id": "cheikh",
-        "name": "Cheikh",
-        "prenom": "Cheikh",
+        "id": "boubacar",
+        "name": "Boubacar",
+        "prenom": "Boubacar",
         "gender": "male",
         "genre": "homme",
         "accent": "GB",
@@ -110,20 +95,6 @@ VOICES_CONFIG: list[dict[str, Any]] = [
         "model": "en_GB-northern_english_male-medium",
         "repoPath": "en/en_GB/northern_english_male/medium/en_GB-northern_english_male-medium",
         "license": "CC BY-SA 4.0 International (OpenSLR SLR83)",
-    },
-    {
-        "id": "ibrahima",
-        "name": "Ibrahima",
-        "prenom": "Ibrahima",
-        "gender": "male",
-        "genre": "homme",
-        "accent": "US",
-        "locale": "en-US",
-        "accentLabel": "Anglais américain (US)",
-        "quality": "medium",
-        "model": "en_US-john-medium",
-        "repoPath": "en/en_US/john/medium/en_US-john-medium",
-        "license": "Public Domain (LibriVox / Bryce Beattie)",
     },
 ]
 
@@ -515,7 +486,7 @@ def write_root_manifest(bitrate_kbps: int, total_texts: int) -> None:
 
     manifest_data = {
         "version": 2,
-        "defaultVoiceId": "aminata",
+        "defaultVoiceId": "ragui",
         "sampleText": SAMPLE_PREVIEW_TEXT,
         "sampleHash": compute_text_hash(SAMPLE_PREVIEW_TEXT),
         "uniqueTexts": total_texts,

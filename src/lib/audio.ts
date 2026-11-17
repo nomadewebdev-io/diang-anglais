@@ -1,15 +1,24 @@
 import { PlaybackSpeed, VoiceId, VoiceProfile } from './types';
 
-export const DEFAULT_VOICE_ID: VoiceId = 'aminata';
+export const DEFAULT_VOICE_ID: VoiceId = 'ragui';
 export const DEFAULT_PLAYBACK_RATE: PlaybackSpeed = 1;
 export const CHILD_DEFAULT_PLAYBACK_RATE: PlaybackSpeed = 0.85;
 export const VOICE_SAMPLE_TEXT = "Good morning! Let's practice English together today.";
 
+export const LEGACY_VOICE_MIGRATION: Record<string, VoiceId> = {
+  aminata: 'ragui',
+  fatou: 'fatou-sarre',
+  khady: 'fatou-sarre',
+  moussa: 'omare',
+  ibrahima: 'omare',
+  cheikh: 'boubacar',
+};
+
 export const VOICES: VoiceProfile[] = [
   {
-    id: 'aminata',
-    name: 'Aminata',
-    prenom: 'Aminata',
+    id: 'ragui',
+    name: 'Ragui',
+    prenom: 'Ragui',
     gender: 'female',
     genre: 'femme',
     accent: 'US',
@@ -19,9 +28,9 @@ export const VOICES: VoiceProfile[] = [
     license: 'Public Domain',
   },
   {
-    id: 'fatou',
-    name: 'Fatou',
-    prenom: 'Fatou',
+    id: 'fatou-sarre',
+    name: 'Fatou Sarre',
+    prenom: 'Fatou Sarre',
     gender: 'female',
     genre: 'femme',
     accent: 'GB',
@@ -31,21 +40,9 @@ export const VOICES: VoiceProfile[] = [
     license: 'CC BY 4.0',
   },
   {
-    id: 'khady',
-    name: 'Khady',
-    prenom: 'Khady',
-    gender: 'female',
-    genre: 'femme',
-    accent: 'GB',
-    locale: 'en-GB',
-    accentLabel: 'Anglais britannique (GB)',
-    model: 'en_GB-alba-medium',
-    license: 'CC BY 4.0',
-  },
-  {
-    id: 'moussa',
-    name: 'Moussa',
-    prenom: 'Moussa',
+    id: 'omare',
+    name: 'Omare',
+    prenom: 'Omare',
     gender: 'male',
     genre: 'homme',
     accent: 'US',
@@ -55,9 +52,9 @@ export const VOICES: VoiceProfile[] = [
     license: 'CC0 1.0',
   },
   {
-    id: 'cheikh',
-    name: 'Cheikh',
-    prenom: 'Cheikh',
+    id: 'boubacar',
+    name: 'Boubacar',
+    prenom: 'Boubacar',
     gender: 'male',
     genre: 'homme',
     accent: 'GB',
@@ -65,18 +62,6 @@ export const VOICES: VoiceProfile[] = [
     accentLabel: 'Anglais britannique (GB)',
     model: 'en_GB-northern_english_male-medium',
     license: 'CC BY-SA 4.0',
-  },
-  {
-    id: 'ibrahima',
-    name: 'Ibrahima',
-    prenom: 'Ibrahima',
-    gender: 'male',
-    genre: 'homme',
-    accent: 'US',
-    locale: 'en-US',
-    accentLabel: 'Anglais américain (US)',
-    model: 'en_US-john-medium',
-    license: 'Public Domain',
   },
 ];
 
@@ -131,6 +116,23 @@ export function resetAudioCachesForTest(): void {
 
 export function isValidVoiceId(val: unknown): val is VoiceId {
   return typeof val === 'string' && VALID_VOICE_IDS.has(val as VoiceId);
+}
+
+/**
+ * Migre un ancien identifiant de voix (ex. aminata/fatou/khady/moussa/cheikh/ibrahima)
+ * vers l'une des 4 voix actuelles du même genre et du même accent (défaut : Ragui).
+ */
+export function migrateVoiceId(val: unknown): VoiceId {
+  if (isValidVoiceId(val)) {
+    return val;
+  }
+  if (typeof val === 'string') {
+    const mapped = LEGACY_VOICE_MIGRATION[val.trim().toLowerCase()];
+    if (mapped) {
+      return mapped;
+    }
+  }
+  return DEFAULT_VOICE_ID;
 }
 
 export function isValidPlaybackSpeed(val: unknown): val is PlaybackSpeed {
@@ -233,7 +235,8 @@ function readStoredAudioSettings(): { voiceId: VoiceId; playbackRate: PlaybackSp
       const raw = window.localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const parsed = JSON.parse(raw) as Record<string, unknown>;
-        const voiceId = isValidVoiceId(parsed.voiceId) ? parsed.voiceId : activeVoiceId;
+        const voiceId =
+          typeof parsed.voiceId === 'string' ? migrateVoiceId(parsed.voiceId) : activeVoiceId;
         const playbackRate = isValidPlaybackSpeed(parsed.playbackRate)
           ? parsed.playbackRate
           : activePlaybackRate;
