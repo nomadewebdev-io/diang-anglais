@@ -1,8 +1,10 @@
-import React, { lazy, Suspense, useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import {
   IconCalendarToday,
   IconCards,
   IconChart,
+  IconCloud,
+  IconCloudOff,
   IconFlame,
   IconRoadmap,
   IconSettings,
@@ -10,6 +12,12 @@ import {
 import { getInitials } from './components/ProfileGateView';
 import { TodayView } from './components/TodayView';
 
+const AuthView = lazy(() =>
+  import('./components/AuthView').then((m) => ({ default: m.AuthView }))
+);
+const LegalView = lazy(() =>
+  import('./components/LegalView').then((m) => ({ default: m.LegalView }))
+);
 const OnboardingFlow = lazy(() =>
   import('./components/OnboardingFlow').then((m) => ({ default: m.OnboardingFlow }))
 );
@@ -57,15 +65,29 @@ import {
 import { addDaysISO, formatDateISO } from './lib/sm2';
 import {
   addProfileToStore,
+  clearAllLocalAccountData,
   createInitialAppState,
   createLocalProfile,
   deleteProfileFromStore,
   getActiveProfile,
   loadMultiProfileStore,
   resetActiveProfileInStore,
+  saveMultiProfileStore,
   switchActiveProfile,
   updateActiveProfileState,
 } from './lib/storage';
+import {
+  deleteMyAccount,
+  getSupabaseSession,
+  signOutAccount,
+  subscribeToAuthChanges,
+} from './lib/supabase';
+import {
+  createSupabaseRemoteAdapter,
+  createSyncController,
+  hasMeaningfulLocalData,
+  SyncController,
+} from './lib/sync';
 import {
   applyThemeToDocument,
   subscribeToSystemThemeChanges,
@@ -73,12 +95,14 @@ import {
 import {
   AppState,
   CEFRLevel,
+  LegalDocumentKind,
   MultiProfileStore,
   PlacementResult,
   PlacementSessionState,
   PlaybackSpeed,
   SM2CardState,
   StudyPlan,
+  SyncStatus,
   ThemePreference,
   UserProfile,
   VoiceId,
@@ -101,6 +125,22 @@ export function App(): React.ReactElement {
   const [store, setStore] = useState<MultiProfileStore>(() =>
     loadMultiProfileStore()
   );
+  const storeRef = useRef(store);
+  storeRef.current = store;
+
+  const [authStatus, setAuthStatus] = useState<
+    'loading' | 'signed_out' | 'signed_in' | 'recovery'
+  >('loading');
+  const [authUser, setAuthUser] = useState<{ id: string; email: string | null } | null>(
+    null
+  );
+  const [syncStatus, setSyncStatus] = useState<SyncStatus>(() =>
+    typeof navigator !== 'undefined' && !navigator.onLine ? 'offline' : 'synced'
+  );
+  const [legalModalKind, setLegalModalKind] = useState<LegalDocumentKind | null>(null);
+  const [pendingLocalImport, setPendingLocalImport] = useState(false);
+  const syncControllerRef = useRef<SyncController | null>(null);
+
   const activeProfile = getActiveProfile(store);
   const state = activeProfile?.state ?? createInitialAppState('adult');
 
@@ -113,6 +153,7 @@ export function App(): React.ReactElement {
         true
       )
     );
+    syncControllerRef.current?.scheduleSync();
   };
 
   const [activeTab, setActiveTab] = useState<MainTab>('today');
@@ -149,6 +190,94 @@ export function App(): React.ReactElement {
       applyThemeToDocument('system', document, prefersDark);
     });
   }, [state.theme]);
+
+  useEffect(() => {
+    let active = true;
+    let unsubscribe = () => {};
+
+    const applySession = (
+      event: string | null,
+      session: { user: { id: string; email?: string | null } } | null
+    ) => {
+      if (!active) return;
+      if (event === 'PASSWORD_RECOVERY') {
+        setAuthUser(
+          session?.user
+            ? { id: session.user.id, email: session.user.email ?? null }
+            : null
+        );
+        setAuthStatus('recovery');
+        return;
+      }
+      if (session?.user) {
+        setAuthUser({ id: session.user.id, email: session.user.email ?? null });
+        setAuthStatus('signed_in');
+      } else {
+        setAuthUser(null);
+        setAuthStatus('signed_out');
+      }
+    };
+
+    void (async () => {
+      const session = await getSupabaseSession();
+      applySession(null, session);
+      unsubscribe = await subscribeToAuthChanges((event, nextSession) => {
+        applySession(event, nextSession);
+      });
+    })();
+
+    return () => {
+      active = false;
+      unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (authStatus !== 'signed_in' || !authUser) {
+      syncControllerRef.current?.dispose();
+      syncControllerRef.current = null;
+      return;
+    }
+
+    const importFlagKey = `diang-anglais:import-checked:${authUser.id}`;
+    let alreadyCheckedImport = false;
+    try {
+      alreadyCheckedImport = window.localStorage.getItem(importFlagKey) === 'done';
+    } catch {
+      alreadyCheckedImport = true;
+    }
+
+    const controller = createSyncController({
+      userId: authUser.id,
+      adapter: createSupabaseRemoteAdapter(),
+      getLocalStore: () => storeRef.current,
+      onMergedStore: (merged) => {
+        setStore(merged);
+      },
+      onStatusChange: (nextStatus) => {
+        setSyncStatus(nextStatus);
+      },
+    });
+    syncControllerRef.current = controller;
+
+    if (!alreadyCheckedImport && hasMeaningfulLocalData(storeRef.current)) {
+      setPendingLocalImport(true);
+    } else {
+      try {
+        window.localStorage.setItem(importFlagKey, 'done');
+      } catch {
+        // Ignore storage error
+      }
+      void controller.syncNow();
+    }
+
+    return () => {
+      controller.dispose();
+      if (syncControllerRef.current === controller) {
+        syncControllerRef.current = null;
+      }
+    };
+  }, [authStatus, authUser]);
 
   const todayStr = formatDateISO(new Date());
   const streak = calculateStrictStreak(
@@ -193,6 +322,58 @@ export function App(): React.ReactElement {
   const handleResetAll = () => {
     setStore((prev) => resetActiveProfileInStore(prev));
     setActiveTab('today');
+    syncControllerRef.current?.scheduleSync();
+  };
+
+  const handleConfirmImportLocal = () => {
+    if (!authUser) return;
+    try {
+      window.localStorage.setItem(`diang-anglais:import-checked:${authUser.id}`, 'done');
+    } catch {
+      // Ignore storage error
+    }
+    setPendingLocalImport(false);
+    void syncControllerRef.current?.syncNow();
+  };
+
+  const handleSkipImportLocal = () => {
+    if (!authUser) return;
+    try {
+      window.localStorage.setItem(`diang-anglais:import-checked:${authUser.id}`, 'done');
+    } catch {
+      // Ignore storage error
+    }
+    const emptyStore: MultiProfileStore = {
+      version: store.version,
+      activeProfileId: '',
+      profiles: [],
+    };
+    saveMultiProfileStore(emptyStore);
+    setStore(emptyStore);
+    setPendingLocalImport(false);
+    void syncControllerRef.current?.syncNow();
+  };
+
+  const handleSignOut = async () => {
+    syncControllerRef.current?.dispose();
+    syncControllerRef.current = null;
+    await signOutAccount();
+    setIsSettingsOpen(false);
+    setAuthUser(null);
+    setAuthStatus('signed_out');
+  };
+
+  const handleDeleteAccount = async () => {
+    const res = await deleteMyAccount();
+    if (!res.ok) return res;
+    syncControllerRef.current?.dispose();
+    syncControllerRef.current = null;
+    clearAllLocalAccountData();
+    setStore({ version: 2, activeProfileId: '', profiles: [] });
+    setIsSettingsOpen(false);
+    setAuthUser(null);
+    setAuthStatus('signed_out');
+    return { ok: true };
   };
 
   const handleCompleteProfile = (profile: UserProfile) => {
@@ -552,6 +733,47 @@ export function App(): React.ReactElement {
     });
   };
 
+  if (authStatus === 'loading') {
+    return (
+      <div className="min-h-dvh bg-[#FAF8F5] dark:bg-[#141817] flex items-center justify-center p-6">
+        <div className="w-full max-w-md">
+          <ViewSkeleton />
+        </div>
+      </div>
+    );
+  }
+
+  if (authStatus === 'signed_out' || authStatus === 'recovery') {
+    return (
+      <>
+        <Suspense
+          fallback={
+            <div className="min-h-dvh bg-[#FAF8F5] dark:bg-[#141817] flex items-center justify-center p-6">
+              <div className="w-full max-w-md">
+                <ViewSkeleton />
+              </div>
+            </div>
+          }
+        >
+          <AuthView
+            initialMode={authStatus === 'recovery' ? 'recovery' : 'login'}
+            onOpenLegal={(kind) => setLegalModalKind(kind)}
+            onPasswordUpdated={() => setAuthStatus('signed_in')}
+          />
+        </Suspense>
+        {legalModalKind && (
+          <Suspense fallback={null}>
+            <LegalView
+              kind={legalModalKind}
+              onSwitchKind={(k) => setLegalModalKind(k)}
+              onClose={() => setLegalModalKind(null)}
+            />
+          </Suspense>
+        )}
+      </>
+    );
+  }
+
   return (
     <div
       className={`min-h-dvh flex flex-col bg-[#FAF8F5] dark:bg-[#141817] text-[#111827] dark:text-[#F3F4F6] pb-20 ${
@@ -578,6 +800,50 @@ export function App(): React.ReactElement {
           </div>
 
           <div className="flex items-center gap-2">
+            <span
+              role="status"
+              aria-label={`État de synchronisation : ${
+                syncStatus === 'synced'
+                  ? 'Synchronisé'
+                  : syncStatus === 'syncing'
+                    ? 'Synchronisation'
+                    : syncStatus === 'offline'
+                      ? 'Hors-ligne'
+                      : 'Erreur'
+              }`}
+              title={
+                syncStatus === 'synced'
+                  ? 'Synchronisé'
+                  : syncStatus === 'syncing'
+                    ? 'Synchronisation en cours'
+                    : syncStatus === 'offline'
+                      ? 'Hors-ligne (sauvegarde locale active)'
+                      : 'Erreur de synchronisation'
+              }
+              className={`hidden sm:inline-flex items-center gap-1 px-2 py-1 rounded-full text-[11px] font-semibold border ${
+                syncStatus === 'offline'
+                  ? 'bg-[#FEF3C7] dark:bg-[#78350F]/30 border-[#D97706]/30 text-[#92400E] dark:text-[#FCD34D]'
+                  : syncStatus === 'error'
+                    ? 'bg-[#FEE2E2] dark:bg-[#7F1D1D]/30 border-[#DC2626]/30 text-[#991B1B] dark:text-[#FCA5A5]'
+                    : 'bg-white dark:bg-[#1E2422] border-[#E4DFD3] dark:border-[#343F3B] text-[#4B5563] dark:text-[#D1D5DB]'
+              }`}
+            >
+              {syncStatus === 'offline' ? (
+                <IconCloudOff className="w-3.5 h-3.5" />
+              ) : (
+                <IconCloud className="w-3.5 h-3.5" />
+              )}
+              <span>
+                {syncStatus === 'synced'
+                  ? 'Synchronisé'
+                  : syncStatus === 'syncing'
+                    ? 'Synchro...'
+                    : syncStatus === 'offline'
+                      ? 'Hors-ligne'
+                      : 'Erreur'}
+              </span>
+            </span>
+
             {activeProfile && state.onboardingStep === 'ready' && state.studyPlan && (
               <>
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] text-xs font-bold text-[#111827] dark:text-[#F3F4F6]">
@@ -633,11 +899,22 @@ export function App(): React.ReactElement {
               const created = createLocalProfile(name, mode);
               setStore((prev) => addProfileToStore(prev, created));
               setActiveTab('today');
+              syncControllerRef.current?.scheduleSync();
             }}
           />
         ) : isSettingsOpen ? (
           <SettingsView
             state={state}
+            accountEmail={authUser?.email}
+            syncStatus={syncStatus}
+            onSyncNow={() => {
+              void syncControllerRef.current?.syncNow();
+            }}
+            onSignOut={() => {
+              void handleSignOut();
+            }}
+            onDeleteAccount={handleDeleteAccount}
+            onOpenLegal={(kind) => setLegalModalKind(kind)}
             onChangeTheme={handleChangeTheme}
             onChangeVoice={handleChangeVoice}
             onChangePlaybackRate={handleChangePlaybackRate}
@@ -791,11 +1068,62 @@ export function App(): React.ReactElement {
               setStore((prev) => addProfileToStore(prev, created));
               setIsSettingsOpen(false);
               setActiveTab('today');
+              syncControllerRef.current?.scheduleSync();
             }}
             onDeleteProfile={(id) => {
               setStore((prev) => deleteProfileFromStore(prev, id));
+              void syncControllerRef.current?.deleteRemoteProfile(id);
             }}
             onClose={() => setIsProfileSwitcherOpen(false)}
+          />
+        </Suspense>
+      )}
+
+      {pendingLocalImport && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="import-local-title"
+          className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4"
+        >
+          <div className="w-full max-w-md bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] rounded-2xl p-6 shadow-lg space-y-4">
+            <h2
+              id="import-local-title"
+              className="text-base font-bold text-[#111827] dark:text-[#F3F4F6]"
+            >
+              Importer mes données de cet appareil dans mon compte ?
+            </h2>
+            <p className="text-sm text-[#4B5563] dark:text-[#D1D5DB]">
+              Une progression locale existe déjà sur cet appareil ({store.profiles.length}{' '}
+              {store.profiles.length > 1 ? 'profils' : 'profil'}). Souhaites-tu la fusionner avec
+              ton compte cloud ?
+            </p>
+            <div className="flex flex-col sm:flex-row gap-2.5 pt-1">
+              <button
+                type="button"
+                onClick={handleConfirmImportLocal}
+                className="flex-1 py-2.5 px-4 rounded-xl bg-[#0F4C3A] hover:bg-[#0B3B2D] text-white text-xs font-semibold cursor-pointer"
+              >
+                Importer dans mon compte
+              </button>
+              <button
+                type="button"
+                onClick={handleSkipImportLocal}
+                className="flex-1 py-2.5 px-4 rounded-xl border border-[#D5CFC2] dark:border-[#45534E] bg-[#FAF8F5] dark:bg-[#252D2A] text-xs font-semibold text-[#111827] dark:text-[#F3F4F6] cursor-pointer"
+              >
+                Ignorer et charger mon compte
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {legalModalKind && (
+        <Suspense fallback={null}>
+          <LegalView
+            kind={legalModalKind}
+            onSwitchKind={(k) => setLegalModalKind(k)}
+            onClose={() => setLegalModalKind(null)}
           />
         </Suspense>
       )}

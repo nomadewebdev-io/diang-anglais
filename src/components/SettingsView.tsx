@@ -15,17 +15,23 @@ import {
 } from '../lib/storage';
 import {
   AppState,
+  LegalDocumentKind,
   PlaybackSpeed,
+  SyncStatus,
   ThemePreference,
   VoiceId,
 } from '../lib/types';
 import {
   IconAlert,
+  IconAlertTriangle,
   IconArrowLeft,
   IconCheck,
+  IconCloud,
   IconDownload,
+  IconLogOut,
   IconMonitor,
   IconMoon,
+  IconShield,
   IconSun,
   IconUpload,
   IconVolume,
@@ -33,6 +39,12 @@ import {
 
 interface SettingsViewProps {
   state: AppState;
+  accountEmail?: string | null;
+  syncStatus?: SyncStatus;
+  onSyncNow?: () => void;
+  onSignOut?: () => void;
+  onDeleteAccount?: () => Promise<{ ok: boolean; message?: string }>;
+  onOpenLegal?: (kind: LegalDocumentKind) => void;
   onChangeTheme: (theme: ThemePreference) => void;
   onChangeVoice?: (voiceId: VoiceId) => void;
   onChangePlaybackRate?: (rate: PlaybackSpeed) => void;
@@ -70,6 +82,12 @@ const THEME_OPTIONS: Array<{
 
 export function SettingsView({
   state,
+  accountEmail,
+  syncStatus,
+  onSyncNow,
+  onSignOut,
+  onDeleteAccount,
+  onOpenLegal,
   onChangeTheme,
   onChangeVoice,
   onChangePlaybackRate,
@@ -78,6 +96,10 @@ export function SettingsView({
   onResetAll,
   onClose,
 }: SettingsViewProps): React.ReactElement {
+  const [deleteStep, setDeleteStep] = useState<0 | 1 | 2>(0);
+  const [deleteConfirmText, setDeleteConfirmText] = useState('');
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+  const [deletingAccount, setDeletingAccount] = useState(false);
   const [importFeedback, setImportFeedback] = useState<{
     type: 'success' | 'error';
     message: string;
@@ -546,6 +568,195 @@ export function SettingsView({
             )}
           </div>
         </div>
+      </div>
+
+      {/* Compte, synchronisation & vie privée */}
+      <div className="bg-white dark:bg-[#1E2422] border border-[#E4DFD3] dark:border-[#343F3B] rounded-2xl p-6 space-y-5">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h2 className="text-base font-bold text-[#111827] dark:text-[#F3F4F6] mb-1">
+              Compte et confidentialité
+            </h2>
+            <p className="text-xs sm:text-sm text-[#4B5563] dark:text-[#D1D5DB]">
+              {accountEmail ? (
+                <>
+                  Connecté en tant que{' '}
+                  <strong className="text-[#111827] dark:text-[#F3F4F6]">{accountEmail}</strong>
+                </>
+              ) : (
+                'Mode local hors compte'
+              )}
+            </p>
+          </div>
+          {syncStatus && (
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#FAF8F5] dark:bg-[#252D2A] border border-[#E4DFD3] dark:border-[#343F3B] text-[#374151] dark:text-[#D1D5DB]">
+              <IconCloud className="w-3.5 h-3.5" />
+              <span>
+                {syncStatus === 'synced'
+                  ? 'Synchronisé'
+                  : syncStatus === 'syncing'
+                    ? 'Synchronisation...'
+                    : syncStatus === 'offline'
+                      ? 'Hors-ligne'
+                      : 'Erreur de synchro'}
+              </span>
+            </span>
+          )}
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2.5">
+          {onSyncNow && (
+            <button
+              type="button"
+              onClick={onSyncNow}
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-[#D5CFC2] dark:border-[#45534E] bg-[#FAF8F5] dark:bg-[#252D2A] text-xs font-semibold text-[#111827] dark:text-[#F3F4F6] cursor-pointer"
+            >
+              <IconCloud className="w-4 h-4" />
+              <span>Synchroniser maintenant</span>
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={handleExportJSON}
+            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-[#D5CFC2] dark:border-[#45534E] bg-[#FAF8F5] dark:bg-[#252D2A] text-xs font-semibold text-[#111827] dark:text-[#F3F4F6] cursor-pointer"
+          >
+            <IconDownload className="w-4 h-4" />
+            <span>Exporter mes données</span>
+          </button>
+          {onSignOut && accountEmail && (
+            <button
+              type="button"
+              onClick={onSignOut}
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-[#D5CFC2] dark:border-[#45534E] bg-white dark:bg-[#1E2422] text-xs font-semibold text-[#374151] dark:text-[#D1D5DB] hover:bg-[#FAF8F5] dark:hover:bg-[#252D2A] cursor-pointer"
+            >
+              <IconLogOut className="w-4 h-4" />
+              <span>Déconnexion</span>
+            </button>
+          )}
+        </div>
+
+        {onOpenLegal && (
+          <div className="flex flex-wrap items-center gap-4 pt-1 text-xs text-[#4B5563] dark:text-[#D1D5DB]">
+            <button
+              type="button"
+              onClick={() => onOpenLegal('privacy')}
+              className="inline-flex items-center gap-1.5 font-semibold text-[#0F4C3A] dark:text-[#6EE7B7] hover:underline cursor-pointer"
+            >
+              <IconShield className="w-3.5 h-3.5" />
+              <span>Politique de confidentialité</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => onOpenLegal('terms')}
+              className="font-semibold text-[#0F4C3A] dark:text-[#6EE7B7] hover:underline cursor-pointer"
+            >
+              Conditions d&apos;utilisation
+            </button>
+          </div>
+        )}
+
+        {onDeleteAccount && accountEmail && (
+          <div className="pt-4 border-t border-[#E4DFD3] dark:border-[#343F3B]">
+            {deleteError && (
+              <div
+                role="alert"
+                className="mb-3 p-3 rounded-xl bg-[#FEE2E2] dark:bg-[#7F1D1D]/30 text-xs font-medium text-[#991B1B] dark:text-[#FCA5A5]"
+              >
+                {deleteError}
+              </div>
+            )}
+
+            {deleteStep === 0 && (
+              <button
+                type="button"
+                onClick={() => {
+                  setDeleteError(null);
+                  setDeleteStep(1);
+                }}
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-[#DC2626]/40 text-[#991B1B] dark:text-[#FCA5A5] bg-[#FEF2F2] dark:bg-[#450A0A]/30 text-xs font-semibold cursor-pointer"
+              >
+                <IconAlertTriangle className="w-4 h-4" />
+                <span>Supprimer mon compte</span>
+              </button>
+            )}
+
+            {deleteStep === 1 && (
+              <div className="p-4 rounded-xl bg-[#FEF2F2] dark:bg-[#450A0A]/30 border border-[#DC2626]/30 space-y-3">
+                <p className="text-xs font-bold text-[#991B1B] dark:text-[#FCA5A5]">
+                  Étape 1/2 : La suppression de ton compte effacera définitivement tes profils,
+                  ton historique et tes préférences sur nos serveurs et sur cet appareil.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setDeleteStep(2)}
+                    className="px-3.5 py-2 rounded-lg bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs font-semibold cursor-pointer"
+                  >
+                    Continuer
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDeleteStep(0)}
+                    className="px-3.5 py-2 rounded-lg bg-white dark:bg-[#252D2A] border border-[#D5CFC2] dark:border-[#45534E] text-xs font-semibold text-[#111827] dark:text-[#F3F4F6] cursor-pointer"
+                  >
+                    Annuler
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {deleteStep === 2 && (
+              <div className="p-4 rounded-xl bg-[#FEF2F2] dark:bg-[#450A0A]/30 border border-[#DC2626]/40 space-y-3">
+                <label
+                  htmlFor="delete-account-confirm"
+                  className="block text-xs font-bold text-[#991B1B] dark:text-[#FCA5A5]"
+                >
+                  Étape 2/2 : Saisis SUPPRIMER pour confirmer la suppression définitive.
+                </label>
+                <input
+                  id="delete-account-confirm"
+                  type="text"
+                  value={deleteConfirmText}
+                  onChange={(e) => setDeleteConfirmText(e.target.value)}
+                  placeholder="SUPPRIMER"
+                  className="w-full max-w-xs px-3 py-2 rounded-lg border border-[#DC2626]/40 bg-white dark:bg-[#141817] text-xs text-[#111827] dark:text-[#F3F4F6]"
+                />
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    disabled={deletingAccount || deleteConfirmText.trim().toUpperCase() !== 'SUPPRIMER'}
+                    onClick={async () => {
+                      setDeletingAccount(true);
+                      setDeleteError(null);
+                      const res = await onDeleteAccount();
+                      setDeletingAccount(false);
+                      if (!res.ok) {
+                        setDeleteError(res.message ?? 'Suppression impossible.');
+                      } else {
+                        setDeleteStep(0);
+                        setDeleteConfirmText('');
+                      }
+                    }}
+                    className="px-3.5 py-2 rounded-lg bg-[#DC2626] hover:bg-[#B91C1C] disabled:opacity-50 text-white text-xs font-semibold cursor-pointer"
+                  >
+                    {deletingAccount ? 'Suppression...' : 'Supprimer définitivement'}
+                  </button>
+                  <button
+                    type="button"
+                    disabled={deletingAccount}
+                    onClick={() => {
+                      setDeleteStep(0);
+                      setDeleteConfirmText('');
+                    }}
+                    className="px-3.5 py-2 rounded-lg bg-white dark:bg-[#252D2A] border border-[#D5CFC2] dark:border-[#45534E] text-xs font-semibold text-[#111827] dark:text-[#F3F4F6] cursor-pointer"
+                  >
+                    Annuler
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

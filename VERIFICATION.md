@@ -1,21 +1,14 @@
-# Vérification Diang-Anglais — Passage de 6 à 4 Voix Synthétiques
-
-## Mesures Avant / Après (Audio)
-| Métrique | Avant (6 voix) | Après (4 voix) |
-| --- | --- | --- |
-| Voix actives | `6` (`aminata`, `fatou`, `khady`, `moussa`, `cheikh`, `ibrahima`) | `4` (`ragui`, `fatou-sarre`, `omare`, `boubacar`) |
-| `public/audio` (fichiers) | `79` fichiers (`72` paquets `.bin` + `7` manifests) | `53` fichiers (`48` paquets `.bin` + `5` manifests) |
-| `public/audio` (poids) | `107,61 Mo` | `69,12 Mo` (max paquet : `2,48 Mo` < `5 Mo`) |
-| Clips audio totaux | `19 722` (`3 287 × 6`) | `13 148` (`3 287 × 4`) |
-| JS initial (gzip) | `103,33 ko` | `103,38 ko` (budget `120,00 ko`) |
-| CSS initial (gzip) | `7,03 ko` | `7,03 ko` (budget `25,00 ko`) |
+# Vérification Diang-Anglais — Comptes Supabase, Synchronisation Cloud & Déploiement Cloudflare Pages
 
 ## Critères vérifiés
-- [x] **Parité et accents des 4 voix (`src/lib/audio.ts`, `scripts/generate-audio.py`)** : `ragui` (femme, US, par défaut), `fatou-sarre` (femme, GB), `omare` (homme, US), `boubacar` (homme, GB), identifiants explicitement synthétiques (`isSynthetic: true`).
-- [x] **Nettoyage & régénération (`public/audio/`, `CREDITS.md`, `vite.config.ts`)** : anciens dossiers/paquets/manifests supprimés, 48 paquets `.bin` et 5 manifests régénérés via `npm run audio:generate`, licences commerciales documentées dans `CREDITS.md`, `runtimeCaching` PWA mis à jour.
-- [x] **Migration silencieuse (`src/lib/audio.ts`, `src/lib/storage.ts`)** : `migrateVoiceId` convertit les anciens IDs sur profils adulte et enfant (`aminata -> ragui`, `fatou/khady -> fatou-sarre`, `moussa/ibrahima -> omare`, `cheikh -> boubacar`, inconnue -> `ragui`).
-- [x] **Validation & budgets (`scripts/validate-data.js`, `scripts/check-budget.js`)** : vérification stricte des 4 voix, absence des anciens IDs, `defaultVoiceId === "ragui"`, budgets JS/CSS/chunks/paquets audio respectés.
-
-## Contrôles automatisés
-- `npm test` (`node scripts/validate-data.js && vitest run`) : **9 fichiers de test, 57 tests passés** (`audioTexts: 3287`, `audioClips: 13148`).
-- `npm run build` (`tsc -b && vite build && node scripts/check-budget.js`) : **succès (0 erreur TypeScript, tous les budgets respectés, `total audio: 69.12 Mo`)**.
+- [x] **C1 — Dépôt Git & hygiène** : remote `origin` pointant sur `https://github.com/nomadewebdev-io/diang-anglais.git`, branche `main`, `.gitignore` excluant `node_modules`, `dist`, `.env*`, `audio-cache/` et fichiers système, `.env.example` fourni, aucune clé `service_role` dans le dépôt.
+- [x] **C2 — Authentification Supabase (`src/lib/supabase.ts`, `src/components/AuthView.tsx`)** : écran de connexion obligatoire en français sobre ("Continuer avec Google", email + mot de passe 8 caractères minimum, "Créer un compte", "Mot de passe oublié ?", écran "Vérifie ta boîte mail", gestion du retour `PASSWORD_RECOVERY`, messages d'erreur génériques, déconnexion dans Paramètres > Compte).
+- [x] **C3 — Base de données (`supabase/migrations/001_init.sql`)** : table `learner_profiles`, RLS (`user_id = auth.uid()`), contrainte `data` <= 500 Ko, trigger 4 profils maximum par utilisateur, fonction `delete_my_account()` (`security definer`), fonction `ping()` exécutable par `anon`.
+- [x] **C4 — Synchronisation local-first (`src/lib/sync.ts`, `src/App.tsx`, `vite.config.ts`)** : fonctionnement hors-ligne intact, envoi différé 5 s, flush sur `visibilitychange` (hidden) et reprise `online`, résolution de conflit par `updated_at` le plus récent avec sauvegarde locale (`diang-anglais:conflict-backups:v1`), indicateur discret dans l'en-tête (`Synchronisé / Synchro... / Hors-ligne / Erreur`), invite d'import local à la première connexion, Workbox `NetworkOnly` sur `*.supabase.co`.
+- [x] **C5 — Compte & vie privée (`src/components/SettingsView.tsx`, `src/components/LegalView.tsx`, `PRIVACY.md`)** : email affiché, déconnexion, export JSON, suppression en 2 étapes appelant `delete_my_account()` + nettoyage local (`clearAllLocalAccountData()`), modales "Politique de confidentialité" et "Conditions d'utilisation" accessibles depuis l'écran de connexion et Paramètres, espace parent conservé sur profils enfants.
+- [x] **C6 — Sécurité & Cloudflare Pages (`public/_headers`, `public/_redirects`, `public/theme-init.js`, `scripts/check-deploy.js`, `.github/workflows/keepalive.yml`, `README.md`)** : HSTS, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, `Permissions-Policy`, CSP stricte (`script-src 'self'` avec `/theme-init.js` bloquant externe), cache `immutable` 1 an pour `/assets/*` et `/audio/*/*.bin` (paquets hachés par contenu), `no-cache` pour `index.html`, `sw.js` et manifests, `check:deploy` OK, keep-alive cron 3 jours.
+- [x] **C7 — Tests & builds automatisés** :
+  - `npm test` (`validate-data.js` + `vitest run`) : **10 fichiers de test, 63 tests passés**.
+  - `npm run build` (`tsc -b && vite build && node scripts/check-budget.js`) : **JS initial `108,89 ko` / `120,00 ko`**, **CSS initial `7,30 ko` / `25,00 ko`**, **Max chunk différé `58,52 ko` / `150,00 ko`**, **Max paquet audio `2,48 Mo` / `5,00 Mo` (`69,24 Mo` total)**.
+  - `npm run check:deploy` : **`dist/` = `119` fichiers (`70,82 Mo`)**, aucun fichier > 25 Mo.
+  - Rendu navigateur headless Chrome CDP sur `http://localhost:4173/` : **0 erreur console**, **0 débordement horizontal** à `390x844` (`verification/mobile-390px.png`) et `1440x900` (`verification/desktop-1440px.png`).

@@ -264,11 +264,16 @@ export interface AppState {
   quizzesCompletedCount: number;
 }
 
+export type SyncStatus = 'synced' | 'syncing' | 'offline' | 'error';
+
+export type LegalDocumentKind = 'privacy' | 'terms';
+
 export interface LocalProfileRecord {
   id: string;
   name: string;
   mode: ProfileMode;
   createdAt: string;
+  updatedAt?: string;
   state: AppState;
 }
 

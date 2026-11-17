@@ -523,6 +523,31 @@ export function scheduleSaveMultiProfileStore(
   }, Math.max(500, delayMs));
 }
 
+function generateProfileUuid(): string {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID();
+  }
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0;
+    const v = c === 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
+export function clearAllLocalAccountData(): void {
+  const keysToClear = [
+    STORAGE_KEY,
+    MULTI_PROFILE_STORAGE_KEY,
+    'diang-anglais:conflict-backups:v1',
+    'diang-anglais:sync-meta:v1',
+    'diang-anglais:audio-settings:v1',
+    ...LEGACY_STORAGE_KEYS,
+  ];
+  for (const key of keysToClear) {
+    safeRemoveItem(key);
+  }
+}
+
 export function createLocalProfile(
   name: string,
   mode: ProfileMode,
@@ -541,10 +566,11 @@ export function createLocalProfile(
   state.onboardingStep = 'placement';
 
   return {
-    id: `prof-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+    id: generateProfileUuid(),
     name: cleanName,
     mode,
     createdAt: nowIso,
+    updatedAt: nowIso,
     state,
   };
 }
@@ -587,11 +613,13 @@ export function updateActiveProfileState(
   const active = getActiveProfile(store);
   if (!active) return store;
   const updatedState = updater(active.state);
+  const nowIso = new Date().toISOString();
   const nextProfiles = store.profiles.map((p) =>
     p.id === active.id
       ? {
           ...p,
           name: updatedState.profile?.firstName || p.name,
+          updatedAt: nowIso,
           state: updatedState,
         }
       : p
@@ -622,10 +650,11 @@ export function resetActiveProfileInStore(
   };
   freshState.onboardingStep = 'placement';
 
+  const nowIso = new Date().toISOString();
   const next: MultiProfileStore = {
     ...store,
     profiles: store.profiles.map((p) =>
-      p.id === active.id ? { ...p, state: freshState } : p
+      p.id === active.id ? { ...p, updatedAt: nowIso, state: freshState } : p
     ),
   };
   saveMultiProfileStore(next);
@@ -677,6 +706,12 @@ export function loadMultiProfileStore(
               typeof item.createdAt === 'string'
                 ? item.createdAt
                 : finalized.profile?.createdAt || new Date().toISOString(),
+            updatedAt:
+              typeof item.updatedAt === 'string'
+                ? item.updatedAt
+                : typeof item.createdAt === 'string'
+                  ? item.createdAt
+                  : finalized.profile?.createdAt || new Date().toISOString(),
             state: finalized,
           });
         }

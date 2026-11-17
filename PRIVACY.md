@@ -1,13 +1,20 @@
 # Politique de confidentialité — Diang-Anglais
 
-## Stockage 100 % local sur l’appareil
-Diang-Anglais fonctionne entièrement hors ligne après chargement :
-- **Aucun compte utilisateur** : aucun nom de famille, aucune adresse e-mail, aucun numéro de téléphone ni photo n’est demandé. Seul un prénom ou un pseudo est utilisé pour distinguer jusqu’à 4 profils locaux sur le même appareil.
-- **Données locales uniquement** : la progression, les plans d’étude, les cartes révisées, les préférences audio et le thème sont enregistrés exclusivement dans le `localStorage` du navigateur sur l’appareil (`diang-anglais:v2`).
-- **Aucune requête réseau vers l’extérieur** : l’application n’envoie aucune donnée d’apprentissage, d’usage ou de profil vers un serveur distant.
-- **Zéro outil d’analyse, zéro traceur, zéro publicité** : aucun script de suivi publicitaire ou analytique n’est embarqué, ni en mode adulte ni en mode enfant.
+## 1. Données collectées et finalité
+Diang-Anglais collecte uniquement les données strictement nécessaires au fonctionnement de l'application et à la synchronisation de votre apprentissage :
+- **Compte adulte** : adresse e-mail utilisée pour l'authentification (e-mail + mot de passe ou Google OAuth via Supabase).
+- **Profils d'apprentissage** : prénom ou pseudo (aucun nom de famille, téléphone ou photo), type de profil (`adult` ou `child`), progression (cartes SM-2, séances, placement, XP) et préférences (voix, vitesse audio, thème).
+- **Usage strictement limité** : ces données servent uniquement à sauvegarder et synchroniser votre progression entre vos appareils.
 
-## Protection de l’espace enfant (8-12 ans)
-- **Aucun lien externe** : le mode enfant ne contient aucun lien sortant vers Internet ou les réseaux sociaux.
-- **Espace parent protégé** : l’accès aux paramètres, au changement de profil, à l’export/import JSON et à la réinitialisation des données sur un profil enfant est protégé par un calcul de contrôle généré localement (aucun mot de passe stocké).
-- **Contrôle total** : les parents peuvent exporter, importer ou effacer définitivement les données d’un profil à tout moment depuis l’appareil.
+## 2. Zéro publicité, zéro traceur, zéro revente
+- Aucune publicité, aucun outil d'analyse d'audience et aucun script de suivi tiers ne sont intégrés.
+- Aucune donnée n'est vendue, louée ou cédée à des tiers.
+
+## 3. Comptes adultes et espace enfant (8-12 ans)
+- La création de compte est réservée aux adultes.
+- Les profils enfants (jusqu'à 4 profils par compte) sont créés et gérés par le parent : ils ne possèdent ni adresse e-mail ni compte propre et dépendent du compte parent.
+- Sur un profil enfant, l'accès aux paramètres, au changement de profil et à la gestion du compte est protégé par un contrôle parental local.
+
+## 4. Export et suppression sur demande
+- Vous pouvez exporter vos données au format JSON ou supprimer définitivement votre compte à tout moment depuis **Paramètres > Compte**.
+- La suppression du compte efface immédiatement l'utilisateur et l'ensemble de ses profils côté serveur (suppression en cascade) ainsi que les données locales de l'appareil.

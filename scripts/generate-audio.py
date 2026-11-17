@@ -419,10 +419,16 @@ def build_voice_packs(
             nonlocal chunks_buf, chunk_entries, current_offset
             if not chunk_entries:
                 return
-            pack_id = f"{unit_key}-{pack_suffix}" if part > 1 or len(unit_items) > len(chunk_entries) else unit_key
+            base_pack_id = (
+                f"{unit_key}-{pack_suffix}"
+                if part > 1 or len(unit_items) > len(chunk_entries)
+                else unit_key
+            )
+            pack_bytes = b"".join(chunks_buf)
+            pack_hash8 = hashlib.sha1(pack_bytes).hexdigest()[:8]
+            pack_id = f"{base_pack_id}-{pack_hash8}"
             pack_filename = f"{pack_id}.bin"
             expected_bin_files.add(pack_filename)
-            pack_bytes = b"".join(chunks_buf)
             pack_path = voice_out_dir / pack_filename
             if not pack_path.exists() or pack_path.stat().st_size != len(pack_bytes) or pack_path.read_bytes() != pack_bytes:
                 pack_path.write_bytes(pack_bytes)

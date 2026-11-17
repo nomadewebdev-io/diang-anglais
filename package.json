@@ -9,6 +9,7 @@
     "build": "tsc -b && vite build && node scripts/check-budget.js",
     "analyze": "vite build --mode analyze",
     "check:budget": "node scripts/check-budget.js",
+    "check:deploy": "node scripts/check-deploy.js",
     "preview": "vite preview",
     "audio:generate": "node scripts/generate-audio.js",
     "validate:data": "node scripts/validate-data.js",
@@ -16,6 +17,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.119.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

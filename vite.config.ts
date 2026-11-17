@@ -48,6 +48,10 @@ export default defineConfig(({ mode }) => ({
         globIgnores: ['**/audio/**'],
         runtimeCaching: [
           {
+            urlPattern: /^https:\/\/[a-z0-9-]+\.supabase\.co\/.*/i,
+            handler: 'NetworkOnly',
+          },
+          {
             urlPattern: /\/audio\/(ragui|fatou-sarre|omare|boubacar)\/[a-z0-9-]+\.bin$/i,
             handler: 'CacheFirst',
             options: {
@@ -86,6 +90,12 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks(id) {
+          if (
+            id.includes('node_modules/@supabase/') ||
+            id.includes('node_modules\\@supabase\\')
+          ) {
+            return 'supabase';
+          }
           if (
             id.includes('node_modules/react/') ||
             id.includes('node_modules/react-dom/') ||

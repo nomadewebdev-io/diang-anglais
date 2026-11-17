@@ -10,14 +10,17 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+.env*
+!.env.example
 *.local
 dev-dist
 .venv
 .piper-models
-audio-cache
+audio-cache/
 dist-stats.html
 __pycache__
 *.pyc
+Thumbs.db
 
 # Editor directories and files
 .vscode/*
