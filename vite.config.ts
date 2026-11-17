@@ -2,8 +2,9 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import { visualizer } from 'rollup-plugin-visualizer';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   server: {
     port: 5173,
     strictPort: true,
@@ -20,7 +21,7 @@ export default defineConfig({
       manifest: {
         name: 'Diang-Anglais',
         short_name: 'Diang-Anglais',
-        description: 'Apprentissage structuré de l’anglais pour francophones (CECRL A1 à B2)',
+        description: 'Apprentissage structuré de l’anglais pour francophones (CECRL A0 à B2)',
         theme_color: '#0F4C3A',
         background_color: '#FAF8F5',
         display: 'standalone',
@@ -44,15 +45,15 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,woff2}'],
-        globIgnores: ['**/audio/**/*.mp3'],
+        globIgnores: ['**/audio/**'],
         runtimeCaching: [
           {
-            urlPattern: /\/audio\/(aminata|fatou|khady|moussa|cheikh|ibrahima)\/[a-f0-9]{12}\.mp3$/i,
+            urlPattern: /\/audio\/(aminata|fatou|khady|moussa|cheikh|ibrahima)\/[a-z0-9-]+\.bin$/i,
             handler: 'CacheFirst',
             options: {
-              cacheName: 'diang-anglais-voice-audio-v1',
+              cacheName: 'diang-anglais-audio-packs-v2',
               expiration: {
-                maxEntries: 3000,
+                maxEntries: 50,
                 maxAgeSeconds: 60 * 60 * 24 * 90,
               },
               cacheableResponse: {
@@ -61,25 +62,40 @@ export default defineConfig({
             },
           },
           {
-            urlPattern: /\/audio\/manifest\.json$/i,
+            urlPattern: /\/audio\/(aminata|fatou|khady|moussa|cheikh|ibrahima)\/manifest\.json$/i,
             handler: 'StaleWhileRevalidate',
             options: {
-              cacheName: 'diang-anglais-audio-manifest-v1',
+              cacheName: 'diang-anglais-audio-manifest-v2',
             },
           },
         ],
       },
     }),
+    ...(mode === 'analyze'
+      ? [
+          visualizer({
+            filename: 'dist-stats.html',
+            gzipSize: true,
+            brotliSize: true,
+            open: false,
+          }),
+        ]
+      : []),
   ],
   build: {
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes('/src/data/') || id.includes('\\src\\data\\')) {
-            return 'data-catalog';
+          if (
+            id.includes('node_modules/react/') ||
+            id.includes('node_modules/react-dom/') ||
+            id.includes('node_modules\\react\\') ||
+            id.includes('node_modules\\react-dom\\')
+          ) {
+            return 'vendor';
           }
         },
       },
     },
   },
-});
+}));

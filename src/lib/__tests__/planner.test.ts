@@ -8,8 +8,10 @@ import {
   generateStudyPlan,
   getDefaultTargetLevel,
 } from '../planner';
-import { catalog } from '../catalog';
+import { loadFullCatalogForMode } from '../catalog';
 import { PlacementResult, StudyPlanConfig } from '../types';
+
+const catalog = await loadFullCatalogForMode('adult');
 
 describe('planner — faisabilité, génération du programme et rattrapage', () => {
   it('propose par défaut le niveau CECRL suivant', () => {

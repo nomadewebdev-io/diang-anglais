@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import {
   IconCalendarToday,
   IconCards,
@@ -7,18 +7,42 @@ import {
   IconRoadmap,
   IconSettings,
 } from './components/Icons';
-import { OnboardingFlow } from './components/OnboardingFlow';
-import { ParentGateModal } from './components/ParentGateModal';
-import {
-  getInitials,
-  ProfileCreationForm,
-  ProfileSwitcherModal,
-} from './components/ProfileGateView';
-import { ProgramView } from './components/ProgramView';
-import { ProgressView } from './components/ProgressView';
-import { ReviewView } from './components/ReviewView';
-import { SettingsView } from './components/SettingsView';
+import { getInitials } from './components/ProfileGateView';
 import { TodayView } from './components/TodayView';
+
+const OnboardingFlow = lazy(() =>
+  import('./components/OnboardingFlow').then((m) => ({ default: m.OnboardingFlow }))
+);
+const ParentGateModal = lazy(() =>
+  import('./components/ParentGateModal').then((m) => ({ default: m.ParentGateModal }))
+);
+const ProfileCreationForm = lazy(() =>
+  import('./components/ProfileGateView').then((m) => ({ default: m.ProfileCreationForm }))
+);
+const ProfileSwitcherModal = lazy(() =>
+  import('./components/ProfileGateView').then((m) => ({ default: m.ProfileSwitcherModal }))
+);
+const ProgramView = lazy(() =>
+  import('./components/ProgramView').then((m) => ({ default: m.ProgramView }))
+);
+const ProgressView = lazy(() =>
+  import('./components/ProgressView').then((m) => ({ default: m.ProgressView }))
+);
+const ReviewView = lazy(() =>
+  import('./components/ReviewView').then((m) => ({ default: m.ReviewView }))
+);
+const SettingsView = lazy(() =>
+  import('./components/SettingsView').then((m) => ({ default: m.SettingsView }))
+);
+
+function ViewSkeleton(): React.ReactElement {
+  return (
+    <div className="space-y-4 animate-pulse" aria-busy="true" aria-label="Chargement">
+      <div className="h-36 rounded-2xl bg-[#E4DFD3]/60 dark:bg-[#252D2A]" />
+      <div className="h-24 rounded-2xl bg-[#E4DFD3]/40 dark:bg-[#1E2422]" />
+    </div>
+  );
+}
 import {
   recordUnitCompletion,
   unlockNextUnitManually,
@@ -82,8 +106,11 @@ export function App(): React.ReactElement {
 
   const setState = (updater: AppState | ((prev: AppState) => AppState)) => {
     setStore((prevStore) =>
-      updateActiveProfileState(prevStore, (prevState) =>
-        typeof updater === 'function' ? updater(prevState) : updater
+      updateActiveProfileState(
+        prevStore,
+        (prevState) =>
+          typeof updater === 'function' ? updater(prevState) : updater,
+        true
       )
     );
   };
@@ -599,7 +626,8 @@ export function App(): React.ReactElement {
 
       {/* Main Content */}
       <main className="flex-1 w-full max-w-4xl mx-auto px-4 py-5">
-        {!activeProfile ? (
+        <Suspense fallback={<ViewSkeleton />}>
+          {!activeProfile ? (
           <ProfileCreationForm
             onCreate={(name, mode) => {
               const created = createLocalProfile(name, mode);
@@ -698,6 +726,7 @@ export function App(): React.ReactElement {
             )}
           </>
         )}
+        </Suspense>
       </main>
 
       {/* Bottom Navigation Bar */}
@@ -734,37 +763,41 @@ export function App(): React.ReactElement {
       )}
 
       {pendingGateAction && (
-        <ParentGateModal
-          onSuccess={() => {
-            const action = pendingGateAction;
-            setPendingGateAction(null);
-            if (action === 'settings') setIsSettingsOpen(true);
-            if (action === 'profiles') setIsProfileSwitcherOpen(true);
-          }}
-          onCancel={() => setPendingGateAction(null)}
-        />
+        <Suspense fallback={null}>
+          <ParentGateModal
+            onSuccess={() => {
+              const action = pendingGateAction;
+              setPendingGateAction(null);
+              if (action === 'settings') setIsSettingsOpen(true);
+              if (action === 'profiles') setIsProfileSwitcherOpen(true);
+            }}
+            onCancel={() => setPendingGateAction(null)}
+          />
+        </Suspense>
       )}
 
       {isProfileSwitcherOpen && activeProfile && (
-        <ProfileSwitcherModal
-          profiles={store.profiles}
-          activeProfileId={activeProfile.id}
-          onSelectProfile={(id) => {
-            setStore((prev) => switchActiveProfile(prev, id));
-            setIsSettingsOpen(false);
-            setActiveTab('today');
-          }}
-          onCreateProfile={(name, mode) => {
-            const created = createLocalProfile(name, mode);
-            setStore((prev) => addProfileToStore(prev, created));
-            setIsSettingsOpen(false);
-            setActiveTab('today');
-          }}
-          onDeleteProfile={(id) => {
-            setStore((prev) => deleteProfileFromStore(prev, id));
-          }}
-          onClose={() => setIsProfileSwitcherOpen(false)}
-        />
+        <Suspense fallback={null}>
+          <ProfileSwitcherModal
+            profiles={store.profiles}
+            activeProfileId={activeProfile.id}
+            onSelectProfile={(id) => {
+              setStore((prev) => switchActiveProfile(prev, id));
+              setIsSettingsOpen(false);
+              setActiveTab('today');
+            }}
+            onCreateProfile={(name, mode) => {
+              const created = createLocalProfile(name, mode);
+              setStore((prev) => addProfileToStore(prev, created));
+              setIsSettingsOpen(false);
+              setActiveTab('today');
+            }}
+            onDeleteProfile={(id) => {
+              setStore((prev) => deleteProfileFromStore(prev, id));
+            }}
+            onClose={() => setIsProfileSwitcherOpen(false)}
+          />
+        </Suspense>
       )}
     </div>
   );

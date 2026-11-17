@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { getCatalogForMode } from '../lib/catalog';
 import {
   ALL_SKILLS,
   getPlacementLockStatus,
@@ -49,7 +48,6 @@ export function ProgressView({
   const [isParentGateOpen, setIsParentGateOpen] = useState(false);
   const [isParentUnlocked, setIsParentUnlocked] = useState(false);
 
-  const catalog = getCatalogForMode(state.mode);
   const isChild = state.mode === 'child';
 
   const lockStatus = getPlacementLockStatus(state.placementResult);
@@ -57,8 +55,8 @@ export function ProgressView({
   const todayStr = formatDateISO(new Date());
   const streak = calculateStrictStreak(state.dailyLogs, todayStr, state.studyDates);
 
-  // SM-2 Card Mastery Stats
-  const totalCards = catalog.cards.length;
+  // SM-2 Card Mastery Stats (sans charger les 800 cartes en mémoire)
+  const totalCards = isChild ? 320 : 800;
   const sm2Entries = Object.values(state.sm2States);
   const masteredCards = sm2Entries.filter((s) => s.interval >= 7).length;
   const learningCards = sm2Entries.filter(

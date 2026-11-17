@@ -1,0 +1,6 @@
+{
+  "maxInitialJsGzipBytes": 122880,
+  "maxInitialCssGzipBytes": 25600,
+  "maxLazyChunkGzipBytes": 153600,
+  "maxAudioPackBytes": 5242880
+}

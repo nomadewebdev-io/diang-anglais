@@ -1,5 +1,9 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { getCatalogForMode } from '../catalog';
+import {
+  loadCatalogForProfile,
+  loadFullCatalogForMode,
+  loadPlacementBank,
+} from '../catalog';
 import { generateParentChallenge, verifyParentChallenge } from '../parentGate';
 import { getDefaultPlanPreferences } from '../planner';
 import { getBonusPauseThreshold } from '../progression';
@@ -104,9 +108,9 @@ describe('Mode enfant & profils locaux', () => {
     expect(aminata?.state.theme).toBe('system');
   });
 
-  it('charge le bon catalogue selon le mode sans jamais mélanger adulte et enfant', () => {
-    const kids = getCatalogForMode('child');
-    const adult = getCatalogForMode('adult');
+  it('charge le bon catalogue dynamiquement selon le mode et le niveau sans jamais mélanger adulte et enfant', async () => {
+    const kids = await loadFullCatalogForMode('child');
+    const adult = await loadFullCatalogForMode('adult');
 
     expect(kids.cards).toHaveLength(320);
     expect(kids.lessons).toHaveLength(18);
@@ -119,6 +123,15 @@ describe('Mode enfant & profils locaux', () => {
     expect(adult.cards).toHaveLength(800);
     const kidsIds = new Set(kids.cards.map((c) => c.id));
     expect(adult.cards.some((c) => kidsIds.has(c.id))).toBe(false);
+
+    // Chargement ciblé par niveau (ex. A1 + A2 uniquement, sans B1/B2 ni banque de placement)
+    const targeted = await loadCatalogForProfile('adult', 'A1', 'A2', false);
+    expect(targeted.cards.every((c) => c.level === 'A1' || c.level === 'A2')).toBe(true);
+    expect(targeted.placement).toHaveLength(0);
+
+    // Banque de test chargée à la demande
+    const kidsPlacement = await loadPlacementBank('child');
+    expect(kidsPlacement).toHaveLength(90);
   });
 
   it('génère et vérifie le calcul de contrôle de l’espace parent', () => {

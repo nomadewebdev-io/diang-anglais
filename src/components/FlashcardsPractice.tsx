@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { preloadAudioClip, speakEnglish } from '../lib/audio';
-import { catalog } from '../lib/catalog';
 import { createInitialSM2State, formatDateISO } from '../lib/sm2';
 import {
   buildCardChoices,
@@ -40,7 +39,7 @@ interface CardFeedback {
 export function FlashcardsPractice({
   cards,
   sm2States,
-  fallbackPool = catalog.cards,
+  fallbackPool = [],
   mode = 'adult',
   title = 'Vocabulaire',
   onRateCard,

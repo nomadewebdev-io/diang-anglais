@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { catalog } from '../catalog';
+import { loadFullCatalogForMode } from '../catalog';
+
+const catalog = await loadFullCatalogForMode('adult');
 import {
   abandonPlacementSession,
   adjustAdaptiveLevel,

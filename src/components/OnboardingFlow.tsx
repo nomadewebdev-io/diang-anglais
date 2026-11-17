@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { preloadAudioClip, speakEnglish } from '../lib/audio';
-import { getCatalogForMode } from '../lib/catalog';
+import { loadCatalogForProfile, loadPlacementBank } from '../lib/catalog';
 import {
   abandonPlacementSession,
   AdaptiveTestSession,
@@ -116,22 +116,22 @@ interface ActivePlacementState {
 }
 
 function createInitialPlacementState(
+  placementBank: PlacementQuestion[],
   initialSeenIds: string[],
   mode: ProfileMode = 'adult'
 ): ActivePlacementState {
-  const activeCatalog = getCatalogForMode(mode);
   const allowedLevels = getLevelsForMode(mode);
   const targetCount = mode === 'child' ? KIDS_PLACEMENT_QUESTION_COUNT : 20;
   const initialLevel: CEFRLevel = mode === 'child' ? 'A0' : 'A1';
   const freshSession = createAdaptiveSession(
-    activeCatalog.placement.length,
+    placementBank.length,
     targetCount,
     initialLevel,
     new Date().toISOString(),
     allowedLevels
   );
   const drawn = drawNextPlacementQuestion(
-    activeCatalog.placement,
+    placementBank,
     freshSession,
     initialSeenIds
   );
@@ -157,7 +157,8 @@ export function OnboardingFlow({
   onCancelLockedRetake,
 }: OnboardingFlowProps): React.ReactElement {
   const isChild = mode === 'child';
-  const activeCatalog = getCatalogForMode(mode);
+  const [placementBank, setPlacementBank] = useState<PlacementQuestion[]>([]);
+  const [isGeneratingPlan, setIsGeneratingPlan] = useState(false);
   // Step 1: Profile state
   const [firstName, setFirstName] = useState(initialProfile?.firstName ?? '');
   const [selectedGoal, setSelectedGoal] = useState<LearningGoal>(
@@ -170,15 +171,11 @@ export function OnboardingFlow({
   const lockStatus = getPlacementLockStatus(initialPlacement);
 
   const [placementState, setPlacementState] = useState<ActivePlacementState>(() =>
-    createInitialPlacementState(seenQuestionIds, mode)
+    createInitialPlacementState([], [], mode)
   );
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [audioPlayCount, setAudioPlayCount] = useState<number>(0);
-  const [timeLeftSeconds, setTimeLeftSeconds] = useState<number>(() =>
-    placementState.currentQuestion
-      ? getQuestionTimeLimitSeconds(placementState.currentQuestion.skill)
-      : 30
-  );
+  const [timeLeftSeconds, setTimeLeftSeconds] = useState<number>(30);
 
   const latestPlacementRef = useRef<ActivePlacementState>(placementState);
   latestPlacementRef.current = placementState;
@@ -186,26 +183,31 @@ export function OnboardingFlow({
   const onUpdateSessionRef = useRef(onUpdatePlacementSession);
   onUpdateSessionRef.current = onUpdatePlacementSession;
 
-  // Start a fresh non-repeating session whenever entering 'placement' (if unlocked)
+  // Charge la banque du test de niveau uniquement au lancement du test (si déverrouillé)
   useEffect(() => {
     if (step !== 'placement' || lockStatus.isLocked) {
       return;
     }
 
-    const fresh = createInitialPlacementState(seenQuestionIds);
-    setPlacementState(fresh);
-    setSelectedOption(null);
-    setAudioPlayCount(0);
-    setTimeLeftSeconds(
-      fresh.currentQuestion
-        ? getQuestionTimeLimitSeconds(fresh.currentQuestion.skill)
-        : 30
-    );
+    let cancelled = false;
+    void loadPlacementBank(mode).then((bank) => {
+      if (cancelled) return;
+      setPlacementBank(bank);
+      const fresh = createInitialPlacementState(bank, seenQuestionIds, mode);
+      setPlacementState(fresh);
+      setSelectedOption(null);
+      setAudioPlayCount(0);
+      setTimeLeftSeconds(
+        fresh.currentQuestion
+          ? getQuestionTimeLimitSeconds(fresh.currentQuestion.skill)
+          : 30
+      );
 
-    onUpdateSessionRef.current?.(
-      toPlacementSessionState(fresh.session),
-      fresh.seenIds
-    );
+      onUpdateSessionRef.current?.(
+        toPlacementSessionState(fresh.session),
+        fresh.seenIds
+      );
+    });
 
     const handleBeforeUnload = () => {
       const current = latestPlacementRef.current;
@@ -220,6 +222,7 @@ export function OnboardingFlow({
 
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => {
+      cancelled = true;
       window.removeEventListener('beforeunload', handleBeforeUnload);
       const current = latestPlacementRef.current;
       if (current.session.status === 'in_progress') {
@@ -231,7 +234,7 @@ export function OnboardingFlow({
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [step, lockStatus.isLocked]);
+  }, [step, lockStatus.isLocked, mode]);
 
   const advancePlacementQuestion = useCallback(
     (chosenOption: number | null, forceDontKnow = false) => {
@@ -268,7 +271,7 @@ export function OnboardingFlow({
       }
 
       const nextDrawn = drawNextPlacementQuestion(
-        activeCatalog.placement,
+        placementBank,
         recordedSession,
         current.seenIds
       );
@@ -309,7 +312,7 @@ export function OnboardingFlow({
         nextDrawn.seenQuestionIds
       );
     },
-    [onCompletePlacement]
+    [onCompletePlacement, placementBank]
   );
 
   // Per-question countdown timer (adult only); child mode has no visible countdown
@@ -837,13 +840,21 @@ export function OnboardingFlow({
   };
 
   const handleGenerateProgram = () => {
-    const generated = generateStudyPlan(
-      planConfig,
-      initialPlacement,
-      activeCatalog,
-      initialProfile?.goal
-    );
-    onCompletePlan(generated);
+    if (isGeneratingPlan) return;
+    setIsGeneratingPlan(true);
+    void loadCatalogForProfile(mode, determinedLevel, targetLevel)
+      .then((profileCatalog) => {
+        const generated = generateStudyPlan(
+          planConfig,
+          initialPlacement,
+          profileCatalog,
+          initialProfile?.goal
+        );
+        onCompletePlan(generated);
+      })
+      .finally(() => {
+        setIsGeneratingPlan(false);
+      });
   };
 
   return (

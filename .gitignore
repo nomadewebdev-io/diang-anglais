@@ -14,6 +14,8 @@ dist-ssr
 dev-dist
 .venv
 .piper-models
+audio-cache
+dist-stats.html
 __pycache__
 *.pyc
 

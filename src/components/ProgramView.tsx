@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { getCatalogForMode } from '../lib/catalog';
+import React, { useEffect, useState } from 'react';
+import { EMPTY_CATALOG, loadFullCatalogForMode } from '../lib/catalog';
 import { getLevelsForMode, SKILL_LABELS_FR } from '../lib/placementTest';
 import {
   analyzeFeasibility,
+  ContentCatalog,
   generateStudyPlan,
   getMilestoneWeeks,
 } from '../lib/planner';
@@ -41,9 +42,19 @@ export function ProgramView({
   onCompleteMilestoneTest,
   onCompleteFinalTest,
 }: ProgramViewProps): React.ReactElement {
-  const catalog = getCatalogForMode(state.mode);
+  const [catalog, setCatalog] = useState<ContentCatalog>(EMPTY_CATALOG);
   const availableLevels = getLevelsForMode(state.mode);
   const plan = state.studyPlan;
+
+  useEffect(() => {
+    let cancelled = false;
+    void loadFullCatalogForMode(state.mode).then((loaded) => {
+      if (!cancelled) setCatalog(loaded);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [state.mode]);
 
   const [isEditingPlan, setIsEditingPlan] = useState(false);
   const [targetLevel, setTargetLevel] = useState<CEFRLevel>(

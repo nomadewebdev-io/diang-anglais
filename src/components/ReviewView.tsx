@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { getCatalogForMode } from '../lib/catalog';
+import React, { useEffect, useState } from 'react';
+import { EMPTY_CATALOG, loadFullCatalogForMode } from '../lib/catalog';
+import { ContentCatalog } from '../lib/planner';
 import {
   getConstructionUnits,
   getNextConstructionUnitForLevel,
@@ -62,8 +63,18 @@ export function ReviewView({
   const [levelFilter, setLevelFilter] = useState<CEFRLevel | 'ALL'>('ALL');
   const [selectedLessonId, setSelectedLessonId] = useState<string | null>(null);
   const [quizSkillFilter, setQuizSkillFilter] = useState<SkillType | 'ALL'>('ALL');
-  const catalog = getCatalogForMode(state.mode);
+  const [catalog, setCatalog] = useState<ContentCatalog>(EMPTY_CATALOG);
   const availableLevels = getLevelsForMode(state.mode);
+
+  useEffect(() => {
+    let cancelled = false;
+    void loadFullCatalogForMode(state.mode).then((loaded) => {
+      if (!cancelled) setCatalog(loaded);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [state.mode]);
   const [constructionLevel, setConstructionLevel] = useState<CEFRLevel>(
     state.studyPlan?.config.currentLevel ?? availableLevels[0]
   );

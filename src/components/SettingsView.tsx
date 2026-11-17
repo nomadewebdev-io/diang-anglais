@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
+  clearAudioStorageCache,
+  estimateAudioStorageBytes,
   PLAYBACK_SPEED_OPTIONS,
   playAudio,
   VOICE_SAMPLE_TEXT,
@@ -81,6 +83,12 @@ export function SettingsView({
   } | null>(null);
   const [confirmReset, setConfirmReset] = useState(false);
   const [previewingVoiceId, setPreviewingVoiceId] = useState<VoiceId | null>(null);
+  const [audioBytes, setAudioBytes] = useState<number>(0);
+  const [audioClearedMsg, setAudioClearedMsg] = useState<string | null>(null);
+
+  useEffect(() => {
+    void estimateAudioStorageBytes().then(setAudioBytes);
+  }, []);
 
   const todayStr = formatDateISO(new Date());
   const selectedVoiceId: VoiceId = state.voiceId ?? 'aminata';
@@ -315,6 +323,31 @@ export function SettingsView({
                 );
               })}
             </div>
+          </div>
+
+          <div className="pt-4 mt-4 border-t border-[#E4DFD3] dark:border-[#343F3B] flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <div className="text-xs font-semibold text-[#111827] dark:text-[#F3F4F6]">
+                Espace audio utilisé : {(audioBytes / (1024 * 1024)).toFixed(1)} Mo
+              </div>
+              {audioClearedMsg && (
+                <div className="text-xs text-[#0F4C3A] dark:text-[#6EE7B7] mt-0.5">
+                  {audioClearedMsg}
+                </div>
+              )}
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                void clearAudioStorageCache().then(() => {
+                  setAudioBytes(0);
+                  setAudioClearedMsg('Cache audio libéré.');
+                });
+              }}
+              className="px-3.5 py-2 rounded-xl border border-[#D5CFC2] dark:border-[#45534E] text-xs font-semibold text-[#374151] dark:text-[#D1D5DB] hover:bg-[#FAF8F5] dark:hover:bg-[#252D2A] cursor-pointer"
+            >
+              Libérer l’espace audio
+            </button>
           </div>
         </div>
       </section>

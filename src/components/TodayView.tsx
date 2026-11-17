@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import { getCatalogForMode } from '../lib/catalog';
-import { SKILL_LABELS_FR } from '../lib/placementTest';
+import React, { useEffect, useState } from 'react';
+import { prewarmAudioPacksForTexts } from '../lib/audio';
 import {
-  getMilestoneWeeks,
-} from '../lib/planner';
+  EMPTY_CATALOG,
+  loadCatalogForProfile,
+  loadPlacementBank,
+} from '../lib/catalog';
+import { SKILL_LABELS_FR } from '../lib/placementTest';
+import { ContentCatalog, getMilestoneWeeks } from '../lib/planner';
 import {
   calculateStrictStreak,
   computeBadges,
@@ -87,8 +90,54 @@ export function TodayView({
 
   const [activeMilestoneWeek, setActiveMilestoneWeek] = useState<number | null>(null);
   const [isFinalTestOpen, setIsFinalTestOpen] = useState(false);
+  const [catalog, setCatalog] = useState<ContentCatalog>(EMPTY_CATALOG);
 
   const plan = state.studyPlan;
+
+  // Charge uniquement les niveaux du profil (actuel + suivant/cible) en arrière-plan
+  useEffect(() => {
+    if (!plan) return;
+    let cancelled = false;
+    void loadCatalogForProfile(
+      state.mode,
+      plan.config.currentLevel,
+      plan.config.targetLevel
+    ).then((loaded) => {
+      if (!cancelled) {
+        setCatalog(loaded);
+        // Préchauffe les paquets audio des premières cartes/phrases
+        const sampleTexts = [
+          ...loaded.cards.slice(0, 8).map((c) => c.en),
+          ...loaded.sentences.slice(0, 4).map((s) => s.en),
+        ];
+        prewarmAudioPacksForTexts(sampleTexts, state.voiceId);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [state.mode, state.voiceId, plan?.config.currentLevel, plan?.config.targetLevel]);
+
+  // Charge la banque de placement à la demande pour quiz/écoute/bilan
+  const needsPlacementBank =
+    activeMilestoneWeek !== null ||
+    isFinalTestOpen ||
+    activeActivity?.activity.type === 'quiz' ||
+    activeActivity?.activity.type === 'listening';
+
+  useEffect(() => {
+    if (!needsPlacementBank || catalog.placement.length > 0) return;
+    let cancelled = false;
+    void loadPlacementBank(state.mode).then((questions) => {
+      if (!cancelled) {
+        setCatalog((prev) => ({ ...prev, placement: questions }));
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [needsPlacementBank, catalog.placement.length, state.mode]);
+
   if (!plan) {
     return (
       <div className="p-6 text-center text-sm text-[#4B5563]">
@@ -97,7 +146,6 @@ export function TodayView({
     );
   }
 
-  const catalog = getCatalogForMode(state.mode);
   const isChild = state.mode === 'child';
   const pauseThreshold = getBonusPauseThreshold(state.mode);
 

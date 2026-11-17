@@ -28,13 +28,16 @@ from piper.voice import ESPEAK_DATA_DIR, PiperVoice
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT_DIR / "src" / "data"
+AUDIO_CACHE_DIR = ROOT_DIR / "audio-cache"
 OUTPUT_AUDIO_DIR = ROOT_DIR / "public" / "audio"
 MODELS_CACHE_DIR = ROOT_DIR / ".piper-models"
 
 HF_BASE_URL = "https://huggingface.co/rhasspy/piper-voices/resolve/main"
 SAMPLE_PREVIEW_TEXT = "Good morning! Let's practice English together today."
 TARGET_SAMPLE_RATE = 22050
-DEFAULT_BITRATE_KBPS = 32
+DEFAULT_BITRATE_KBPS = 24
+TARGET_PACK_MAX_BYTES = 2_600_000  # Cible 1-3 Mo par paquet
+HARD_PACK_MAX_BYTES = 4_900_000    # Toujours < 5 Mo
 MAX_TOTAL_SIZE_BYTES = 148 * 1024 * 1024  # 148 Mo max (< 150 Mo)
 
 VOICES_CONFIG: list[dict[str, Any]] = [
@@ -130,92 +133,109 @@ def compute_text_hash(text: str) -> str:
     return hashlib.sha1(normalized.encode("utf-8")).hexdigest()[:12]
 
 
-def collect_all_texts() -> dict[str, str]:
+def _load_json_group(base_dir: Path, name: str) -> list[dict[str, Any]]:
+    single = base_dir / f"{name}.json"
+    if single.exists():
+        return json.loads(single.read_text(encoding="utf-8"))
+    split_dir = base_dir / name
+    if split_dir.exists():
+        items: list[dict[str, Any]] = []
+        for p in sorted(split_dir.glob("*.json")):
+            items.extend(json.loads(p.read_text(encoding="utf-8")))
+        return items
+    return []
+
+
+def collect_unit_texts() -> tuple[list[tuple[str, list[tuple[str, str]]]], dict[str, str]]:
     """
-    Collecte tous les textes anglais à synthétiser :
-    - cards.json : en, example
-    - sentences.json : en
-    - placement.json : audioText
-    - lessons.json : examples[].en (et audioText éventuel)
-    - phrase fixe d'aperçu des voix dans Paramètres
-    Retourne un dictionnaire { texte_normalisé: hash_12_chars }.
+    Collecte tous les textes anglais regroupés par unité d'apprentissage ordonnée
+    (shared-core, adult-a1..b2, kids-a0..a2), en dédoublonnant les textes identiques.
     """
-    texts_list: list[str] = [SAMPLE_PREVIEW_TEXT]
+    unit_order = [
+        "shared-core",
+        "adult-a1",
+        "adult-a2",
+        "adult-b1",
+        "adult-b2",
+        "kids-a0",
+        "kids-a1",
+        "kids-a2",
+    ]
+    buckets: dict[str, list[str]] = {u: [] for u in unit_order}
+    buckets["shared-core"].append(SAMPLE_PREVIEW_TEXT)
 
-    cards = json.loads((DATA_DIR / "cards.json").read_text(encoding="utf-8"))
-    for card in cards:
-        if card.get("en"):
-            texts_list.append(str(card["en"]).strip())
-        if card.get("example"):
-            texts_list.append(str(card["example"]).strip())
+    def add_to(unit_key: str, text: Any) -> None:
+        if text and isinstance(text, str):
+            t = text.strip()
+            if t and unit_key in buckets:
+                buckets[unit_key].append(t)
 
-    sentences = json.loads((DATA_DIR / "sentences.json").read_text(encoding="utf-8"))
-    for sent in sentences:
-        if sent.get("en"):
-            texts_list.append(str(sent["en"]).strip())
-
-    placement = json.loads((DATA_DIR / "placement.json").read_text(encoding="utf-8"))
-    for item in placement:
-        if item.get("audioText"):
-            texts_list.append(str(item["audioText"]).strip())
-
-    lessons = json.loads((DATA_DIR / "lessons.json").read_text(encoding="utf-8"))
-    for lesson in lessons:
-        if lesson.get("audioText"):
-            texts_list.append(str(lesson["audioText"]).strip())
+    for card in _load_json_group(DATA_DIR, "cards"):
+        u = f"adult-{str(card.get('level', 'A1')).lower()}"
+        add_to(u, card.get("en"))
+        add_to(u, card.get("example"))
+    for sent in _load_json_group(DATA_DIR, "sentences"):
+        u = f"adult-{str(sent.get('level', 'A1')).lower()}"
+        add_to(u, sent.get("en"))
+    for q in _load_json_group(DATA_DIR, "placement"):
+        u = f"adult-{str(q.get('level', 'A1')).lower()}"
+        add_to(u, q.get("audioText"))
+    for lesson in _load_json_group(DATA_DIR, "lessons"):
+        u = f"adult-{str(lesson.get('level', 'A1')).lower()}"
+        add_to(u, lesson.get("audioText"))
         for ex in lesson.get("examples", []):
-            if ex.get("en"):
-                texts_list.append(str(ex["en"]).strip())
-        for exercise in lesson.get("exercises", []):
-            if exercise.get("audioText"):
-                texts_list.append(str(exercise["audioText"]).strip())
-
-    constructions_path = DATA_DIR / "constructions.json"
-    if constructions_path.exists():
-        constructions = json.loads(constructions_path.read_text(encoding="utf-8"))
-        for item in constructions:
-            answers = item.get("answers", [])
-            if isinstance(answers, list) and len(answers) > 0 and answers[0]:
-                texts_list.append(str(answers[0]).strip())
+            add_to(u, ex.get("en"))
+        for exer in lesson.get("exercises", []):
+            add_to(u, exer.get("audioText"))
+    for item in _load_json_group(DATA_DIR, "constructions"):
+        u = f"adult-{str(item.get('level', 'A1')).lower()}"
+        answers = item.get("answers", [])
+        if isinstance(answers, list) and answers:
+            add_to(u, answers[0])
 
     kids_dir = DATA_DIR / "kids"
     if kids_dir.exists():
-        for card in json.loads((kids_dir / "cards.json").read_text(encoding="utf-8")):
-            if card.get("en"):
-                texts_list.append(str(card["en"]).strip())
-            if card.get("example"):
-                texts_list.append(str(card["example"]).strip())
-        for sent in json.loads((kids_dir / "sentences.json").read_text(encoding="utf-8")):
-            if sent.get("en"):
-                texts_list.append(str(sent["en"]).strip())
-        for item in json.loads((kids_dir / "placement.json").read_text(encoding="utf-8")):
-            if item.get("audioText"):
-                texts_list.append(str(item["audioText"]).strip())
-        for lesson in json.loads((kids_dir / "lessons.json").read_text(encoding="utf-8")):
+        for card in _load_json_group(kids_dir, "cards"):
+            u = f"kids-{str(card.get('level', 'A0')).lower()}"
+            add_to(u, card.get("en"))
+            add_to(u, card.get("example"))
+        for sent in _load_json_group(kids_dir, "sentences"):
+            u = f"kids-{str(sent.get('level', 'A0')).lower()}"
+            add_to(u, sent.get("en"))
+        for q in _load_json_group(kids_dir, "placement"):
+            u = f"kids-{str(q.get('level', 'A0')).lower()}"
+            add_to(u, q.get("audioText"))
+        for lesson in _load_json_group(kids_dir, "lessons"):
+            u = f"kids-{str(lesson.get('level', 'A0')).lower()}"
             for ex in lesson.get("examples", []):
-                if ex.get("en"):
-                    texts_list.append(str(ex["en"]).strip())
-        for item in json.loads((kids_dir / "constructions.json").read_text(encoding="utf-8")):
+                add_to(u, ex.get("en"))
+        for item in _load_json_group(kids_dir, "constructions"):
+            u = f"kids-{str(item.get('level', 'A0')).lower()}"
             answers = item.get("answers", [])
-            if isinstance(answers, list) and len(answers) > 0 and answers[0]:
-                texts_list.append(str(answers[0]).strip())
+            if isinstance(answers, list) and answers:
+                add_to(u, answers[0])
 
     text_to_hash: dict[str, str] = {}
     hash_to_text: dict[str, str] = {}
+    grouped_items: list[tuple[str, list[tuple[str, str]]]] = []
 
-    for raw in texts_list:
-        cleaned = raw.strip()
-        if not cleaned:
-            continue
-        h = compute_text_hash(cleaned)
-        if h in hash_to_text and hash_to_text[h] != cleaned:
-            raise RuntimeError(
-                f"Collision de hash SHA-1 (12 caractères) détectée : {h} entre '{hash_to_text[h]}' et '{cleaned}'"
-            )
-        text_to_hash[cleaned] = h
-        hash_to_text[h] = cleaned
+    for unit_key in unit_order:
+        unit_items: list[tuple[str, str]] = []
+        for raw in buckets[unit_key]:
+            if raw in text_to_hash:
+                continue
+            h = compute_text_hash(raw)
+            if h in hash_to_text and hash_to_text[h] != raw:
+                raise RuntimeError(
+                    f"Collision SHA-1 (12 chars) : {h} entre '{hash_to_text[h]}' et '{raw}'"
+                )
+            text_to_hash[raw] = h
+            hash_to_text[h] = raw
+            unit_items.append((raw, h))
+        if unit_items:
+            grouped_items.append((unit_key, unit_items))
 
-    return text_to_hash
+    return grouped_items, text_to_hash
 
 
 def download_file_if_missing(url: str, dest: Path) -> None:
@@ -302,25 +322,35 @@ def generate_voice_clips_worker(
 ) -> dict[str, int]:
     voice_id = voice_cfg["id"]
     model_name = voice_cfg["model"]
+    voice_cache_dir = AUDIO_CACHE_DIR / voice_id
     voice_out_dir = OUTPUT_AUDIO_DIR / voice_id
+    voice_cache_dir.mkdir(parents=True, exist_ok=True)
     voice_out_dir.mkdir(parents=True, exist_ok=True)
+
+    # Migrer d'éventuels anciens clips .mp3 de public/audio/<voiceId>/ vers audio-cache/<voiceId>/
+    for old_mp3 in voice_out_dir.glob("*.mp3"):
+        dest_cache = voice_cache_dir / old_mp3.name
+        if not dest_cache.exists():
+            os.replace(old_mp3, dest_cache)
+        else:
+            old_mp3.unlink()
 
     missing_items: list[tuple[str, str]] = []
     skipped_count = 0
 
     for text, h in items:
-        out_file = voice_out_dir / f"{h}.mp3"
+        out_file = voice_cache_dir / f"{h}.mp3"
         if not force_regenerate and out_file.exists() and out_file.stat().st_size > 120:
             skipped_count += 1
         else:
             missing_items.append((text, h))
 
     if not missing_items:
-        print(f"[{voice_id}] 0 à générer ({skipped_count} déjà présents).", flush=True)
+        print(f"[{voice_id}] 0 à générer ({skipped_count} en cache).", flush=True)
         return {"generated": 0, "skipped": skipped_count}
 
     print(
-        f"[{voice_id}] Chargement du modèle {model_name} ({len(missing_items)} clips à générer, {skipped_count} déjà présents)...",
+        f"[{voice_id}] Synthèse de {len(missing_items)} clips manquants vers audio-cache/ ({skipped_count} en cache)...",
         flush=True,
     )
 
@@ -349,8 +379,8 @@ def generate_voice_clips_worker(
     t0 = time.time()
 
     for idx, (text, h) in enumerate(missing_items, start=1):
-        out_file = voice_out_dir / f"{h}.mp3"
-        tmp_file = voice_out_dir / f"{h}.{os.getpid()}.tmp.mp3"
+        out_file = voice_cache_dir / f"{h}.mp3"
+        tmp_file = voice_cache_dir / f"{h}.{os.getpid()}.tmp.mp3"
 
         chunks = list(piper_voice.synthesize(text))
         if chunks:
@@ -389,10 +419,82 @@ def generate_voice_clips_worker(
 def compute_total_audio_bytes() -> int:
     if not OUTPUT_AUDIO_DIR.exists():
         return 0
-    return sum(p.stat().st_size for p in OUTPUT_AUDIO_DIR.rglob("*.mp3"))
+    return sum(
+        p.stat().st_size
+        for p in OUTPUT_AUDIO_DIR.rglob("*")
+        if p.is_file() and p.suffix in (".bin", ".json")
+    )
 
 
-def write_manifest(text_to_hash: dict[str, str], bitrate_kbps: int) -> None:
+def build_voice_packs(
+    voice_id: str,
+    grouped_items: list[tuple[str, list[tuple[str, str]]]],
+) -> dict[str, Any]:
+    voice_cache_dir = AUDIO_CACHE_DIR / voice_id
+    voice_out_dir = OUTPUT_AUDIO_DIR / voice_id
+    voice_out_dir.mkdir(parents=True, exist_ok=True)
+
+    packs_meta: dict[str, dict[str, int]] = {}
+    clips_index: dict[str, list[Any]] = {}
+    expected_bin_files: set[str] = set()
+
+    for unit_key, unit_items in grouped_items:
+        part = 1
+        chunks_buf: list[bytes] = []
+        chunk_entries: list[tuple[str, int, int]] = []
+        current_offset = 0
+
+        def flush_pack(pack_suffix: str) -> None:
+            nonlocal chunks_buf, chunk_entries, current_offset
+            if not chunk_entries:
+                return
+            pack_id = f"{unit_key}-{pack_suffix}" if part > 1 or len(unit_items) > len(chunk_entries) else unit_key
+            pack_filename = f"{pack_id}.bin"
+            expected_bin_files.add(pack_filename)
+            pack_bytes = b"".join(chunks_buf)
+            pack_path = voice_out_dir / pack_filename
+            if not pack_path.exists() or pack_path.stat().st_size != len(pack_bytes) or pack_path.read_bytes() != pack_bytes:
+                pack_path.write_bytes(pack_bytes)
+            packs_meta[pack_id] = {"size": len(pack_bytes), "count": len(chunk_entries)}
+            for h, off, length in chunk_entries:
+                clips_index[h] = [pack_id, off, length]
+            chunks_buf = []
+            chunk_entries = []
+            current_offset = 0
+
+        for _text, h in unit_items:
+            clip_bytes = (voice_cache_dir / f"{h}.mp3").read_bytes()
+            if current_offset > 0 and (current_offset + len(clip_bytes)) > TARGET_PACK_MAX_BYTES:
+                flush_pack(str(part))
+                part += 1
+            if len(clip_bytes) > HARD_PACK_MAX_BYTES:
+                raise RuntimeError(f"Clip individuel > 5 Mo : {voice_id}/{h}.mp3")
+            chunks_buf.append(clip_bytes)
+            chunk_entries.append((h, current_offset, len(clip_bytes)))
+            current_offset += len(clip_bytes)
+
+        flush_pack(str(part))
+
+    # Nettoyer d'éventuels paquets obsolètes
+    for existing in voice_out_dir.glob("*.bin"):
+        if existing.name not in expected_bin_files:
+            existing.unlink()
+
+    voice_manifest = {
+        "version": 2,
+        "voiceId": voice_id,
+        "packs": packs_meta,
+        "clips": clips_index,
+    }
+    manifest_path = voice_out_dir / "manifest.json"
+    manifest_text = json.dumps(voice_manifest, separators=(",", ":"), ensure_ascii=False)
+    if not manifest_path.exists() or manifest_path.read_text(encoding="utf-8") != manifest_text:
+        manifest_path.write_text(manifest_text, encoding="utf-8")
+
+    return {"packs": len(packs_meta), "clips": len(clips_index)}
+
+
+def write_root_manifest(bitrate_kbps: int, total_texts: int) -> None:
     OUTPUT_AUDIO_DIR.mkdir(parents=True, exist_ok=True)
     manifest_voices = [
         {
@@ -412,37 +514,43 @@ def write_manifest(text_to_hash: dict[str, str], bitrate_kbps: int) -> None:
     ]
 
     manifest_data = {
-        "version": 1,
+        "version": 2,
         "defaultVoiceId": "aminata",
         "sampleText": SAMPLE_PREVIEW_TEXT,
         "sampleHash": compute_text_hash(SAMPLE_PREVIEW_TEXT),
+        "uniqueTexts": total_texts,
         "audioSpec": {
-            "format": "mp3",
+            "format": "mp3-pack",
             "channels": 1,
             "bitrateKbps": bitrate_kbps,
             "sampleRateHz": TARGET_SAMPLE_RATE,
         },
         "voices": manifest_voices,
-        "texts": text_to_hash,
     }
 
     manifest_path = OUTPUT_AUDIO_DIR / "manifest.json"
     manifest_path.write_text(
-        json.dumps(manifest_data, indent=2, ensure_ascii=False) + "\n",
+        json.dumps(manifest_data, separators=(",", ":"), ensure_ascii=False),
         encoding="utf-8",
     )
 
 
 def run_generation(bitrate_kbps: int = DEFAULT_BITRATE_KBPS, force: bool = False) -> int:
-    ensure_voice_models_downloaded()
-    text_to_hash = collect_all_texts()
-    items = sorted(text_to_hash.items(), key=lambda kv: kv[1])
+    grouped_items, text_to_hash = collect_unit_texts()
+    flat_items = [item for _u, unit_list in grouped_items for item in unit_list]
     print(
-        f"[audio:generate] {len(items)} textes uniques à synthétiser × {len(VOICES_CONFIG)} voix = {len(items) * len(VOICES_CONFIG)} clips MP3 ({bitrate_kbps} kbps, {TARGET_SAMPLE_RATE} Hz).",
+        f"[audio:generate] {len(flat_items)} textes uniques × {len(VOICES_CONFIG)} voix ({bitrate_kbps} kbps, {TARGET_SAMPLE_RATE} Hz).",
         flush=True,
     )
 
-    write_manifest(text_to_hash, bitrate_kbps)
+    # Vérifier si des modèles doivent être téléchargés uniquement s'il manque des clips
+    need_models = force or any(
+        not (AUDIO_CACHE_DIR / v["id"] / f"{h}.mp3").exists()
+        for v in VOICES_CONFIG
+        for _t, h in flat_items
+    )
+    if need_models:
+        ensure_voice_models_downloaded()
 
     start_time = time.time()
     with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executor:
@@ -450,7 +558,7 @@ def run_generation(bitrate_kbps: int = DEFAULT_BITRATE_KBPS, force: bool = False
             executor.submit(
                 generate_voice_clips_worker,
                 voice_cfg,
-                items,
+                flat_items,
                 bitrate_kbps,
                 force,
             ): voice_cfg["id"]
@@ -459,26 +567,20 @@ def run_generation(bitrate_kbps: int = DEFAULT_BITRATE_KBPS, force: bool = False
         for fut in concurrent.futures.as_completed(futures):
             vid = futures[fut]
             res = fut.result()
+            pack_stats = build_voice_packs(vid, grouped_items)
             print(
-                f"[audio:generate] Voix '{vid}' terminée : {res['generated']} générés, {res['skipped']} conservés.",
+                f"[audio:generate] Voix '{vid}' : {res['generated']} générés, {res['skipped']} en cache -> {pack_stats['packs']} paquets ({pack_stats['clips']} clips).",
                 flush=True,
             )
 
+    write_root_manifest(bitrate_kbps, len(text_to_hash))
     total_bytes = compute_total_audio_bytes()
     total_mb = total_bytes / (1024 * 1024)
     elapsed_total = time.time() - start_time
     print(
-        f"[audio:generate] Terminé en {elapsed_total:.1f}s — Poids total des audios : {total_mb:.2f} Mo ({total_bytes} octets).",
+        f"[audio:generate] Terminé en {elapsed_total:.1f}s — Poids total public/audio : {total_mb:.2f} Mo ({total_bytes} octets).",
         flush=True,
     )
-
-    if total_bytes > MAX_TOTAL_SIZE_BYTES and bitrate_kbps > 24:
-        print(
-            f"[audio:generate] Total ({total_mb:.1f} Mo) > 148 Mo : réduction automatique du débit MP3 à 24 kbps...",
-            flush=True,
-        )
-        return run_generation(bitrate_kbps=24, force=True)
-
     return total_bytes
 
 

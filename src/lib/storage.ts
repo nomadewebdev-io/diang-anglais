@@ -448,6 +448,81 @@ export function saveMultiProfileStore(store: MultiProfileStore): boolean {
   return safeSetItem(MULTI_PROFILE_STORAGE_KEY, JSON.stringify(store));
 }
 
+let pendingStoreToSave: MultiProfileStore | null = null;
+let saveDebounceTimer: ReturnType<typeof setTimeout> | null = null;
+let saveIdleHandle: number | null = null;
+let unloadListenersRegistered = false;
+
+export function flushPendingStorageWrites(): void {
+  if (saveDebounceTimer !== null) {
+    clearTimeout(saveDebounceTimer);
+    saveDebounceTimer = null;
+  }
+  if (
+    saveIdleHandle !== null &&
+    typeof window !== 'undefined' &&
+    typeof (window as Window & { cancelIdleCallback?: (id: number) => void })
+      .cancelIdleCallback === 'function'
+  ) {
+    (window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(
+      saveIdleHandle
+    );
+    saveIdleHandle = null;
+  }
+  if (pendingStoreToSave) {
+    const toWrite = pendingStoreToSave;
+    pendingStoreToSave = null;
+    saveMultiProfileStore(toWrite);
+  }
+}
+
+export function scheduleSaveMultiProfileStore(
+  store: MultiProfileStore,
+  delayMs = 600
+): void {
+  pendingStoreToSave = store;
+  const active = getActiveProfile(store);
+  if (active) {
+    syncAudioPreferences(active.state.voiceId, active.state.playbackRate);
+  }
+
+  if (typeof window !== 'undefined' && !unloadListenersRegistered) {
+    unloadListenersRegistered = true;
+    window.addEventListener('pagehide', flushPendingStorageWrites);
+    if (typeof document !== 'undefined') {
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) flushPendingStorageWrites();
+      });
+    }
+  }
+
+  if (saveDebounceTimer !== null) {
+    clearTimeout(saveDebounceTimer);
+  }
+  saveDebounceTimer = setTimeout(() => {
+    saveDebounceTimer = null;
+    const ric =
+      typeof window !== 'undefined'
+        ? (
+            window as Window & {
+              requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+            }
+          ).requestIdleCallback
+        : undefined;
+    if (typeof ric === 'function') {
+      saveIdleHandle = ric(
+        () => {
+          saveIdleHandle = null;
+          flushPendingStorageWrites();
+        },
+        { timeout: 1500 }
+      );
+    } else {
+      flushPendingStorageWrites();
+    }
+  }, Math.max(500, delayMs));
+}
+
 export function createLocalProfile(
   name: string,
   mode: ProfileMode,
@@ -506,7 +581,8 @@ export function switchActiveProfile(
 
 export function updateActiveProfileState(
   store: MultiProfileStore,
-  updater: (prev: AppState) => AppState
+  updater: (prev: AppState) => AppState,
+  deferWrite = false
 ): MultiProfileStore {
   const active = getActiveProfile(store);
   if (!active) return store;
@@ -524,7 +600,11 @@ export function updateActiveProfileState(
     ...store,
     profiles: nextProfiles,
   };
-  saveMultiProfileStore(next);
+  if (deferWrite) {
+    scheduleSaveMultiProfileStore(next);
+  } else {
+    saveMultiProfileStore(next);
+  }
   return next;
 }
 

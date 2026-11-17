@@ -35,13 +35,25 @@ function computeTextHash(text) {
     .slice(0, 12);
 }
 
-function readJson(filename) {
-  const fullPath = path.join(dataDir, filename);
-  if (!fs.existsSync(fullPath)) {
-    throw new Error(`Fichier manquant : ${fullPath}`);
+function readSplitGroup(groupName, levels) {
+  const combined = [];
+  for (const lvl of levels) {
+    const rel = path.join(groupName, `${lvl.toLowerCase()}.json`);
+    const fullPath = path.join(dataDir, rel);
+    if (!fs.existsSync(fullPath)) {
+      throw new Error(`Fichier découpé manquant : ${fullPath}`);
+    }
+    const items = JSON.parse(fs.readFileSync(fullPath, 'utf-8'));
+    assert(Array.isArray(items), `${rel} doit être un tableau JSON.`);
+    for (const item of items) {
+      assert(
+        item && item.level === lvl,
+        `${rel} contient une entrée de niveau "${item?.level}" au lieu de "${lvl}".`
+      );
+    }
+    combined.push(...items);
   }
-  const raw = fs.readFileSync(fullPath, 'utf-8');
-  return JSON.parse(raw);
+  return combined;
 }
 
 function normalizeText(str) {
@@ -424,7 +436,7 @@ function validateConstructions(constructions) {
   }
 }
 
-function validateAudioClips(cards, lessons, placement, sentences, constructions) {
+function validateAudioClips(allDatasets) {
   const manifestPath = path.join(audioDir, 'manifest.json');
   assert(
     fs.existsSync(manifestPath),
@@ -445,58 +457,85 @@ function validateAudioClips(cards, lessons, placement, sentences, constructions)
     );
   }
 
-  assert(
-    manifest.texts && typeof manifest.texts === 'object',
-    `manifest.json doit contenir la table texte-hash 'texts'.`
-  );
-
   const requiredTexts = new Set([SAMPLE_PREVIEW_TEXT]);
-  for (const c of cards) {
-    requiredTexts.add(c.en.trim());
-    requiredTexts.add(c.example.trim());
-  }
-  for (const s of sentences) {
-    requiredTexts.add(s.en.trim());
-  }
-  for (const q of placement) {
-    if (q.audioText) {
-      requiredTexts.add(q.audioText.trim());
+  for (const ds of allDatasets) {
+    for (const c of ds.cards) {
+      requiredTexts.add(c.en.trim());
+      requiredTexts.add(c.example.trim());
     }
-  }
-  for (const l of lessons) {
-    if (l.audioText) {
-      requiredTexts.add(l.audioText.trim());
+    for (const s of ds.sentences) {
+      requiredTexts.add(s.en.trim());
     }
-    for (const ex of l.examples ?? []) {
-      if (ex.en) {
-        requiredTexts.add(ex.en.trim());
+    for (const q of ds.placement) {
+      if (q.audioText) {
+        requiredTexts.add(q.audioText.trim());
+      }
+    }
+    for (const l of ds.lessons) {
+      if (l.audioText) {
+        requiredTexts.add(l.audioText.trim());
+      }
+      for (const ex of l.examples ?? []) {
+        if (ex.en) {
+          requiredTexts.add(ex.en.trim());
+        }
+      }
+    }
+    for (const c of ds.constructions) {
+      if (Array.isArray(c.answers) && c.answers[0]) {
+        requiredTexts.add(c.answers[0].trim());
       }
     }
   }
-  for (const c of constructions) {
-    if (Array.isArray(c.answers) && c.answers[0]) {
-      requiredTexts.add(c.answers[0].trim());
-    }
-  }
 
+  const MAX_PACK_BYTES = 5 * 1024 * 1024;
   let verifiedCount = 0;
-  for (const text of requiredTexts) {
-    const hash = computeTextHash(text);
+
+  for (const voiceId of EXPECTED_VOICE_IDS) {
+    const voiceManifestPath = path.join(audioDir, voiceId, 'manifest.json');
     assert(
-      manifest.texts[text] === hash,
-      `manifest.json : hash manquant ou invalide pour le texte "${text.slice(0, 40)}..." (attendu ${hash}).`
+      fs.existsSync(voiceManifestPath),
+      `Manifest de voix manquant : public/audio/${voiceId}/manifest.json`
+    );
+    const vManifest = JSON.parse(fs.readFileSync(voiceManifestPath, 'utf-8'));
+    assert(
+      vManifest && vManifest.packs && vManifest.clips,
+      `public/audio/${voiceId}/manifest.json invalide.`
     );
 
-    for (const voiceId of EXPECTED_VOICE_IDS) {
-      const clipPath = path.join(audioDir, voiceId, `${hash}.mp3`);
+    const packSizes = new Map();
+    for (const packId of Object.keys(vManifest.packs)) {
+      const packPath = path.join(audioDir, voiceId, `${packId}.bin`);
       assert(
-        fs.existsSync(clipPath),
-        `Clip audio manquant : public/audio/${voiceId}/${hash}.mp3 pour "${text.slice(0, 40)}..."`
+        fs.existsSync(packPath),
+        `Paquet audio manquant : public/audio/${voiceId}/${packId}.bin`
       );
-      const stat = fs.statSync(clipPath);
+      const stat = fs.statSync(packPath);
+      assert(stat.size > 0, `Paquet audio vide : public/audio/${voiceId}/${packId}.bin`);
       assert(
-        stat.size > 100,
-        `Clip audio vide ou corrompu (${stat.size} octets) : public/audio/${voiceId}/${hash}.mp3`
+        stat.size <= MAX_PACK_BYTES,
+        `Paquet audio > 5 Mo (${stat.size} octets) : public/audio/${voiceId}/${packId}.bin`
+      );
+      packSizes.set(packId, stat.size);
+    }
+
+    for (const text of requiredTexts) {
+      const hash = computeTextHash(text);
+      const entry = vManifest.clips[hash];
+      assert(
+        Array.isArray(entry) && entry.length === 3,
+        `Clip manquant dans ${voiceId}/manifest.json pour "${text.slice(0, 40)}..." (${hash})`
+      );
+      const [packId, offset, length] = entry;
+      const packSize = packSizes.get(packId);
+      assert(
+        typeof packSize === 'number' &&
+          Number.isInteger(offset) &&
+          Number.isInteger(length) &&
+          offset >= 0 &&
+          length > 100 &&
+          offset + length <= packSize,
+        `Offset/longueur invalide pour ${voiceId}/${hash} dans ${packId}.bin`
       );
       verifiedCount += 1;
     }
@@ -506,11 +545,12 @@ function validateAudioClips(cards, lessons, placement, sentences, constructions)
 }
 
 function validateKidsData() {
-  const kidsCards = readJson('kids/cards.json');
-  const kidsLessons = readJson('kids/lessons.json');
-  const kidsPlacement = readJson('kids/placement.json');
-  const kidsSentences = readJson('kids/sentences.json');
-  const kidsConstructions = readJson('kids/constructions.json');
+  const kidsLevels = ['A0', 'A1', 'A2'];
+  const kidsCards = readSplitGroup('kids/cards', kidsLevels);
+  const kidsLessons = readSplitGroup('kids/lessons', kidsLevels);
+  const kidsPlacement = readSplitGroup('kids/placement', kidsLevels);
+  const kidsSentences = readSplitGroup('kids/sentences', kidsLevels);
+  const kidsConstructions = readSplitGroup('kids/constructions', kidsLevels);
 
   assert(
     Array.isArray(kidsCards) && kidsCards.length === 320,
@@ -642,37 +682,35 @@ function validateKidsData() {
   assert(kConUnits.size === 8, `kids/constructions.json doit contenir 8 unités (actuel : ${kConUnits.size}).`);
 
   return {
-    cards: kidsCards.length,
-    lessons: kidsLessons.length,
-    placement: kidsPlacement.length,
-    sentences: kidsSentences.length,
-    constructions: kidsConstructions.length,
+    cards: kidsCards,
+    lessons: kidsLessons,
+    placement: kidsPlacement,
+    sentences: kidsSentences,
+    constructions: kidsConstructions,
   };
 }
 
 function main() {
-  const cards = readJson('cards.json');
-  const lessons = readJson('lessons.json');
-  const placement = readJson('placement.json');
-  const sentences = readJson('sentences.json');
-  const constructions = readJson('constructions.json');
+  const adultLevels = ['A1', 'A2', 'B1', 'B2'];
+  const cards = readSplitGroup('cards', adultLevels);
+  const lessons = readSplitGroup('lessons', adultLevels);
+  const placement = readSplitGroup('placement', adultLevels);
+  const sentences = readSplitGroup('sentences', adultLevels);
+  const constructions = readSplitGroup('constructions', adultLevels);
 
   validateCards(cards);
   validateLessons(lessons);
   validatePlacement(placement);
   validateSentences(sentences);
   validateConstructions(constructions);
-  const audioStats = validateAudioClips(
-    cards,
-    lessons,
-    placement,
-    sentences,
-    constructions
-  );
-  const kidsStats = validateKidsData();
+  const kidsData = validateKidsData();
+  const audioStats = validateAudioClips([
+    { cards, lessons, placement, sentences, constructions },
+    kidsData,
+  ]);
 
   console.log(
-    `[validate-data] OK — cards: ${cards.length}, lessons: ${lessons.length}, placement: ${placement.length}, sentences: ${sentences.length}, constructions: ${constructions.length}, audioTexts: ${audioStats.uniqueTexts}, audioClips: ${audioStats.totalClips} | kids(cards: ${kidsStats.cards}, lessons: ${kidsStats.lessons}, placement: ${kidsStats.placement}, sentences: ${kidsStats.sentences}, constructions: ${kidsStats.constructions})`
+    `[validate-data] OK — cards: ${cards.length}, lessons: ${lessons.length}, placement: ${placement.length}, sentences: ${sentences.length}, constructions: ${constructions.length}, audioTexts: ${audioStats.uniqueTexts}, audioClips: ${audioStats.totalClips} | kids(cards: ${kidsData.cards.length}, lessons: ${kidsData.lessons.length}, placement: ${kidsData.placement.length}, sentences: ${kidsData.sentences.length}, constructions: ${kidsData.constructions.length})`
   );
 }
 

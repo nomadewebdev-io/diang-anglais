@@ -5,7 +5,9 @@ import {
   MIN_EASE_FACTOR,
 } from '../sm2';
 import { evaluateDictation } from '../dictation';
-import { catalog } from '../catalog';
+import { loadFullCatalogForMode } from '../catalog';
+
+const catalog = await loadFullCatalogForMode('adult');
 
 describe('sm2 & dictation & data catalog', () => {
   it('vérifie que les 4 fichiers JSON contiennent 800 cartes, 40 leçons, 400 questions et 300 phrases', () => {
