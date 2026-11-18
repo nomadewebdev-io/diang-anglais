@@ -2,7 +2,7 @@
 
 ## 1. Données collectées et finalité
 Diang-Anglais collecte uniquement les données strictement nécessaires au fonctionnement de l'application et à la synchronisation de votre apprentissage :
-- **Compte adulte** : adresse e-mail utilisée pour l'authentification (e-mail + mot de passe ou Google OAuth via Supabase).
+- **Compte adulte** : adresse e-mail utilisée pour l'authentification (e-mail + mot de passe ou Google OAuth via Appwrite).
 - **Profils d'apprentissage** : prénom ou pseudo (aucun nom de famille, téléphone ou photo), type de profil (`adult` ou `child`), progression (cartes SM-2, séances, placement, XP) et préférences (voix, vitesse audio, thème).
 - **Usage strictement limité** : ces données servent uniquement à sauvegarder et synchroniser votre progression entre vos appareils.
 

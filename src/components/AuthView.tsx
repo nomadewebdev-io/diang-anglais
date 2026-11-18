@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  isSupabaseConfigured,
-  sendPasswordResetEmail,
-  signInWithGoogle,
-  signInWithPassword,
-  signUpWithEmail,
-  updateUserPassword,
+  getBackendAdapter,
+  parseAuthCallbackFromLocation,
   validatePassword,
-} from '../lib/supabase';
+} from '../lib/backend';
 import { LegalDocumentKind } from '../lib/types';
 import { IconCheck, IconMail, IconShield } from './Icons';
 
@@ -28,11 +24,46 @@ export function AuthView({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [recoveryParams, setRecoveryParams] = useState<{
+    userId: string;
+    secret: string;
+  } | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [infoMessage, setInfoMessage] = useState<string | null>(null);
 
-  const configured = isSupabaseConfigured();
+  const backend = getBackendAdapter();
+  const configured = backend.isConfigured();
+
+  useEffect(() => {
+    const callback = parseAuthCallbackFromLocation();
+    if (callback.kind === 'none') return;
+
+    if (callback.kind === 'oauth_error') {
+      setErrorMessage('Connexion Google impossible pour le moment. Réessaie.');
+    } else if (callback.kind === 'recovery' && callback.userId && callback.secret) {
+      setRecoveryParams({ userId: callback.userId, secret: callback.secret });
+      setMode('recovery');
+    } else if (callback.kind === 'verification' && callback.userId && callback.secret) {
+      void (async () => {
+        const res = await backend.completeEmailVerification(
+          callback.userId!,
+          callback.secret!
+        );
+        if (res.ok) {
+          setInfoMessage(
+            res.message ?? 'Adresse email confirmée. Tu peux maintenant te connecter.'
+          );
+        } else {
+          setErrorMessage(res.message ?? 'Lien de confirmation invalide ou expiré.');
+        }
+      })();
+    }
+
+    if (typeof window !== 'undefined' && window.history?.replaceState) {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, [backend]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,7 +73,7 @@ export function AuthView({
 
     try {
       if (mode === 'login') {
-        const res = await signInWithPassword(email, password);
+        const res = await backend.signIn(email, password);
         if (!res.ok) {
           setErrorMessage(res.message ?? 'Connexion impossible.');
         }
@@ -55,7 +86,7 @@ export function AuthView({
           setErrorMessage(pwdCheck.error ?? 'Mot de passe invalide.');
           return;
         }
-        const res = await signUpWithEmail(email, password);
+        const res = await backend.signUp(email, password);
         if (!res.ok) {
           setErrorMessage(res.message ?? 'Inscription impossible.');
           return;
@@ -70,7 +101,7 @@ export function AuthView({
       }
 
       if (mode === 'forgot') {
-        const res = await sendPasswordResetEmail(email);
+        const res = await backend.sendPasswordRecovery(email);
         if (!res.ok) {
           setErrorMessage(res.message ?? 'Envoi impossible.');
           return;
@@ -92,11 +123,21 @@ export function AuthView({
           setErrorMessage('Les deux mots de passe ne correspondent pas.');
           return;
         }
-        const res = await updateUserPassword(password);
+        if (!recoveryParams) {
+          setErrorMessage('Lien de réinitialisation invalide ou expiré.');
+          return;
+        }
+        const res = await backend.completePasswordRecovery(
+          recoveryParams.userId,
+          recoveryParams.secret,
+          password
+        );
         if (!res.ok) {
           setErrorMessage(res.message ?? 'Mise à jour impossible.');
           return;
         }
+        setInfoMessage(res.message ?? 'Mot de passe mis à jour.');
+        setMode('login');
         onPasswordUpdated?.();
       }
     } finally {
@@ -109,7 +150,7 @@ export function AuthView({
     setInfoMessage(null);
     setSubmitting(true);
     try {
-      const res = await signInWithGoogle();
+      const res = await backend.signInWithGoogle();
       if (!res.ok) {
         setErrorMessage(res.message ?? 'Connexion Google impossible.');
       }
@@ -148,8 +189,9 @@ export function AuthView({
               role="alert"
               className="rounded-xl border border-[#D97706]/30 bg-[#FEF3C7] dark:bg-[#78350F]/30 px-3.5 py-3 text-xs text-[#92400E] dark:text-[#FCD34D]"
             >
-              Configuration Supabase manquante (`VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY`).
-              Ajoute ces variables dans `.env` ou sur Cloudflare Pages.
+              Configuration Appwrite manquante (`VITE_APPWRITE_ENDPOINT`, `VITE_APPWRITE_PROJECT_ID`,
+              `VITE_APPWRITE_DATABASE_ID`, `VITE_APPWRITE_TABLE_ID`). Ajoute ces variables dans
+              `.env` ou sur Cloudflare Pages.
             </div>
           )}
 

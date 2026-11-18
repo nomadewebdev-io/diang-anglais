@@ -20,34 +20,54 @@ npm run dev
 ## Déploiement
 
 ### 1. Variables d'environnement
-Configurer les variables suivantes (sans jamais exposer `service_role` côté client) :
-- `VITE_SUPABASE_URL` : URL du projet Supabase (`https://<project-ref>.supabase.co`).
-- `VITE_SUPABASE_ANON_KEY` : clé publique `anon` du projet Supabase.
-- `VITE_AUDIO_BASE_URL` *(optionnel)* : URL de base des paquets audio si hébergés sur un domaine/CDN externe. Si défini sur un autre domaine, ajouter ce domaine dans `connect-src` et `media-src` de `public/_headers`.
+Configurer les variables suivantes (aucune clé API serveur côté client) :
+- `VITE_APPWRITE_ENDPOINT` : URL de l'API Appwrite (ex. `https://cloud.appwrite.io/v1` ou endpoint régional).
+- `VITE_APPWRITE_PROJECT_ID` : identifiant du projet Appwrite.
+- `VITE_APPWRITE_DATABASE_ID` : `diang-anglais-db`
+- `VITE_APPWRITE_TABLE_ID` : `learner_profiles`
+- `VITE_AUDIO_BASE_URL` *(optionnel)* : URL de base des paquets audio si hébergés sur un autre domaine/CDN. Si défini sur un autre domaine, ajouter ce domaine dans `connect-src` et `media-src` de `public/_headers`.
 
-### 2. Réglages Supabase
-1. Créer un projet Supabase et ouvrir **SQL Editor**.
-2. Coller et exécuter `supabase/migrations/001_init.sql` (table `learner_profiles`, RLS, limite de 4 profils par utilisateur, `delete_my_account()`, `ping()`).
-3. Dans **Authentication > URL Configuration** :
-   - **Site URL** : URL de production Cloudflare Pages (ex. `https://diang-anglais.pages.dev`).
-   - **Redirect URLs** : ajouter `https://diang-anglais.pages.dev/**` et `http://localhost:5173/**`.
-4. Dans **Authentication > Providers** : activer **Email** (avec confirmation par e-mail) et **Google**.
+### 2. Réglages Appwrite Cloud (CLI ou Console)
 
-### 3. Réglages Google Cloud (OAuth)
-1. Dans Google Cloud Console, configurer l'écran de consentement OAuth et créer des identifiants **Client OAuth Web**.
-2. Ajouter l'URI de redirection autorisée fournie par Supabase (`https://<project-ref>.supabase.co/auth/v1/callback`).
-3. Renseigner le Client ID et le Client Secret dans **Supabase > Authentication > Providers > Google**.
+> [!NOTE]
+> Les projets sur le plan gratuit d'Appwrite Cloud sont mis en pause après une semaine d'inactivité. Le **plan Pro** est recommandé pour la mise en ligne publique.
+
+#### Méthode rapide via Appwrite CLI (`appwrite.json`)
+```bash
+npm install -g appwrite-cli
+appwrite login
+# Renseigner votre projectId dans appwrite.json puis pousser les tables et fonctions :
+appwrite push tables
+appwrite push functions
+```
+
+#### Méthode manuelle dans la console Appwrite (secours)
+1. **Plateformes Web** (**Overview > Integrations > Platforms > Add Platform > Web**) :
+   - Ajouter `localhost` (développement).
+   - Ajouter votre domaine Cloudflare Pages (ex. `diang-anglais.pages.dev` et votre domaine personnalisé).
+2. **Base de données & Table** :
+   - Créer la base `diang-anglais-db` et la table `learner_profiles`.
+   - Activer **Row / Document Security** (`rowSecurity: true`) et ajouter uniquement la permission `create` pour le rôle `Users` (jamais `Any`).
+   - Colonnes requises :
+     - `user_id` (string, taille 64, requis, indexé `idx_user_id`)
+     - `name` (string, taille 40, requis)
+     - `kind` (string, taille 10, requis)
+     - `data` (string, taille 524288, requis)
+     - `version` (integer, min 1, requis)
+     - `client_updated_at` (string, taille 40, requis)
+3. **Fonctions Appwrite** (2 fonctions, compatibles plan gratuit) :
+   - `delete-my-account` (dossier `functions/delete-my-account`, runtime Node 20, execute `users`, clé dynamique avec scopes `users.write`, `tables.read`, `tables.write`).
+   - `enforce-profile-limit` (dossier `functions/enforce-profile-limit`, runtime Node 20, événement `databases.diang-anglais-db.tables.learner_profiles.rows.*.create`, clé dynamique avec scopes `tables.read`, `tables.write`).
+
+### 3. Réglages Google Cloud (OAuth2)
+1. Dans **Appwrite Console > Auth > Settings > OAuth2 Providers > Google**, activer Google et copier l'URI de redirection fournie par Appwrite (`https://cloud.appwrite.io/v1/account/sessions/oauth2/callback/google/<projectId>`).
+2. Dans **Google Cloud Console**, créer des identifiants **Client OAuth Web** et ajouter cette URI de redirection autorisée.
+3. Renseigner le Client ID et le Client Secret dans Appwrite.
 
 ### 4. Réglages Cloudflare Pages
 - **Build command** : `npm run build`
 - **Build output directory** : `dist`
-- **Variables d'environnement** (Production & Preview) : `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` (et optionnellement `VITE_AUDIO_BASE_URL`).
+- **Variables d'environnement** (Production & Preview) : `VITE_APPWRITE_ENDPOINT`, `VITE_APPWRITE_PROJECT_ID`, `VITE_APPWRITE_DATABASE_ID`, `VITE_APPWRITE_TABLE_ID` (et optionnellement `VITE_AUDIO_BASE_URL`).
 - Les fichiers `public/_headers` (CSP stricte, HSTS, règles de cache) et `public/_redirects` (SPA fallback) sont automatiquement copiés dans `dist/`.
+- Si vous utilisez un endpoint Appwrite régional ou auto-hébergé autre que `*.appwrite.io`, adaptez `connect-src` dans `public/_headers`.
 - Exécuter `npm run check:deploy` après `npm run build` pour vérifier que `dist/` respecte les limites Cloudflare Pages (< 20 000 fichiers, aucun fichier > 25 Mo).
-
-### 5. Keep-alive GitHub Actions (plan gratuit Supabase)
-Pour éviter la mise en pause automatique d'un projet Supabase gratuit, ajouter dans **GitHub > Settings > Secrets and variables > Actions** :
-- `SUPABASE_URL`
-- `SUPABASE_ANON_KEY`
-
-Le workflow `.github/workflows/keepalive.yml` appelle automatiquement `ping()` tous les 3 jours.

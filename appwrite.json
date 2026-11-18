@@ -1,0 +1,114 @@
+{
+  "projectId": "",
+  "projectName": "diang-anglais",
+  "databases": [
+    {
+      "$id": "diang-anglais-db",
+      "name": "diang-anglais-db",
+      "enabled": true
+    }
+  ],
+  "tables": [
+    {
+      "$id": "learner_profiles",
+      "databaseId": "diang-anglais-db",
+      "name": "learner_profiles",
+      "enabled": true,
+      "rowSecurity": true,
+      "$permissions": [
+        "create(\"users\")"
+      ],
+      "columns": [
+        {
+          "key": "user_id",
+          "type": "string",
+          "size": 64,
+          "required": true,
+          "array": false
+        },
+        {
+          "key": "name",
+          "type": "string",
+          "size": 40,
+          "required": true,
+          "array": false
+        },
+        {
+          "key": "kind",
+          "type": "string",
+          "size": 10,
+          "required": true,
+          "array": false
+        },
+        {
+          "key": "data",
+          "type": "string",
+          "size": 524288,
+          "required": true,
+          "array": false
+        },
+        {
+          "key": "version",
+          "type": "integer",
+          "required": true,
+          "min": 1,
+          "array": false
+        },
+        {
+          "key": "client_updated_at",
+          "type": "string",
+          "size": 40,
+          "required": true,
+          "array": false
+        }
+      ],
+      "indexes": [
+        {
+          "key": "idx_user_id",
+          "type": "key",
+          "orders": ["ASC"],
+          "columns": ["user_id"]
+        }
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "$id": "delete-my-account",
+      "name": "delete-my-account",
+      "runtime": "node-20.0",
+      "execute": ["users"],
+      "events": [],
+      "scopes": [
+        "users.write",
+        "tables.read",
+        "tables.write"
+      ],
+      "timeout": 15,
+      "enabled": true,
+      "logging": false,
+      "entrypoint": "src/main.js",
+      "commands": "npm install",
+      "path": "functions/delete-my-account"
+    },
+    {
+      "$id": "enforce-profile-limit",
+      "name": "enforce-profile-limit",
+      "runtime": "node-20.0",
+      "execute": [],
+      "events": [
+        "databases.diang-anglais-db.tables.learner_profiles.rows.*.create"
+      ],
+      "scopes": [
+        "tables.read",
+        "tables.write"
+      ],
+      "timeout": 15,
+      "enabled": true,
+      "logging": false,
+      "entrypoint": "src/main.js",
+      "commands": "npm install",
+      "path": "functions/enforce-profile-limit"
+    }
+  ]
+}

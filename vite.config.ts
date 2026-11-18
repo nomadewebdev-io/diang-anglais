@@ -48,7 +48,7 @@ export default defineConfig(({ mode }) => ({
         globIgnores: ['**/audio/**'],
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/[a-z0-9-]+\.supabase\.co\/.*/i,
+            urlPattern: /^https:\/\/[a-z0-9.-]*appwrite\.io\/v1\/.*/i,
             handler: 'NetworkOnly',
           },
           {
@@ -90,12 +90,6 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (
-            id.includes('node_modules/@supabase/') ||
-            id.includes('node_modules\\@supabase\\')
-          ) {
-            return 'supabase';
-          }
           if (
             id.includes('node_modules/react/') ||
             id.includes('node_modules/react-dom/') ||

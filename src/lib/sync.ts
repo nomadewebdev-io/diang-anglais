@@ -1,12 +1,15 @@
+import {
+  BackendAdapter,
+  MAX_REMOTE_PROFILES,
+  RemoteLearnerProfileRow,
+} from './backend';
 import { formatDateISO } from './sm2';
 import {
   MAX_LOCAL_PROFILES,
   migrateAndValidateState,
   saveMultiProfileStore,
 } from './storage';
-import { getSupabaseClient } from './supabase';
 import {
-  AppState,
   LocalProfileRecord,
   MultiProfileStore,
   ProfileMode,
@@ -19,16 +22,6 @@ const MAX_CONFLICT_BACKUPS = 10;
 const UUID_REGEX =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-export interface RemoteLearnerProfileRow {
-  id: string;
-  user_id: string;
-  name: string;
-  kind: ProfileMode;
-  data: AppState;
-  version: number;
-  updated_at: string;
-}
-
 export interface ConflictBackupEntry {
   profileId: string;
   profileName: string;
@@ -36,12 +29,6 @@ export interface ConflictBackupEntry {
   localUpdatedAt: string;
   remoteUpdatedAt: string;
   localProfile: LocalProfileRecord;
-}
-
-export interface SyncRemoteAdapter {
-  fetchProfiles(userId: string): Promise<RemoteLearnerProfileRow[]>;
-  upsertProfiles(rows: RemoteLearnerProfileRow[]): Promise<void>;
-  deleteProfile?(userId: string, profileId: string): Promise<void>;
 }
 
 function generateUuid(): string {
@@ -139,11 +126,14 @@ export function toRemoteRow(
   return {
     id: profile.id,
     user_id: userId,
-    name: profile.name.trim().slice(0, 40) || (profile.mode === 'child' ? 'Enfant' : 'Adulte'),
+    name:
+      profile.name.trim().slice(0, 40) ||
+      (profile.mode === 'child' ? 'Enfant' : 'Adulte'),
     kind: profile.mode,
     data: profile.state,
     version: profile.state.version,
-    updated_at: profile.updatedAt ?? profile.createdAt ?? new Date().toISOString(),
+    client_updated_at:
+      profile.updatedAt ?? profile.createdAt ?? new Date().toISOString(),
   };
 }
 
@@ -164,7 +154,6 @@ export function mergeProfilesByUpdatedAt(
   const profilesToPush: LocalProfileRecord[] = [];
   let conflictsResolved = 0;
 
-  // 1. Traiter les profils existant localement
   for (const local of normalizedLocal.profiles) {
     const remote = remoteById.get(local.id);
     if (!remote) {
@@ -174,7 +163,7 @@ export function mergeProfilesByUpdatedAt(
     }
 
     const localMs = getTimestampMs(local.updatedAt ?? local.createdAt);
-    const remoteMs = getTimestampMs(remote.updated_at);
+    const remoteMs = getTimestampMs(remote.client_updated_at);
 
     if (remoteMs > localMs) {
       const migratedRemoteState = migrateAndValidateState(remote.data, todayStr);
@@ -184,7 +173,7 @@ export function mergeProfilesByUpdatedAt(
           profileName: local.name,
           overwrittenAt: new Date().toISOString(),
           localUpdatedAt: local.updatedAt ?? local.createdAt,
-          remoteUpdatedAt: remote.updated_at,
+          remoteUpdatedAt: remote.client_updated_at,
           localProfile: local,
         });
         conflictsResolved += 1;
@@ -193,7 +182,7 @@ export function mergeProfilesByUpdatedAt(
           name: remote.name,
           mode: remote.kind === 'child' ? 'child' : 'adult',
           createdAt: local.createdAt,
-          updatedAt: remote.updated_at,
+          updatedAt: remote.client_updated_at,
           state: {
             ...migratedRemoteState,
             mode: remote.kind === 'child' ? 'child' : 'adult',
@@ -211,10 +200,10 @@ export function mergeProfilesByUpdatedAt(
     }
   }
 
-  // 2. Ajouter les profils distants absents localement (dans la limite de 4)
+  const maxProfiles = Math.min(MAX_LOCAL_PROFILES, MAX_REMOTE_PROFILES);
   for (const remote of remoteRows) {
     if (localById.has(remote.id)) continue;
-    if (mergedProfiles.length >= MAX_LOCAL_PROFILES) break;
+    if (mergedProfiles.length >= maxProfiles) break;
     const migratedRemoteState = migrateAndValidateState(remote.data, todayStr);
     if (!migratedRemoteState) continue;
     const kind: ProfileMode = remote.kind === 'child' ? 'child' : 'adult';
@@ -222,8 +211,8 @@ export function mergeProfilesByUpdatedAt(
       id: remote.id,
       name: remote.name,
       mode: kind,
-      createdAt: remote.updated_at,
-      updatedAt: remote.updated_at,
+      createdAt: remote.client_updated_at,
+      updatedAt: remote.client_updated_at,
       state: {
         ...migratedRemoteState,
         mode: kind,
@@ -231,7 +220,7 @@ export function mergeProfilesByUpdatedAt(
     });
   }
 
-  const bounded = mergedProfiles.slice(0, MAX_LOCAL_PROFILES);
+  const bounded = mergedProfiles.slice(0, maxProfiles);
   const activeId = bounded.some((p) => p.id === normalizedLocal.activeProfileId)
     ? normalizedLocal.activeProfileId
     : bounded[0]?.id ?? '';
@@ -242,50 +231,16 @@ export function mergeProfilesByUpdatedAt(
       activeProfileId: activeId,
       profiles: bounded,
     },
-    profilesToPush: profilesToPush.filter((p) => bounded.some((b) => b.id === p.id)),
+    profilesToPush: profilesToPush.filter((p) =>
+      bounded.some((b) => b.id === p.id)
+    ),
     conflictsResolved,
-  };
-}
-
-export function createSupabaseRemoteAdapter(): SyncRemoteAdapter {
-  return {
-    async fetchProfiles(userId: string): Promise<RemoteLearnerProfileRow[]> {
-      const client = await getSupabaseClient();
-      if (!client) throw new Error('Supabase non configuré');
-      const { data, error } = await client
-        .from('learner_profiles')
-        .select('id, user_id, name, kind, data, version, updated_at')
-        .eq('user_id', userId)
-        .order('updated_at', { ascending: false });
-
-      if (error) throw error;
-      return (data ?? []) as RemoteLearnerProfileRow[];
-    },
-    async upsertProfiles(rows: RemoteLearnerProfileRow[]): Promise<void> {
-      if (!rows.length) return;
-      const client = await getSupabaseClient();
-      if (!client) throw new Error('Supabase non configuré');
-      const { error } = await client
-        .from('learner_profiles')
-        .upsert(rows, { onConflict: 'id' });
-      if (error) throw error;
-    },
-    async deleteProfile(userId: string, profileId: string): Promise<void> {
-      const client = await getSupabaseClient();
-      if (!client) throw new Error('Supabase non configuré');
-      const { error } = await client
-        .from('learner_profiles')
-        .delete()
-        .eq('user_id', userId)
-        .eq('id', profileId);
-      if (error) throw error;
-    },
   };
 }
 
 export interface SyncControllerOptions {
   userId: string;
-  adapter: SyncRemoteAdapter;
+  adapter: BackendAdapter;
   getLocalStore: () => MultiProfileStore;
   onMergedStore: (store: MultiProfileStore) => void;
   onStatusChange: (status: SyncStatus) => void;
@@ -337,7 +292,7 @@ export function createSyncController(options: SyncControllerOptions): SyncContro
       onStatusChange('syncing');
       try {
         const localStore = ensureUuidProfileIds(getLocalStore());
-        const remoteRows = await adapter.fetchProfiles(userId);
+        const remoteRows = await adapter.listProfiles(userId);
         const { mergedStore, profilesToPush } = mergeProfilesByUpdatedAt(
           localStore,
           remoteRows
@@ -345,6 +300,7 @@ export function createSyncController(options: SyncControllerOptions): SyncContro
 
         if (profilesToPush.length > 0) {
           await adapter.upsertProfiles(
+            userId,
             profilesToPush.map((p) => toRemoteRow(userId, p))
           );
         }
@@ -378,7 +334,7 @@ export function createSyncController(options: SyncControllerOptions): SyncContro
   };
 
   const deleteRemoteProfile = async (profileId: string) => {
-    if (!isOnline() || !adapter.deleteProfile || !isUuid(profileId)) return;
+    if (!isOnline() || !isUuid(profileId)) return;
     try {
       await adapter.deleteProfile(userId, profileId);
     } catch {

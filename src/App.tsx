@@ -76,14 +76,8 @@ import {
   switchActiveProfile,
   updateActiveProfileState,
 } from './lib/storage';
+import { getBackendAdapter } from './lib/backend';
 import {
-  deleteMyAccount,
-  getSupabaseSession,
-  signOutAccount,
-  subscribeToAuthChanges,
-} from './lib/supabase';
-import {
-  createSupabaseRemoteAdapter,
   createSyncController,
   hasMeaningfulLocalData,
   SyncController,
@@ -193,22 +187,12 @@ export function App(): React.ReactElement {
 
   useEffect(() => {
     let active = true;
-    let unsubscribe = () => {};
+    const backend = getBackendAdapter();
 
     const applySession = (
-      event: string | null,
       session: { user: { id: string; email?: string | null } } | null
     ) => {
       if (!active) return;
-      if (event === 'PASSWORD_RECOVERY') {
-        setAuthUser(
-          session?.user
-            ? { id: session.user.id, email: session.user.email ?? null }
-            : null
-        );
-        setAuthStatus('recovery');
-        return;
-      }
       if (session?.user) {
         setAuthUser({ id: session.user.id, email: session.user.email ?? null });
         setAuthStatus('signed_in');
@@ -219,12 +203,13 @@ export function App(): React.ReactElement {
     };
 
     void (async () => {
-      const session = await getSupabaseSession();
-      applySession(null, session);
-      unsubscribe = await subscribeToAuthChanges((event, nextSession) => {
-        applySession(event, nextSession);
-      });
+      const session = await backend.getSession();
+      applySession(session);
     })();
+
+    const unsubscribe = backend.subscribeAuth((nextSession) => {
+      applySession(nextSession);
+    });
 
     return () => {
       active = false;
@@ -249,7 +234,7 @@ export function App(): React.ReactElement {
 
     const controller = createSyncController({
       userId: authUser.id,
-      adapter: createSupabaseRemoteAdapter(),
+      adapter: getBackendAdapter(),
       getLocalStore: () => storeRef.current,
       onMergedStore: (merged) => {
         setStore(merged);
@@ -357,14 +342,14 @@ export function App(): React.ReactElement {
   const handleSignOut = async () => {
     syncControllerRef.current?.dispose();
     syncControllerRef.current = null;
-    await signOutAccount();
+    await getBackendAdapter().signOut();
     setIsSettingsOpen(false);
     setAuthUser(null);
     setAuthStatus('signed_out');
   };
 
   const handleDeleteAccount = async () => {
-    const res = await deleteMyAccount();
+    const res = await getBackendAdapter().deleteAccount();
     if (!res.ok) return res;
     syncControllerRef.current?.dispose();
     syncControllerRef.current = null;
