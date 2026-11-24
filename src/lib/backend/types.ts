@@ -47,6 +47,10 @@ export interface BackendAdapter {
     userId: string,
     secret: string
   ): Promise<AuthActionResult>;
+  resendEmailVerification(
+    email?: string,
+    password?: string
+  ): Promise<AuthActionResult>;
   listProfiles(userId: string): Promise<RemoteLearnerProfileRow[]>;
   upsertProfiles(userId: string, rows: RemoteLearnerProfileRow[]): Promise<void>;
   deleteProfile(userId: string, profileId: string): Promise<void>;

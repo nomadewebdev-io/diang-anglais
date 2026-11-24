@@ -76,7 +76,10 @@ import {
   switchActiveProfile,
   updateActiveProfileState,
 } from './lib/storage';
-import { getBackendAdapter } from './lib/backend';
+import {
+  getBackendAdapter,
+  parseAuthCallbackFromLocation,
+} from './lib/backend';
 import {
   createSyncController,
   hasMeaningfulLocalData,
@@ -133,6 +136,12 @@ export function App(): React.ReactElement {
   );
   const [legalModalKind, setLegalModalKind] = useState<LegalDocumentKind | null>(null);
   const [pendingLocalImport, setPendingLocalImport] = useState(false);
+  const [callbackRouteKind, setCallbackRouteKind] = useState<
+    'none' | 'verification' | 'recovery'
+  >(() => {
+    const cb = parseAuthCallbackFromLocation();
+    return cb.kind === 'verification' || cb.kind === 'recovery' ? cb.kind : 'none';
+  });
   const syncControllerRef = useRef<SyncController | null>(null);
 
   const activeProfile = getActiveProfile(store);
@@ -728,7 +737,11 @@ export function App(): React.ReactElement {
     );
   }
 
-  if (authStatus === 'signed_out' || authStatus === 'recovery') {
+  if (
+    authStatus === 'signed_out' ||
+    authStatus === 'recovery' ||
+    callbackRouteKind !== 'none'
+  ) {
     return (
       <>
         <Suspense
@@ -741,9 +754,18 @@ export function App(): React.ReactElement {
           }
         >
           <AuthView
-            initialMode={authStatus === 'recovery' ? 'recovery' : 'login'}
+            initialMode={
+              authStatus === 'recovery' || callbackRouteKind === 'recovery'
+                ? 'recovery'
+                : 'login'
+            }
+            hasActiveSession={authStatus === 'signed_in'}
             onOpenLegal={(kind) => setLegalModalKind(kind)}
-            onPasswordUpdated={() => setAuthStatus('signed_in')}
+            onPasswordUpdated={() => {
+              setCallbackRouteKind('none');
+              setAuthStatus('signed_out');
+            }}
+            onExitCallbackRoute={() => setCallbackRouteKind('none')}
           />
         </Suspense>
         {legalModalKind && (

@@ -3,31 +3,61 @@ import {
   getBackendAdapter,
   parseAuthCallbackFromLocation,
   validatePassword,
+  validatePasswordMatch,
 } from '../lib/backend';
 import { LegalDocumentKind } from '../lib/types';
-import { IconCheck, IconMail, IconShield } from './Icons';
+import {
+  IconAlertTriangle,
+  IconCheck,
+  IconEye,
+  IconEyeOff,
+  IconMail,
+  IconShield,
+} from './Icons';
 
-type AuthMode = 'login' | 'signup' | 'forgot' | 'check_email' | 'recovery';
+type AuthMode =
+  | 'login'
+  | 'signup'
+  | 'forgot'
+  | 'check_email'
+  | 'verify_email'
+  | 'recovery';
 
 interface AuthViewProps {
   initialMode?: 'login' | 'recovery';
+  hasActiveSession?: boolean;
   onOpenLegal: (kind: LegalDocumentKind) => void;
   onPasswordUpdated?: () => void;
+  onExitCallbackRoute?: () => void;
+}
+
+function navigateToRoot(): void {
+  if (typeof window !== 'undefined' && window.history?.replaceState) {
+    window.history.replaceState({}, document.title, '/');
+  }
 }
 
 export function AuthView({
   initialMode = 'login',
+  hasActiveSession = false,
   onOpenLegal,
   onPasswordUpdated,
+  onExitCallbackRoute,
 }: AuthViewProps): React.ReactElement {
   const [mode, setMode] = useState<AuthMode>(initialMode);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [recoveryParams, setRecoveryParams] = useState<{
     userId: string;
     secret: string;
   } | null>(null);
+  const [verificationState, setVerificationState] = useState<
+    'verifying' | 'confirmed' | 'failed'
+  >('verifying');
+  const [showResendForm, setShowResendForm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [infoMessage, setInfoMessage] = useState<string | null>(null);
@@ -39,35 +69,104 @@ export function AuthView({
       .trim()
       .toLowerCase() !== 'false';
 
+  const switchMode = (nextMode: AuthMode, keepMessages = false) => {
+    setMode(nextMode);
+    setPassword('');
+    setConfirmPassword('');
+    setShowPassword(false);
+    setShowConfirmPassword(false);
+    if (!keepMessages) {
+      setErrorMessage(null);
+      setInfoMessage(null);
+    }
+  };
+
   useEffect(() => {
     const callback = parseAuthCallbackFromLocation();
     if (callback.kind === 'none') return;
 
     if (callback.kind === 'oauth_error') {
       setErrorMessage('Connexion Google impossible pour le moment. Réessaie.');
-    } else if (callback.kind === 'recovery' && callback.userId && callback.secret) {
-      setRecoveryParams({ userId: callback.userId, secret: callback.secret });
-      setMode('recovery');
-    } else if (callback.kind === 'verification' && callback.userId && callback.secret) {
+      navigateToRoot();
+      return;
+    }
+
+    if (callback.kind === 'verification') {
+      setMode('verify_email');
+      setPassword('');
+      setConfirmPassword('');
+      if (callback.invalidLink || !callback.userId || !callback.secret) {
+        setVerificationState('failed');
+        setErrorMessage(
+          'Ce lien de confirmation est expiré, invalide ou a déjà été utilisé.'
+        );
+        return;
+      }
+
+      setVerificationState('verifying');
       void (async () => {
         const res = await backend.completeEmailVerification(
           callback.userId!,
           callback.secret!
         );
         if (res.ok) {
+          setVerificationState('confirmed');
+          setErrorMessage(null);
           setInfoMessage(
-            res.message ?? 'Adresse email confirmée. Tu peux maintenant te connecter.'
+            res.message ?? 'Email confirmé. Tu peux maintenant te connecter.'
           );
         } else {
-          setErrorMessage(res.message ?? 'Lien de confirmation invalide ou expiré.');
+          setVerificationState('failed');
+          setErrorMessage(
+            res.message ??
+              'Ce lien de confirmation est expiré, invalide ou a déjà été utilisé.'
+          );
         }
       })();
+      return;
     }
 
-    if (typeof window !== 'undefined' && window.history?.replaceState) {
-      window.history.replaceState({}, document.title, window.location.pathname);
+    if (callback.kind === 'recovery') {
+      setMode('recovery');
+      setPassword('');
+      setConfirmPassword('');
+      setShowPassword(false);
+      setShowConfirmPassword(false);
+      if (callback.invalidLink || !callback.userId || !callback.secret) {
+        setRecoveryParams(null);
+        setErrorMessage(
+          'Ce lien de réinitialisation est expiré ou invalide. Demande un nouveau lien.'
+        );
+        return;
+      }
+      setRecoveryParams({ userId: callback.userId, secret: callback.secret });
     }
   }, [backend]);
+
+  const handleResendVerification = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    setErrorMessage(null);
+    setInfoMessage(null);
+    setSubmitting(true);
+    try {
+      const res = await backend.resendEmailVerification(email, password);
+      if (res.ok) {
+        setInfoMessage(
+          res.message ??
+            "Un nouvel email de confirmation vient d'être envoyé. Vérifie ta boîte mail."
+        );
+        setShowResendForm(false);
+      } else {
+        setShowResendForm(true);
+        setErrorMessage(
+          res.message ??
+            "Saisis ton email et ton mot de passe pour renvoyer l'email de confirmation."
+        );
+      }
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,7 +195,7 @@ export function AuthView({
           return;
         }
         if (res.needsEmailVerification) {
-          setMode('check_email');
+          switchMode('check_email', true);
           setInfoMessage(
             "Un lien de confirmation vient d'être envoyé. Vérifie ta boîte mail puis clique sur le lien pour activer ton compte."
           );
@@ -118,17 +217,18 @@ export function AuthView({
       }
 
       if (mode === 'recovery') {
-        const pwdCheck = validatePassword(password);
-        if (!pwdCheck.valid) {
-          setErrorMessage(pwdCheck.error ?? 'Mot de passe invalide.');
-          return;
-        }
-        if (password !== confirmPassword) {
-          setErrorMessage('Les deux mots de passe ne correspondent pas.');
+        // Comparaison exacte sans transformation uniquement à la soumission
+        const matchCheck = validatePasswordMatch(password, confirmPassword);
+        if (!matchCheck.valid) {
+          setErrorMessage(
+            matchCheck.error ?? 'Les deux mots de passe ne correspondent pas.'
+          );
           return;
         }
         if (!recoveryParams) {
-          setErrorMessage('Lien de réinitialisation invalide ou expiré.');
+          setErrorMessage(
+            'Ce lien de réinitialisation est expiré ou invalide. Demande un nouveau lien.'
+          );
           return;
         }
         const res = await backend.completePasswordRecovery(
@@ -140,8 +240,12 @@ export function AuthView({
           setErrorMessage(res.message ?? 'Mise à jour impossible.');
           return;
         }
-        setInfoMessage(res.message ?? 'Mot de passe mis à jour.');
-        setMode('login');
+        navigateToRoot();
+        switchMode('login', true);
+        setInfoMessage(
+          res.message ??
+            'Mot de passe mis à jour avec succès. Tu peux maintenant te connecter.'
+        );
         onPasswordUpdated?.();
       }
     } finally {
@@ -181,9 +285,11 @@ export function AuthView({
                 ? 'Reçois un lien pour choisir un nouveau mot de passe.'
                 : mode === 'recovery'
                   ? 'Choisis ton nouveau mot de passe (8 caractères minimum).'
-                  : mode === 'check_email'
-                    ? 'Vérifie ta boîte mail'
-                    : 'Connecte-toi pour retrouver ta progression sur tous tes appareils.'}
+                  : mode === 'verify_email'
+                    ? "Confirmation de ton adresse email"
+                    : mode === 'check_email'
+                      ? 'Vérifie ta boîte mail'
+                      : 'Connecte-toi pour retrouver ta progression sur tous tes appareils.'}
           </p>
         </div>
 
@@ -218,7 +324,141 @@ export function AuthView({
             </div>
           )}
 
-          {mode === 'check_email' ? (
+          {mode === 'verify_email' ? (
+            <div className="space-y-4 py-2">
+              {verificationState === 'verifying' && (
+                <p className="text-sm text-center text-[#4B5563] dark:text-[#D1D5DB]">
+                  Vérification de ton lien de confirmation en cours...
+                </p>
+              )}
+
+              {verificationState === 'confirmed' && (
+                <div className="space-y-4 text-center">
+                  <div className="w-12 h-12 rounded-2xl bg-[#E6F0EC] dark:bg-[#13362B] text-[#0F4C3A] dark:text-[#6EE7B7] flex items-center justify-center mx-auto">
+                    <IconCheck className="w-6 h-6" />
+                  </div>
+                  <div className="space-y-1">
+                    <h2 className="text-base font-bold text-[#111827] dark:text-[#F3F4F6]">
+                      Email confirmé
+                    </h2>
+                    <p className="text-xs text-[#4B5563] dark:text-[#D1D5DB]">
+                      Ton adresse email est maintenant vérifiée.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigateToRoot();
+                      if (hasActiveSession && onExitCallbackRoute) {
+                        onExitCallbackRoute();
+                      } else {
+                        switchMode('login');
+                        onExitCallbackRoute?.();
+                      }
+                    }}
+                    className="w-full py-2.5 px-4 rounded-xl bg-[#0F4C3A] hover:bg-[#0B3B2D] text-white text-sm font-semibold transition cursor-pointer"
+                  >
+                    {hasActiveSession ? "Accéder à l'application" : 'Aller à la connexion'}
+                  </button>
+                </div>
+              )}
+
+              {verificationState === 'failed' && (
+                <div className="space-y-4">
+                  <div className="text-center space-y-2">
+                    <div className="w-12 h-12 rounded-2xl bg-[#FEF2F2] dark:bg-[#7F1D1D]/30 text-[#DC2626] dark:text-[#FCA5A5] flex items-center justify-center mx-auto">
+                      <IconAlertTriangle className="w-6 h-6" />
+                    </div>
+                    <h2 className="text-base font-bold text-[#111827] dark:text-[#F3F4F6]">
+                      Lien expiré ou déjà utilisé
+                    </h2>
+                  </div>
+
+                  {showResendForm && !hasActiveSession ? (
+                    <form onSubmit={handleResendVerification} className="space-y-3">
+                      <div className="space-y-1">
+                        <label
+                          htmlFor="resend-email"
+                          className="block text-xs font-semibold text-[#374151] dark:text-[#D1D5DB]"
+                        >
+                          Adresse email
+                        </label>
+                        <input
+                          id="resend-email"
+                          type="email"
+                          required
+                          autoComplete="email"
+                          value={email}
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                            setErrorMessage(null);
+                          }}
+                          placeholder="nom@exemple.com"
+                          className="w-full px-3.5 py-2 rounded-xl border border-[#E4DFD3] dark:border-[#343F3B] bg-[#FAF8F5] dark:bg-[#141817] text-sm text-[#111827] dark:text-[#F3F4F6]"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label
+                          htmlFor="resend-password"
+                          className="block text-xs font-semibold text-[#374151] dark:text-[#D1D5DB]"
+                        >
+                          Mot de passe du compte
+                        </label>
+                        <input
+                          id="resend-password"
+                          type="password"
+                          required
+                          autoComplete="current-password"
+                          value={password}
+                          onChange={(e) => {
+                            setPassword(e.target.value);
+                            setErrorMessage(null);
+                          }}
+                          placeholder="Ton mot de passe"
+                          className="w-full px-3.5 py-2 rounded-xl border border-[#E4DFD3] dark:border-[#343F3B] bg-[#FAF8F5] dark:bg-[#141817] text-sm text-[#111827] dark:text-[#F3F4F6]"
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        disabled={submitting}
+                        className="w-full py-2.5 px-4 rounded-xl bg-[#0F4C3A] hover:bg-[#0B3B2D] text-white text-sm font-semibold transition disabled:opacity-50 cursor-pointer"
+                      >
+                        {submitting ? 'Envoi...' : "Renvoyer l'email de confirmation"}
+                      </button>
+                    </form>
+                  ) : (
+                    <button
+                      type="button"
+                      disabled={submitting}
+                      onClick={() => {
+                        if (hasActiveSession) {
+                          void handleResendVerification();
+                        } else {
+                          setShowResendForm(true);
+                          setErrorMessage(null);
+                        }
+                      }}
+                      className="w-full py-2.5 px-4 rounded-xl bg-[#0F4C3A] hover:bg-[#0B3B2D] text-white text-sm font-semibold transition disabled:opacity-50 cursor-pointer"
+                    >
+                      {submitting ? 'Envoi...' : "Renvoyer l'email de confirmation"}
+                    </button>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigateToRoot();
+                      switchMode('login');
+                      onExitCallbackRoute?.();
+                    }}
+                    className="w-full py-2 px-4 rounded-xl border border-[#E4DFD3] dark:border-[#343F3B] text-xs font-semibold text-[#374151] dark:text-[#D1D5DB] cursor-pointer"
+                  >
+                    Retour à la connexion
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : mode === 'check_email' ? (
             <div className="space-y-4 text-center py-2">
               <div className="w-12 h-12 rounded-2xl bg-[#E6F0EC] dark:bg-[#13362B] text-[#0F4C3A] dark:text-[#6EE7B7] flex items-center justify-center mx-auto">
                 <IconMail className="w-6 h-6" />
@@ -234,10 +474,7 @@ export function AuthView({
               </div>
               <button
                 type="button"
-                onClick={() => {
-                  setMode('login');
-                  setErrorMessage(null);
-                }}
+                onClick={() => switchMode('login')}
                 className="w-full py-2.5 px-4 rounded-xl bg-[#0F4C3A] hover:bg-[#0B3B2D] text-white text-sm font-semibold transition cursor-pointer"
               >
                 Retour à la connexion
@@ -297,7 +534,10 @@ export function AuthView({
                       required
                       autoComplete="email"
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        if (errorMessage) setErrorMessage(null);
+                      }}
                       placeholder="nom@exemple.com"
                       className="w-full px-3.5 py-2.5 rounded-xl border border-[#E4DFD3] dark:border-[#343F3B] bg-[#FAF8F5] dark:bg-[#141817] text-sm text-[#111827] dark:text-[#F3F4F6] focus:outline-none focus:ring-2 focus:ring-[#0F4C3A]"
                     />
@@ -316,28 +556,46 @@ export function AuthView({
                       {mode === 'login' && (
                         <button
                           type="button"
-                          onClick={() => {
-                            setMode('forgot');
-                            setErrorMessage(null);
-                            setInfoMessage(null);
-                          }}
+                          onClick={() => switchMode('forgot')}
                           className="text-xs font-semibold text-[#0F4C3A] dark:text-[#6EE7B7] hover:underline cursor-pointer"
                         >
                           Mot de passe oublié ?
                         </button>
                       )}
                     </div>
-                    <input
-                      id="auth-password"
-                      type="password"
-                      required
-                      minLength={8}
-                      autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="8 caractères minimum"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#E4DFD3] dark:border-[#343F3B] bg-[#FAF8F5] dark:bg-[#141817] text-sm text-[#111827] dark:text-[#F3F4F6] focus:outline-none focus:ring-2 focus:ring-[#0F4C3A]"
-                    />
+                    <div className="relative">
+                      <input
+                        id="auth-password"
+                        type={showPassword ? 'text' : 'password'}
+                        required
+                        minLength={8}
+                        autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
+                        value={password}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                          if (errorMessage) setErrorMessage(null);
+                        }}
+                        placeholder="8 caractères minimum"
+                        className="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-[#E4DFD3] dark:border-[#343F3B] bg-[#FAF8F5] dark:bg-[#141817] text-sm text-[#111827] dark:text-[#F3F4F6] focus:outline-none focus:ring-2 focus:ring-[#0F4C3A]"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        aria-label={
+                          showPassword
+                            ? 'Masquer le mot de passe'
+                            : 'Afficher le mot de passe'
+                        }
+                        aria-pressed={showPassword}
+                        className="absolute inset-y-0 right-0 px-3 flex items-center text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#111827] dark:hover:text-[#F3F4F6] cursor-pointer"
+                      >
+                        {showPassword ? (
+                          <IconEyeOff className="w-4 h-4" />
+                        ) : (
+                          <IconEye className="w-4 h-4" />
+                        )}
+                      </button>
+                    </div>
                   </div>
                 )}
 
@@ -349,17 +607,39 @@ export function AuthView({
                     >
                       Confirmer le mot de passe
                     </label>
-                    <input
-                      id="auth-password-confirm"
-                      type="password"
-                      required
-                      minLength={8}
-                      autoComplete="new-password"
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      placeholder="8 caractères minimum"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#E4DFD3] dark:border-[#343F3B] bg-[#FAF8F5] dark:bg-[#141817] text-sm text-[#111827] dark:text-[#F3F4F6] focus:outline-none focus:ring-2 focus:ring-[#0F4C3A]"
-                    />
+                    <div className="relative">
+                      <input
+                        id="auth-password-confirm"
+                        type={showConfirmPassword ? 'text' : 'password'}
+                        required
+                        minLength={8}
+                        autoComplete="new-password"
+                        value={confirmPassword}
+                        onChange={(e) => {
+                          setConfirmPassword(e.target.value);
+                          if (errorMessage) setErrorMessage(null);
+                        }}
+                        placeholder="8 caractères minimum"
+                        className="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-[#E4DFD3] dark:border-[#343F3B] bg-[#FAF8F5] dark:bg-[#141817] text-sm text-[#111827] dark:text-[#F3F4F6] focus:outline-none focus:ring-2 focus:ring-[#0F4C3A]"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowConfirmPassword((prev) => !prev)}
+                        aria-label={
+                          showConfirmPassword
+                            ? 'Masquer la confirmation du mot de passe'
+                            : 'Afficher la confirmation du mot de passe'
+                        }
+                        aria-pressed={showConfirmPassword}
+                        className="absolute inset-y-0 right-0 px-3 flex items-center text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#111827] dark:hover:text-[#F3F4F6] cursor-pointer"
+                      >
+                        {showConfirmPassword ? (
+                          <IconEyeOff className="w-4 h-4" />
+                        ) : (
+                          <IconEye className="w-4 h-4" />
+                        )}
+                      </button>
+                    </div>
                   </div>
                 )}
 
@@ -378,17 +658,27 @@ export function AuthView({
                           ? 'Envoyer le lien'
                           : 'Enregistrer le mot de passe'}
                 </button>
+
+                {mode === 'recovery' && !recoveryParams && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigateToRoot();
+                      switchMode('forgot');
+                      onExitCallbackRoute?.();
+                    }}
+                    className="w-full py-2 px-4 rounded-xl border border-[#E4DFD3] dark:border-[#343F3B] text-xs font-semibold text-[#0F4C3A] dark:text-[#6EE7B7] cursor-pointer"
+                  >
+                    Demander un nouveau lien
+                  </button>
+                )}
               </form>
 
               <div className="pt-1 text-center text-xs text-[#4B5563] dark:text-[#D1D5DB]">
                 {mode === 'login' ? (
                   <button
                     type="button"
-                    onClick={() => {
-                      setMode('signup');
-                      setErrorMessage(null);
-                      setInfoMessage(null);
-                    }}
+                    onClick={() => switchMode('signup')}
                     className="font-semibold text-[#0F4C3A] dark:text-[#6EE7B7] hover:underline cursor-pointer"
                   >
                     Créer un compte
@@ -397,9 +687,9 @@ export function AuthView({
                   <button
                     type="button"
                     onClick={() => {
-                      setMode('login');
-                      setErrorMessage(null);
-                      setInfoMessage(null);
+                      navigateToRoot();
+                      switchMode('login');
+                      onExitCallbackRoute?.();
                     }}
                     className="font-semibold text-[#0F4C3A] dark:text-[#6EE7B7] hover:underline cursor-pointer"
                   >

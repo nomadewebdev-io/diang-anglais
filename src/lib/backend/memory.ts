@@ -6,7 +6,11 @@ import {
   MAX_REMOTE_PROFILES,
   RemoteLearnerProfileRow,
 } from './types';
-import { validateEmail, validatePassword } from './validation';
+import {
+  formatPasswordRejectionError,
+   validateEmail,
+  validatePassword,
+} from './validation';
 
 interface MemoryUserRecord extends BackendUser {
   password: string;
@@ -140,29 +144,84 @@ export class MemoryBackendAdapter implements BackendAdapter {
 
   async completePasswordRecovery(
     userId: string,
-    _secret: string,
+    secret: string,
     newPassword: string
   ): Promise<AuthActionResult> {
     const pCheck = validatePassword(newPassword);
     if (!pCheck.valid) return { ok: false, message: pCheck.error };
+    if (!secret || secret === 'expired-secret') {
+      return {
+        ok: false,
+        message: formatPasswordRejectionError(new Error('Invalid token or expired secret')),
+      };
+    }
+    if (newPassword.toLowerCase() === 'password123') {
+      return {
+        ok: false,
+        message: formatPasswordRejectionError(new Error('Password is too commonly used')),
+      };
+    }
     const user = this.users.get(userId);
     if (!user) {
       return {
         ok: false,
-        message: 'Impossible de mettre à jour le mot de passe. Redemande un lien.',
+        message: 'Ce lien de réinitialisation est expiré ou a déjà été utilisé. Demande un nouveau lien.',
+      };
+    }
+    if (user.email && newPassword.toLowerCase().includes(user.email.split('@')[0].toLowerCase())) {
+      return {
+        ok: false,
+        message: formatPasswordRejectionError(new Error('Password contains personal data')),
       };
     }
     user.password = newPassword;
-    return { ok: true, message: 'Mot de passe mis à jour.' };
+    return {
+      ok: true,
+      message: 'Mot de passe mis à jour avec succès. Tu peux maintenant te connecter.',
+    };
   }
 
-  async completeEmailVerification(userId: string, _secret: string): Promise<AuthActionResult> {
+  async completeEmailVerification(userId: string, secret: string): Promise<AuthActionResult> {
     const user = this.users.get(userId);
-    if (!user) {
-      return { ok: false, message: 'Lien de confirmation invalide ou expiré.' };
+    if (!user || !secret || secret === 'expired-secret') {
+      return {
+        ok: false,
+        message: 'Ce lien de confirmation est expiré, invalide ou a déjà été utilisé.',
+      };
     }
     user.emailVerification = true;
     return { ok: true, message: 'Email confirmé. Tu peux maintenant te connecter.' };
+  }
+
+  async resendEmailVerification(
+    email?: string,
+    password?: string
+  ): Promise<AuthActionResult> {
+    if (this.currentUserId) {
+      return {
+        ok: true,
+        message: "Un nouvel email de confirmation vient d'être envoyé. Vérifie ta boîte mail.",
+      };
+    }
+    if (!email || !password) {
+      return {
+        ok: false,
+        message: "Saisis ton email et ton mot de passe pour renvoyer l'email de confirmation.",
+      };
+    }
+    const normalized = email.trim().toLowerCase();
+    for (const user of this.users.values()) {
+      if (user.email?.toLowerCase() === normalized && user.password === password) {
+        return {
+          ok: true,
+          message: "Un nouvel email de confirmation vient d'être envoyé. Vérifie ta boîte mail.",
+        };
+      }
+    }
+    return {
+      ok: false,
+      message: 'Identifiants incorrects ou envoi impossible.',
+    };
   }
 
   async listProfiles(userId: string): Promise<RemoteLearnerProfileRow[]> {

@@ -1,13 +1,22 @@
-# Vérification Diang-Anglais — Déploiement Appwrite Cloud (`appwrite.config.json`) & Cloudflare Pages
+# Vérification Diang-Anglais — Correction des Flux Email Appwrite (`/verifier-email` & `/nouveau-mot-de-passe`)
 
-## Critères vérifiés
-- [x] **Configuration Appwrite CLI (`appwrite.config.json`)** : renommage de `appwrite.json` en `appwrite.config.json`, `projectId = "6b041249002b54c1ab44"`, `endpoint = "https://fra.cloud.appwrite.io/v1"`, clé `tablesDB` compatible Appwrite CLI v28.14.0.
-- [x] **Base de données & Table (`diang-anglais-db` / `learner_profiles`)** : déployées sur Appwrite Cloud (`fra.cloud.appwrite.io`), `rowSecurity: true`, permission table `create("users")` uniquement (aucun rôle `any`), colonne `data` en `mediumtext` (jusqu'à 16 Mo, couvrant ~500 Ko + compression gzip+base64 côté client au-delà de 16 Ko), index `idx_user_id` (`ASC` sur `user_id`).
-- [x] **Fonctions Appwrite (`node-22` LTS)** :
-  - `delete-my-account` : runtime `node-22`, execute `["users"]`, scopes minimaux `["users.read", "users.write", "rows.read", "rows.write"]`, déployée et active.
-  - `enforce-profile-limit` : runtime `node-22`, événement `databases.diang-anglais-db.tables.learner_profiles.rows.*.create`, scopes minimaux `["rows.read", "rows.write"]`, déployée et active.
-- [x] **Variables d'environnement (`.env` & `.env.example`)** : `VITE_APPWRITE_ENDPOINT`, `VITE_APPWRITE_PROJECT_ID`, `VITE_APPWRITE_DATABASE_ID`, `VITE_APPWRITE_TABLE_ID`, `VITE_ENABLE_GOOGLE_LOGIN=false` (`.env` ignoré par Git).
-- [x] **Tests, Build & Budgets** :
-  - `npm test` (`validate-data.js` + `vitest run`) : **10 fichiers de test, 64 tests passés**.
-  - `npm run build` (`tsc -b && vite build && node scripts/check-budget.js`) : **0 erreur TypeScript, tous les budgets respectés**.
-  - `npm run check:deploy` : **prêt pour Cloudflare Pages**.
+## Diagnostic des causes racines
+1. **Confusion entre lien de confirmation et réinitialisation de mot de passe** : Appwrite ajoute le paramètre `expire` aussi bien aux liens de confirmation d'email (`account.createVerification`) qu'aux liens de récupération (`account.createRecovery`). L'ancienne fonction `parseAuthCallbackFromLocation` testait `params.has('expire')` sur `/` et basculait donc à tort tous les liens de confirmation d'email vers l'écran `"Choisis ton nouveau mot de passe"`.
+2. **Erreur `"Les deux mots de passe ne correspondent pas"` et gestion du formulaire** : l'ouverture involontaire du mode `recovery` conservait l'état du champ `#auth-password` (ou subissait l'auto-remplissage navigateur sur le premier champ uniquement) sans réinitialiser les deux champs, sans bouton afficher/masquer pour contrôler la saisie, et sans effacer `errorMessage` lors de la modification d'un champ.
+
+## Corrections apportées
+- [x] **Routes dédiées (`src/lib/backend/validation.ts`, `src/lib/backend/appwrite.ts`, `src/App.tsx`)** :
+  - `/verifier-email` : cible unique de `account.createVerification`, appelle `completeEmailVerification(userId, secret)`, affiche `"Email confirmé"` ou un état d'erreur explicite avec bouton `"Renvoyer l'email de confirmation"` (`resendEmailVerification`).
+  - `/nouveau-mot-de-passe` : cible unique de `account.createRecovery`, seul chemin permettant d'afficher le formulaire de nouveau mot de passe.
+  - Servies par le serveur Vite (SPA) et `public/_redirects` (`/* /index.html 200`).
+- [x] **Formulaire de nouveau mot de passe (`src/components/AuthView.tsx`)** :
+  - Comparaison exacte (`password === confirmPassword`, sans `trim`) uniquement à la soumission (`validatePasswordMatch`).
+  - Effacement immédiat du message d'erreur dès qu'un champ change (`onChange`) et réinitialisation des champs à chaque changement d'écran.
+  - Bouton afficher/masquer (`IconEye` / `IconEyeOff`, `aria-label`, `aria-pressed`) sur chacun des deux champs.
+  - `autoComplete="new-password"` sur les deux champs.
+  - Messages français explicites pour les refus d'Appwrite (`formatPasswordRejectionError` : trop court, trop courant, données personnelles, lien expiré).
+
+## Contrôles automatisés
+- `npm test` (`validate-data.js` + `vitest run`) : **10 fichiers de test, 66 tests passés**.
+- `npm run build` (`tsc -b && vite build && node scripts/check-budget.js`) : **0 erreur TypeScript, tous les budgets respectés**.
+- `npm run check:deploy` : **prêt pour Cloudflare Pages**.

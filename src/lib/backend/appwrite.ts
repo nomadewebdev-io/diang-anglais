@@ -14,7 +14,13 @@ import {
   MAX_REMOTE_PROFILES,
   RemoteLearnerProfileRow,
 } from './types';
-import { validateEmail, validatePassword } from './validation';
+import {
+  formatPasswordRejectionError,
+  RESET_PASSWORD_PATH,
+  validateEmail,
+  validatePassword,
+  VERIFY_EMAIL_PATH,
+} from './validation';
 
 const GENERIC_LOGIN_ERROR =
   'Identifiants incorrects ou connexion impossible. Vérifie ton email et ton mot de passe.';
@@ -217,8 +223,9 @@ export class AppwriteAdapter implements BackendAdapter {
         password,
       });
 
-      const redirectUrl =
-        typeof window !== 'undefined' ? `${window.location.origin}/` : 'http://localhost:5173/';
+      const origin =
+        typeof window !== 'undefined' ? window.location.origin : 'http://localhost:5173';
+      const redirectUrl = `${origin}${VERIFY_EMAIL_PATH}`;
       try {
         await b.account.createVerification({ url: redirectUrl });
       } catch {
@@ -301,10 +308,9 @@ export class AppwriteAdapter implements BackendAdapter {
     if (!b) return { ok: false, message: GENERIC_CONFIG_ERROR };
 
     try {
-      const redirectUrl =
-        typeof window !== 'undefined'
-          ? `${window.location.origin}/?mode=recovery`
-          : 'http://localhost:5173/?mode=recovery';
+      const origin =
+        typeof window !== 'undefined' ? window.location.origin : 'http://localhost:5173';
+      const redirectUrl = `${origin}${RESET_PASSWORD_PATH}`;
       await b.account.createRecovery({
         email: email.trim(),
         url: redirectUrl,
@@ -332,11 +338,14 @@ export class AppwriteAdapter implements BackendAdapter {
         secret,
         password: newPassword,
       });
-      return { ok: true, message: 'Mot de passe mis à jour. Tu peux maintenant te connecter.' };
-    } catch {
+      return {
+        ok: true,
+        message: 'Mot de passe mis à jour avec succès. Tu peux maintenant te connecter.',
+      };
+    } catch (err) {
       return {
         ok: false,
-        message: 'Impossible de mettre à jour le mot de passe. Redemande un lien.',
+        message: formatPasswordRejectionError(err),
       };
     }
   }
@@ -352,13 +361,60 @@ export class AppwriteAdapter implements BackendAdapter {
       await b.account.updateVerification({ userId, secret });
       return {
         ok: true,
-        message: 'Adresse email confirmée. Tu peux maintenant te connecter.',
+        message: 'Email confirmé. Tu peux maintenant te connecter.',
       };
     } catch {
       return {
         ok: false,
-        message: 'Lien de confirmation invalide ou expiré.',
+        message: 'Ce lien de confirmation est expiré, invalide ou a déjà été utilisé.',
       };
+    }
+  }
+
+  async resendEmailVerification(
+    email?: string,
+    password?: string
+  ): Promise<AuthActionResult> {
+    const b = await this.getBundle();
+    if (!b) return { ok: false, message: GENERIC_CONFIG_ERROR };
+
+    const origin =
+      typeof window !== 'undefined' ? window.location.origin : 'http://localhost:5173';
+    const redirectUrl = `${origin}${VERIFY_EMAIL_PATH}`;
+
+    let createdTempSession = false;
+    try {
+      const currentUser = await b.account.get().catch(() => null);
+      if (!currentUser) {
+        if (!email || !password) {
+          return {
+            ok: false,
+            message: "Saisis ton email et ton mot de passe pour renvoyer l'email de confirmation.",
+          };
+        }
+        const eCheck = validateEmail(email);
+        if (!eCheck.valid) return { ok: false, message: eCheck.error };
+        await b.account.createEmailPasswordSession({
+          email: email.trim(),
+          password,
+        });
+        createdTempSession = true;
+      }
+
+      await b.account.createVerification({ url: redirectUrl });
+      return {
+        ok: true,
+        message: "Un nouvel email de confirmation vient d'être envoyé. Vérifie ta boîte mail.",
+      };
+    } catch {
+      return {
+        ok: false,
+        message: "Impossible de renvoyer l'email de confirmation. Vérifie tes identifiants et réessaie.",
+      };
+    } finally {
+      if (createdTempSession) {
+        await b.account.deleteSession({ sessionId: 'current' }).catch(() => {});
+      }
     }
   }
 

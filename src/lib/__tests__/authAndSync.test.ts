@@ -1,10 +1,19 @@
+import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import viteConfigRaw from '../../../vite.config.ts?raw';
+import { AuthView } from '../../components/AuthView';
 import {
+  formatPasswordRejectionError,
   MemoryBackendAdapter,
+  parseAuthCallbackFromLocation,
   RemoteLearnerProfileRow,
+  RESET_PASSWORD_PATH,
+  setBackendAdapterForTest,
   validateEmail,
   validatePassword,
+  validatePasswordMatch,
+  VERIFY_EMAIL_PATH,
 } from '../backend';
 import {
   clearAllLocalAccountData,
@@ -77,13 +86,122 @@ describe('auth, synchronisation Appwrite, confidentialité & sécurité', () => 
     vi.restoreAllMocks();
   });
 
-  it('valide les mots de passe (8 caractères minimum) et les emails', () => {
+  it('valide les mots de passe (8 caractères minimum), la correspondance exacte (avec espaces) et les refus Appwrite', () => {
     expect(validatePassword('1234567').valid).toBe(false);
     expect(validatePassword('').valid).toBe(false);
     expect(validatePassword('motdepasse8').valid).toBe(true);
 
+    // Correspondance exacte sans trim
+    expect(validatePasswordMatch('MonMotDePasse2026!', 'MonMotDePasse2026!').valid).toBe(true);
+    expect(validatePasswordMatch('MonMotDePasse2026!', 'AutreMotDePasse2026!').valid).toBe(false);
+    expect(validatePasswordMatch('MonMotDePasse2026! ', 'MonMotDePasse2026!').valid).toBe(false);
+    expect(validatePasswordMatch(' MonMotDePasse2026! ', ' MonMotDePasse2026! ').valid).toBe(true);
+
+    // Traduction des refus Appwrite en français
+    expect(formatPasswordRejectionError(new Error('Password is too commonly used'))).toMatch(
+      /trop courant/i
+    );
+    expect(formatPasswordRejectionError(new Error('Password contains personal data'))).toMatch(
+      /données personnelles/i
+    );
+    expect(formatPasswordRejectionError(new Error('Password must be at least 8 characters'))).toMatch(
+      /8 caractères/i
+    );
+    expect(formatPasswordRejectionError(new Error('Invalid token or expired secret'))).toMatch(
+      /expiré/i
+    );
+
     expect(validateEmail('invalide').valid).toBe(false);
     expect(validateEmail('aminata@example.com').valid).toBe(true);
+  });
+
+  it('sépare strictement /verifier-email et /nouveau-mot-de-passe sans jamais confondre un lien de confirmation (même avec expire)', async () => {
+    // 1. Un lien avec userId, secret et expire sur / ne déclenche JAMAIS recovery
+    expect(
+      parseAuthCallbackFromLocation(
+        '?userId=u123&secret=sec456&expire=2026-12-01T00:00:00.000Z',
+        '/'
+      )
+    ).toEqual({ kind: 'none' });
+
+    // 2. /verifier-email avec expire déclenche uniquement verification (jamais recovery)
+    const verifyCb = parseAuthCallbackFromLocation(
+      '?userId=u123&secret=sec456&expire=2026-12-01T00:00:00.000Z',
+      VERIFY_EMAIL_PATH
+    );
+    expect(verifyCb).toEqual({
+      kind: 'verification',
+      userId: 'u123',
+      secret: 'sec456',
+    });
+
+    // 3. /verifier-email sans paramètres signale un lien invalide/expiré
+    expect(parseAuthCallbackFromLocation('', VERIFY_EMAIL_PATH)).toEqual({
+      kind: 'verification',
+      invalidLink: true,
+    });
+
+    // 4. /nouveau-mot-de-passe déclenche recovery
+    expect(
+      parseAuthCallbackFromLocation(
+        '?userId=u123&secret=sec456&expire=2026-12-01T00:00:00.000Z',
+        RESET_PASSWORD_PATH
+      )
+    ).toEqual({
+      kind: 'recovery',
+      userId: 'u123',
+      secret: 'sec456',
+    });
+
+    // 5. Gestion du lien de vérification expiré et renvoi dans l'adaptateur
+    const adapter = new MemoryBackendAdapter();
+    const signUpRes = await adapter.signUp('khadija@example.com', 'MotDePasseSolide9!');
+    expect(signUpRes.ok).toBe(true);
+    const uid = signUpRes.user!.id;
+
+    const expiredRes = await adapter.completeEmailVerification(uid, 'expired-secret');
+    expect(expiredRes.ok).toBe(false);
+    expect(expiredRes.message).toMatch(/expiré|invalide/i);
+
+    const resendRes = await adapter.resendEmailVerification(
+      'khadija@example.com',
+      'MotDePasseSolide9!'
+    );
+    expect(resendRes.ok).toBe(true);
+
+    const validVerifyRes = await adapter.completeEmailVerification(uid, 'valid-secret');
+    expect(validVerifyRes.ok).toBe(true);
+    expect(validVerifyRes.message).toMatch(/Email confirmé/i);
+  });
+
+  it('affiche les boutons afficher/masquer accessibles, autocomplete="new-password" et n’affiche jamais le formulaire de mot de passe sur un lien de vérification', () => {
+    const adapter = new MemoryBackendAdapter();
+    setBackendAdapterForTest(adapter);
+
+    // Rendu de l'écran de connexion / vérification : pas de champ "Confirmer le mot de passe"
+    const loginHtml = renderToStaticMarkup(
+      React.createElement(AuthView, {
+        initialMode: 'login',
+        onOpenLegal: () => {},
+      })
+    );
+    expect(loginHtml).not.toContain('Confirmer le mot de passe');
+    expect(loginHtml).toContain('aria-label="Afficher le mot de passe"');
+
+    // Rendu de l'écran /nouveau-mot-de-passe : 2 champs new-password + 2 boutons afficher/masquer
+    const recoveryHtml = renderToStaticMarkup(
+      React.createElement(AuthView, {
+        initialMode: 'recovery',
+        onOpenLegal: () => {},
+      })
+    );
+    expect(recoveryHtml).toContain('Nouveau mot de passe');
+    expect(recoveryHtml).toContain('Confirmer le mot de passe');
+    expect(recoveryHtml).toContain('aria-label="Afficher le mot de passe"');
+    expect(recoveryHtml).toContain('aria-label="Afficher la confirmation du mot de passe"');
+    expect(recoveryHtml.match(/autoComplete="new-password"|autocomplete="new-password"/g)?.length).toBe(
+      2
+    );
   });
 
   it('déclenche un envoi différé après 5 s, gère le mode hors-ligne et reprend au retour online via MemoryBackendAdapter', async () => {
