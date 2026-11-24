@@ -5,7 +5,7 @@ const MAX_PROFILES_PER_USER = 4;
 export default async ({ req, res, error }) => {
   const dynamicApiKey = req.headers['x-appwrite-key'];
   if (!dynamicApiKey) {
-    error('Clé dynamique Appwrite manquante (scopes requis: tables.read, tables.write).');
+    error('Clé dynamique Appwrite manquante (scopes requis: rows.read, rows.write).');
     return res.json({ ok: false }, 500);
   }
 

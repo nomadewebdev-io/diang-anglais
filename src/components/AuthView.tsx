@@ -34,6 +34,10 @@ export function AuthView({
 
   const backend = getBackendAdapter();
   const configured = backend.isConfigured();
+  const googleLoginEnabled =
+    String(import.meta.env.VITE_ENABLE_GOOGLE_LOGIN ?? 'true')
+      .trim()
+      .toLowerCase() !== 'false';
 
   useEffect(() => {
     const callback = parseAuthCallbackFromLocation();
@@ -241,7 +245,7 @@ export function AuthView({
             </div>
           ) : (
             <>
-              {(mode === 'login' || mode === 'signup') && (
+              {(mode === 'login' || mode === 'signup') && googleLoginEnabled && (
                 <>
                   <button
                     type="button"

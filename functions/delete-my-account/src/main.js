@@ -8,7 +8,7 @@ export default async ({ req, res, error }) => {
     return res.json({ ok: false, message: 'Authentification requise.' }, 401);
   }
   if (!dynamicApiKey) {
-    error('Clé dynamique Appwrite manquante (scopes requis: tables.read, tables.write, users.write).');
+    error('Clé dynamique Appwrite manquante (scopes requis: rows.read, rows.write, users.read, users.write).');
     return res.json({ ok: false, message: 'Configuration serveur invalide.' }, 500);
   }
 

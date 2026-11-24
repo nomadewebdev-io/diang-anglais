@@ -1,7 +1,8 @@
 {
-  "projectId": "",
+  "projectId": "6b041249002b54c1ab44",
+  "endpoint": "https://fra.cloud.appwrite.io/v1",
   "projectName": "diang-anglais",
-  "databases": [
+  "tablesDB": [
     {
       "$id": "diang-anglais-db",
       "name": "diang-anglais-db",
@@ -42,8 +43,7 @@
         },
         {
           "key": "data",
-          "type": "string",
-          "size": 524288,
+          "type": "mediumtext",
           "required": true,
           "array": false
         },
@@ -66,8 +66,12 @@
         {
           "key": "idx_user_id",
           "type": "key",
-          "orders": ["ASC"],
-          "columns": ["user_id"]
+          "orders": [
+            "ASC"
+          ],
+          "columns": [
+            "user_id"
+          ]
         }
       ]
     }
@@ -76,13 +80,16 @@
     {
       "$id": "delete-my-account",
       "name": "delete-my-account",
-      "runtime": "node-20.0",
-      "execute": ["users"],
+      "runtime": "node-22",
+      "execute": [
+        "users"
+      ],
       "events": [],
       "scopes": [
+        "users.read",
         "users.write",
-        "tables.read",
-        "tables.write"
+        "rows.read",
+        "rows.write"
       ],
       "timeout": 15,
       "enabled": true,
@@ -94,14 +101,14 @@
     {
       "$id": "enforce-profile-limit",
       "name": "enforce-profile-limit",
-      "runtime": "node-20.0",
+      "runtime": "node-22",
       "execute": [],
       "events": [
         "databases.diang-anglais-db.tables.learner_profiles.rows.*.create"
       ],
       "scopes": [
-        "tables.read",
-        "tables.write"
+        "rows.read",
+        "rows.write"
       ],
       "timeout": 15,
       "enabled": true,
